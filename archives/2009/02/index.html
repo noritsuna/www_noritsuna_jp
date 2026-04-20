@@ -1,0 +1,1673 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="description" content="SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。" />
+    <meta name="generator" content="http://www.sixapart.jp/movabletype/" />
+    <link rev="made" href="mailto:your@email" title="E-mail address" />
+    <link rel="home" href="http://www.noritsuna.jp/" title="なんとなく実験 with SIProp開発記" />
+    <link rel="index" href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記archives" />
+    <link rel="prev" href="http://www.noritsuna.jp/archives/2009/01/" title="2009&amp;#24180;01&amp;#26376;" />
+    <link rel="next" href="http://www.noritsuna.jp/archives/2009/03/" title="2009&amp;#24180;03&amp;#26376;" />
+    <link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.noritsuna.jp/index.xml" /> 
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.noritsuna.jp/rsd.xml" />
+    <title>なんとなく実験 with SIProp開発記 | 2009&#24180;02&#26376;</title>
+
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/">
+<dc:title>なんとなく実験 with SIProp開発記</dc:title>
+<dc:description>SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</dc:description>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+  </head>
+  <body class="layout-two-column-right">
+
+    <!-- ブログ全体 -->
+    <div id="main-container">
+
+      <!-- ブログタイトル -->
+      <div id="banner">
+        <h1 id="banner-header"><a href="http://www.noritsuna.jp/" accesskey="1" title="なんとなく実験 with SIProp開発記">なんとなく実験 with SIProp開発記</a></h1>
+        <h2 id="banner-description">SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</h2>
+      </div><!-- banner_end -->
+
+      <!-- 左カラム -->
+      <div id="left-menu">
+        <div  class="left-content">
+
+          <!-- サイト内検索 -->
+          <div class="search-form">
+            <h3>Search</h3>
+            <form method="get" action="http://www.noritsuna.jp/cgi-bin/mt/mt-search.cgi">
+              <input type="hidden" name="IncludeBlogs" value="1" />
+              <label for="search" accesskey="4">サイト内検索</label><br />
+              <input id="search" tabindex="5"  accesskey="t"  value="search this blog" name="search" onblur="if(this.value==''){this.style.color=''; this.form.reset()}" onfocus="this.value = ''; this.style.color = '#000000';" />
+              <input type="submit" tabindex="6" accesskey="s" value="submit" class="searchsubmit" />
+            </form>
+          </div><!-- search-form_end -->
+
+                    <!-- Categoryアーカイブ -->
+          <div class="category-archives">
+            <h3>Category Archives</h3>
+	    <div class="category-label">
+              <ul>
+                <li><a href="http://www.noritsuna.jp/archives/gae/" title="">GAE</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/news/" title="">NEWS</a></li>
+              
+                <li class="module-list-item">OS<ul>
+                <li><a href="http://www.noritsuna.jp/archives/os/linux/" title="">Linux</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/windows/" title="">Windows</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/auos/" title="">仮想OS</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/siprop/" title="">SIProp</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/stm/" title="">STM</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/iphone/" title="">iPhone</a></li>
+              </ul></li>
+              
+                <li class="module-list-item">開発<ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ar/" title="">AR</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/amazonec2/" title="">AmazonEC2</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/application/" title="">Application</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/chromium/" title="">Chromium</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/" title="">HardWare</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/fpga/" title="">FPGA</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/gpgpu/" title="">GPGPU</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/java/" title="">Java</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/cat34/" title="">無線</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/nwng/" title="">NwNG</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/p2p/" title="">P2P</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/" title="">セマンティック</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/ai/" title="">AI</a></li>
+              </ul></li>
+              </ul></li>
+              </ul>
+            </div><!-- category-label_end -->
+          </div><!-- category-archives_end -->
+          
+
+                    <!-- Monthlyアーカイブ -->
+          <div class="monthly-archives">
+            <h3><a href="http://www.noritsuna.jp/archives.html">Archives</a></h3>
+            <ul class="module-list">
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2011/01/">2011&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/08/">2010&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/07/">2010&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/06/">2010&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/05/">2010&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/04/">2010&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/03/">2010&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/02/">2010&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/01/">2010&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/12/">2009&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/11/">2009&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/10/">2009&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/09/">2009&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/08/">2009&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/07/">2009&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/06/">2009&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/05/">2009&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/04/">2009&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/03/">2009&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/02/">2009&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/01/">2009&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/12/">2008&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/11/">2008&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/10/">2008&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/09/">2008&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/08/">2008&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/07/">2008&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/06/">2008&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/05/">2008&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/04/">2008&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/03/">2008&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/02/">2008&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/01/">2008&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/12/">2007&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/11/">2007&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/10/">2007&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/09/">2007&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/08/">2007&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/07/">2007&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/06/">2007&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/05/">2007&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/04/">2007&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/03/">2007&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/02/">2007&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/01/">2007&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/12/">2006&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/11/">2006&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/10/">2006&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/09/">2006&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/08/">2006&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/07/">2006&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/06/">2006&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/02/">2006&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/09/">2005&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/07/">2005&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/06/">2005&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/05/">2005&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/04/">2005&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/03/">2005&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/02/">2005&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/01/">2005&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2004/12/">2004&#24180;12&#26376;</a></li>
+            </ul>
+          </div><!-- monthly-archives_end -->
+          
+
+        </div><!-- left-content_end -->
+      </div><!-- left-menu_end -->
+
+      <!-- 中央カラム -->
+      <div id="main">
+        <div  class="content">
+
+          <p class="navi-link"><a href="http://www.noritsuna.jp/archives/2009/01/">&laquo; 2009&#24180;01&#26376;</a> | <a href="http://www.noritsuna.jp/">main</a>| <a href="http://www.noritsuna.jp/archives/2009/03/">2009&#24180;03&#26376; &raquo;</a></p>
+
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2009/02/index.html#000703"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/703"
+    dc:title="Android SDK WG 第4回 セッションの告知"
+    dc:identifier="http://www.noritsuna.jp/archives/2009/02/index.html#000703"
+    dc:subject="Android"
+    dc:description="日本Androidの会 Android SDK WG  第4回 セッションのお知..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-27T15:57:36+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;02&#26376;27&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000703" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/android_sdk_wg.html" title="Android SDK WG 第4回 セッションの告知">Android SDK WG 第4回 セッションの告知</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>日本Androidの会 Android SDK WG  第4回 セッションのお知らせです。<br />
+こちらのエントリー「<a href="http://www.noritsuna.jp/archives/2009/02/softwaredesign2.html">「SoftwareDesign」2009年03月號のAndroid特集</a>」で告知したソースコードの解説イベントです！<br />
+ぜひ、ふるってご参加ください。</p>
+
+<blockquote>日時：　2009年3月14日（土曜日）　13:00 - 17:30（予定。随時入退室自由です。）<BR>
+場所：　東京都新宿区西新宿二丁目１番１号 新宿三井ビル３４階 株式会社豆蔵　トレーニングルーム<BR>
+MAP：http://www.shinjukumitsui55info.jp/access/index.html<BR>
+参加費用：　無料<BR>
+申し込み方法 ：<a href="http://atnd.org/events/392">こちら</a>に参加登録をお願いします！<BR>
+</blockquote>
+
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/android_sdk_wg.html" title="Android SDK WG 第4回 セッションの告知">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 15:57</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a> ≫ <a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2009/02/index.html#000701"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/701"
+    dc:title="第十二回SIProp勉強会の告知"
+    dc:identifier="http://www.noritsuna.jp/archives/2009/02/index.html#000701"
+    dc:subject="SIProp"
+    dc:description="第十二回SIProp勉強会の告知です。 平日の夜にやるバージョンの方で、SIPと..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-26T22:39:39+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;02&#26376;26&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000701" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/siprop_19.html" title="第十二回SIProp勉強会の告知">第十二回SIProp勉強会の告知</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://www.siprop.org/ja/2.0/index.php?%B3%AB%C8%AF%2F%A5%B3%A5%DF%A5%E5%A5%CB%A5%C6%A5%A3%A1%BC%2F%CA%D9%B6%AF%B2%F1">第十二回SIProp勉強会</a>の告知です。<br />
+平日の夜にやるバージョンの方で、SIPとかIETFとか、最近やっております。今回は、セキュリティに焦点を当てていきます。</p>
+
+<p><br />
+<blockquote><br />
+*案内<br />
+-日程<br />
+--2009/03/13(金)<br />
+-時間<br />
+--19:00〜<br />
+-参加費<br />
+--なし<br />
+-懇親会<br />
+--あり<br />
+---3000〜5000円の間<br />
+-会場<br />
+--大手町の秘密会場<br />
+---info あっとまーく siprop.org<br />
+---にお問い合わせください。</p>
+
+<p>*プログラム<br />
+-外山さんによる「セキュリティー小話」<br />
+</blockquote></p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/siprop_19.html" title="第十二回SIProp勉強会の告知">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 22:39</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a> ≫ <a href="http://www.noritsuna.jp/archives/ssee/siprop/" title="">SIProp</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2009/02/index.html#000702"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/702"
+    dc:title="2009年3月の定例イベント開催のお知らせ"
+    dc:identifier="http://www.noritsuna.jp/archives/2009/02/index.html#000702"
+    dc:subject="Android"
+    dc:description="G1が出て早3ヶ月が過ぎ、そして、Dev 1 Phoneも国内で入手可能になりま..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-26T15:46:44+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            
+
+            <!-- エントリータイトル -->
+            <h3 id="a000702" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/20093_1.html" title="2009年3月の定例イベント開催のお知らせ">2009年3月の定例イベント開催のお知らせ</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>G1が出て早3ヶ月が過ぎ、そして、Dev 1 Phoneも国内で入手可能になりました。<br />
+みなさん、そろそろ、作成した自慢のアプリや解析したノウハウなどが溜まってきているのではないでしょうか？<br />
+そこで、2009年3月の定例イベントは、『デモ＆LT大会』を予定しております。</p>
+
+<p><br />
+ <blockquote>   * 日時：　2009年3月9日（月曜日）　19:00 - 21:00<br />
+    * 場所：　秋葉原ダイビル12F はこだて未来大<br />
+    * 定員：　80名（応募多数の場合は抽選となります）<br />
+    * 主催：　日本Androidの会・早稲田大学<br />
+    * 協力：　はこだて未来大学<br />
+    * 講演者<br />
+          o LT勇者たち<br />
+</blockquote></p>
+
+<p></p>
+
+<p>■コンテンツ詳細<br />
+   * みずの＠組み込みWGさん<br />
+  　 - Android on VMWare<br />
+  　 - VMWareでAndroidを動かすTips。<br />
+   * イースト株式会社 大島俊哉さん<br />
+  　 - Android向け辞書アプリほか当社開発アプリのご紹介<br />
+  　 - イースト株式会社の大島と申します。お世話になります。 当社開発のAndroidアプリ「デ辞蔵」「Xamler」「大当たり」を、他のメンバーとともに紹介したいと思います。よろしくお願いいたします。<br />
+   * noritsunaさん<br />
+  　 - AAA<br />
+  　 - Amazon EC2とSimple DBを使って、Androidと連携する方法の紹介<br />
+   * roishiさん<br />
+  　 - 携帯端末における多言語化〜Androidへの期待〜<br />
+   * 近藤昭雄さん<br />
+  　 - Androidで作るプレゼンアプリ<br />
+  　 - プレゼンアプリを使ってプレゼンアプリのプレゼンしてみます！<br />
+   * koyamakさん<br />
+  　 - Intentまわりで小ネタ<br />
+  　 - Intentかその辺で小ネタやります<br />
+   * 神林 隆さん<br />
+  　 - Androidとユビキタス<br />
+  　 - ユビキタスサービスを提供するためのプラットフォームにおいてサー ビス連携を制御する技術の一環として、その場その時の状況に応じ て提供可能なサービスのリストをユーザに提示するプログラムをAndroidを用いて実装したので、それについて報告する。</p>
+
+<p>   * 順不同（当日、決めます）</p>
+
+<p><br />
+●嶋さん、応援LT「UIについて語る」 <br />
+UIフォーラムにて、我らが嶋さんが、あの神尾氏、越川氏、夏野氏らと UIに関連したパネルディスカッションをする予定です。<br />
+神尾氏、嶋氏、越川氏、夏野氏がUIを語る──アークブレインセミナー 「UI新時代」の要諦<br />
+http://plusd.itmedia.co.jp/mobile/articles/0902/13/news032.html<br />
+そこで、嶋さんにヒントを持って帰ってもらうために、UIについて蘊蓄が ある人たちにも、LTをしてもらう予定です。</p>
+
+<p>   * 児玉哲彦さん<br />
+  　 - 広域のロケーション情報を，端末の姿勢を用いたジェスチャでブラウズするLocoscapeシステム<br />
+  　 - 5年の研究成果に基づく，モバイルにおける新たなUIの可能性を示します．よろしくお願いいたします．<br />
+   * 内嶋さん<br />
+  　 - 未定<br />
+   * 中村さん<br />
+  　 - 未定<br />
+   * 平出さん<br />
+  　 - マルチタッチの特許について<br />
+   * 安生さんx矢野さん<br />
+  　 - 雑談トークセッション<br />
+  　 - LT2枠をぶち抜いて、ただただ、雑談します！！！<br />
+   * 嶋さん<br />
+  　 - まとめ役</p>
+
+<p>●ワーキンググループ/マッシュアップのリーダ内嶋教人さんからの重大発表<br />
+   * 重大発表があるとの情報をキャッチしております。</p>
+
+<p><br />
+●申込み <br />
+    * 下記より、お申し込みください。<br />
+    * https://spreadsheets.google.com/viewform?formkey=cDNkYmltTXNDeVJfQ0E1c0YwdVNCT1E6MA..</p>
+
+<p>●告知ページ<br />
+    * http://www.android-group.jp/index.php?%CA%D9%B6%AF%B2%F1%2F2009%C7%AF3%B7%EE%A4%CE%A5%A4%A5%D9%A5%F3%A5%C8</p>
+
+<p></p>
+
+<p>以上</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/20093_1.html" title="2009年3月の定例イベント開催のお知らせ">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 15:46</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a> ≫ <a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/20093_1.html#comments" title="2009年3月の定例イベント開催のお知らせにコメント">Comments</a> (2) </li>
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2009/02/index.html#000700"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/700"
+    dc:title="イリジウム再び！"
+    dc:identifier="http://www.noritsuna.jp/archives/2009/02/index.html#000700"
+    dc:subject="無線"
+    dc:description="「KDDI、イリジウム衛星携帯電話「9555型」を2月24日より発売」って、まだ..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-24T04:40:08+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;02&#26376;24&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000700" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/post_134.html" title="イリジウム再び！">イリジウム再び！</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://japan.cnet.com/mobile/story/0,3800078151,20388693,00.htm">KDDI、イリジウム衛星携帯電話「9555型」を2月24日より発売</a>」って、まだ飛んでたのか！！！</p>
+
+<p>そして、『通話エリアは、太陽系です』でおなじみ（？）の<a href="http://www.nasu-net.or.jp/~takashio/">太陽系携帯電話システム・カドミウム</a>は、、、ドメインだけですか＞＜<br />
+華々しい復活に期待しよう！<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/post_134.html" title="イリジウム再び！">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 04:40</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a> ≫ <a href="http://www.noritsuna.jp/archives/e/ngnims/cat34/" title="">無線</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2009/02/index.html#000696"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/696"
+    dc:title="NEETの作り方"
+    dc:identifier="http://www.noritsuna.jp/archives/2009/02/index.html#000696"
+    dc:subject="コミュニティー"
+    dc:description="最近、また、『どうやって生きているんですか？』と聞かれるようになってきました。 ..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-23T00:51:00+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;02&#26376;23&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000696" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/neet.html" title="NEETの作り方">NEETの作り方</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>最近、また、『どうやって生きているんですか？』と聞かれるようになってきました。</p>
+
+<p>以前にも、エントリーを書いた気もしますが、今回はその拡大版です。</p>
+
+<p><br />
+『どうやって生きているんですか？』の意味合いとしては、『私も、同じような生き方をしたいんですが』的な意味があるようです。</p>
+
+<p>私の行動原理は、</p>
+
+<blockquote>捨てるものを明確にする</blockquote>
+
+<p>に尽きるのではないかと。<br />
+『何が、目標』で、それに対して『何を、捨てられるか？』を明確にして、『その通りに行動する』だけです。基本的には、簡単で皆さんも無意識には、やっていることと思います。</p>
+
+<p>難しい点は、『目的(≒理念)をぶらさない』ところにあります。</p>
+
+<p>どうしても、人間、『一切の損はしたくない』とか『もっと、得したい』とか考えてしまうから、ついつい、そのときどきによって『目的(≒理念)』をぶらしてしまうんです。<br />
+まぁ、最初から、本音の目的は、『最大限、儲ける』だったという話も(ry</p>
+
+<p></p>
+
+<p><BR><br />
+ちなみに、私の『目的(≒理念)』は、</p>
+
+<blockquote><a href="http://www.noritsuna.jp/archives/2009/02/post_132.html">前回のエントリー</a>のような少人数集団でも生きていける世界を実現すること</blockquote>
+
+<p>です。</p>
+
+<p>そして、戦略の基本は、『他力本願（ｗ』です。</p>
+
+<blockquote>一人では出来ないので、『まわりのすごい人たちの力を最大限発揮できる環境を作る』</blockquote>
+
+<p>ってことです。</p>
+
+<p>戦略の一つとして、</p>
+
+<blockquote>『<a href="http://www.siprop.org/ja/2.0/index.php?%B3%AB%C8%AF%2F%A5%B3%A5%DF%A5%E5%A5%CB%A5%C6%A5%A3%A1%BC%2F%CA%D9%B6%AF%B2%F1">SIProp勉強会</a>』や『<a href="http://www.android-group.jp/">日本Androidの会</a>』というコミュニティーをやっている</blockquote>
+
+<p>わけです。<br />
+あとは、この戦略の中で出てきた、『目的達成』に不要な部分の『欲』や『プライド』は捨てる。だた、これだけ。でも、非常に難しい。なぜなら、</p>
+
+<blockquote>『目的達成』に不要な部分の『欲』や『プライド』  ってのは、だいたい、価値があるおいしいもので、  みんなが不要な部分は、おいしくない泥臭いもので、逆にそれを拾わないとならないから</blockquote>
+
+<p>なので、普通は、これをやるのは、大変です。<br />
+ちなみに、私は、これが案外と性に合っていて、あまり苦になりません。こういう戦術をとるには、ちょっと、お得な性格です。</p>
+
+<p><br />
+ということで、ぶっちゃけ、好きなことだけして生きていけるNEET生活がしたいんです＞＜ みなさん、僕のためにその世界を創ってください！ ってことです！（ｗ<br />
+※<a href="http://www.noritsuna.jp/archives/2008/05/post_110.html">こちらのエントリー</a>のおまけ部分もあわせてどうぞ。</p>
+
+<p><br />
+<BR><br />
+で、結局、この話って、『経営』の話なんですよね。<br />
+詳細など、経営学の本とか、ビジネス書を読んでみて、自分なりの解を見つけてみてください。</p>
+
+<p>例えば、『みんなが不要な部分は、おいしくない泥臭いもの』って、地味だけど堅実に儲かる仕事だったりします。(;^_^A アセアセ・・・</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/neet.html" title="NEETの作り方">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:51</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a></li>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/neet.html#comments" title="NEETの作り方にコメント">Comments</a> (3) </li>
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2009/02/index.html#000694"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/694"
+    dc:title="マスからマニアへ"
+    dc:identifier="http://www.noritsuna.jp/archives/2009/02/index.html#000694"
+    dc:subject="コミュニティー"
+    dc:description="最近、Android関連で『普及しますかね？』と聞かれることが多くなってきました..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-22T02:34:06+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;02&#26376;22&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000694" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/post_132.html" title="マスからマニアへ">マスからマニアへ</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>最近、Android関連で『普及しますかね？』と聞かれることが多くなってきました。そこで、</p>
+
+<blockquote>国内では（対iPhone的なリッチケータイという意味において）、今年の後半くらいに出ると言われている日本仕様を取り入れたAndroidケータイのでき次第である。<BR>
+<BR>
+国外では（対Nokia的な超廉価ケータイという意味において）、台湾が国を挙げてAndroidケータイを作っている。これが、本当に動き出す、2〜3年後に、ケータイの普及率が爆発的に伸びているアフリカなどの後進国において、ブラウザケータイ（日本のi-modeが流行ったときの感覚）として、デファクトになる可能性がある。<BR></blockquote>
+
+<p>という話をしたりするのですが、実は、個人的には、『普及』に関しては、興味がなかったりします。(;^_^A アセアセ・・・<br />
+なぜか？ 要は、『普及』に込められている意味は、『うちの組織が儲けられるくらいの市場規模になりますかね？』という意味であり、組織の規模や市場の狙い方により、根本的に答えが変わるものだからです。</p>
+
+<p>そして、私の規模感は、『1〜3人』くらいのマニア集団的なグループを考えているため、『普及』に関しては、興味がないのです。<br />
+この規模であれば、『市場の見え方』も、ずいぶんと変わってきます。<br />
+単純な話、100万/月の売り上げがあれば十分だから、サービスをする上で必要なユーザ数が、1000とか10000で事足りるかもしれないわけです。</p>
+
+<p><br />
+『いやいや、そんなのは夢物語』をと思われるかもしれませんが、その足音は確実に近づいています。</p>
+
+<p><br />
+<BR><br />
+１，Amazon EC2などに代表されるクラウドサービス<br />
+構築、運用費は、クラウドサービスにより、2桁レベルで下がり、個人で調達が可能になりました。<br />
+これは、いろいろ言われていますので、今更説明するまでもないかと思います。</p>
+
+<p><BR><br />
+２，少ない個数でハードウェアが作れる世界<br />
+昨今は、数年前に比べて、ハードウェアの作成費が、2桁レベルで下がりました。<br />
+そして、『AndroidのようなオープンなViewまでを含めて、ハードウェアを作る上で必要なものをすべて完備フレームワーク』の登場により、これがさらに下がろうとしています。</p>
+
+<p>具体的には、<a href="http://www.noritsuna.jp/archives/2008/10/android_16.html">こちらのエントリー</a>の話を具体化した「一般社団法人Open Embedded Software Foundation」を2009/02/12に登記いたしました。(※この話に関しては、別途エントリーをまとめていますので、お待ちください。)</p>
+
+<p>これらにより、上記で上げたサービス規模である『1000ユーザ』という単位でのハードウェアの発注の芽が出てきているのです。<br />
+（この手のサービスは、『少数のマニア』向けであるため、多少高額でも買ってもらえるという点もあるため、現実的です。）</p>
+
+<p>注：ちなみに、サービスを作る上で、ハードウェアまで作る必要はないのですが、この<a href="http://www.noritsuna.jp/archives/2008/05/post_109.html">エントリー</a>の理由から、ハードを作れる世界にこだわっている次第です。</p>
+
+<p><br />
+<BR><br />
+と、以上により、制作費や運用費が、『1〜3人』くらいの規模でさえ、賄える芽が出てきたのです。<br />
+次の問題点としては、この手のサービスは、『少数のマニア』をターゲットとすることになるでしょう。そうると、『どのようににリーチするか？』が問題となります。が、その解決策も見えつつあります。</p>
+
+<p><br />
+<BR><br />
+３，『同じ指向の人々』のマッチングを行う、ソーシャル系<br />
+mixiなどに代表されるソーシャルネットワークなどの『個人を繋げるコミュニティーツール』です。<br />
+すでに、「<a href="http://www.4gamer.net/games/000/G000000/20090205055/">1億5000万人の巨大プラットフォーム「Facebook」がとんでもないことになっている</a>」なんていう事例もでつつあり、現実のものとなっています。<br />
+（ちなみに、このへんのは、<a href="http://www.siprop.org/ja/2.0/index.php?%B3%AB%C8%AF%2F%A5%B3%A5%DF%A5%E5%A5%CB%A5%C6%A5%A3%A1%BC%2F%C4%EA%CE%E3%A5%DF%A1%BC%A5%C6%A5%A3%A5%F3%A5%B0%2F2008%2F10%2F09">次期のSIProp</a>で成果をお見せできるはずです。10月には出来ているはずだったんですが。。。orz）</p>
+
+<p><br />
+<BR><br />
+４，<a href="http://www.noritsuna.jp/archives/2009/01/_ideal_competit_1.html">Cloud Market</a>社の構想<BR><br />
+最後に、それらを『換金』するための仕掛けとして、上記の3つを完全に取り込める形のマーケットが必要なのです。<BR><br />
+そのための仕掛けが、『<a href="http://www.noritsuna.jp/archives/2009/01/_ideal_competit_1.html">Cloud Market</a>』社でやろうとしているなのです。</p>
+
+<p><br />
+<BR><br />
+と、必要な部品は揃いつつあります。あと10年くらいすれば、『1〜3人』くらいのマニア集団的な生き方も普通に選べるような時代になっているかもしれません。<br />
+正直、是非ともほしい世界です。＞＜</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+                            <div class="entry-more"><p><a href="http://www.noritsuna.jp/archives/2009/02/post_132.html#more" title="マスからマニアへ">マスからマニアへの続きを読む</a></p></div><!-- entry-more_end -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/post_132.html" title="マスからマニアへ">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 02:34</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a></li>
+                  
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/post_132.html#trackbacks" title="マスからマニアへにトラックバック">Trackbacks</a> (5) </li>
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2009/02/index.html#000699"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/699"
+    dc:title="行為者と観察者"
+    dc:identifier="http://www.noritsuna.jp/archives/2009/02/index.html#000699"
+    dc:subject="Android"
+    dc:description="「本当のことを言う」という記事より。 業界の成長に水を差すというのが，その理由だ..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-20T23:18:58+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;02&#26376;20&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000699" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/post_133.html" title="行為者と観察者">行為者と観察者</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20090212/324601/">本当のことを言う</a>」という記事より。</p>
+
+<blockquote>業界の成長に水を差すというのが，その理由だった。「私たちには産業を育成する責務がある。このようなネガティブな記事はせっかく加熱してきた投資意欲を削ぐものだ」と。
+　その大先輩は，マスコミは行為者であるべきで，観察者ではダメなのだという。「目の前に弱ったネコがいるとするだろ。見ると，どうもエサを食べたがっていない。それを見て『どうも食べていないようですねぇ』なんて書いてどんな意味があるんだ。何とかエサを食べさせようとするのがオレたちの仕事じゃないか」と説教されたものである。
+　それは一つのあり方だと思うが，私がこの会社に転職してきて，当時の編集長である西村氏から薫陶を受けたジャーナリストのあるべき姿とは正反対のものだった。西村氏は「ジャーナリストはよき観察者であるべし」という。簡単に言えば，見えにくい「本当のこと」を書きなさいということだと思う。そうであれば，その反語としての「行為者」とは，「本当のこと」を自身の責務や信念，自身が奉じる正義と照らし合わせて解釈，あるいは演出する者，ということになるだろう。
+　西村氏の「観察者たれ」との教えに従えば，「このペースで投資を続ければ供給過剰に陥る」ということが「本当のこと」だと確信できれば，説得できる材料を用意してそれを訴えるべきである。その結果は，「正義に照らし合わせて論調を決める」という行為者からすれば｢まったくなってない｣ものかもしれない。
+</blockquote>
+
+<p>う〜ん、行為者と観察者、、、なるほど、自分は、都合の良いよう使い分けているなぁとおもう、今日この頃。<br />
+でも、根っこは、『観察者』なんだよなぁ。それを捻じ曲げて『行為者』になってしまうのが、結局『欲』ってことなのかな。<br />
+（なんの話かの詳細はかけませんが。。。聞きたい方は、個別に聞いてください。タグでばれてるという話もありますが、気にしないでください。（ｗ）<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/post_133.html" title="行為者と観察者">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 23:18</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a> ≫ <a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2009/02/index.html#000698"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/698"
+    dc:title="「SoftwareDesign」2009年03月號のAndroid特集"
+    dc:identifier="http://www.noritsuna.jp/archives/2009/02/index.html#000698"
+    dc:subject="Android"
+    dc:description="本日発売予定の「SoftwareDesign」2009年03月號の第二特集  に..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-17T00:51:02+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;02&#26376;17&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000698" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/softwaredesign2.html" title="「SoftwareDesign」2009年03月號のAndroid特集">「SoftwareDesign」2009年03月號のAndroid特集</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>本日発売予定の<a href="http://gihyo.jp/magazine/SD/archive/2009/200903">「SoftwareDesign」2009年03月號の第二特集</a>  にて、「Android アプリ開発「匠たくみ」への道」を執筆しました。<br />
+<a href="http://www.android-group.jp/">日本Androidの会</a>の面々による、共同執筆となっております。</p>
+
+<p>タイトルの通り、Androidとは？〜アプリ開発〜実機への移植までと非常に幅広い内容となっており、Androidで出来ることの概要をほぼ全て（！？）を、体感していただける内容になっていると思います。<br />
+ぜひ、お手にとって頂ければと思います。</p>
+
+<p><br />
+●目次<br />
+<blockquote>1章：今までのプラットフォームとはここが違う〜Androidでできること<br />
+　　　……嶋是一／中村秀樹<br />
+2章：〜これだけは押さえておきたい〜Androidアプリ開発のための基礎知識<br />
+　　　……江川崇<br />
+3章：〜よくあるトラブルで迷わない〜Androidアプリ開発環境構築ガイド<br />
+　　　……杉本礼彦<br />
+4章：Androidアプリを作ってみよう！〜サンプルゲーム／マッシュアップ／拡張現実感〜<br />
+　　　……安生真／内嶋教人／今村謙之，山崎淳<br />
+コラム：Android Marketへの自作アプリ登録手順<br />
+　　　……木南英夫<br />
+5章：〜組込みフレームワークとしてのAndroid〜ハードウェア移植のツボ<br />
+　　　……安藤恐竜<br />
+</blockquote></p>
+
+<p><br />
+また、「4章」の執筆陣自らにより、本誌掲載のサンプルアプリの解説を、「<a href="http://www.android-group.jp/index.php?%A5%EF%A1%BC%A5%AD%A5%F3%A5%B0%A5%B0%A5%EB%A1%BC%A5%D7%2FAndroid-SDK">Android SDK WG</a> 主催の2009年3月の勉強会」でさせていただく予定です。<br />
+ご興味のある方は、是非、『本誌を持参の上』(参考書として、利用します)、申し込みしていただければと思います。<br />
+注：まだ、申し込みは始まっていません。始まり次第、告知させていただきます。<(_ _)></p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/softwaredesign2.html" title="「SoftwareDesign」2009年03月號のAndroid特集">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:51</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a> ≫ <a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+                  
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/softwaredesign2.html#trackbacks" title="「SoftwareDesign」2009年03月號のAndroid特集にトラックバック">Trackbacks</a> (3) </li>
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2009/02/index.html#000697"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/697"
+    dc:title="ディベート大会・惨敗orz"
+    dc:identifier="http://www.noritsuna.jp/archives/2009/02/index.html#000697"
+    dc:subject="Android"
+    dc:description="「デブサミ2009：O-Oneディベート大会！」で、 ●テーマ 3年後のケータイ..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-13T00:51:00+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;02&#26376;13&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000697" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/orz.html" title="ディベート大会・惨敗orz">ディベート大会・惨敗orz</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://www.noritsuna.jp/archives/2009/01/2009oone.html">デブサミ2009：O-Oneディベート大会！</a>」で、</p>
+
+<p>●テーマ<br />
+<blockquote>3年後のケータイOSのトップはAndroidである</blockquote></p>
+
+<p>●対戦相手<br />
+<blockquote>泣く子も黙る「<a href="http://nobi.cocolog-nifty.com/">林信行</a>」氏</blockquote></p>
+
+<p>●主張<br />
+<blockquote>否定側</blockquote></p>
+
+<p><br />
+と、対戦しましたが、、、タイトル通り、「惨敗orz」となりました。<br />
+全国、50万のiPhoneユーザの皆様、申し訳ありませんでした。<(_ _)></p>
+
+<p>ちかいうちに、<a href="http://o-one.arrow.jp/blog/">O-Oneさんの</a>サイトでビデオや要約が公開されると思いますので、詳細はそちらをご覧いただければと思います。</p>
+
+<p><br />
+<BR><br />
+■補足<br />
+●最後の主張「iPhoneのバージョンアップ問題」</p>
+
+<p>要約すると、</p>
+
+<blockquote>「Androidであれば、今後、魅力的な機能が付加された端末が出てくる可能性がある。iPhoneは、一機種しかないわけで、そのような魅力的な機能を取り入れられない」</blockquote>
+
+<p>というものがあったわけですが、これに対して、</p>
+
+<blockquote>「iPhoneは、ゲーム業界のモデルを取り入れている。そのため、適切なタイミングでバージョンアップがなされていくはずなので、問題ない。」</blockquote>
+
+<p>と反論したわけですが、なぜ、バージョンアップに人々がついていくか？という部分の説明が弱かったように思います。<br />
+そのあたりのちょっとした補足としては、</p>
+
+<blockquote>「ゲーム業界のモデルと言うことは、『文化創造型』であると言うことであるため、その文化に染まった人たちは、間違いなく次へ続く文化へと染まっていく。そして、ゲーム業界と違うのは、iPhoneは、生活になくてはならないものである。そのため、今のゲーム業界のような閉鎖状況とはならない」</blockquote>
+
+<p>というあたりがありましたが、ぱっと思い至らず、このへん主張できませんでした。orz</p>
+
+<p><br />
+<BR><br />
+■その他OS<br />
+丸山先生から突っ込みがありましたが、Android否定側に回ったときに、他のOSとかいう路線も考えてました。</p>
+
+<p>が、</p>
+
+<blockquote>・結局、Androidクローンか、iPhoneクローンという路線での主張となる可能性が高いので、いまいち<BR>
+　⇒同じ路線を歩むであろうもの同士の主張を戦わせても、面白くない<BR>
+・やはり、Android vs iPhone なガチンコ対決が聞きたいだろう<BR>
+　⇒マイナーどころOSの話をしても、「それなに？」ってなる可能性があり、面白くない
+</blockquote>
+
+<p>って、いうところから、考えないことにしました。</p>
+
+<p><br />
+あと、もう一つの路線として、</p>
+
+<blockquote>『Androidが普及しないことを主張する』</blockquote>
+
+<p>というのもあったわけですが、これだと、第一試合ともろかぶりなので、避けました。</p>
+
+<p><br />
+<BR><br />
+ついしん<br />
+目黒雅叙園は、呪われてる。。。2連続で、大惨敗ですYO。。。もう、目黒雅叙園関係は、出禁だな（ｗ</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/orz.html" title="ディベート大会・惨敗orz">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:51</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a> ≫ <a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2009/02/index.html#000693"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/693"
+    dc:title="シンプルプロセサと超並列と不揮発"
+    dc:identifier="http://www.noritsuna.jp/archives/2009/02/index.html#000693"
+    dc:subject="HardWare"
+    dc:description="実は、このあたりの話を先週、某所でしていたのですが、狙ったかのようなタイミングで..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-11T00:05:02+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;02&#26376;11&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000693" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/post_131.html" title="シンプルプロセサと超並列と不揮発">シンプルプロセサと超並列と不揮発</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>実は、このあたりの話を先週、某所でしていたのですが、狙ったかのようなタイミングで各種のプレスリリースがでていたので、まとめがわりにこのエントリーを書いてみました。<br />
+ただ、書いてはみましたが、案の定というか、『ただ思っていることを列挙しただけ』になりました。orz<br />
+まったく、まとまっていないので、読んだ人がフォローしてくれることを祈っております。</p>
+
+<p><br />
+<BR><br />
+●シンプルなプロセサ<br />
+「<a href="http://pc.watch.impress.co.jp/docs/2009/0205/kaigai487.htm">並列コンピューティングの大物を研究部門のトップにスカウトしたNVIDIA</a>」 という記事より。</p>
+
+<blockquote>大雑把には、SIMDのようなシンプルなプロセサが、メインストリームのCPUになるのではないか（とは言っても、10年スパンでしょうけど。）</blockquote>
+
+<p>というお話ですね。</p>
+
+<p>問題点の一つが、</p>
+
+<p>「<a href="http://slashdot.jp/hardware/article.pl?sid=09/02/09/1656250">NVIDIAがx86互換チップ開発へ？</a>」</p>
+
+<p>ですね。なんだかんだいっても、『IAで作られたアプリは捨てられない』わけです。<br />
+で、ここで、CELLのようなヘテロジニアスな方向性で、『FPGAが載せる』なんてのもよいのではないかとおもっています。<br />
+要するに、数クロックで書き換えられるようなFPGA上で、『必要に応じて各種VM走らせてしまえばいいだろ』的な方向です。すでに、MSXはFPGAで再現されているわけですし、JavaVMも開発しているところがありますし、けっこう、良い選択肢と思っていたりします。</p>
+
+<p><br />
+<BR><br />
+●超並列と言語<br />
+SIMDってことは、超並列なワケですが、関数型言語が流行っているってのが、けっこう追い風ですよね。10年以上のスパンでみれば、関数型言語プログラマーの方が多いかもしれず、その場合、スムーズに超並列へいける可能性があるわけです。<br />
+要するに、関数型言語であれば、スムーズに並列処理がかけるわけで、その典型例が、Erlangなわけです。<br />
+（超嘘入ってます。細かい点は、フィーリングで察してください！（ｗ  または、コメントででも突っ込んでください。フォローします。）</p>
+
+<p>さらに、Intelさんも、超並列に向けたコンパイラを、10年スパンとかで開発中らしいです。</p>
+
+<p>なんというか、このCPU側の変化とその間にある言語側（＋コンパイラ）の変化が、絶妙にシンクロしているあたり、波を感じますね。</p>
+
+<p><br />
+<BR><br />
+●不揮発と電池<br />
+ちょっとそれますが、モバイル系では、電池問題というのがあります。<br />
+モバイルデバイス上でいろいろなサービスやアプリを開発する上で、『バッテリーの持ち』というものがネックになります。特に、待ち受けさせることを前提としたサービスやアプリでは、かなり、響いてきます。<br />
+ぶっちゃけ、サービスをするには、ネイティブにチューニングしたアプリじゃないと、かなり厳しいというのが、現状です。</p>
+
+<p>というのを踏まえて、SIMDの構造をみると、メモリ部分に、</p>
+
+<p>「<a href="http://pc.watch.impress.co.jp/docs/2009/0209/toshiba.htm">東芝、世界最大最速の不揮発メモリ「FeRAM」</a>」</p>
+
+<p>とか使えたら、けっこう、『不揮発CPU』作りやすいんじゃないの？とか、素人考えでは夢想してしまいます。<br />
+しかも、OSの世界も、まさに、</p>
+
+<p>「<a href="http://slashdot.jp/articles/09/02/11/0759236.shtml">メイド・イン・ロシアの「永遠に動き続けるOS」、Phantom OS </a>」</p>
+
+<p>『不揮発』に向かって動いているようです。</p>
+
+<p><br />
+で、このあたりの構造をOSやVMなどに組み込めば、ネイティブにチューニングしなくとも待ち受けするアプリをかなり省電力に出来る可能性があるわけです。<br />
+（まっ、かなり、理論展開に無理ありますけど、気にしない。）</p>
+
+<p></p>
+
+<p><br />
+ということで、SIMDのこのシンプルさと  将来性と  現状での使えなさ（ｗ 加減が、けっこう、『革新的イノベーション』の条件を満たしている気がするんですよね。<br />
+このあたりで、妄想するとけっこう楽しい議論が出来そうです。</p>
+
+<p></p>
+
+<p><BR><br />
+ということで、オチとしては、</p>
+
+<blockquote>東芝最強伝説はじまた</blockquote>
+
+<p>かな（ｗ<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/post_131.html" title="シンプルプロセサと超並列と不揮発">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:05</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/hardware/" title="">HardWare</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2009/02/index.html#000695"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/695"
+    dc:title="新UStream環境"
+    dc:identifier="http://www.noritsuna.jp/archives/2009/02/index.html#000695"
+    dc:subject="コミュニティー"
+    dc:description="いままでは、Webカメラによる撮影でUStream配信をしていたのですが、『プレ..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-10T02:05:28+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;02&#26376;10&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000695" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/ustream.html" title="新UStream環境">新UStream環境</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>いままでは、Webカメラによる撮影でUStream配信をしていたのですが、『プレゼンの文字が読めない』など、画質に関する苦情が出ておりました。</p>
+
+<p>そこで、今回、かなり理想に近いと思われるUStream配信環境として、</p>
+
+<blockquote>・プレゼンの文字が、ほぼ判別できるようにする。（12pointくらいまでは、判別可能にする）<BR>
+・プレゼンターによるボディーランゲージや会場の雰囲気も伝えられるようにする。</blockquote>
+
+<p>を、実現すべく、環境を整え直しました。</p>
+
+<p>まずは、どんな感じに配信されたかは、<a href="http://www.ustream.tv/recorded/1138135">こちら</a>から！<br />
+どうでしょうか？ かなり、目的に近い状態になっているのではないかと思います。<br />
+(12pointは言い過ぎかもしれませんが、かなり、きれいに撮れているかと思います。配信時は、もう少しきれいだった気がします。。。保存すると劣化するのかな？)</p>
+
+<p><a href="http://groups.google.co.jp/group/android-group-japan/browse_thread/thread/7a637ad971e432cc">こちら</a>にでておりますが、かなり、好評だったようです。林＆矢野パワーのありますが、初めて常時20人の視聴者がついておりました。</p>
+
+<p><br />
+■環境詳細<br />
+●接続図<br />
+各機器の接続は、下記のようになっています。<br />
+<a href="/images/newUST.PNG"><img src="/images/newUST.PNG" width="300"></a></p>
+
+<p><br />
+●配置図<br />
+各機器は、こんな感じです。<br />
+<a href="/images/newUST_fig.png"><img src="/images/newUST_fig.png" width="300"></a></p>
+
+<p>●ビデオカメラ<br />
+・<a href="http://www.amazon.co.jp/dp/B0016AJFN6/">SANYO デジタルムービーカメラ Xacti (ザクティ) DMX-CG9 ホワイト DMX-CG9(W)</a></p>
+
+<p>を、利用しています。<br />
+長時間撮影用に、AC電源を追加しました。二つともないとACアダプタが付きませんので、注意！<br />
+ただし、５V駆動なので、USBからの給電でも動くようです。<br />
+（すなわち、変換コネクタさえ買えば、VAR-A2だけでもいけます。）<br />
+・<a href="http://www.amazon.co.jp/dp/B000HIVH8Y/">Xactiシリーズ VAR-G8用 ACアダプター</a><br />
+・<a href="http://www.amazon.co.jp/dp/B000HIVH8O/">Xactiシリーズ VAR-A2用 DCアダプター</a><br />
+・4GB以上のSDメモリ(録画状態にしないと、10分で電源が切れてしまいます。そのためのメモリです。)</p>
+
+<p><br />
+●三脚<br />
+・<a href="http://www.amazon.co.jp/dp/B0001DQKG4/">SLIK 三脚 コンパクト</a> </p>
+
+<p>を、ベースに利用しています。。。が、Xactiのコネクタ位置の関係でそのままでは接続できません。<br />
+そのため、</p>
+
+<p>・<a href="http://www.amazon.co.jp/dp/B000EVSLRO/">ケンコー カメラ用三脚 JOBY ゴリラポッド 086817</a></p>
+
+<p>を、介して無理矢理くっつけています。最悪、ガムテープでもOK（ｗ</p>
+
+<p>あと、プレゼンターとスクリーンの位置によっては、延長AVケーブルを用意する必要があるかもしれません。</p>
+
+<p><br />
+●D-Sub分配器<br />
+・<a href="http://www.amazon.co.jp/dp/B0006U316E/">Corega CG-VGASPL4 VGA対応分配器 4port</a></p>
+
+<p>を、利用しています。<br />
+ヘタにケチって対応解像度が低いものを選ぶとMacの画面が表示できないので、気をつけましょう。</p>
+
+<p></p>
+
+<p>●PinP機能付き、TVチューナー<br />
+・<a href="http://www.amazon.co.jp/dp/B00067Y5QM/">I-O DATA 液晶ディスプレイ対応 コンパクトTVチューナーBOX TVBOXes TVBOXES</a></p>
+
+<p>を、利用しています。値段がお安めなのが、Good。<br />
+ただし、付属のリモコンがないと、PinP機能を有効にしたり、ソースの切り替えをするのが大変なので、必ず、持って行くようにしましょう。</p>
+
+<p><br />
+●ダウンスキャンコンバータ<br />
+・<a href="http://www.amazon.co.jp/dp/B000EBFWGC/">NV-CV2000 CreaVisionML</a></p>
+
+<p>を、利用しています。<br />
+たぶん、何でもOKだと思います。</p>
+
+<p><br />
+●RAC入力をWebcam出力するキャプチャ<br />
+・<a href="http://www.amazon.co.jp/dp/B000LR6F2Y/">ノバック いつでもTV2 for Skype NV-LF2010</a></p>
+
+<p>を、利用しています。<br />
+逆に、これ以外に見つかりませんでした。けっこう、レア品と思われるので、必要な方は入手しておきましょう。</p>
+
+<p><br />
+●音響設備<br />
+・<a href="http://www.amazon.co.jp/dp/B000GRU444/">Polycom Skype専用ハンズフリースピーカーフォン Polycom communicator</a></p>
+
+<p>という、音声会議用の集音マイクを使用しているだけです。高品質であるため、これだけでも十分クリアな音声を拾うことが出来ます。</p>
+
+<p>※本当は、マイクやピンマイクなどの音を直接採れると良いのですが、だいたいの会場では、音響設備だけは整っているため、間に挟んで音を取得することが難しいため、このような方法にしています。</p>
+
+<p><br />
+●ネットワーク環境<br />
+・<a href="http://www.amazon.co.jp/dp/B001212ELY/">Cradlepoint PHS300 Mobile WiFi アクセスポイント IEEE802.11b/g 黒 122×73×18.5 内臓バッテリ1800ｍAh</a><br />
+・<a href="http://emobile.jp/products/hw/d02hw/">イーモバイル＋D02HW</a></p>
+
+<p>イーモバイルが、つながりさえすれば、これでOK。<br />
+ただ、最近のイーモバイルは、速度が落ちているので、出来れば、ちゃんとした回線を用意しましょう。</p>
+
+<p><br />
+●追加ケーブル<br />
+付属のケーブルだけで足りるはずですが、電源を多く使うので電源タップは必須でしょう。<br />
+さらに、USBを3ポート消費するので、UStream用PCに3ポート無い場合は、USBハブを忘れずに。<br />
+あとは、プレゼン用PCの設置位置によっては、VGAの延長ケーブルがあると良いかもしれません。</p>
+
+<p></p>
+
+<p><BR><br />
+■書画カメラ<br />
+モバイル系のイベントのために、G1を写すために用意しました。</p>
+
+<p>●カメラ<br />
+・<a href="http://www.amazon.co.jp/dp/B000WOTYII/">プリンストンテクノロジー UVC対応130万画素i-Search PWC-130U</a></p>
+
+<p>130万画素以上のWebカメラが、必須です。これ以下の画素数だと、文字が潰れます。</p>
+
+<p><br />
+●カメラスタンド<br />
+・<a href="http://www.amazon.co.jp/dp/B000WMKC2M/">ELPA LEDスタンドライト SPOT-LLST01</a></p>
+
+<p>に、クリップスポットライト用のスタンドを付けました。</p>
+
+<p><br />
+●合体<br />
+ライト部分に、カメラをテープで付けて、完成です。（ｗ</p>
+
+<p>ポイントは、ピント調整がレンズのところにあるので、固定されていながらも、簡単にピント調整が可能な点です。<br />
+電気がつくので、暗いところでも対応できます。(おまけですが。)</p>
+
+<p><br />
+●書画カメラ画像表示用PC<br />
+・<a href="http://www.amazon.co.jp/dp/B0011YTFQO/">ASUSTek ノートPC EeePC 701/4GA/512M/JPN/Win/W EeePC 701/4GA/512M/JPN/Win/W</a></p>
+
+<p>基本的には、PCであれば何でもOKですが、小さく、お安いのでお奨めです。<br />
+書画カメラ画像表示して、プロジェクターに出すために使用します。</p>
+
+<p><br />
+●VGA切替器<br />
+・<a href="http://www.amazon.co.jp/dp/B00008CHJ5/">ATEN 4対1モニタ(VGA)切替器(電子式手動) VS-491</a></p>
+
+<p>に、必要分のVGAケーブルを、購入してください。<br />
+書画カメラとＰＣの画面の切替に使います。</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/ustream.html" title="新UStream環境">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 02:05</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2009/02/index.html#000692"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/692"
+    dc:title="「公認」となるためのキモ"
+    dc:identifier="http://www.noritsuna.jp/archives/2009/02/index.html#000692"
+    dc:subject="P2P"
+    dc:description="角川が共有サイトの「違法アニメ」を収益化　基準満たせば「公認」 という記事。 従..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-03T01:20:29+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;02&#26376;03&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000692" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/post_130.html" title="「公認」となるためのキモ">「公認」となるためのキモ</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://sankei.jp.msn.com/entertainments/game/090131/gam0901312223001-n1.htm">角川が共有サイトの「違法アニメ」を収益化　基準満たせば「公認」</a> という記事。</p>
+
+<blockquote>従来、著作権者は違法投稿に対し、削除を依頼してきたが一転、“よい”違法投稿にはお墨付きを与え、広告を呼び込んで収入を得る仕組みだ。<BR>
+ユーザーが無断投稿した角川管理のアニメ作品のうち、一定の基準を満たした動画に「公認バッジ」を与え、掲載を認める。その上で、動画が掲載されている画面内に企業広告を呼び込み、広告料を得る。広告料は角川とグーグルで分配。角川は収入の一部を原作者らにも分ける。
+</blockquote>
+
+<p>この手のパターンを例にして、『(権利者が認めてないことでも)儲かるんだから、やってもOK』的な論法を使う人を見かけるのですが、「それは違う」と声を大にしていいたいです。</p>
+
+<p>このキモは、『儲かる』ではなくて、『権利者にコントロール権がある』なんです。<br />
+これにより、ジャスラックなどの『ほかの権利団体に対して、説明がつくん』です。これが、キモなのです。<br />
+すなわち、『ほかの利害関係者への説明がつく』、仕掛けが必要なのです。</p>
+
+<p>この手の話をする場合には、『権利所持者全員』を見渡して考えないといけないのです。<br />
+そうしないと、『目に付く』ようになれば、否定されてしまいます。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/post_130.html" title="「公認」となるためのキモ">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 01:20</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/p2p/" title="">P2P</a></li>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/post_130.html#comments" title="「公認」となるためのキモにコメント">Comments</a> (3) </li>
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2009/02/index.html#000691"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/691"
+    dc:title="Androidコンパイル環境 on Amazon EC2 with イーモバイル"
+    dc:identifier="http://www.noritsuna.jp/archives/2009/02/index.html#000691"
+    dc:subject="Android"
+    dc:description="こちらのエントリーで用意したAndroidコンパイル環境を、Amazon EC2..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-02T00:40:08+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;02&#26376;02&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000691" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/android_on_amaz_1.html" title="Androidコンパイル環境 on Amazon EC2 with イーモバイル">Androidコンパイル環境 on Amazon EC2 with イーモバイル</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://www.noritsuna.jp/archives/2008/11/android_on_ubun.html">こちらのエントリー</a>で用意したAndroidコンパイル環境を、<a href="http://aws.amazon.com/ec2/">Amazon EC2</a>上でも構築してみました。</p>
+
+<p><br />
+●<a href="http://aws.amazon.com/ec2/">Amazon EC2</a>の基本<br />
+Amazonさんが提供する、IaaSで、CPUパワーやネットワーク、ストレージなどの従量課金で利用することが出来る、環境です。<br />
+わかりやすくいえば、ネットワーク上で使えるVMWareのような仮想マシン環境です。</p>
+
+<p>そこで、今回は、Ubuntu8.10環境を<a href="http://aws.amazon.com/ec2/">Amazon EC2</a>に構築して、Androidコンパイル環境を作ってみました。</p>
+
+<p><br />
+●<a href="http://aws.amazon.com/ec2/">Amazon EC2</a>のセットアップ<br />
+・セットアップするもの<br />
+<blockquote><br />
+　-Ubuntu8.10環境<br />
+　　-<a href="http://aws.amazon.com/ec2/">Amazon EC2</a>上に構築<br />
+　-マシンのイメージデータ保持領域<br />
+　　-<a href="http://aws.amazon.com/s3/">Amazon S3</a>上に構築<br />
+　　-作成した仮想マシンのイメージを保存しておく<br />
+　　　-<a href="http://aws.amazon.com/ec2/">Amazon EC2</a>上の環境は、インスタンス(<a href="http://aws.amazon.com/ec2/">Amazon EC2</a>上で動いている仮想マシン)を終了させると全て消えてしまうため必要<br />
+　-永続的データ保持領域<br />
+　　-<a href="http://aws.amazon.com/ebs/">Amazon EBS(Elastic Block Store)</a>上に構築<br />
+　　　-<a href="http://aws.amazon.com/s3/">Amazon S3</a>と違って、<a href="http://aws.amazon.com/ec2/">Amazon EC2</a>上のインスタンス内で直接ボリュームをフォーマットしてマウントできるサービス<br />
+　　-Androidのソースコードなどを保存しておく<br />
+　　　-<a href="http://aws.amazon.com/ec2/">Amazon EC2</a>上の環境は、インスタンス(<a href="http://aws.amazon.com/ec2/">Amazon EC2</a>上で動いている仮想マシン)を終了させると消えてしまうため必要<br />
+</blockquote></p>
+
+<p>・セットアップ方法<br />
+<blockquote><a href="http://d.hatena.ne.jp/rx7/20080528/p1">こちらのBlog</a>が詳しいです。<br />
+ぶっちゃけ、詳しすぎて、わざわざ追加解説する必要もありません。上記の手順の通りにやってください。<br />
+</blockquote></p>
+
+<p>●使用感<br />
+<blockquote>・処理速度<br />
+　-<a href="http://aws.amazon.com/ec2/">Amazon EC2</a>の一番安いコースを利用しましたが、体感的には、Core2Duo2.1GHz上のVMWare環境よりも、早いです。<br />
+・安定感<br />
+　-構築中は、一度もエラーも出ることもなく、安定して使えました。<br />
+　-さらに、出先で使うことを考慮して、回線環境はイーモバイルを使いましたが、全く、問題ありませんでした。<br />
+・問題点<br />
+　-sshというか、コマンドラインが微妙に遅いです。なぜかは、わかりませんが、コマンドライン処理は苦手なようです。(TCPの関係かな?)かなり、つらいです。作業には向きません。<br />
+　-ただし、解決法もあります。CDN的な機能を提供してくれる<a href="http://aws.amazon.com/cloudfront/">Amazon CloudFront</a>を併用すれば、上記問題はなくなるとのことです。<br />
+・料金<br />
+　-Ubuntu8.10 ＋ Androidソースリポジトリ同期 ＋ Androidコンパイル で、約2日(4時間程度?)というところで、『使用料：$0.76』 と安いです。<br />
+　-ただし、従量課金なので、使い続ければ、どんどんと課金されていきますので、。が、$1以下ですからねぇ。。。<br />
+　-<a href="http://aws.amazon.com/ec2/">Amazon EC2</a>のインスタンスは、終了させてしまえば、良いので本当に安いものです。<br />
+・総評<br />
+　-LinuxのためのVMWareがわりとしては、十分使えると思います。<br />
+　-料金も高いわけではないですし、<a href="http://aws.amazon.com/s3/">Amazon S3</a>をネットワークディスクとして使うなんてこともできますし、一工夫すれば(VMWareがわりだけではメリットはないため)、十分に実用的に思われます。<br />
+</blockquote></p>
+
+<p><br />
+●なぜ、こんな環境を？<br />
+<blockquote>VMWareがわりとしては、ほとんど意味はありません。しかし、私はメインPCがノートPC+SSDであり、HDD容量が貴重なのです！<br />
+そのため、15GBを軽く超えるAndroidのソースコード＋Ubuntu用VMWareイメージを、HDDに保持しておくのはつらいため、このような環境を試してみました。<br />
+(通常は、VMWareイメージを詰め込んだUSB-HDDも併用しているのですが、最近、認識されない現象が起き始めており、買い直すかどうか迷っていたところでした。)</p>
+
+<p>ということで、HDD領域が貴重というのであれば、かなり、使える環境となるのではないでしょうか？<br />
+あと、固定IPを振るサービスもありますので、マシン台数が必要なP2Pアプリの実験環境としても良いかもしれません。</blockquote></p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/android_on_amaz_1.html" title="Androidコンパイル環境 on Amazon EC2 with イーモバイル">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:40</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a> ≫ <a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+                  
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/android_on_amaz_1.html#trackbacks" title="Androidコンパイル環境 on Amazon EC2 with イーモバイルにトラックバック">Trackbacks</a> (1) </li>
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2009/02/index.html#000689"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/689"
+    dc:title="エフィラ主催！スカイリー・ネットワークスオフィスツアー"
+    dc:identifier="http://www.noritsuna.jp/archives/2009/02/index.html#000689"
+    dc:subject="P2P"
+    dc:description="エフィラさん主催の株式会社スカイリー・ネットワークス さんへのオフィスツアーに参..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-01T00:00:21+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;02&#26376;01&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000689" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/post_129.html" title="エフィラ主催！スカイリー・ネットワークスオフィスツアー">エフィラ主催！スカイリー・ネットワークスオフィスツアー</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://d.hatena.ne.jp/effy/">エフィラさん</a>主催の<a href="http://www.skyley.com/">株式会社スカイリー・ネットワークス</a> さんへのオフィスツアーに参加してきました。</p>
+
+<p>以上。<br />
+ </p>
+
+<p><BR><br />
+<BR><br />
+追記（2009/02/01）<br />
+身の危険を感じたので、追記することにする。</p>
+
+<p><br />
+<BR><br />
+●日本唯一(！？）のPure無線P2P</p>
+
+<blockquote>無線メッシュをやっているところはあるが、ルータをベースとしている。PureにP2Pで実現しているのは、弊社のみです。by 梅田CEO</blockquote>
+
+<p>たしかに、ルータのようなBoxに入れてやっているところはありますが、純粋にケータイなどの端末だけで実現しているものって見ないですね。なるほど！すごい！</p>
+
+<p><br />
+<BR><br />
+●P2Pはベース技術の一つ</p>
+
+<blockquote>P2Pって言われ出してからもう10年以上経過しているんだねぇ。</blockquote>
+
+<p>というくだりから、｢しかし、なんで、こんなに長く消えずに残っているんだろう？｣と話が弾んで、｢結局、ベース技術の一つだから、なくなりようがないんだよね｣というオチに。<br />
+要は、プログラミングってなんでなくならないんだろうという話と同じであると。C言語やRubyとか、その上に乗るものの流行は遷移したとしても、プログラミングがなくなることがないのと一緒。<br />
+P2Pも、ナップスターに始まり、グヌーテラ、Skypeなど遷移してますからね。</p>
+
+<p><br />
+<BR><br />
+●あの人は今</p>
+
+<blockquote>△△氏と○○氏は、裏切り者だ。by P2P Today</blockquote>
+
+<p>某アルファブロガーと某CTOの話。いきなり、叫びだしたやつがいたので、φ(｀д´)ﾒﾓﾒﾓ...<br />
+流れとしては、P2P黎明期の頃の話をしていて、｢あの人は今｣的な話となり、このような『ネタ』がでたという次第です。</p>
+
+<p><br />
+<BR><br />
+ということで、どちらかというと、P2Pなつかし話に花が咲いたオフィスツアーとなりました。<br />
+みなさん、お疲れ様でした＆ありがとうございました！</p>
+
+<p><br />
+ついしん<br />
+ただ、ちょっと、内輪ネタに触れすぎてしまったので、ついて行けない人には本当に申し訳ないコトしてしまいました。すみません。<(_ _)></p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/post_129.html" title="エフィラ主催！スカイリー・ネットワークスオフィスツアー">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:00</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/p2p/" title="">P2P</a></li>
+                  
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/post_129.html#trackbacks" title="エフィラ主催！スカイリー・ネットワークスオフィスツアーにトラックバック">Trackbacks</a> (1) </li>
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+          
+
+        </div><!-- content_end -->
+      </div><!-- main_end -->
+
+      <!--右メニュー-->
+      <div id="right-menu">
+        <div  class="right-content">
+
+          <!-- 最近のエントリー -->
+          <!-- 最近のコメント -->
+          <!-- 最近のトラックバック -->
+
+          <!-- リンク -->
+          <div class="site-link">
+          <h3>Links</h3>
+            <ul><li><a href="http://www.siprop.org/">SIProp Project</a></li></ul>
+          </div><!-- site-link_end -->
+
+                    <!-- クリエイティブコモンズライセンス -->
+          <div class="cclicense">
+            <a href="http://creativecommons.org/licenses/by-nc/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />This weblog is licensed under a <a href="http://creativecommons.org/licenses/by-nc/1.0/">Creative Commons License</a>.
+          </div><!-- cclicense_end -->
+          
+
+          <!-- Powered -->
+          <div class="powered">
+            <ul>
+              <li>Powered by <a href="http://www.movabletype.jp">Movable Type 3.33-ja</a></li>
+              <li>Template by <a href="http://drblog.jp/"><img src="http://drblog.jp/info/img/drblog.gif" alt="Dr.Blog" width="128" height="22" /></a></li>
+            </ul>
+          </div><!-- Powered_end -->
+
+        </div><!-- right-content_end -->
+      </div><!-- right-menu_end -->
+
+      <div id="footer">
+        <ul class="syndicate">
+          <li><a href="http://www.noritsuna.jp/index.xml" title="なんとなく実験 with SIProp開発記 RSS Feed (XML)">RSS Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/atom.xml" title="なんとなく実験 with SIProp開発記 Atom Feed (XML)">Atom Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記">Archives</a></li>
+          <li><a href="#banner">Page Top</a></li>
+        </ul>
+      </div><!-- footer_end -->
+
+    </div><!-- main-container_end -->
+
+  </body>
+</html>

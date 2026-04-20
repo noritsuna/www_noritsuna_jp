@@ -1,0 +1,547 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: テクニカルチャートの読み方</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+
+<link rel="start" href="http://www.noritsuna.jp/" title="Home" />
+<link rel="prev" href="http://www.noritsuna.jp/archives/2005/02/post_19.html" title="体力測定" />
+
+<link rel="next" href="http://www.noritsuna.jp/archives/2005/02/it_200503200507.html" title="IT系イベントカレンダー 2005/03〜2005/07" />
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var HOST = 'www.noritsuna.jp';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + (expires ? "; expires=" + expires : "") + (path ? "; path=" + path : "") + (domain ? "; domain=" + domain : "") + (secure ? "secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function rememberMe (f) {
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+    now = now.toGMTString();
+    if (f.author != undefined)
+       setCookie('mtcmtauth', f.author.value, now, '/', '', '');
+    if (f.email != undefined)
+       setCookie('mtcmtmail', f.email.value, now, '/', '', '');
+    if (f.url != undefined)
+       setCookie('mtcmthome', f.url.value, now, '/', '', '');
+}
+
+function forgetMe (f) {
+    deleteCookie('mtcmtmail', '/', '');
+    deleteCookie('mtcmthome', '/', '');
+    deleteCookie('mtcmtauth', '/', '');
+    f.email.value = '';
+    f.author.value = '';
+    f.url.value = '';
+}
+
+//-->
+</script>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2005/02/post_16.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/36"
+    dc:title="テクニカルチャートの読み方"
+    dc:identifier="http://www.noritsuna.jp/archives/2005/02/post_16.html"
+    dc:subject="株"
+    dc:description="最近、新しいテクニカルチャートの指標を知ったので、それを 自分のものにするため、..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-22T00:22:37+09:00" />
+</rdf:RDF>
+-->
+
+
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2005/02/post_16.html">
+<dc:title>テクニカルチャートの読み方</dc:title>
+<dc:description>最近、新しいテクニカルチャートの指標を知ったので、それを 自分のものにするため、...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2005-02-22T00:22:37+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+
+
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+
+<p align="right">
+<a href="http://www.noritsuna.jp/archives/2005/02/post_19.html">&laquo; 体力測定</a> |
+
+<a href="http://www.noritsuna.jp/">メイン</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/it_200503200507.html">IT系イベントカレンダー 2005/03〜2005/07 &raquo;</a>
+
+</p>
+
+<h2>2005&#24180;02&#26376;22&#26085;</h2>
+
+<h3>テクニカルチャートの読み方</h3>
+
+<p>最近、新しいテクニカルチャートの指標を知ったので、それを<br />
+自分のものにするため、ちょっと、書き出してみようかと思います。</p>
+
+<p>まずは、何かと話題なあの企業のチャートをご覧ください。<br />
+これを元に、説明します。</p>
+
+<p><a href="/images/kabu/kabu_tech.PNG" target="_blank"><img src="/images/kabu/kabu_tech.PNG" width="200" border="0"></a></p>
+<BR>
+<BR>
+・移動平均線
+基本中の基本。
+ローソク足と一緒にかかれている線グラフが、これです。
+(少々見にくいですが、紫のラインは別のものです。)
+
+<blockquote>緑・・・長期(75日)の移動平均線<BR>
+青・・・中期(25日)の移動平均線<BR>
+赤・・・短期(5日)の移動平均線<BR></blockquote>
+
+<p>を、表しています。<br />
+これは、その名の通り、ある一定期間の株価の平均値をグラフにした<br />
+ものとなります。</p>
+
+<p>そのため、この線より、株価が下になっていれば、平均値に戻ろうと<br />
+する力が働くため、株価が上がる可能性がある＝買いサインって言う<br />
+寸法です。<br />
+<BR><br />
+<BR><br />
+そして、この線と切っても切り離せないものといえば、</p>
+
+<blockquote>ゴールデンクロスとデッドクロス</blockquote>
+
+<p>です。<br />
+<blockquote><br />
+ゴールデンクロス・・・短期の移動平均線が長期の移動平均線を追い抜く現象<BR><br />
+デッドクロス・・・長期の移動平均線が短期の移動平均線を追い抜く現象<BR></blockquote></p>
+
+<p>ということになり、ゴールデンクロスが起きたときには株価が上がる＝<br />
+買いサインと言われております。<br />
+まずは、これを見つけることが、株初心者の基本といえるでしょう。<br />
+<BR><br />
+<BR><br />
+<BR><br />
+・ボリンジャー・バンド<br />
+ローソク足と一緒にかかれいてる紫色の線です。<br />
+見ての通り、「バンド」のようにローソク足を囲んでいると思います。</p>
+
+<p>これは、移動平均線に対して、第1標準偏差、第2標準偏差をプロットし<br />
+線を上下動に引いてものです。</p>
+
+<p>要するに、これも平均値ですので、このバンドから下に抜ければ、戻ろう<br />
+とする力が働くため、買いサインとなり、上なら売りサインと言うことに<br />
+なります。</p>
+
+<blockquote>バンドの下に抜ければ、買いサイン<BR>
+バンドの上に抜ければ、売りサイン<BR></blockquote>
+<BR>
+<BR>
+<BR>
+・RSI(Relative Strength Index)
+買われすぎか、売られすぎかを判定するチャート。
+
+<p>上側に張り付くほど、上昇傾向と言うことであるが、ある一定以上になると<br />
+「買われすぎ」ということになる。<br />
+そのため、下記のシグナルとして、利用される。</p>
+
+<blockquote>25〜30%以下になれば、買いサイン<BR>
+70〜75%以上になれば、売りサイン<BR></blockquote>
+
+<p>もちろん、計算式などもありますが、そこまで書いてもあまり意味はないので<br />
+省略します。<br />
+<BR><br />
+<BR><br />
+<BR><br />
+・ストキャスティクス<br />
+これも、RSIと同じく、買われすぎか、売られすぎかを判定するチャート。<br />
+(RSIとほぼ同じ動きをしているのがわかるかと思います。)</p>
+
+<p>これもRSIとほぼ同じように見るのですが、線が3本あるのが特徴で、さらに<br />
+RSIよりも敏感に反応するようです。</p>
+
+<p>RSIとの相違点として、複数のグラフがあるため、移動平均線のようにクロスに<br />
+よる判定条件もあります。</p>
+
+<blockquote>%DがSDを、%Kが%Dを、下から上に追い抜いたら、買いサイン<BR>
+その逆は、売りサイン<BR></blockquote>
+
+<blockquote>紫・・・%D指標<BR>
+桃・・・%K指標<BR>
+緑・・・SD指標<BR></blockquote>
+
+<p>各指標の計算式などもありますが、そこまで書いてもあまり意味はないので<br />
+省略します。<br />
+<BR><br />
+<BR><br />
+<BR><br />
+・サイコロジカル<br />
+こちらも、買われすぎか、売られすぎかを判定するチャート。<br />
+名前から推測されるように、投資家の心理面が根拠となっている指標です。</p>
+
+<p>具体的には、<br />
+<blockquote><br />
+「ずっと下がり続けているんだから、そろそろ上がるだろうな」</blockquote></p>
+
+<p>というものを、具体的な数値として表しているものです。</p>
+
+<p>見方は、RSIと全くと言っていいほど同じです。<br />
+そのため、あまり、人気のある指標ではないようで、RSIだけ解説されて<br />
+いるような本などもあります。</p>
+
+<p>これも、計算式があるようですが、省略です。<br />
+<BR><br />
+<BR><br />
+<BR><br />
+・移動平均乖離率<br />
+これは、読んでそのままの意味のチャート。<br />
+移動平均からどのくらい株価が乖離しているかの指標。</p>
+
+<p>見方としては、0を基準にして、株価がそこに戻ってくるという習性を<br />
+利用して、判断します。</p>
+
+<p>そのため、</p>
+
+<blockquote>0より上にある場合は、売りサイン<BR>
+下の場合は、買いサイン<BR></blockquote>
+
+<p>と、なります。<br />
+<blockquote>その基準としては、±10%が一般的です。</blockquote></p>
+
+<p>また、図では、2本のグラフがありますが、それぞれ、下記の意味です。</p>
+
+<blockquote>赤・・・短期の移動平均線を元にしたグラフ<BR>
+青・・・中期の起動平均線を元にしたグラフ<BR></blockquote>
+
+<p>これのチャートは、非常にわかりやすいので、人気のチャートらしいです。<br />
+使っている人が多いらしいんで、その裏読みをすると効果的かも！？<br />
+<BR><br />
+<BR><br />
+<BR><br />
+・MACD(Moving Average Convergence/Divergence Trading Method)<br />
+正直、このチャートの意味はよくわかりませんが、移動平均線の一種の<br />
+ようです。</p>
+
+<p>サインとしては、</p>
+
+<blockquote>MACDラインがシグナルラインを、下から上に追い抜いたら買いサイン<BR>
+その逆が売りサイン<BR></blockquote>
+
+<blockquote>桃・・・MACDライン<BR>
+紫・・・シグナルライン<BR></blockquote>
+
+<p>こちらのチャートも、人気がかなり高いらしいです。<br />
+<BR><br />
+<BR><br />
+<BR><br />
+以上。<br />
+かなり、俺的解釈や間違いがある可能性も高いですが、気にしないで<br />
+おいてください。(^-^;A</p>
+
+<div id="a000036more"><div id="more">
+
+</div></div>
+
+<p class="posted">投稿者 noritsuna : 2005&#24180;02&#26376;22&#26085; 00:22</p>
+
+<h2 id="trackbacks">トラックバック</h2>
+<p class="techstuff">このエントリーのトラックバックURL:<br />
+http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/36</p>
+
+<p>このリストは、次のエントリーを参照しています:  <a href="http://www.noritsuna.jp/archives/2005/02/post_16.html">テクニカルチャートの読み方</a>:</p>
+
+<p id="p146">
+&raquo; <a href="http://pharmacy.orq.pl/buy+ambien">buy ambien</a> from buy ambien<br />
+Good work. It looks cool! You are welcome to my site! <a href="http://pharmacy.orq.pl/buy+ambien">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;27&#26085; 07:01</p>
+<p id="p157">
+&raquo; <a href="http://pills.1k.pl/buy+phentermine">buy phentermine</a> from buy phentermine<br />
+Hi! I want to make the same site that your. I like it very much. Hope thati do i... <a href="http://pills.1k.pl/buy+phentermine">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;27&#26085; 19:51</p>
+<p id="p164">
+&raquo; <a href="http://pills.1k.pl/buy+bontril">buy bontril</a> from buy bontril<br />
+Good Moring Great stuff,Keep up the good work. <a href="http://pills.1k.pl/buy+bontril">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;28&#26085; 01:54</p>
+<p id="p175">
+&raquo; <a href="http://epills.ir.pl/buy+xanax">buy xanax</a> from buy xanax<br />
+Sounds like a pretty cool book. Looking forward to next months experiment. <a href="http://epills.ir.pl/buy+xanax">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;28&#26085; 04:54</p>
+<p id="p196">
+&raquo; <a href="http://epills.ir.pl/buy+wellbutrin">buy wellbutrin</a> from buy wellbutrin<br />
+I was wondering if you could send me some more information about projects in my ... <a href="http://epills.ir.pl/buy+wellbutrin">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;28&#26085; 08:11</p>
+<p id="p205">
+&raquo; <a href="http://diorbrand.di.funpic.de/dior-replica-handbag.html">dior replica handbag</a> from dior replica handbag<br />
+I enjoyed doing this little project, it was easy to so my little brother. <a href="http://diorbrand.di.funpic.de/dior-replica-handbag.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;28&#26085; 15:50</p>
+<p id="p231">
+&raquo; <a href="http://epills.blogs.eurosport.es/files/temovate.html">temovate</a> from temovate<br />
+This is getting to be a very informative site, we just have to take the time to ... <a href="http://epills.blogs.eurosport.es/files/temovate.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;29&#26085; 04:58</p>
+<p id="p285">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bedrooms/bedroom-furniture.html">bedroom furniture</a> from bedroom furniture<br />
+Hi! I want to make the same site that your. I like it very much. Hope thati do i... <a href="http://vvvvvv.bizland.com/furniture/bedrooms/bedroom-furniture.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;31&#26085; 02:55</p>
+<p id="p289">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bedrooms/bedroom-design.html">bedroom design</a> from bedroom design<br />
+Very good site! I like it! Thanks! <a href="http://vvvvvv.bizland.com/furniture/bedrooms/bedroom-design.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;31&#26085; 04:29</p>
+<p id="p290">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bedrooms/discount-bedroom-furniture.html">discount bedroom furniture</a> from discount bedroom furniture<br />
+Simply post message for testing. Sorry in advance! <a href="http://vvvvvv.bizland.com/furniture/bedrooms/discount-bedroom-furniture.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;31&#26085; 04:29</p>
+<p id="p358">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-tile.html">bathroom tile</a> from bathroom tile<br />
+Hi all. I think that i can say a few words about this site here. It is very nice... <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-tile.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;01&#26085; 15:37</p>
+<p id="p359">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-break.html">bathroom break</a> from bathroom break<br />
+I am so thankful for finding your website. <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-break.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;01&#26085; 16:18</p>
+<p id="p361">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-picture.html">bathroom picture</a> from bathroom picture<br />
+Nice layout. But i didnt find information for me that i try to find on your webs... <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-picture.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;01&#26085; 17:15</p>
+<p id="p374">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-exhaust-fan.html">bathroom exhaust fan</a> from bathroom exhaust fan<br />
+I get many good minutes while serfering your site! Thanks. <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-exhaust-fan.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;01&#26085; 22:49</p>
+<p id="p422">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/beds/flower-bed.html">flower bed</a> from flower bed<br />
+This web-site is the coolest! Now I don't have to feel so intimated by science! ... <a href="http://vvvvvv.bizland.com/furniture/beds/flower-bed.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;02&#26085; 20:40</p>
+<p id="p425">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/beds/dump-bed.html">dump bed</a> from dump bed<br />
+Good Moring Great stuff,Keep up the good work. <a href="http://vvvvvv.bizland.com/furniture/beds/dump-bed.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;02&#26085; 21:49</p>
+<p id="p440">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/beds/storage-bed.html">storage bed</a> from storage bed<br />
+Hi! I want to make the same site that your. I like it very much. Hope thati do i... <a href="http://vvvvvv.bizland.com/furniture/beds/storage-bed.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;03&#26085; 02:22</p>
+<p id="p488">
+&raquo; <a href="http://bloc.balearweb.net/get/797/full-futon-mattress.html">full futon mattress</a> from full futon mattress<br />
+Great site guys!! We frequently drop by to see whats happening back home! Its gr... <a href="http://bloc.balearweb.net/get/797/full-futon-mattress.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;04&#26085; 18:41</p>
+<p id="p510">
+&raquo; <a href="http://blog.gala.net/uploads/epills/cyclobenzaprine.html">cyclobenzaprine</a> from cyclobenzaprine<br />
+Good Moring Great stuff,Keep up the good work. <a href="http://blog.gala.net/uploads/epills/cyclobenzaprine.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;05&#26085; 12:08</p>
+<p id="p518">
+&raquo; <a href="http://blog.gala.net/uploads/epills/elidel.html">elidel</a> from elidel<br />
+I was wondering if you could send me some more information about projects in my ... <a href="http://blog.gala.net/uploads/epills/elidel.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;05&#26085; 14:09</p>
+<p id="p543">
+&raquo; <a href="http://blog.gala.net/uploads/epills/ranitidine-hcl.html">ranitidine hcl</a> from ranitidine hcl<br />
+This is getting to be a very informative site, we just have to take the time to ... <a href="http://blog.gala.net/uploads/epills/ranitidine-hcl.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;05&#26085; 21:57</p>
+<p id="p594">
+&raquo; <a href="http://bloc.balearweb.net/get/813/breitling-watch.html">breitling watch</a> from breitling watch<br />
+I get many good minutes while serfering your site! Thanks. <a href="http://bloc.balearweb.net/get/813/breitling-watch.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;06&#26085; 21:23</p>
+<p id="p617">
+&raquo; <a href="http://bloc.balearweb.net/get/822/1%2emyfreebulletinboard%2ecom-alprazolam-index%2ephp-link-org.html">1%2emyfreebulletinboard%2ecom alprazolam index%2ephp link org</a> from 1%2emyfreebulletinboard%2ecom alprazolam index%2ephp link org<br />
+Sounds like a pretty cool book. Looking forward to next months experiment. <a href="http://bloc.balearweb.net/get/822/1%2emyfreebulletinboard%2ecom-alprazolam-index%2ephp-link-org.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;07&#26085; 12:46</p>
+<p id="p631">
+&raquo; <a href="http://bloc.balearweb.net/get/822/phentermine-adipex.html">phentermine adipex</a> from phentermine adipex<br />
+Very good site! I like it! Thanks! <a href="http://bloc.balearweb.net/get/822/phentermine-adipex.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;07&#26085; 17:04</p>
+<p id="p707">
+&raquo; <a href="http://bloc.balearweb.net/get/824/aphthasol.html">aphthasol</a> from aphthasol<br />
+Nice layout. But i didnt find information for me that i try to find on your webs... <a href="http://bloc.balearweb.net/get/824/aphthasol.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;09&#26085; 05:41</p>
+<p id="p717">
+&raquo; <a href="http://bloc.balearweb.net/get/824/flexeril.html">flexeril</a> from flexeril<br />
+Thanks so much and good luck on your book. I can tell it will be a winner:) <a href="http://bloc.balearweb.net/get/824/flexeril.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;09&#26085; 11:07</p>
+<p id="p740">
+&raquo; <a href="http://bloc.balearweb.net/get/813/rolex-dealer.html">rolex dealer</a> from rolex dealer<br />
+Sounds like a pretty cool book. Looking forward to next months experiment. <a href="http://bloc.balearweb.net/get/813/rolex-dealer.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;09&#26085; 22:37</p>
+<p id="p746">
+&raquo; <a href="http://bloc.balearweb.net/get/813/new-rolex-watch.html">new rolex watch</a> from new rolex watch<br />
+I was wondering if you could send me some more information about projects in my ... <a href="http://bloc.balearweb.net/get/813/new-rolex-watch.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;09&#26085; 23:55</p>
+<p id="p779">
+&raquo; <a href="http://ebags.eb.funpic.de/louis-vuitton-handbags/cheap-louis-vuitton-handbag.html">cheap louis vuitton handbag</a> from cheap louis vuitton handbag<br />
+Hi! Very eye catching site. Best regards. <a href="http://ebags.eb.funpic.de/louis-vuitton-handbags/cheap-louis-vuitton-handbag.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;10&#26085; 15:05</p>
+<p id="p783">
+&raquo; <a href="http://ebags.eb.funpic.de/balenciaga-handbags/balenciaga-motorcycle-handbag.html">balenciaga motorcycle handbag</a> from balenciaga motorcycle handbag<br />
+Good work. It looks cool! You are welcome to my site! <a href="http://ebags.eb.funpic.de/balenciaga-handbags/balenciaga-motorcycle-handbag.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;10&#26085; 16:49</p>
+<p id="p830">
+&raquo; <a href="http://www.lacomunitat.net/furniture2006/modern-dining-room-furniture.html">modern dining room furniture</a> from modern dining room furniture<br />
+Good work. It looks cool! You are welcome to my site! <a href="http://www.lacomunitat.net/furniture2006/modern-dining-room-furniture.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;11&#26085; 16:53</p>
+
+
+
+
+
+<h2 id="comments">コメント</h2>
+
+
+
+
+
+<h2>コメントしてください</h2>
+
+ 
+
+
+
+<form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-comments.cgi" name="comments_form" onsubmit="if (this.bakecookie[0].checked) rememberMe(this)">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="36" />
+
+<div id="name_email">
+<p><label for="author">名前:</label><br />
+<input tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">メールアドレス:</label><br />
+<input tabindex="2" id="email" name="email" /></p>
+</div>
+
+
+
+<p><label for="url">URL:</label><br />
+<input tabindex="3" type="text" name="url" id="url" />
+保存しますか?
+<input type="radio" id="remember" onclick="rememberMe(this.form)" name="bakecookie" /><label for="remember">はい</label><input type="radio" id="forget" name="bakecookie" onclick="forgetMe(this.form)" value="Forget Info" style="margin-left: 15px;" /><label for="forget">いいえ</label><br style="clear: both;" />
+</p>
+
+<p><label for="text">コメント:</label> <br/>
+<textarea tabindex="4" id="text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input type="submit" name="preview" tabindex="5" 
+    value="&nbsp;確認&nbsp;" />
+<input style="font-weight: bold;" type="submit" name="post" 
+    tabindex="6" value="&nbsp;投稿&nbsp;" />
+</div>
+</form>
+
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+if (document.comments_form.email != undefined)
+    document.comments_form.email.value = getCookie("mtcmtmail");
+if (document.comments_form.author != undefined)
+    document.comments_form.author.value = getCookie("mtcmtauth");
+if (document.comments_form.url != undefined)
+    document.comments_form.url.value = getCookie("mtcmthome");
+if (getCookie("mtcmtauth") || getCookie("mtcmthome")) {
+    document.comments_form.bakecookie[0].checked = true;
+} else {
+    document.comments_form.bakecookie[1].checked = true;
+}
+//-->
+</script>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

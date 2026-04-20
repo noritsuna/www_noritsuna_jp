@@ -1,0 +1,838 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: SIP アーカイブ</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/sip/index.html#000047"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/47"
+    dc:title="SIPとSkype"
+    dc:identifier="http://www.noritsuna.jp/archives/sip/index.html#000047"
+    dc:subject="SIP"
+    dc:description="さて、いままで、意図的に極力避けてきたのですが、そろそろ、ぽつぽつと 思考系の話..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-25T05:20:21+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;02&#26376;25&#26085;</h2>
+
+
+<h3 id="a000047">SIPとSkype</h3>
+
+<p>さて、いままで、意図的に極力避けてきたのですが、そろそろ、ぽつぽつと<br />
+思考系の話でも書いてみようかと思います。</p>
+
+<p>某MLに入っている人は、お解りかもしれませんが、個人的に、こういうのは、<br />
+大好きなのでして。(^-^;A<br />
+（下手の横好きってことで、大目に見てやってください。）<br />
+<BR><br />
+今回は、ぶっちゃけ、yusuke大先生の<a href="http://www.arclamp.jp/blog/archives/000473.html">話</a>に釣られました。(^-^;A</p>
+
+<p>これをベースに、ちょろちょろと書いてみようかと思います。<br />
+<BR><br />
+●儲ける構図<br />
+個人的に、Skypeが、2ndPhone以上にはなれないと感覚的に考えていたのですが、<br />
+その答えの一つを見つけた感じです。</p>
+
+<p>SIPとSkypeも似た構造にあります。<br />
+SIPは、RFCであり、仕様は一般に公開され、実装は各々が行うことになります。<br />
+Skypeは、ソフトが提供されており、APIを使用する場合、ライセンスが発生すると<br />
+いう構図になっています。</p>
+
+<p>これは、yusuke大先生のblogにある、JavaとZopeの構図の類似といってよい<br />
+と思います。<br />
+<BR><br />
+●現在の構図<br />
+現在、SIPもSkypeも「電話の延長」としてしか実装されていないような状態です。<br />
+そのため、電話をやろうなどと言うところは、限られるわけです。</p>
+
+<p>よって、儲けの構図は、</p>
+
+<blockquote>「電話屋さんが自社の製品のリプレースくらいしかない」</blockquote>
+
+<p>という状況です。<br />
+そのため、一社が握っている技術を主製品の基盤として開発しては、リスクが<br />
+高すぎるため、Skypeが選択肢に入ることはありえないわけです。</p>
+
+<p>そのため、Skypeががんばっても、2nd製品以上には成り得ないわけです。<br />
+<BR><br />
+●未来の構図<br />
+現在、「電話」としてしか使われていませんが、本来的にこれらの物は、</p>
+
+<blockquote>「コミュニケーションツールとした場合」</blockquote>
+
+<p>その真価を発揮できると考えています。<br />
+(正確には、SIPはただのセッション管理でしかないですが、これでは、あまりに<br />
+ 抽象的すぎるので。)</p>
+
+<p>このように発展してくると、現在「電話屋」しかない市場が広がっていき、<br />
+いろいろなベンダーが参入してくることが予想されます。</p>
+
+<p>この状態となると、まさに、JavaとZopeの構図と同一になるといえるのでは<br />
+ないでしょうか？<br />
+<BR><br />
+※※※以上。yusukeさんの説を元とし導き出せる仮説としての考察です※※※</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/02/sipskype.html">05:20</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/sipskype.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/02/sipskype.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/sip/index.html#000041"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/41"
+    dc:title="teleo まとめ"
+    dc:identifier="http://www.noritsuna.jp/archives/sip/index.html#000041"
+    dc:subject="SIP"
+    dc:description="やはり、個人的に気になるのが、メッセージプロトコルがHTTP+XMLという点 で..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-18T00:20:58+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;02&#26376;18&#26085;</h2>
+
+
+<h3 id="a000041">teleo まとめ</h3>
+
+<p>やはり、個人的に気になるのが、メッセージプロトコルがHTTP+XMLという点<br />
+ですね。<br />
+まさに、SIP+というか、SIPの別プロトコルを考えたら、こうなるよねという<br />
+典型的なモデルの一つです。</p>
+
+<p>個人的には、非常にアリだと思っています。</p>
+
+<p>ただ、組み込み系を考慮すると、HTTPサーバ+XMLパーサ+teleoStackを積む<br />
+のは、現時点では、スペック的に非常に厳しいと思われます。<br />
+現在の流れを考えると組み込み系ははずせないため、ここをどうするのか？が<br />
+ポイントになるかなと思います。<br />
+(もしかすると、SIP互換という機能は、このためにある可能性アリです。<br />
+ 組み込みは、SIPで通信すると割り切っているのかも。)</p>
+
+<p>でも、これだけじゃ、SIPの問題点は、解消されないという罠。<br />
+けっきょく、互換性が一番の問題点ですので。。。<br />
+<BR><br />
+<BR><br />
+そして、致命的なのが、パスワードの扱いなどのセキュリティーまわり。<br />
+暗号化なし、平文でパスワードを流すというのは、もう、致命的とかそういうのを<br />
+通り越して、リカイフノウ。</p>
+
+<p>さらに、プロトコル的にセッションハイジャックが比較的簡単にできそうな<br />
+印象もあります。</p>
+
+<p>これで、「プリペイド式で金払ってね」と言われても無理がありすぎです。<br />
+<BR><br />
+<BR><br />
+とてもじゃないが、Skype対抗にはならないというのが、印象です。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/02/teleo_2.html">00:20</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/teleo_2.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/02/teleo_2.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/sip/index.html#000040"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/40"
+    dc:title="teleo プロトコル編"
+    dc:identifier="http://www.noritsuna.jp/archives/sip/index.html#000040"
+    dc:subject="SIP"
+    dc:description="どうやら、メッセージは、HTTP+XMLで制御メッセージは通信しています。 とい..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-18T00:06:39+09:00" />
+</rdf:RDF>
+-->
+
+
+
+
+<h3 id="a000040">teleo プロトコル編</h3>
+
+<p>どうやら、メッセージは、HTTP+XMLで制御メッセージは通信しています。<br />
+ということは、TCPなんですね。<br />
+やはり、UDPで制御メッセージのやりとりってアレゲなのかなぁ。<br />
+UDPで、やりとりすると、どうしても分割の問題が発生してしまって<br />
+他網と接続することを考えたりすると非常に厳しいんですよね。<br />
+ほかにも、暗号化しようとしたときに問題もありますし。。。</p>
+
+<p>ちなみに、音声は、RTPをそのまま使用しています。UDPです。<br />
+<BR><br />
+<BR><br />
+下記に代表的なメッセージのサンプルをピックアップ。<br />
+(こんなの書いて、開発元からつっこまれたらやばいなぁ。<br />
+ つっこまれたら、速攻、削除するので、その辺ご了承ください。)</p>
+
+<p>●ログインメッセージ。<br />
+＿|￣|○　ガックシ・・・ また、パスワードは平文かよ。。。<br />
+と、いきなりへこみ気味ですが、気を取り直して。</p>
+
+<p>さて、メッセージとしては、単純ですね。<br />
+SIPのREGISTERをかなり単純にした物という感じで、あまり、つっこむ<br />
+ようなところはないですね。<br />
+ただ、バージョン番号が、下記の2種類あるのが気になります。<br />
+う〜ん、これだけ内容が違う物が入っているというのは、いやな感じで<br />
+すね。</p>
+
+<blockquote><PRE>&lt;version id="1.0"&gt;
+&lt;version id="clientManager-client XML v0.9"&gt;
+</PRE>
+</blockquote>
+<BR>
+・サーバへの送信メッセージ
+<PRE>&lt;?xml version='1.0' encoding="UTF-8"?&gt;
+&lt;clientMsg&gt;
+  &lt;version id="1.0"&gt;
+    &lt;date&gt;02/16/2005&lt;/date&gt;
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;
+    &lt;mid&gt;073106872&lt;/mid&gt;
+  &lt;/version&gt;
+  &lt;sipRegister&gt;
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;
+    &lt;Password&gt;password&lt;/Password&gt;
+  &lt;/sipRegister&gt;
+&lt;/clientMsg&gt;</PRE>
+
+<p>・サーバからの応答メッセージ<br />
+<PRE>&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id="clientManager-client XML v0.9"&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:01 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;073106872&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;errno&gt;200&lt;/errno&gt;<br />
+    &lt;errmsg&gt;Ok&lt;/errmsg&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/serverMsg&gt;</PRE><br />
+<BR><br />
+<BR><br />
+●プレゼンス情報<br />
+ユーザリストに登録されている人の生存情報がサーバから送れてきます。<br />
+そのときのメッセージです。</p>
+
+<blockquote> <PRE>&lt;sipAccountStatus&gt;</PRE></blockquote>
+
+<p>が、肝の部分。</p>
+
+<blockquote><PRE>&lt;accountBalance&gt;</PRE></blockquote>  
+
+<p>が、謎ですが、それ以外は、見たまんまと言うところ。<br />
+これが、そのうち拡張されるのかが、個人的には興味アリです。<br />
+<BR><br />
+・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id=""&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:01 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;236411472&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipAccountStatus&gt;<br />
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+    &lt;accountBalance&gt;0.5&lt;/accountBalance&gt;<br />
+    &lt;DID&gt;15109041126&lt;/DID&gt;<br />
+  &lt;/sipAccountStatus&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;236411472&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE><br />
+<BR><br />
+ちなみに、</p>
+
+<blockquote><PRE>&lt;sipAccountStatus&gt;</PRE></blockquote>
+
+<p>だけではなく</p>
+
+<blockquote><PRE>&lt;sipOk&gt;</PRE></blockquote>
+
+<p>という、ものもあるみたい。<br />
+どう違うのかは、現在不明。<br />
+<BR><br />
+<BR><br />
+●コール(発信)<br />
+通話した時のメッセージ内容。<br />
+これは、SIPとは違う動きをするようなので、詳細に追ってみたいと思います。<br />
+<BR><br />
+1，最初に、どこと通話をしたいのかネゴシエーションをとる。</p>
+
+<p>これは、接続先が、teleoやGW、SIPなどいろいろなプロトコルとの相互接続を<br />
+考えているために、プロトコルのネゴシエーションをしているのではないかと<br />
+思います。</p>
+
+<p>・サーバへの送信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;073131767&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipOutboundCall&gt;<br />
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+    &lt;called&gt;15109041126&lt;/called&gt;<br />
+    &lt;receivePort&gt;30000&lt;/receivePort&gt;<br />
+  &lt;/sipOutboundCall&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバからの応答メッセージ1<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id="clientManager-client XML v0.9"&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:26 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;073131767&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;errno&gt;200&lt;/errno&gt;<br />
+    &lt;errmsg&gt;Ok&lt;/errmsg&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバからの応答メッセージ2(相手もOKという情報)<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id=""&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:26 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;450446506&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipOk&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+    &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/sipOk&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE><br />
+<BR><br />
+<BR><br />
+2，サーバから相手のメディアに関するネゴシエーションが送信されてくる。<br />
+SIPでは、発信するクライアントが「1」のパケットにSDPという形で載せるのが</p>
+
+<p>一般的ですが、teleoは、全く逆な形を取っているようです。<br />
+（ちなみに、このように動くSIPもあります。ACKにアンサーSDPを載せます）</p>
+
+<p>ちなみに、SDPに相当する部分は、かなり似通っていますね。</p>
+
+<p>・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id='sipManager-stateMachine XML v0.9'&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:26 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;086512035&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipRTPConnect m='audio'&gt;<br />
+    &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+    &lt;rtpAddress direction='IN' type='IP4'&gt;216.143.130.43&lt;/rtpAddress&gt;<br />
+    &lt;rtpPort&gt;9232&lt;/rtpPort&gt;<br />
+    &lt;availableMedia&gt;<br />
+     &lt;codec a='rtpmap:101' &gt;<br />
+       &lt;version&gt;telephone-event&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:3' &gt;<br />
+       &lt;version&gt;GSM&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:18' &gt;<br />
+       &lt;version&gt;G729&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:8' &gt;<br />
+       &lt;version&gt;PCMA&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:0' &gt;<br />
+       &lt;version&gt;PCMU&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+    &lt;/availableMedia&gt;<br />
+  &lt;/sipRTPConnect&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;450446506&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE><br />
+<BR><br />
+<BR><br />
+3，サーバから相手のメディアに関する最終応答が送信されてくる。<br />
+相手が、受話器を取った状態です。<br />
+内容的には、mid以外、同じ物のようです。</p>
+
+<p>これは、SIPで言うところの200応答に相当する物のようです。</p>
+
+<p>・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id='sipManager-stateMachine XML v0.9'&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:34 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;387355624&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipRTPConnect m='audio'&gt;<br />
+    &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+    &lt;rtpAddress direction='IN' type='IP4'&gt;216.143.130.43&lt;/rtpAddress&gt;<br />
+    &lt;rtpPort&gt;9232&lt;/rtpPort&gt;<br />
+    &lt;availableMedia&gt;<br />
+     &lt;codec a='rtpmap:101' &gt;<br />
+       &lt;version&gt;telephone-event&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:3' &gt;<br />
+       &lt;version&gt;GSM&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:18' &gt;<br />
+       &lt;version&gt;G729&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:8' &gt;<br />
+       &lt;version&gt;PCMA&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:0' &gt;<br />
+       &lt;version&gt;PCMU&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+    &lt;/availableMedia&gt;<br />
+  &lt;/sipRTPConnect&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;387355624&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE><br />
+<BR><br />
+<BR><br />
+4，「3」のメッセージ直後、サーバからACK相当送信されてくる。</p>
+
+<p>これは、SIPで言うところのACKに相当する物のようです。<br />
+これといった、特徴はありません。</p>
+
+<p>・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id=""&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:34 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;435870003&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipOk&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+    &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/sipOk&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;435870003&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE><br />
+<BR><br />
+<BR><br />
+●BYE(切断)<br />
+切断した時のメッセージ内容。<br />
+SIPと違い、両方で投げ合うような動きをしています。</p>
+
+<p>課金を伴うサービスであるため、切断には、万全の体制を取るのが普通であり<br />
+当然の仕様と考えられます。<br />
+万が一、切断情報が相手に届かなければ、誤課金へつながるおそれがあるため<br />
+です。</p>
+
+<p>・サーバへの送信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;073160559&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipHangUp&gt;<br />
+    &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/sipHangUp&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバからの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id="clientManager-client XML v0.9"&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:54 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;073160559&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;errno&gt;200&lt;/errno&gt;<br />
+    &lt;errmsg&gt;Ok&lt;/errmsg&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE><br />
+<BR><br />
+サーバ側から、再度、同じ切断メッセージが送信されてきます。</p>
+
+<p>・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id=""&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:54 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;472351630&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipHangUp&gt;<br />
+     &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+     &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+     &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/sipHangUp&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;472351630&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE><br />
+<BR><br />
+<BR><br />
+●セッションタイマ<br />
+サーバ主導型のようです。定期的に、送信されてきます。</p>
+
+<p>まぁ、NAT越えしているので、その方が、よいのかもしれません。<br />
+ただのポーリングといえば、それまでですが。(^-^;A</p>
+
+<p>・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id="clientManager-client XML v0.9"&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:31 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;708746305&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;teleoHeartbeat /&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;708746305&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE></p>
+
+<p>以上。</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/02/teleo_1.html">00:06</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/teleo_1.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/02/teleo_1.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/sip/index.html#000039"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/39"
+    dc:title="teleo 試してみました"
+    dc:identifier="http://www.noritsuna.jp/archives/sip/index.html#000039"
+    dc:subject="SIP"
+    dc:description="SIPとも互換性があると謳っているSkype対抗のソフトウェア・teleo。 売..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-17T00:09:42+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;02&#26376;17&#26085;</h2>
+
+
+<h3 id="a000039">teleo 試してみました</h3>
+
+<p>SIPとも互換性があると謳っているSkype対抗のソフトウェア・<a href="http://www.teleo.com/">teleo</a>。</p>
+
+<p><a href="/images/sip/teleo_start.PNG" target="_blank"><img src="/images/sip/teleo_start.PNG" width="200" border="0"></a></p>
+売りとしては、下記の点らしいです。
+
+<blockquote>・普通の固定電話からの着信にも対応！<BR>
+・IEなどにバーが追加される！（Googleバーみたいなの）<BR>
+・SIPともお話しできる！<BR></blockquote>
+
+<p>ということなので、いろいろと試してみました。<br />
+<BR><br />
+<BR><br />
+まず、アプリケーションとして、とても不安定ぽ。<br />
+アイコン化された後、何をやっても元に戻せないことが。（ﾉД｀）ｼｸｼｸ</p>
+
+<p>さらに、そのあと、登録されているアカウント情報がめちゃくちゃになり<br />
+接続できない事態が発生。。。<br />
+ちゃんとした物に書き換えることにより、接続できましたが、その後、<br />
+何度起動し直しても、アカウント情報壊れちゃいます。orz</p>
+
+<p>んで、アカウントを登録したのですが、その最終認証画面。<br />
+URLの部分をよ〜く見てください。(図、赤い囲みの中)<br />
+「http://www.teleo.com/activate.php?user=teleo@noritsuna.jp&pass=password」</p>
+
+<p>IDとパスワードが、平文&パラメータとしてわたってる。しかも、SSLじゃない。orz<br />
+<p><a href="/images/sip/teleo_setup.PNG" target="_blank"><img src="/images/sip/teleo_setup.PNG" width="200" border="0"></a></p><br />
+<BR><br />
+<BR><br />
+という感じで、ちょっと使っただけですが、α版レベルという印象です。<br />
+<BR><br />
+<BR><br />
+■機能</p>
+
+<p>・メッセージング機能<br />
+電話しかできないんですね、これ。<br />
+メッセージくらい送れればよいのに。。。<br />
+<BR><br />
+<BR><br />
+・通話品質<br />
+は、、、（ﾉД｀）ｼｸｼｸ すみません。ヘッドセット持ってないんです。<br />
+試せませんでした。ぺこ <(＿ ＿)><br />
+<BR><br />
+<BR><br />
+・IE統合機能<br />
+いらないかも。。。IE起動するたびに通信してくれるので重いIEがさらに重く<br />
+なる罠。。。<br />
+<BR><br />
+<BR><br />
+・NAT越え<br />
+Skypeと同じ形式の模様。<br />
+RTPの通信が始まると通信先のIPがプロバイダの物と思われるIPにかわりました。</p>
+
+<p>ただ、これ以上は、下手に調査すると不正アクセスとか言われかねないので<br />
+調査していません。<br />
+<BR><br />
+<BR></p>
+
+<p>次回は、通信プロトコル編の予定。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/02/teleo.html">00:09</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/teleo.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/02/teleo.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/sip/index.html#000033"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/33"
+    dc:title="Istanbul・次期Windowsメッセンジャー"
+    dc:identifier="http://www.noritsuna.jp/archives/sip/index.html#000033"
+    dc:subject="SIP"
+    dc:description="噂の企業向けメッセンジャーです。 http://itpro.nikkeibp.c..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-13T00:20:45+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;02&#26376;13&#26085;</h2>
+
+
+<h3 id="a000033">Istanbul・次期Windowsメッセンジャー</h3>
+
+<p>噂の企業向けメッセンジャーです。<br />
+<a href="http://itpro.nikkeibp.co.jp/members/NT/ITARTICLE/20050208/155850/">http://itpro.nikkeibp.co.jp/members/NT/ITARTICLE/20050208/155850/</a></p>
+
+<p>これは、自分とこに「Live Communications Server 2005」をたてるのが、<br />
+前提なので、一般の人には無関係なものなのですが、これ、プロトコルに<br />
+SIPを使用していますので、SIPヲタな私としては、反応しないわけには<br />
+いかないということで、一応、反応しておくことにしました。<br />
+<BR><br />
+<BR><br />
+技術的に見ると、ただ単に、SIP的に正常進化しただけです。<br />
+今までは、RFC2543という、古いSIPの仕様に準拠していたのですが、<br />
+それを、RFC3261という、新しいSIPの仕様に準拠し直したバージョン<br />
+という、ところです。</p>
+
+<p>機能的にも、今までのメッセンジャーで出来ていたことだけですし、<br />
+他社のSIPソフトフォンでは、もっと、機能が豊富なくらいです。</p>
+
+<p>ただ、さすがは、ゲイツ様謹製ソフトは、ひと味違っておりまして<br />
+微妙に、RFC3261からはずれたりして、独自な実装がされている<br />
+部分があります。<br />
+そのため、純粋なSIPとしてみると、結構、微妙なものがあり、実は<br />
+最近、泣かされた経験があります。(^-^;A<br />
+<BR><br />
+<BR><br />
+と、いった感じで、別に、どうでもよいようなものだったりします。</p>
+
+<p>本文の最後に、普及に関してかかれていますが、まさに、その通りで<br />
+国内メーカーが対応してくれるわけがありません。<br />
+SIP的に見ても、独自な部分がありますし、機能的にも思いっきり<br />
+かぶるとなったら、だれが、対応するんでしょ？って感じです。</p>
+
+<p>そんなことをやるんだったら、無償でAPIまで公開するとか、オープン<br />
+ソースするとかしてくれると、非常にうれしいのですが。。。<br />
+※Longhornで、SIP関連のAPIが載ってくるようですので、こちらを<br />
+　利用すれば、もどきを作ることは可能になるかと思います。<br />
+<BR><br />
+<BR><br />
+ただ、この辺は、いつものMSの必勝パターンで、最初は糞のような<br />
+リリースを出して、そのうち、追いつき、気がついたら、トップシェアと<br />
+いうパターンになるんですかね？</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/02/istanbul.html">00:20</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/istanbul.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/02/istanbul.html#trackbacks">トラックバック</a>
+
+</p>
+
+
+
+</div>
+</div>
+
+</body>
+</html>

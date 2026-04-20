@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験 with SIProp開発記: Application アーカイブ</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験 with SIProp開発記</a></h1>
+<h2>SIPやVoIP、P2Pに関する技術情報を書き殴っているBlogです。
+また、SIPropプロジェクトの開発記も兼ねています。</h2>
+</div>
+
+<div class="content">
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/application/index.html#000010"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/10"
+    dc:title="subversionインストール編"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/application/index.html#000010"
+    dc:subject="Application"
+    dc:description="■目的 http経由で使える、subversion環境を整える ■インストール環..."
+    dc:creator="noritsuna"
+    dc:date="2005-01-21T23:16:16+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;01&#26376;21&#26085;</h2>
+
+
+<h3 id="a000010">subversionインストール編</h3>
+
+<p>■目的<br />
+http経由で使える、subversion環境を整える</p>
+
+<p></p>
+
+<p>■インストール環境<br />
+RedHat Linux Enterprise 3 WS</p>
+
+<p></p>
+
+<p>■インストール<br />
+●RPMからのインストール<br />
+ここからゲット。<br />
+http://summersoft.fay.ar.us/pub/subversion/latest/</p>
+
+<p>apahceなどでコンフリクト発生。<br />
+無理矢理バージョンアップすると、updateが使えなくなるので、<br />
+あきらめて、ソースからインストールすることにする。</p>
+
+<p>残念っ!</p>
+
+<p></p>
+
+<p>●ソースからのインストール</p>
+
+<p>・必要ライブラリのインストール<br />
+必要なライブラリやソフトが多いので、必要に応じてインストール。</p>
+
+<p>まぁ、ぶっちゃけここ見ろってことね。<br />
+http://svn.collab.net/repos/svn/trunk/INSTALL</p>
+
+<p><br />
+<blockquote>	# rpm -qa | grep xxx</blockquote></p>
+
+<p><br />
+でもして、無いものを片っ端からインストール。<br />
+特殊なインストール法のものは特に無し。</p>
+
+<p></p>
+
+<p>・subversionのインストール<br />
+手順としては、↓な感じ。<br />
+「autogen.sh」が、いろいろとよきに計らってくれるみたい。</p>
+
+<blockquote>	$ sh ./autogen.sh
+	$ ./configure
+	$ make
+	# make install</blockquote>
+
+<p><br />
+んで、完成！！！しなかった。(ノД`)シクシク</p>
+
+<p></p>
+
+<p>・apxsインストール<br />
+う〜ん、apxsがないので、mod_svn_dav.so ちゃんが出来ない。。。</p>
+
+<p>仕方ないので、apacheのソースRPMを「update.redhat.com」から取得して<br />
+↓な感じで、ビルドしてあげると、</p>
+
+<p><br />
+<blockquote>	# rpmbuild --rebuild httpd-2.0.xx-xx.ent.src.rpm</blockquote></p>
+
+<p><br />
+↓こんなのができる。</p>
+
+<p><br />
+<blockquote>	/usr/src/redhat/RPMS/i386/httpd-devel-2.0.xx-xx.ent.i386.rpm</blockquote></p>
+
+<p><br />
+こいつの中にapxsが入っているので、インストール。</p>
+
+<p><br />
+<blockquote>	# rpm -ivh httpd-devel-2.0.xx-xx.ent.i386.rpm</blockquote></p>
+
+<p><br />
+・おまけ<br />
+ただ、今回はビルド前に、↓が必要といわれたので、入れる。</p>
+
+<p><br />
+<blockquote>	xmlto-0.0.xx-x.i386.rpm</blockquote></p>
+
+<p><br />
+手順は、ほぼ一緒。</p>
+
+<p><br />
+この状態で、再度、subversionをインストールし直す。<br />
+なかなか、悪戦苦闘したが、無事にインストール完了。</p>
+
+<p></p>
+
+<p><br />
+■各種設定<br />
+●subversionの設定<br />
+・リポジトリを作る<br />
+↓これだけ。</p>
+
+<p><br />
+<blockquote>	# svnadmin create /path/to/svnrepos</blockquote></p>
+
+<p><br />
+あとは、apacheから読み書き出来るようにユーザを変更。</p>
+
+<p><br />
+<blockquote>	# chown -R apache:apache  /path/to/svnrepos</blockquote></p>
+
+<p><br />
+終了!</p>
+
+<p></p>
+
+<p>●apacheの設定</p>
+
+<p>キモの部分としては、↓な設定。</p>
+
+<p><br />
+<blockquote>LoadModule dav_svn_module modules/mod_dav_svn.so</p>
+
+<p><Location /svn/repos><br />
+    DAV svn<br />
+    SVNPath /path/to/svnrepos<br />
+    SVNAutoversioning on<br />
+    AuthType Basic<br />
+    AuthName "repository"<br />
+    AuthUserFile /etc/svn/passwd<br />
+        <Limit HEAD PUT POST DELETE PROPFIND PROPPATCH MKCOL COPY MOVE LOCK UNLOCK><br />
+            Require valid-user<br />
+        </Limit><br />
+</Location></blockquote></p>
+
+<p>●各設定の解説<br />
+・LoadModule <br />
+モジュールの読み込み。</p>
+
+<p><br />
+・Location ディレクティブ<br />
+どのようなパスで外に見せるかを設定。<br />
+この場合「http://ホスト名/path/to/svnrepos」というURLになる。</p>
+
+<p><br />
+・DAV svn<br />
+WebDAVが有効になる。</p>
+
+<p><br />
+・SVNPath<br />
+subversionのリポジトリのローカルのパスの指定。</p>
+
+<p><br />
+・SVNAuthoversioning on <br />
+普通のWebDAVクライアントでも読み書きができるようになる。<br />
+DreamWaeverなどの連携に便利(かも)。</p>
+
+<p><br />
+・Authxxx<br />
+ベーシック認証系設定。</p>
+
+<p></p>
+
+<p><br />
+●おまけ<br />
+Berkeley DBが、おかしくなり、リポジトリのアクセスができなくなった場合。<br />
+↓で復旧出来るかも。<br />
+本来的には、バージョンアップ時に使用するもの。</p>
+
+<p><br />
+<blockquote>	svnadmin recover /path/to/svnrepos</blockquote></p>
+
+<p></p>
+
+<p>以上、完全終了。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/01/subversion_1.html">23:16</a>
+| <a href="http://www.noritsuna.jp/archives/2005/01/subversion_1.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/01/subversion_1.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/application/index.html#000001"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/1"
+    dc:title="MT3実験中"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/application/index.html#000001"
+    dc:subject="Application"
+    dc:description="MT3の実験中。 最初から日本語化されているので、便利っすね。。。これ。 ..."
+    dc:creator="noritsuna"
+    dc:date="2004-12-23T21:53:32+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2004&#24180;12&#26376;23&#26085;</h2>
+
+
+<h3 id="a000001">MT3実験中</h3>
+
+<p>MT3の実験中。</p>
+
+<p>最初から日本語化されているので、便利っすね。。。これ。<br />
+</p>
+
+<p>う〜ん、実は、mod_perl化したかったんですが、ダメっぽいっすね。。。<br />
+libapreqが、mod_perl2にうまく対応していない模様。。。</p>
+
+<p>他に、高速化する方法無いかなぁ。</p>
+
+<p></p>
+
+<p>仕方ないので、別な方向性で。<br />
+テンプレートを変えてみる。↓ただのパクリですが。<br />
+http://www.drblog.jp/temp_001/temp_a035.php</p>
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2004/12/mt3.html">21:53</a>
+| <a href="http://www.noritsuna.jp/archives/2004/12/mt3.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2004/12/mt3.html#trackbacks">トラックバック</a>
+
+</p>
+
+
+
+</div>
+</div>
+
+</body>
+</html>

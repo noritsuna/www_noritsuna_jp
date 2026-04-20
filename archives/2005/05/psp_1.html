@@ -1,0 +1,372 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: PSPプログラミング</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+
+<link rel="start" href="http://www.noritsuna.jp/" title="Home" />
+<link rel="prev" href="http://www.noritsuna.jp/archives/2005/04/post_33.html" title="赤紙到着" />
+
+<link rel="next" href="http://www.noritsuna.jp/archives/2005/05/psp_2.html" title="PSP小技" />
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var HOST = 'www.noritsuna.jp';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + (expires ? "; expires=" + expires : "") + (path ? "; path=" + path : "") + (domain ? "; domain=" + domain : "") + (secure ? "secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function rememberMe (f) {
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+    now = now.toGMTString();
+    if (f.author != undefined)
+       setCookie('mtcmtauth', f.author.value, now, '/', '', '');
+    if (f.email != undefined)
+       setCookie('mtcmtmail', f.email.value, now, '/', '', '');
+    if (f.url != undefined)
+       setCookie('mtcmthome', f.url.value, now, '/', '', '');
+}
+
+function forgetMe (f) {
+    deleteCookie('mtcmtmail', '/', '');
+    deleteCookie('mtcmthome', '/', '');
+    deleteCookie('mtcmtauth', '/', '');
+    f.email.value = '';
+    f.author.value = '';
+    f.url.value = '';
+}
+
+//-->
+</script>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2005/05/psp_1.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/84"
+    dc:title="PSPプログラミング"
+    dc:identifier="http://www.noritsuna.jp/archives/2005/05/psp_1.html"
+    dc:subject="GAME"
+    dc:description="最近、いろいろと忙しく情報してなかったら、いつの間にかPSPで 自作プログラムが..."
+    dc:creator="noritsuna"
+    dc:date="2005-05-11T23:37:38+09:00" />
+</rdf:RDF>
+-->
+
+
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2005/05/psp_1.html">
+<dc:title>PSPプログラミング</dc:title>
+<dc:description>最近、いろいろと忙しく情報してなかったら、いつの間にかPSPで 自作プログラムが...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2005-05-11T23:37:38+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+
+
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+
+<p align="right">
+<a href="http://www.noritsuna.jp/archives/2005/04/post_33.html">&laquo; 赤紙到着</a> |
+
+<a href="http://www.noritsuna.jp/">メイン</a>
+| <a href="http://www.noritsuna.jp/archives/2005/05/psp_2.html">PSP小技 &raquo;</a>
+
+</p>
+
+<h2>2005&#24180;05&#26376;11&#26085;</h2>
+
+<h3>PSPプログラミング</h3>
+
+<p>最近、いろいろと忙しく情報してなかったら、いつの間にかPSPで<br />
+自作プログラムが動く環境が出来ているではないですか！！！</p>
+
+<p>これは、さっそくということで、開発環境を構築してみましたので<br />
+その流れで引っかかりそうなところを抜粋して、書いておきます。<br />
+<BR><br />
+●必要なソフトのダウンロード<br />
+・Cygwin<br />
+<a href="http://cygwin.com/">http://cygwin.com/</a></p>
+
+<p>・PS2Dev<br />
+<a href="http://ps2dev.org/files/PS2Dev_Setup.exe ">http://ps2dev.org/files/PS2Dev_Setup.exe </a><br />
+<a href="http://nnoble.nerim.net/ps2dev/ps2dev-toolchain-mingw32-20050504.zip">http://nnoble.nerim.net/ps2dev/ps2dev-toolchain-mingw32-20050504.zip<br />
+</a><br />
+PS2用の開発環境です。<br />
+これをベースに、開発環境を構築します。</p>
+
+<p><br />
+・算譜職人さん作の HelloPSP R1 の ソースコード<br />
+<a href="http://anon.ug.to/sec/">http://anon.ug.to/sec/</a><br />
+<a href="http://anon.ug.to/sec/pub/hellopsp_src_Rel1.zip">http://anon.ug.to/sec/pub/hellopsp_src_Rel1.zip</a></p>
+
+<p>こちらから、使えそうなコードを頂きます。(^-^;A<br />
+各ファイルの意味は、同梱されている readme.txt を参考にしてください。</p>
+
+<blockquote>
+mk.bat<BR>
+font.c<BR>
+pg.c<BR>
+pg.h<BR>
+outpatch.cpp<BR>
+startup.s
+</blockquote>
+
+<p><br />
+・elf2pbp<br />
+<a href="http://www.internalreality.com/">http://www.internalreality.com/</a><br />
+PSP用elfファイルを EBOOT.PBP ファイルに変換するツール<br />
+<BR><br />
+●インストール<br />
+Cygwin と PS2Dev は、インストーラ付きですので、普通にインストールして<br />
+ください。</p>
+
+<p>他の物は、任意のフォルダにまとめて保存してください。</p>
+
+<p>私の開発用フォルダは下記のようになっています。</p>
+
+<blockquote>
+elf2pbp.exe<BR>
+font.c<BR>
+main.c ←これは、自分で作ったファイル<BR>
+mk.bat<BR>
+pg.c<BR>
+pg.h<BR>
+outpatch.exe<BR>
+outpatch.cpp<BR>
+startup.s
+</blockquote>
+
+<p><BR><br />
+●コンパイル法<br />
+基本は、 mk.bat を叩くだけです。が、やはり、書き換える必要が<br />
+あります。<br />
+(Makefile とか作ってもOK！)</p>
+
+<p>1行目 が、一応メイン関数があるファイルのコンパイルの指定ですので<br />
+これを自分の環境に合わせて書き換えます。</p>
+
+<p>さらに、最後に</p>
+
+<blockquote>elf2pbp outp "Test Program"</blockquote>
+
+<p>を、付け足します。<br />
+これで、EBOOT.PBP が、生成されます。<br />
+第２引数の「"Test Program"」は、プログラム名となります。<br />
+<BR><br />
+・モジュール名の変更<br />
+startup.s の 59行目で変更できます。</p>
+
+<blockquote>.ascii	"HelloWorld"		#up to 28 char</blockquote>
+
+<p>ただし、これを行ってしまうと、outpatch.exe が、</p>
+
+<blockquote>modulename not found</blockquote>
+
+<p>とエラーを吐くようになります。<br />
+回避法は、outpatch.cpp の 6行目で、</p>
+
+<blockquote>#define str_modulename "HelloWorld"</blockquote>
+
+<p>と、モジュール名が指定されていますので、書き換えて、コンパイルし<br />
+直す必要があります。<br />
+<BR><br />
+●まとめ<br />
+これで、コンパイルできる環境が整いました。<br />
+あとは、API を調べて、面白そうな悪さを考えるだけです。(^-^;A</p>
+
+<p>とはいっても、Network系のは、まだ、解析されてなさそうなので<br />
+先の話なのかなぁとか思いつつ、ちょっと、遊んでみようかと<br />
+思います。</p>
+
+<p>・参考サイト<br />
+<a href="http://forums.ps2dev.org/viewforum.php?f=12">http://forums.ps2dev.org/viewforum.php?f=12</a><br />
+<a href="http://forums.ps2dev.org/viewforum.php?f=14">http://forums.ps2dev.org/viewforum.php?f=14</a></p>
+
+<p><br />
+<BR><br />
+※注意事項<br />
+ファームバージョンが1.5以上だと、メモリースティックから起動<br />
+出来るプログラムが正規に暗号化された物じゃないとダメらしく<br />
+この開発環境でコンパイルした物では起動できないそうです。</p>
+
+<p><a href="http://www.watch.impress.co.jp/av/docs/20050511/scei.htm">こちら</a>にも、こんな話も出てますし、かなり信憑性は高そうです。</p>
+
+<p>こうなってくると、ファームバージョン1.0は、プレミアつくかしらん。(^-^;A<br />
+ちなみに、私のPSPは、ファームバージョン1.0ですよ〜。<br />
+<BR><br />
+あと、法的にかなり濃いグレーなブツも出回っているようですね。<br />
+この辺、興味のある方は、2chなどを漁ってみてください。</p>
+
+<div id="a000084more"><div id="more">
+
+</div></div>
+
+<p class="posted">投稿者 noritsuna : 2005&#24180;05&#26376;11&#26085; 23:37</p>
+
+<h2 id="trackbacks">トラックバック</h2>
+<p class="techstuff">このエントリーのトラックバックURL:<br />
+http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/84</p>
+
+<p>このリストは、次のエントリーを参照しています:  <a href="http://www.noritsuna.jp/archives/2005/05/psp_1.html">PSPプログラミング</a>:</p>
+
+<p id="p77">
+&raquo; <a href="http://www.myteeundercar.com/">online blackjack</a> from online blackjack<br />
+Officially splash <a href='http://www.myteeundercar.com/'> online blackjack game...</a> <a href="http://www.myteeundercar.com/">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;12&#26085; 10:05</p>
+
+
+
+
+
+<h2 id="comments">コメント</h2>
+
+<div id="c19">
+<p>bmpLoader作っているへっぽこプログラマ、z-rwtです。<br />
+勝手にいろいろと拝借してスミマセン。。m(_ _)m<br />
+おかげさまで、おもちゃで楽しい思いさせていただけてます!</p>
+</div>
+<p class="posted">投稿者 <a href="mailto&#58;a&#64;b&#46;com">z-rwt</a>  : 2005&#24180;05&#26376;13&#26085; 23:44</p>
+<div id="c20">
+<p>z-rwt さん</p>
+
+<p>私もいろいろなところから調べた物を載せているだけですので。(^-^;A<br />
+</p>
+</div>
+<p class="posted">投稿者 <a target="_blank" title="http://www.noritsuna.jp" href="http://www.noritsuna.jp/cgi-bin/mt/mt-comments.cgi?__mode=red;id=20">Noritsuna</a>  : 2005&#24180;05&#26376;16&#26085; 10:53</p>
+
+
+
+
+<h2>コメントしてください</h2>
+
+ 
+
+
+
+<form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-comments.cgi" name="comments_form" onsubmit="if (this.bakecookie[0].checked) rememberMe(this)">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="84" />
+
+<div id="name_email">
+<p><label for="author">名前:</label><br />
+<input tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">メールアドレス:</label><br />
+<input tabindex="2" id="email" name="email" /></p>
+</div>
+
+
+
+<p><label for="url">URL:</label><br />
+<input tabindex="3" type="text" name="url" id="url" />
+保存しますか?
+<input type="radio" id="remember" onclick="rememberMe(this.form)" name="bakecookie" /><label for="remember">はい</label><input type="radio" id="forget" name="bakecookie" onclick="forgetMe(this.form)" value="Forget Info" style="margin-left: 15px;" /><label for="forget">いいえ</label><br style="clear: both;" />
+</p>
+
+<p><label for="text">コメント:</label> <br/>
+<textarea tabindex="4" id="text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input type="submit" name="preview" tabindex="5" 
+    value="&nbsp;確認&nbsp;" />
+<input style="font-weight: bold;" type="submit" name="post" 
+    tabindex="6" value="&nbsp;投稿&nbsp;" />
+</div>
+</form>
+
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+if (document.comments_form.email != undefined)
+    document.comments_form.email.value = getCookie("mtcmtmail");
+if (document.comments_form.author != undefined)
+    document.comments_form.author.value = getCookie("mtcmtauth");
+if (document.comments_form.url != undefined)
+    document.comments_form.url.value = getCookie("mtcmthome");
+if (getCookie("mtcmtauth") || getCookie("mtcmthome")) {
+    document.comments_form.bakecookie[0].checked = true;
+} else {
+    document.comments_form.bakecookie[1].checked = true;
+}
+//-->
+</script>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

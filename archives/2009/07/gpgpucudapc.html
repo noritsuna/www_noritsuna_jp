@@ -1,0 +1,605 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="description" content="以前に、こちらのエントリーで書いたように、ケータイ向けGPGPUの時代が到来しよ..." />
+    <meta name="generator" content="http://www.sixapart.jp/movabletype/" />
+    <link rev="made" href="mailto:your@email" title="E-mail address" />
+    <link rel="home" href="http://www.noritsuna.jp/" title="なんとなく実験 with SIProp開発記" />
+    <link rel="index" title="なんとなく実験 with SIProp開発記archives" href="http://www.noritsuna.jp/archives.html" />
+    <link rel="prev" href="http://www.noritsuna.jp/archives/2009/07/oesfandroidandr.html" title="OESF完全協賛セミナー「Androidが変える組込み開発、Androidがもたらす未来とは」" />
+    <link rel="next" href="http://www.noritsuna.jp/archives/2009/07/ec2_1_1.html" title="アマゾンEC2 ナイトセミナ 第 1 回で、講演してきました" />
+    <link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.noritsuna.jp/index.xml" /> 
+    <script type="text/javascript" src="http://www.noritsuna.jp/mt-site.js"></script>
+    <title>なんとなく実験 with SIProp開発記 | お手軽GPGPU(CUDA)プログラミング用PCを選ぶ</title>
+
+    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2009/07/gpgpucudapc.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/774"
+    dc:title="お手軽GPGPU(CUDA)プログラミング用PCを選ぶ"
+    dc:identifier="http://www.noritsuna.jp/archives/2009/07/gpgpucudapc.html"
+    dc:subject="GPGPU"
+    dc:description="以前に、こちらのエントリーで書いたように、ケータイ向けGPGPUの時代が到来しよ..."
+    dc:creator="noritsuna"
+    dc:date="2009-07-26T09:12:47+09:00" />
+</rdf:RDF>
+-->
+
+
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2009/07/gpgpucudapc.html">
+<dc:title>お手軽GPGPU(CUDA)プログラミング用PCを選ぶ</dc:title>
+<dc:description>以前に、こちらのエントリーで書いたように、ケータイ向けGPGPUの時代が到来しよ...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2009-07-26T09:12:47+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+  </head>
+  <body class="layout-two-column-right" onload="individualArchivesOnLoad(commenter_name)">
+
+    <!-- ブログ全体 -->
+    <div id="main-container">
+
+      <!-- ブログタイトル -->
+      <div id="banner">
+        <h1 id="banner-header"><a href="http://www.noritsuna.jp/" accesskey="1" title="なんとなく実験 with SIProp開発記">なんとなく実験 with SIProp開発記</a></h1>
+        <h2 id="banner-description">SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</h2>
+      </div><!-- banner_end -->
+
+      <!-- 左カラム -->
+      <div id="left-menu">
+        <div  class="left-content">
+
+          <!-- サイト内検索 -->
+          <div class="search-form">
+            <h3>Search</h3>
+            <form method="get" action="http://www.noritsuna.jp/cgi-bin/mt/mt-search.cgi">
+              <input type="hidden" name="IncludeBlogs" value="1" />
+              <label for="search" accesskey="4">サイト内検索</label><br />
+              <input id="search" tabindex="5"  accesskey="t"  value="search this blog" name="search" onblur="if(this.value==''){this.style.color=''; this.form.reset()}" onfocus="this.value = ''; this.style.color = '#000000';" />
+              <input type="submit" tabindex="6" accesskey="s" value="submit" class="searchsubmit" />
+            </form>
+          </div><!-- search-form_end -->
+
+                    <!-- Categoryアーカイブ -->
+          <div class="category-archives">
+            <h3>Category Archives</h3>
+	    <div class="category-label">
+              <ul>
+                <li><a href="http://www.noritsuna.jp/archives/gae/" title="">GAE</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/news/" title="">NEWS</a></li>
+              
+                <li class="module-list-item">OS<ul>
+                <li><a href="http://www.noritsuna.jp/archives/os/linux/" title="">Linux</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/windows/" title="">Windows</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/auos/" title="">仮想OS</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/siprop/" title="">SIProp</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/stm/" title="">STM</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/iphone/" title="">iPhone</a></li>
+              </ul></li>
+              
+                <li class="module-list-item">開発<ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ar/" title="">AR</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/amazonec2/" title="">AmazonEC2</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/application/" title="">Application</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/chromium/" title="">Chromium</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/" title="">HardWare</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/fpga/" title="">FPGA</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/gpgpu/" title="">GPGPU</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/java/" title="">Java</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/cat34/" title="">無線</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/nwng/" title="">NwNG</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/p2p/" title="">P2P</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/" title="">セマンティック</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/ai/" title="">AI</a></li>
+              </ul></li>
+              </ul></li>
+              </ul>
+            </div><!-- category-label_end -->
+          </div><!-- category-archives_end -->
+          
+
+                    <!-- Monthlyアーカイブ -->
+          <div class="monthly-archives">
+            <h3><a href="http://www.noritsuna.jp/archives.html">Archives</a></h3>
+            <ul class="module-list">
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2011/01/">2011&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/08/">2010&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/07/">2010&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/06/">2010&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/05/">2010&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/04/">2010&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/03/">2010&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/02/">2010&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/01/">2010&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/12/">2009&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/11/">2009&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/10/">2009&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/09/">2009&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/08/">2009&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/07/">2009&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/06/">2009&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/05/">2009&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/04/">2009&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/03/">2009&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/02/">2009&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/01/">2009&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/12/">2008&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/11/">2008&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/10/">2008&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/09/">2008&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/08/">2008&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/07/">2008&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/06/">2008&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/05/">2008&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/04/">2008&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/03/">2008&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/02/">2008&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/01/">2008&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/12/">2007&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/11/">2007&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/10/">2007&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/09/">2007&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/08/">2007&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/07/">2007&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/06/">2007&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/05/">2007&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/04/">2007&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/03/">2007&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/02/">2007&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/01/">2007&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/12/">2006&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/11/">2006&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/10/">2006&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/09/">2006&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/08/">2006&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/07/">2006&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/06/">2006&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/02/">2006&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/09/">2005&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/07/">2005&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/06/">2005&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/05/">2005&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/04/">2005&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/03/">2005&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/02/">2005&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/01/">2005&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2004/12/">2004&#24180;12&#26376;</a></li>
+            </ul>
+          </div><!-- monthly-archives_end -->
+          
+
+        </div><!-- left-content_end -->
+      </div><!-- left-menu_end -->
+
+      <!-- 中央カラム -->
+      <div id="main">
+        <div  class="content">
+
+          <p class="navi-link"><a href="http://www.noritsuna.jp/archives/2009/07/oesfandroidandr.html">&laquo; OESF完全協賛セミナー「Androidが変える組込み開発、Androidがもたらす未来とは」</a> | <a href="http://www.noritsuna.jp/">main</a> | <a href="http://www.noritsuna.jp/archives/2009/07/ec2_1_1.html">アマゾンEC2 ナイトセミナ 第 1 回で、講演してきました &raquo;</a></p>
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;07&#26376;26&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 class="entry-header">お手軽GPGPU(CUDA)プログラミング用PCを選ぶ</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>以前に、<a href="http://www.noritsuna.jp/archives/2009/06/computex_2009.html">こちらのエントリー</a>で書いたように、ケータイ向けGPGPUの時代が到来しようとしています。</p>
+
+<p>そこで、GPGPUによる超並列計算アルゴリズムの研究をされている某氏に話を聞いてみたところ、、、</p>
+
+<blockquote>CELLのようなにSPEがCPUに統合されたものと違って、外部バス上に配置されているGPGPUは、プログラミング手法がずいぶんと違う。<BR>
+要は、GPGPUからはメインメモリには触れず、ビデオボード上に載っているVRAMしかさわれない。
+すなわち、GPGPUとVRAMが、CPUとメインメモリであり、もうひとつPCシステムが存在しているような形で扱う必要がある。<BR>
+そのため、いろいろと制限などがあるため、一度、体験しておくとよい。</blockquote>
+
+<p>との助言をいただいたので、体験してみることに。<br />
+ちなみに、なぜ、ケータイ向けGPGPUかといえば、最近の方向性の一つとして、</p>
+
+<p>・<a href="http://www.rbbtoday.com/news/20090723/61394.html">ドコモの触力覚メディア、直感検索・ナビを体感する</a><br />
+・<a href="http://www.rbbtoday.com/news/20090723/61394.html">壁の向こうもARで“透視”　auが「実空間透視ケータイ」</a><br />
+・<a href="http://www.gizmodo.jp/2009/06/iphone_3gs_1.html">iPhone 3GSで音声コントロールができるように</a></p>
+
+<p>というように、ARやVRにおいては、画像認識や音声認識、手書き認識などとして、『アナログデータ』を扱う場面が劇的に増えています。<br />
+ほかにも、表に出てこないところとしては、加速度センサーや電子コンパス（地磁気センサー）も、RAWなデータから演算によって、角度や方角を算出しています。</p>
+
+<p>そして、この手のアナログデータ処理アルゴリズムは、比較的並列計算に向いているものが多いです。<br />
+そこで、GPGPUによる演算が、威力を発揮するのです。<br />
+（FPGAによる、フル設計な専用CPUのほうが楽しいのですが、まだまだ、先のようなので。。、）</p>
+
+<p><br />
+<BR><br />
+しかし、まだケータイ向けGPGPUは、手に入らないので、普通にnvidiaの<a href="http://www.nvidia.co.jp/object/cuda_home_jp.html#">CUDA</a>を体験してみることにしましたが・・・<br />
+うちには、CUDAが動作するPCがないので、CUDA対応のノートＰＣを漁ることにしました。<br />
+でも、ちょっとした勉強用なので極力安いものという条件で、探してみました。<br />
+（持ち運びしたかったので、デスクトップは考慮外としました。）</p>
+
+<p>そして、下記3つが候補として残りました。<br />
+後者ほど、CPUパワーが劇的に上がっていくが、サイズ・重量が増えて、バッテリー時間が短くなっていく（モバイル性能が落ちる）という感じです。（あと、お値段も上がります。）<br />
+あとは、好みの問題ですね。</p>
+
+<blockquote>
+●ASUSTek<BR>
+型番：<a href="http://www.asus.co.jp/products.aspx?l1=5&l2=75&l3=792&l4=0&model=3033&modelmenu=1">N10Jb(N10JB-HV001U)</a><BR>
+サイズ：10.2インチ WSVGA（1024×600ドット）<BR>
+CPU：Atom N280（1.66GHz）<BR>
+グラフィック：GeForce G105M<BR>
+バッテリー：約6.41時間<BR>
+重量：約1.55kg<BR>
+値段：\59,800<BR>
+<BR>
+●dospara<BR>
+型番：<a href="http://www.dospara.co.jp/5goods_pc/pc_detail.php?h=d&f=d&m=pc&mc=1070">Prime Note Cresion NA</a><BR>
+サイズ：12.1 インチ HD光沢ワイド液晶 (WXGA / 1366x768ドット)<BR>
+CPU：Atom 330 (デュアルコア / HT 対応 / 1.60GHz / L2キャッシュ1M)　→　4
+コアに見える『デスクトップ用』のCPU<BR>
+グラフィック：NVIDIA ION（G105Mと違い、DirectX10非対応）<BR>
+バッテリー：約3.2時間<BR>
+重量：約1.92 kg<BR>
+値段：\59,980（OSなし。Win7へのアップグレード選択可）<BR>
+<BR>
+●パソコン工房<BR>
+型番：<a href="http://www.pc-koubou.jp/pc/model/clg625-g_main.php">Lesance BTO CLG625 TYPE-G</a><BR>
+サイズ：15.6インチ フルワイドXGA(1366x768ドット)<BR>
+CPU：Core 2 Duo P8700(2.53GHz)<BR>
+グラフィック：GeForce G105M<BR>
+バッテリー：約1.5時間<BR>
+重量：約2.7kg<BR>
+値段：\89,980<BR></blockquote>
+
+<p><br />
+ちなみに、私は、CUDAのプログラミングを楽しむ＆持ち運びを考えて、CPUパワーがそこそこ期待できる「Prime Note Cresion NA」にしました。<br />
+なんといっても、Atomとはいえ、デスクトップ用を無理やりノートPCに使っていますので期待できます。</p>
+
+<p>また、最近のnvidiaのチップは、物理演算エンジン「<a href="http://developer.nvidia.com/object/physx.htm">PhysX</a>」も、搭載しているようなので、これでもついでに遊んでみようかと思います。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li>by noritsuna</li>
+                  <li>at 09:12</li>
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+
+                    <!-- trackback情報 -->
+          <div class="trackbacks">
+            <h4>trackbacks</h4>
+            
+            <dl id="trackback32153">
+              <dt><a href="http://www.noritsuna.jp/archives/2009/08/bullet_for_andr.html" title="Bullet For Android NDK" rel="nofollow nofollow">Bullet For Android NDK</a>  from なんとなく実験 with SIProp開発記</dt>
+              <dd><p>以前のエントリーで、手を付けはじめたGPGPU(CUDA)プログラミングですが、...</p>
+                <ul class="trackback-info">
+                  <li>on 2009&#24180;08&#26376;24&#26085; 11:19</li>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/08/bullet_for_andr.html" title="Bullet For Android NDK" rel="nofollow">read more</a></li>
+                </ul>
+              </dd>
+            </dl>
+          </div><!-- trackbacks_end -->
+          
+
+                    <!-- コメント情報 -->
+          <div class="comments">
+            <h4>comments</h4>
+            <div id="comments" class="comments-body">
+                            <p>こっちも候補に入れてよ。のりつなしゃん<br />
+ユニティ、Valore ION 330<br />
+http://japan.internet.com/webtech/20090618/8.html<br />
+http://www.unitycorp.co.jp/si/unity/valore/ion330/index.html<br />
+</p>
+              <ul class="comments-info">
+                <li> kibayos</li>
+                <li>2009&#24180;07&#26376;26&#26085; 18:48</li>
+              </ul>
+                            <p>ノートでしぼったのね。スマソ</p>
+              <ul class="comments-info">
+                <li> kibayos</li>
+                <li>2009&#24180;07&#26376;26&#26085; 18:50</li>
+              </ul>
+                            <p>kibayosさん</p>
+
+<p>最初は、その手のデスクトップも候補だったのですが、<br />
+部屋のスペースの都合とディスプレイへの配線のめんどくささに<br />
+負けて、ノートに絞りました。<br />
+値段差も許容範囲だとかんがえたので。</p>
+
+<p>あと、デスクトップは、放出特価品+追加グラボっていう、<br />
+運任せのチョイスになりそうだったのも、あります。<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2009&#24180;07&#26376;26&#26085; 23:19</li>
+              </ul>
+                            <p>Prime Note Cresion NAの購入を考えていますが（当然GPGPUのため）、以前ドスパラのノートPC買ってひどい目にあいました。<br />
+冷却ファンの爆音のため職場で使えず、トラックボタンのあまりの固さに腱障炎になり、Lenovoに買い換えました。冷却ファンのとトラックボタンはどうでしょうか？地方なため、実物に触れないので・・・</p>
+              <ul class="comments-info">
+                <li> hoge</li>
+                <li>2009&#24180;10&#26376;18&#26085; 23:48</li>
+              </ul>
+                            <p>hogeさん</p>
+
+<p>ファンは、常識の範囲内かと思います。<br />
+ただ、電圧制御などがCPU的についていないので、ファンが止まることは無いです。</p>
+
+<p>トラックボタンは、ダメです。硬いです。<br />
+外付けのマウスを用意したほうがよいと思います。</p>
+
+<p>あとは、2Core の ATOMといっても、あまり普通のATOM搭載NetBookと処理速度は変わりませんので、<br />
+そこは割りきりが必要な部分かと思います。<br />
+（たぶん、I/O周りが足を引っ張っているのだと思います。）</p>
+
+<p><br />
+注意点としては、Windowsの場合Vista以降でないと、無線LANがPCを終了させるたびにOffになってしまい、毎回Onにする必要があります。（レジュームなどでもダメです。）<br />
+無線LANでの常用を考えている場合、かなりわずらわしいので、要注意点です。<br />
+Linux系は試していないのでわかりません。</p>
+
+<p><br />
+おまけ<br />
+最近公開されたOpenCLのドライバも、問題なく動作しました。<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2009&#24180;10&#26376;19&#26085; 00:07</li>
+              </ul>
+                            <p>noritsunaさん，お返事ありがとうございました．<br />
+ネットのレビューより，実際使用している方の意見の方が貴重ですね．しかし，ますます悩みますね〜．１１月はじめに仕事の関係でドスパラ直営店に行くことができると思いますので，実際に触ってみたいと思います．キーボードのホームポジションから手を離したくないので，マウスはだめですね．トラックパッドのタップでトラックボタンを代用するしかないかな？？？トラックボタンの固さを改善する方法はないですよね？</p>
+              <ul class="comments-info">
+                <li> hoge</li>
+                <li>2009&#24180;10&#26376;19&#26085; 01:21</li>
+              </ul>
+                            <p>hogeさん</p>
+
+<p>KBMouseなど、キーボードのキーをマウスのボタンとして割り当てられるソフトがありますので、<br />
+そちらを使うのもありかもしれません。<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2009&#24180;10&#26376;19&#26085; 01:33</li>
+              </ul>
+                            <p>個人的な質問にもかかわらず，大変丁寧なご返事をありがとうございました．購入の決心がつきました．ポチっとしたいと思います．</p>
+              <ul class="comments-info">
+                <li> hoge</li>
+                <li>2009&#24180;10&#26376;19&#26085; 06:14</li>
+              </ul>
+                            <p>Windows 7発売されたことなど，関係なくGPGPUを勉強しようと，ノートPC（ビンボーなので）6万円までのものをググっても探せず・・・お助けください．</p>
+              <ul class="comments-info">
+                <li> hoge</li>
+                <li>2009&#24180;10&#26376;24&#26085; 12:22</li>
+              </ul>
+                            <p>hogeさん</p>
+
+<p>GeForce G105M搭載系で調べると、何個か有るようです。<br />
+最近新機種が出たためか、ASUSTeKの「N10Jb」あたりが、最安値なのかな？<br />
+5万を切っているモノもあるようです。<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2009&#24180;10&#26376;24&#26085; 16:11</li>
+              </ul>
+                            <p>最近ASUS N10Jbを入手．CUDA開発環境を構築しようとしたら，CUDAドライバのインストーラがG105Mに対応しておらず，あせりました．<br />
+しかし，2chの情報により無事CUDA開発環境を構築することができ，少しずつGPGPUの勉強中です．</p>
+              <ul class="comments-info">
+                <li> hoge</li>
+                <li>2009&#24180;11&#26376;15&#26085; 15:15</li>
+              </ul>
+              
+            </div><!-- comments-body_end -->
+          </div><!-- comments_end -->
+
+                    <!-- コメント入力 -->
+          <form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-cmnts.cgi" name="comments_form" onsubmit="if (this.bakecookie.checked) rememberMe(this)">
+            <input type="hidden" name="static" value="1" />
+            <input type="hidden" name="entry_id" value="774" />
+            <div class="comments-post">
+              <h5>comment form</h5>
+              <div class="typekey-text">
+                <script type="text/javascript">
+                  <!--
+                  writeTypeKeyGreeting(commenter_name, 774);
+                  //-->
+                </script>
+              </div><!-- typekey-text_end -->
+
+              <div class="comments-post-content">
+                
+
+                <div id="comments-open-data">
+                  <fieldset>
+                    <legend accesskey="c">comment form</legend>
+                    <dl id="commenter-info">
+                      <dt><label for="comment-author" accesskey="n">name:</label></dt>
+                      <dd><input tabindex="2" id="comment-author" name="author" size="30" value="" /></dd>
+                      <dt><label for="comment-email" accesskey="e">e-mail:</label></dt>
+                      <dd><input tabindex="3" id="comment-email" name="email" size="30" value="" /></dd>
+                      <dt><label for="comment-url" accesskey="u">URL:</label></dt>
+                      <dd><input tabindex="4" id="comment-url" name="url" size="30" value="" /></dd>
+                    </dl>
+                    <ul class="cookie">
+                      <li><label for="comment-bake-cookie" accesskey="r"><input type="checkbox" id="comment-bake-cookie" name="bakecookie" onclick="if (!this.checked) forgetMe(document.comments_form)" onkeypress="if (!this.checked) forgetMe(document.comments_form)" value="1" tabindex="5" /> 情報を登録しますか?</label></li>
+                    </ul>
+                    <dl id="comments-open-text">
+                      <dt><label for="comment-text">comments: (HTMLタグは使用できません)</label></dt>
+                      <dd><textarea tabindex="6" accesskey="d" id="comment-text" name="text" rows="10" cols="50">コメントを入力してください</textarea></dd>
+                    </dl>
+                    <ul class="comments-open-footer">
+                      <li><input tabindex="7" type="submit" accesskey="v" name="preview" id="comment-preview" value="確認" /></li>
+                      <li><input tabindex="8" type="submit" accesskey="p" name="post" id="comment-post" value="投稿" /></li>
+                    </ul>
+                  </fieldset>
+                </div><!-- comments-open-data_end -->
+
+              </div><!-- comments-post-content_end -->
+            </div><!--  comments-post_end-->
+          </form>
+
+        </div><!-- content_end -->
+      </div><!-- main_end -->
+
+      <!--右メニュー-->
+      <div id="right-menu">
+        <div  class="right-content">
+
+          <!-- 最近のエントリー -->
+          <!-- 最近のコメント -->
+          <!-- 最近のトラックバック -->
+
+          <!-- リンク -->
+          <div class="site-link">
+          <h3>Links</h3>
+            <ul><li><a href="http://www.siprop.org/">SIProp Project</a></li></ul>
+          </div><!-- site-link_end -->
+
+                    <!-- クリエイティブコモンズライセンス -->
+          <div class="cclicense">
+            <a href="http://creativecommons.org/licenses/by-nc/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />This weblog is licensed under a <a href="http://creativecommons.org/licenses/by-nc/1.0/">Creative Commons License</a>.
+          </div><!-- cclicense_end -->
+          
+
+          <!-- Powered -->
+          <div class="powered">
+            <ul>
+              <li>Powered by <a href="http://www.movabletype.jp">Movable Type 3.33-ja</a></li>
+              <li>Template by <a href="http://drblog.jp/"><img src="http://drblog.jp/info/img/drblog.gif" alt="Dr.Blog" width="128" height="22" /></a></li>
+            </ul>
+          </div><!-- Powered_end -->
+
+        </div><!-- right-content_end -->
+      </div><!-- right-menu_end -->
+
+      <div id="footer">
+        <ul class="syndicate">
+          <li><a href="http://www.noritsuna.jp/index.xml" title="なんとなく実験 with SIProp開発記 RSS Feed (XML)">RSS Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/atom.xml" title="なんとなく実験 with SIProp開発記 Atom Feed (XML)">Atom Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記">Archives</a></li>
+          <li><a href="#banner">Page Top</a></li>
+        </ul>
+      </div><!-- footer_end -->
+
+    </div><!-- main-container_end -->
+
+  </body>
+</html>

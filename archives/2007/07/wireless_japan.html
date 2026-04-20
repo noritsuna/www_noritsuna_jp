@@ -1,0 +1,451 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="description" content="WIRELESS JAPAN 2007関連記事です。 ●【WIRELESS JA..." />
+    <meta name="generator" content="http://www.sixapart.jp/movabletype/" />
+    <link rev="made" href="mailto:your@email" title="E-mail address" />
+    <link rel="home" href="http://www.noritsuna.jp/" title="なんとなく実験 with SIProp開発記" />
+    <link rel="index" title="なんとなく実験 with SIProp開発記archives" href="http://www.noritsuna.jp/archives.html" />
+    <link rel="prev" href="http://www.noritsuna.jp/archives/2007/07/necngn_1.html" title="NECのNGN製品戦略を聞くその１" />
+    <link rel="next" href="http://www.noritsuna.jp/archives/2007/07/itum.html" title="ITU標準化局長：M.ジョンソン氏が語る" />
+    <link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.noritsuna.jp/index.xml" /> 
+    <script type="text/javascript" src="http://www.noritsuna.jp/mt-site.js"></script>
+    <title>なんとなく実験 with SIProp開発記 | WIRELESS JAPAN 2007</title>
+
+    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2007/07/wireless_japan.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/458"
+    dc:title="WIRELESS JAPAN 2007"
+    dc:identifier="http://www.noritsuna.jp/archives/2007/07/wireless_japan.html"
+    dc:subject="NGN(IMS)"
+    dc:description="WIRELESS JAPAN 2007関連記事です。 ●【WIRELESS JA..."
+    dc:creator="noritsuna"
+    dc:date="2007-07-24T00:00:10+09:00" />
+</rdf:RDF>
+-->
+
+
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2007/07/wireless_japan.html">
+<dc:title>WIRELESS JAPAN 2007</dc:title>
+<dc:description>WIRELESS JAPAN 2007関連記事です。 ●【WIRELESS JA...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2007-07-24T00:00:10+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+  </head>
+  <body class="layout-two-column-right" onload="individualArchivesOnLoad(commenter_name)">
+
+    <!-- ブログ全体 -->
+    <div id="main-container">
+
+      <!-- ブログタイトル -->
+      <div id="banner">
+        <h1 id="banner-header"><a href="http://www.noritsuna.jp/" accesskey="1" title="なんとなく実験 with SIProp開発記">なんとなく実験 with SIProp開発記</a></h1>
+        <h2 id="banner-description">SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</h2>
+      </div><!-- banner_end -->
+
+      <!-- 左カラム -->
+      <div id="left-menu">
+        <div  class="left-content">
+
+          <!-- サイト内検索 -->
+          <div class="search-form">
+            <h3>Search</h3>
+            <form method="get" action="http://www.noritsuna.jp/cgi-bin/mt/mt-search.cgi">
+              <input type="hidden" name="IncludeBlogs" value="1" />
+              <label for="search" accesskey="4">サイト内検索</label><br />
+              <input id="search" tabindex="5"  accesskey="t"  value="search this blog" name="search" onblur="if(this.value==''){this.style.color=''; this.form.reset()}" onfocus="this.value = ''; this.style.color = '#000000';" />
+              <input type="submit" tabindex="6" accesskey="s" value="submit" class="searchsubmit" />
+            </form>
+          </div><!-- search-form_end -->
+
+                    <!-- Categoryアーカイブ -->
+          <div class="category-archives">
+            <h3>Category Archives</h3>
+	    <div class="category-label">
+              <ul>
+                <li><a href="http://www.noritsuna.jp/archives/gae/" title="">GAE</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/news/" title="">NEWS</a></li>
+              
+                <li class="module-list-item">OS<ul>
+                <li><a href="http://www.noritsuna.jp/archives/os/linux/" title="">Linux</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/windows/" title="">Windows</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/auos/" title="">仮想OS</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/siprop/" title="">SIProp</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/stm/" title="">STM</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/iphone/" title="">iPhone</a></li>
+              </ul></li>
+              
+                <li class="module-list-item">開発<ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ar/" title="">AR</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/amazonec2/" title="">AmazonEC2</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/application/" title="">Application</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/chromium/" title="">Chromium</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/" title="">HardWare</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/fpga/" title="">FPGA</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/gpgpu/" title="">GPGPU</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/java/" title="">Java</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/cat34/" title="">無線</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/nwng/" title="">NwNG</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/p2p/" title="">P2P</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/" title="">セマンティック</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/ai/" title="">AI</a></li>
+              </ul></li>
+              </ul></li>
+              </ul>
+            </div><!-- category-label_end -->
+          </div><!-- category-archives_end -->
+          
+
+                    <!-- Monthlyアーカイブ -->
+          <div class="monthly-archives">
+            <h3><a href="http://www.noritsuna.jp/archives.html">Archives</a></h3>
+            <ul class="module-list">
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2011/01/">2011&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/08/">2010&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/07/">2010&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/06/">2010&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/05/">2010&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/04/">2010&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/03/">2010&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/02/">2010&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/01/">2010&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/12/">2009&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/11/">2009&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/10/">2009&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/09/">2009&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/08/">2009&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/07/">2009&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/06/">2009&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/05/">2009&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/04/">2009&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/03/">2009&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/02/">2009&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/01/">2009&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/12/">2008&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/11/">2008&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/10/">2008&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/09/">2008&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/08/">2008&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/07/">2008&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/06/">2008&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/05/">2008&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/04/">2008&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/03/">2008&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/02/">2008&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/01/">2008&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/12/">2007&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/11/">2007&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/10/">2007&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/09/">2007&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/08/">2007&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/07/">2007&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/06/">2007&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/05/">2007&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/04/">2007&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/03/">2007&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/02/">2007&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/01/">2007&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/12/">2006&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/11/">2006&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/10/">2006&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/09/">2006&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/08/">2006&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/07/">2006&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/06/">2006&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/02/">2006&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/09/">2005&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/07/">2005&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/06/">2005&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/05/">2005&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/04/">2005&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/03/">2005&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/02/">2005&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/01/">2005&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2004/12/">2004&#24180;12&#26376;</a></li>
+            </ul>
+          </div><!-- monthly-archives_end -->
+          
+
+        </div><!-- left-content_end -->
+      </div><!-- left-menu_end -->
+
+      <!-- 中央カラム -->
+      <div id="main">
+        <div  class="content">
+
+          <p class="navi-link"><a href="http://www.noritsuna.jp/archives/2007/07/necngn_1.html">&laquo; NECのNGN製品戦略を聞くその１</a> | <a href="http://www.noritsuna.jp/">main</a> | <a href="http://www.noritsuna.jp/archives/2007/07/itum.html">ITU標準化局長：M.ジョンソン氏が語る &raquo;</a></p>
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2007&#24180;07&#26376;24&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 class="entry-header">WIRELESS JAPAN 2007</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>WIRELESS JAPAN 2007関連記事です。</p>
+
+<p><br />
+●<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20070718/277728/">【WIRELESS JAPAN】「固定電話−PHS間の定額サービスを準備中」，ウィルコム社長 </a></p>
+
+<p><br />
+すでに、搭載済みだったんですね。電波を勝手に調整する仕組みは。<br />
+<blockquote>既存のPHSでも搭載しているDCA（dynamic channel assign）を採用し，綿密な置局設計なしで簡単にマイクロセルを展開できるようにする」</blockquote></p>
+
+<p><br />
+<BR><br />
+●<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20070718/277726/">【WIRELESS JAPAN】「事業者による端末企画のコントロールは悪者ではない」，ソフトバンクモバイル副社長 </a></p>
+
+<p>すみません。根拠が、全然解りません。。。<br />
+コストも失敗したサービスも含めて全てのサービス開発費を徴収されるおそれがあるし、サービス数にしても1社だけでは限界があるし、質にしても、競争があったほうがよくなるわけですが。。。。。正直、何を言っているんだろう？って感じですね。<br />
+<blockquote>日本では携帯電話事業者が携帯電話機の企画と流通をコントロールしていることだ。これに対する批判について松本副社長は，「端末の企画から流通を事業者が全部手掛ける現状のビジネスモデルは，コストやサービスなどユーザーにとっての利便性の面ではよいと思っている」</blockquote></p>
+
+<p>こうなるのはよいにしても、この状況を賄う設備を1社だけでやるつもりなのですかね？どう見ても、破綻するとしか思えない情報量だと思いますが。<br />
+<blockquote>「今後の携帯端末はユーザーの分身になる。ユーザーの特性やアクセス履歴を日々学習して賢くなっていかないといけない」と語った。そうなった場合，端末はネットワーク上のサーバーと連携するシンクライアントとして動作する形態になると予想。</blockquote></p>
+
+<p>・<a href="http://techon.nikkeibp.co.jp/article/NEWS/20070718/136186/">【ワイヤレスジャパン】「iPhoneは魅力的」，NTTドコモの中村社長が語る</a></p>
+
+<p>こちらもこちらで、なんか、ちょっと、ずれているようで。。。先進的な「機能」をつければ、受けるってものではないのでは？<br />
+機能を強化するなら、それを使ったサービスが生まれるようにエコシステムも作らないとだめなのではないでしょうか？とくに、今のキャリアさんは、垂直統合なのだから、機能に見合ったサービスも同時投入でなければ、意味がないはずなのですが。。。インターネット接続機能+i-modeとか、非接触型IC+おサイフケータイとか。<br />
+<blockquote>「905iでは，GSM機能を標準で載せる。これにより全世界で利用できる携帯電話機がやっと実現できる。さらにワンセグとHSDPAも標準機能になる。まさに先進的な携帯電話機になるだろう」</blockquote></p>
+
+<p>・<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20070718/277762/">【WIRELESS JAPAN 2007】「WiMAXのOEM提供事業者に」−−アッカ・ネットワークス木村CEO</a></p>
+
+<p>そして、正しいモデル。電波と課金を握って、サービスは開発させるに限ります。<br />
+<blockquote>将来的には、他メーカーがパソコン、ゲーム機、家電などWiMAXに対応した製品を開発・販売し、アッカはそれらが使用するネットワークおよびユーザー認証サービスの提供に注力する。</blockquote></p>
+
+<p></p>
+
+<p><BR><br />
+●<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20070718/277693/">【WIRELESS JAPAN】NTTドコモ中村社長、販売奨励金制度見直しに言及</a></p>
+
+<p>全体的に、模範解答って感じで、「ふ〜ん、それで？」としか言いようがないですね。</p>
+
+<p><br />
+<BR><br />
+●<a href="http://techon.nikkeibp.co.jp/article/NEWS/20070718/136202/">【ワイヤレスジャパン】「ソフトバンクは絶対にWiMAXをやる」，松本氏が語る</a></p>
+
+<p>下記がキーワードになるとのこと。頭の片隅に入れておいてもよいかもしれませんが。。。<br />
+<blockquote>今後の移動体通信サービスのキーワードとして，Web2.0，SNS，クライアント・サーバ，ポータブル/エンタテインメント，電子商取引，そして医療/保険/教育/行政サービス，などが重要になるとの見方を示した。</blockquote></p>
+
+<p><br />
+<BR><br />
+●<a href="http://k-tai.impress.co.jp/cda/article/event/35531.html">【WIRELESS JAPAN 2007】イー・モバイル種野副会長、サービスの現状を語る </a></p>
+
+<p>う〜ん、現状をカタルですので、さすがに目新しいものはないようです。</p>
+
+<p><br />
+<BR> <br />
+●<a href="http://k-tai.impress.co.jp/cda/article/event/35526.html">【WIRELESS JAPAN 2007】YOZANブース、WiMAX事業などをアピール </a> </p>
+
+<p>う〜ん、どのくらいのセルになるのですかね？WiMAXはMANですので、広い範囲になると思うのですが、それで150人って少ない気がします。<br />
+<blockquote>1基地局あたりで接続できる端末数としては、「1ユーザーあたりの通信速度などを踏まえると、1基地局あたりに10局のBitStand（無線LANスポット）を繋げ、1つのBitStandには10〜15機接続する。従ってWiMAXの基地局1カ所で100〜150人の利用ということになる」</blockquote></p>
+
+<p><br />
+<BR><br />
+●<a href="http://k-tai.impress.co.jp/cda/article/event/35512.html">【WIRELESS JAPAN 2007】ドコモ中村社長、携帯系サービスは全定額制を視野に </a></p>
+
+<p>なんだよ。PHSをやめる変わりの、アレのことか。orz<br />
+<blockquote>今年秋には、64kbpsに限定するものの、PC接続での定額制を導入する。</blockquote></p>
+
+<p>でも、一応、がんばろうとはしているようです。定額は、どう考えても必須なので、がんばってもらいたいところですね。<br />
+<blockquote>「定額制ビジネスを拡大し、携帯系の利用に対してはすべて定額制で行くことを目指したい。トラフィックが耐えられるかどうかを検証してところだ。</blockquote></p>
+
+<p><br />
+<BR><br />
+●<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20070719/277899/">【WIRELESS JAPAN 2007】グーグル、日本独自の携帯サービス開発を強化</a></p>
+
+<p>サービス強化だそうです。いまいちですけど。。。</p>
+
+<p><br />
+<BR><br />
+●<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20070718/277773/">【WIRELESS JAPAN 2007】KDDI，最適な通信方式を自動的に選ぶ「コグニティブ無線」を出展</a></p>
+
+<p>フェムトセルなどで、必須の技術ですね。<br />
+<blockquote>コグニティブ無線は，周囲の電波環境を認識・認知することで複数の通信方式の中から最適な方式を自動的に選択する通信方式である。</blockquote><br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li>by noritsuna</li>
+                  <li>at 00:00</li>
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+
+          
+
+          
+
+        </div><!-- content_end -->
+      </div><!-- main_end -->
+
+      <!--右メニュー-->
+      <div id="right-menu">
+        <div  class="right-content">
+
+          <!-- 最近のエントリー -->
+          <!-- 最近のコメント -->
+          <!-- 最近のトラックバック -->
+
+          <!-- リンク -->
+          <div class="site-link">
+          <h3>Links</h3>
+            <ul><li><a href="http://www.siprop.org/">SIProp Project</a></li></ul>
+          </div><!-- site-link_end -->
+
+                    <!-- クリエイティブコモンズライセンス -->
+          <div class="cclicense">
+            <a href="http://creativecommons.org/licenses/by-nc/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />This weblog is licensed under a <a href="http://creativecommons.org/licenses/by-nc/1.0/">Creative Commons License</a>.
+          </div><!-- cclicense_end -->
+          
+
+          <!-- Powered -->
+          <div class="powered">
+            <ul>
+              <li>Powered by <a href="http://www.movabletype.jp">Movable Type 3.33-ja</a></li>
+              <li>Template by <a href="http://drblog.jp/"><img src="http://drblog.jp/info/img/drblog.gif" alt="Dr.Blog" width="128" height="22" /></a></li>
+            </ul>
+          </div><!-- Powered_end -->
+
+        </div><!-- right-content_end -->
+      </div><!-- right-menu_end -->
+
+      <div id="footer">
+        <ul class="syndicate">
+          <li><a href="http://www.noritsuna.jp/index.xml" title="なんとなく実験 with SIProp開発記 RSS Feed (XML)">RSS Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/atom.xml" title="なんとなく実験 with SIProp開発記 Atom Feed (XML)">Atom Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記">Archives</a></li>
+          <li><a href="#banner">Page Top</a></li>
+        </ul>
+      </div><!-- footer_end -->
+
+    </div><!-- main-container_end -->
+
+  </body>
+</html>

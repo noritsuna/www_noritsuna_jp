@@ -1,0 +1,1561 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="description" content="SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。" />
+    <meta name="generator" content="http://www.sixapart.jp/movabletype/" />
+    <link rev="made" href="mailto:your@email" title="E-mail address" />
+    <link rel="home" href="http://www.noritsuna.jp/" title="なんとなく実験 with SIProp開発記" />
+    <link rel="index" href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記archives" />
+    <link rel="prev" href="http://www.noritsuna.jp/archives/2006/09/" title="2006&amp;#24180;09&amp;#26376;" />
+    <link rel="next" href="http://www.noritsuna.jp/archives/2006/11/" title="2006&amp;#24180;11&amp;#26376;" />
+    <link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.noritsuna.jp/index.xml" /> 
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.noritsuna.jp/rsd.xml" />
+    <title>なんとなく実験 with SIProp開発記 | 2006&#24180;10&#26376;</title>
+
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/">
+<dc:title>なんとなく実験 with SIProp開発記</dc:title>
+<dc:description>SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</dc:description>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+  </head>
+  <body class="layout-two-column-right">
+
+    <!-- ブログ全体 -->
+    <div id="main-container">
+
+      <!-- ブログタイトル -->
+      <div id="banner">
+        <h1 id="banner-header"><a href="http://www.noritsuna.jp/" accesskey="1" title="なんとなく実験 with SIProp開発記">なんとなく実験 with SIProp開発記</a></h1>
+        <h2 id="banner-description">SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</h2>
+      </div><!-- banner_end -->
+
+      <!-- 左カラム -->
+      <div id="left-menu">
+        <div  class="left-content">
+
+          <!-- サイト内検索 -->
+          <div class="search-form">
+            <h3>Search</h3>
+            <form method="get" action="http://www.noritsuna.jp/cgi-bin/mt/mt-search.cgi">
+              <input type="hidden" name="IncludeBlogs" value="1" />
+              <label for="search" accesskey="4">サイト内検索</label><br />
+              <input id="search" tabindex="5"  accesskey="t"  value="search this blog" name="search" onblur="if(this.value==''){this.style.color=''; this.form.reset()}" onfocus="this.value = ''; this.style.color = '#000000';" />
+              <input type="submit" tabindex="6" accesskey="s" value="submit" class="searchsubmit" />
+            </form>
+          </div><!-- search-form_end -->
+
+                    <!-- Categoryアーカイブ -->
+          <div class="category-archives">
+            <h3>Category Archives</h3>
+	    <div class="category-label">
+              <ul>
+                <li><a href="http://www.noritsuna.jp/archives/gae/" title="">GAE</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/news/" title="">NEWS</a></li>
+              
+                <li class="module-list-item">OS<ul>
+                <li><a href="http://www.noritsuna.jp/archives/os/linux/" title="">Linux</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/windows/" title="">Windows</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/auos/" title="">仮想OS</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/siprop/" title="">SIProp</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/stm/" title="">STM</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/iphone/" title="">iPhone</a></li>
+              </ul></li>
+              
+                <li class="module-list-item">開発<ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ar/" title="">AR</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/amazonec2/" title="">AmazonEC2</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/application/" title="">Application</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/chromium/" title="">Chromium</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/" title="">HardWare</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/fpga/" title="">FPGA</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/gpgpu/" title="">GPGPU</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/java/" title="">Java</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/cat34/" title="">無線</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/nwng/" title="">NwNG</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/p2p/" title="">P2P</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/" title="">セマンティック</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/ai/" title="">AI</a></li>
+              </ul></li>
+              </ul></li>
+              </ul>
+            </div><!-- category-label_end -->
+          </div><!-- category-archives_end -->
+          
+
+                    <!-- Monthlyアーカイブ -->
+          <div class="monthly-archives">
+            <h3><a href="http://www.noritsuna.jp/archives.html">Archives</a></h3>
+            <ul class="module-list">
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2011/01/">2011&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/08/">2010&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/07/">2010&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/06/">2010&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/05/">2010&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/04/">2010&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/03/">2010&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/02/">2010&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/01/">2010&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/12/">2009&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/11/">2009&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/10/">2009&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/09/">2009&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/08/">2009&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/07/">2009&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/06/">2009&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/05/">2009&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/04/">2009&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/03/">2009&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/02/">2009&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/01/">2009&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/12/">2008&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/11/">2008&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/10/">2008&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/09/">2008&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/08/">2008&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/07/">2008&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/06/">2008&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/05/">2008&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/04/">2008&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/03/">2008&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/02/">2008&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/01/">2008&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/12/">2007&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/11/">2007&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/10/">2007&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/09/">2007&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/08/">2007&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/07/">2007&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/06/">2007&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/05/">2007&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/04/">2007&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/03/">2007&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/02/">2007&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/01/">2007&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/12/">2006&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/11/">2006&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/10/">2006&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/09/">2006&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/08/">2006&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/07/">2006&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/06/">2006&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/02/">2006&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/09/">2005&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/07/">2005&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/06/">2005&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/05/">2005&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/04/">2005&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/03/">2005&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/02/">2005&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/01/">2005&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2004/12/">2004&#24180;12&#26376;</a></li>
+            </ul>
+          </div><!-- monthly-archives_end -->
+          
+
+        </div><!-- left-content_end -->
+      </div><!-- left-menu_end -->
+
+      <!-- 中央カラム -->
+      <div id="main">
+        <div  class="content">
+
+          <p class="navi-link"><a href="http://www.noritsuna.jp/archives/2006/09/">&laquo; 2006&#24180;09&#26376;</a> | <a href="http://www.noritsuna.jp/">main</a>| <a href="http://www.noritsuna.jp/archives/2006/11/">2006&#24180;11&#26376; &raquo;</a></p>
+
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000287"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/287"
+    dc:title="IMSの相互接続試験"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000287"
+    dc:subject="NGN(IMS)"
+    dc:description="「GMI 2006」、NGNの核となるIMSネットワーク機器の相互接続試験を実施..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-31T02:05:11+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;31&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000287" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/ims_1.html" title="IMSの相互接続試験">IMSの相互接続試験</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://wbb.forum.impressrd.jp/news/20061030/311">「GMI 2006」、NGNの核となるIMSネットワーク機器の相互接続試験を実施</a> というレポートがあがっております。</p>
+
+<p>概要は、↓ということです。<br />
+<blockquote>今回の試験には、各国から200人以上のエンジニアが参加し、4つのキャリア（BT、KT、NTT、Verizon）の各研究所と1つの大学研究機関（IOL）の5カ所を相互接続。5つのテスト・シナリオに沿って、197のネットワーク機器を98のテスト・ケースで試験した。</blockquote></p>
+
+<p>そして、この試験結果は12月1日に発表されるということですので、そのときに、いろいろとつっこみなどを含めて、取り上げたいと思います。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/ims_1.html" title="IMSの相互接続試験">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 02:05</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000285"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/285"
+    dc:title="Live Communications Server2007詳解"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000285"
+    dc:subject="SIP"
+    dc:description="企業向け機能が強化され、着実な進歩を見せたMSのコミュニケーション製品群 という..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-28T00:01:54+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;28&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000285" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/live_communicat.html" title="Live Communications Server2007詳解">Live Communications Server2007詳解</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://www.itmedia.co.jp/enterprise/articles/0610/26/news002.html">企業向け機能が強化され、着実な進歩を見せたMSのコミュニケーション製品群</a> という記事で、LCS2007が詳細に詳解されています。</p>
+
+<p>う〜ん、3年も開発していた割には、それほど変わってないですね。これといって目立つ機能もないですし、いまいちという感じがします。</p>
+
+<p>という感じではありますが、なぜ、ユーザ視点で見るといまいちかは、他のベンダーやキャリアとの提携に力を入れていたためではないかと推測されます。<br />
+<blockquote>パートナーによるCommunications Server 2007対応電話<br />
+MicrosoftはCommunicatorソフトウェアをLG-Nortel、Polycom、Thomson Telecomなどのサードパーティにライセンス供与している。</blockquote><br />
+というところや日本国内でもNECさんと提携するなどICT関連企業との連携がメインであったため、一見すると機能は少なく見えるという感じなのではないかと思います。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/live_communicat.html" title="Live Communications Server2007詳解">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:01</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000283"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/283"
+    dc:title="ソフトバンクモバイルが自社網内音声定額プラン開始"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000283"
+    dc:subject="SIP"
+    dc:description="ソフトバンクモバイルが「予想外割引」を発表  です。 隠し球、来ました！！！ ゴ..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-25T00:05:20+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;25&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000283" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/post_50.html" title="ソフトバンクモバイルが自社網内音声定額プラン開始">ソフトバンクモバイルが自社網内音声定額プラン開始</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://slashdot.jp/mobile/06/10/23/1330217.shtml">ソフトバンクモバイルが「予想外割引」を発表 </a> です。</p>
+
+<p>隠し球、来ました！！！<br />
+<blockquote>ゴールドプランでは、ソフトバンク携帯電話同士の通話料が0円</blockquote><br />
+音声定額プラン！！！<br />
+これでまた、無線定額に一歩近づいたわけですね。早く、完全定額を実現してもらいたいものです。<br />
+無線が定額になったときに、インターネットは、また、一段の進化を遂げるはずですから！</p>
+
+<p>※定額にはいろいろと制約があるようです。定額とは思えない制限もありますし。まぁ、時期尚早感は、あったので、仕方ないと言うところですね。さすがに、現在の電波の利用効率で、完全定額は難しいと言うことですね。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/post_50.html" title="ソフトバンクモバイルが自社網内音声定額プラン開始">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:05</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000282"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/282"
+    dc:title="NTT西日本で障害"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000282"
+    dc:subject="SIP"
+    dc:description="NTT西のひかり電話でまたも大規模障害、9月のNTT東とは別の原因か と記事が出..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-24T00:02:28+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;24&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000282" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/ntt_1.html" title="NTT西日本で障害">NTT西日本で障害</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://itpro.nikkeibp.co.jp/article/NEWS/20061023/251455/">NTT西のひかり電話でまたも大規模障害、9月のNTT東とは別の原因か</a> と記事が出ております。</p>
+
+<p>NTT西日本さんで、IP電話大障害が起きているようです。<br />
+さすがに、これだけ立て続けに起こると、何らかの規制ができてしまうのは免れないかもしれませんね。最近、やっと、いろいろと規制が外れてきた(見逃してもらえる？)という状況であったのに。。。</p>
+
+<p>しかし、今回の障害の原因は、何なのでしょうかね？ 前回の原因であるバグは、修正済みと言うことですので、他の原因と考えられますね。<br />
+また、しばらく、目を離せなそうです。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+                            <div class="entry-more"><p><a href="http://www.noritsuna.jp/archives/2006/10/ntt_1.html#more" title="NTT西日本で障害">NTT西日本で障害の続きを読む</a></p></div><!-- entry-more_end -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/ntt_1.html" title="NTT西日本で障害">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:02</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000281"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/281"
+    dc:title="Intelのもう1つの次世代CPU「LPP」"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000281"
+    dc:subject="HardWare"
+    dc:description="Intelのもう1つの次世代CPU「LPP」 という記事が出ておりますね。 以前..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-23T12:28:14+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;23&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000281" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/intel1cpulpp.html" title="Intelのもう1つの次世代CPU「LPP」">Intelのもう1つの次世代CPU「LPP」</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://pc.watch.impress.co.jp/docs/2006/1023/kaigai313.htm">Intelのもう1つの次世代CPU「LPP」</a> という記事が出ておりますね。</p>
+
+<p>以前、Intelさんは、「<a href="http://www.noritsuna.jp/archives/2006/06/xscale.html">XScaleを売却済み</a>」でしたが、その答えが、これのようです。</p>
+
+<blockquote>「今年(2006年)をベースラインとすると、5WのULVマイクロプロセッサがベースラインとなる。来年(2007年)には、我々は電力を半分に、実装面積を1/4にしたものを出す。2008年には、今日の製品より、1/10に電力を削減、1/7にサイズを削減するという、我々のゴールに達するだろう。さらに2008年から先では、シングルチップインテグレーションへと移行する計画だ」</blockquote>
+
+<p>この2008年以降の「シングルチップインテグレーション」ってのが、IA-32版のXScaleに相当すると言うことのようですね。</p>
+
+<p>これは、やはり、クロック戦争の象徴であるPentium4系から、省電力のBanias系へとアーキテクチャを切り替えたために、IA-32をXScale並に省電力にする道筋を立てることができたようです。<br />
+あとは、パフォーマンスを保つために、どのくらいコンパイラでの最適化をすることができるかが、鍵になるのではないでしょうか。(この話は、マルチコア系のCPUでも言われていますが、マルチコア系ではスレッドをどのように効率よく実装するかの話なので、ちょっと、毛色が違いますね。)<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/intel1cpulpp.html" title="Intelのもう1つの次世代CPU「LPP」">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 12:28</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/hardware/" title="">HardWare</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000279"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/279"
+    dc:title="VoIP系News・2006/10/20"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000279"
+    dc:subject="NEWS"
+    dc:description="2006/10/20までの気になったけど、それほどつっこむようなものでもないVo..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-20T00:00:11+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;20&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000279" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/voipnews_1.html" title="VoIP系News・2006/10/20">VoIP系News・2006/10/20</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>2006/10/20までの気になったけど、それほどつっこむようなものでもないVoIP関連Newsです。</p>
+
+<p>●<a href="http://internet.watch.impress.co.jp/cda/news/2006/10/10/13567.html">総務省、電話番号の使用状況。固定/IP/携帯電話ともに使用数が増加傾向</a></p>
+
+<blockquote>固定電話の使用状況は約8,145万番号で、IP電話が約1,007万番号。</blockquote>
+約1/8くらいまで、増えたようですね。
+
+<p><BR><br />
+●<a href="http://www.itmedia.co.jp/news/articles/0610/11/news017.html">スイス政府、IP電話の盗聴実験を実施</a></p>
+
+<blockquote>クライアントサイド・アプリケーションを使用。通話に使用されたPCのマイクとスピーカーの音声を録音し、インターネット経由でパケットを転送するという方法をとっている。</blockquote>
+おっと、恐ろしく原始的な方法ですね。というか、ただのスパイウェアともいえそうですが。(;^_^A アセアセ・・・
+ですので、この方法で、盗聴というのは、難しそうですね。ただ、政府がそのようなことを考えているというのは、チェックしておくべき事項です。
+
+<p><BR><br />
+●<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20061010/250310/">ウィルコムの八剱社長が退任へ，後任には喜久川経営企画本部長</a></p>
+
+<blockquote>「八剱氏の役割は元々、DDIポケットからウィルコムになる際にいち早く軌道に乗せることだった。今回の社長の交代は、当初の予定通り、元KDDIのメンバーが役職に就いた形になる」</blockquote>
+既定路線とのこと。ということは、逆に、これからが正念場と言うところですね。今後とも、是非ともW-ZRO3のようなチャレンジ精神を忘れずに、突き進んでもらいたいと思います。
+
+<p><BR><br />
+●<a href="http://k-tai.impress.co.jp/cda/article/news_toppage/31388.html">au、来春にJavaアプリが楽しめる「オープンアプリ」導入へ</a> </p>
+
+<blockquote>オープンアプリは勝手アプリ（一般アプリ）として提供されることになり、EZwebの公式メニュー上で配信されることはなく、オープンアプリ配信にあたって両社の審査は行なわれない。 </blockquote>
+やっと、独自アプリが作れるようになるのですね。けど、Javaなんですね。。。
+
+<p><BR><br />
+●<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20061012/250579/">沖電気が中小向けIP電話システム，無線LAN搭載機など40端末を接続</a></p>
+
+<blockquote>安価な製品がほとんどなかったなどの事情から，中小規模の拠点の内線システムのIP化はまだ10％程度にとどまっているとされる。</blockquote>
+という事情の割に、
+<blockquote>価格は，IPstage MXが50内線モデルで270万円から，同SXは10内線モデルで71万円から。</blockquote>
+というところで、別に安価と言うところを売りにするわけではなさそうなのです。
+では、何が武器なんでしょうね？プレスリリースからは、読み取れないですね。
+
+<p><BR><br />
+●<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20061012/250510/">NTTドコモが903iシリーズなど14機種を発表，N900iLの後継機種も登場</a></p>
+
+<p>DoCoMoさんの<a href="http://www.docomo.biz/html/product/cordless/n902il/pre.html?DCMB_AREA=03&path=236">ページ</a>。<br />
+や〜〜〜〜っと、N902iLが出るそうです。<br />
+フルブラウザとFeliCaの搭載は、面白そうなところですが、やはり、GPSがほしかったですね。プレゼンス機能を生かすには、GPSが必須だと思いますので。</p>
+
+<p><br />
+<BR><br />
+●<a href="http://www.itmedia.co.jp/news/articles/0610/12/news089.html">「NTTに頼らない光回線を」――KDDI、東電の光通信事業を吸収</a></p>
+
+<p>さて、これで、NTTさんは、<br />
+<blockquote>光ファイバーの解放義務緩和</blockquote><br />
+のための口実ができました。<br />
+光ファイバーを持っていない、ソフトバンクが、どう出るかが、キモですね。</p>
+
+<p><br />
+<BR><br />
+●<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20061018/251127/">エニーユーザー，中小企業向けIPセントレックスを開始</a></p>
+
+<blockquote>「のぞみ電話」と呼ぶIPセントレックス・サービスを開始した。</blockquote>
+あ〜、「<a href="http://ja.wikipedia.org/wiki/%E6%96%B0%E5%B9%B9%E7%B7%9A#.E6.96.B0.E5.B9.B9.E7.B7.9A.E3.81.AE.E5.88.97.E8.BB.8A.E6.84.9B.E7.A7.B0">こだま電話</a>」は、どこがやるんですかね？(;^_^A アセアセ・・・
+※NTTさんのサービスは、「ひかり電話」です。
+
+<p><br />
+<BR><br />
+●<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20061018/251096/">ASPがAsteriskアプライアンスの正式出荷を開始</a></p>
+
+<p>Asteriskが、じわじわと来てますね。</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/voipnews_1.html" title="VoIP系News・2006/10/20">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:00</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/news/" title="">NEWS</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000277"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/277"
+    dc:title="Asterisk本番"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000277"
+    dc:subject="SIP"
+    dc:description="日経さんにて「日本のAsterisk最新事情」という特集が組まれております。 (..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-18T00:02:34+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;18&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000277" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/asterisk_1.html" title="Asterisk本番">Asterisk本番</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>日経さんにて「<a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20060928/249327/">日本のAsterisk最新事情</a>」という特集が組まれております。<br />
+(内容的には、日経コミュニケーションの記事の再編成のようですが。)</p>
+
+<p>何点か、気になったところにコメントです。</p>
+
+<p>●<a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20060928/249342/?ST=denwa">日本のAsterisk最新事情（2） Asteriskのポテンシャル</a></p>
+
+<blockquote>オープンソースであるAsteriskは，APIが公開されているため，ユーザーは自由にアプリケーションを開発できる。それ以上に大きな意味を持つのが，コミュニティの存在である。コミュニティに参加するアプリケーション開発者は，一般公開されたAPIに合わせて自由にソフトウエアを作成できる。例えば携帯電話向けのSymbian OSは，世界中の携帯電話機メーカーが採用。そのユーザーに向けて，多数のアプリケーションが開発されている。ユーザーは自由にアプリケーションを選んで入手し，利用できる。Asteriskも，これと同じ環境を生み出す可能性を秘めている。</blockquote>
+これですね。これこそが、Asteriskの大きなアドバンテージでしょう。世界的な規模で、いろいろなアプリケーションが開発されています。Skypeとのゲートウェイなどは、その代表といえるでしょう。
+もしかしたら、Thunderbirdなどから、AsteriskのVoiceMailを聞くことができるようになるかもしれませんね。
+
+<p><BR><br />
+●<a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20060930/249492/">日本のAsterisk最新事情（5） 「黒船Asterisk」，他陣営はこう見る</a></p>
+
+<blockquote>「まだ我々の敵ではない」「気にはなっている，だが脅威ではない」とIP-PBXメーカー</blockquote>
+というところですが、内心としては、自社開発メーカーとしては、気が気ではないと言うところでしょう。
+このメーカーPBXvsAsteriskの構図は、UNIXvsLinuxと全く同じ構図なのですから。
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/asterisk_1.html" title="Asterisk本番">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:02</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000278"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/278"
+    dc:title="マイクロフォーマット＝Web2.0の真打ちとなるか？"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000278"
+    dc:subject="セマンティック"
+    dc:description="「マイクロフォーマット＝Web2.0の真打ちとなるか？」というコラムを見つけまし..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-16T00:00:13+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;16&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000278" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/web20.html" title="マイクロフォーマット＝Web2.0の真打ちとなるか？">マイクロフォーマット＝Web2.0の真打ちとなるか？</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://www.atmarkit.co.jp/fnetwork/column/narumono13/01.html">マイクロフォーマット＝Web2.0の真打ちとなるか？</a>」というコラムを見つけました。</p>
+
+<p>マイクロフォーマットとフォークソノミーについて、考察しており、その方法論の違いに違和感を感じておられるようです。そして、<br />
+<blockquote>「情報を的確に分類して必要とされる情報を閲覧者の元に確実に送り届ける」という意味では、マイクロフォーマットもフォークソノミーも、その精神は同じなのだろうが、そこで行われる方法論というかアプローチがまったく異なっているわけだ。<br />
+　まあ、どっちが良い悪いではないのだが、情報発信者の“感性”に委ねられる部分の多い「タグ」の方が、なんとなく広がりが感じられ、その先に情報の沃野が広がっていそうな気がするのは筆者の勝手な思い込みであろうか。</blockquote><br />
+と、言っておられますが、私としても非常に同感であります。</p>
+
+<p>結局、「誰が、入力するの？」というところが、問題となり、下記のように疑問を述べています。<br />
+<blockquote>すっかり定着した行動に、もう一手間加えて、タグを付けろ、マイクロフォーマットで分類しろというのは、それなりのインセンティブが必要になると思うのだ。そのインセンティブが何なのかは分からない。アフィリエイトなのか、ネット社会へ貢献することへの満足度なのか……。</blockquote><br />
+そして、実は、これの一つの解として、すでに始まっている試みがあるのです。<br />
+すばり、「<a href="http://images.google.com/imagelabeler/">Google Image Labeler</a>」があります。これは、ゲームとなっていて、ルールとしては、画像が表示されるので、それに合うラベルを次々に付けていくというものです。これを、2人1組で行うようになっていて、パートナー（あちら側の誰か）と同じラベルを付ければスコアが加算されるという仕組みです。すなわち、ゲーム形式で、画像のタグ付けを行う仕掛けなのです。<br />
+これを、さらに推し進めた概念としては、「<a href="http://blog.japan.cnet.com/geetstate/">ギートステイト制作日誌</a>」の「<a href="http://blog.japan.cnet.com/geetstate/a/2006/09/1.html">ゲームプレイ・ワーキング</a>」といえるでしょう。</p>
+
+<p>このように、</p>
+
+<blockquote>「みんなの意見は、案外正しい＝集合知」</blockquote>
+
+<p>をベースとした、このようなタグ付けが、普及するのでは思います。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/web20.html" title="マイクロフォーマット＝Web2.0の真打ちとなるか？">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:00</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/oa/" title="">セマンティック</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000273"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/273"
+    dc:title="NTTさんの障害対策を考察する"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000273"
+    dc:subject="SIP"
+    dc:description="こちらのエントリーで、NTTさんの大規模障害が、どのような障害理由であったかを簡..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-14T01:00:29+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;14&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000273" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/sip_3.html" title="NTTさんの障害対策を考察する">NTTさんの障害対策を考察する</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://www.noritsuna.jp/archives/2006/09/ntt.html">こちらのエントリー</a>で、NTTさんの大規模障害が、どのような障害理由であったかを簡単に考察しましたので、続いてどのような対策をすべきかを考察してみようか思います。</p>
+
+<p><br />
+<strong>■高負荷について</strong><br />
+まず、一つめの原因である高負荷状態となった点について、補足事項を含めて、考察します。</p>
+
+<p><BR><br />
+<strong>●パケット流量</strong><br />
+さて、SIP網におけるパケットの流量なのですが、実は、「え？そうなの？？？」という事実があったりしますので、その辺から、解説します。</p>
+
+<p><strong>・SIPパケット</strong><br />
+SIPベースのIP電話がどのように通信を行うかは、「<a href="http://www.softfront.co.jp/tech/colum/sip_tut01.html">こちら</a>」をみていただくとよいかと思います。</p>
+
+<p>下の方に有る図の 3〜4, 7〜9 の矢印が、通話を開始する(セッションを張る)SIPパケットとなります。この 9 矢印まで終わった時点で、通話が確立されます。<br />
+そして、これ以降は、1〜3分おきくらいに(キープアライブ処理のため)、同様のやりとりをします。<br />
+パケットサイズ的には、矢印1つ、1000Bytesくらいです。</p>
+
+<p><br />
+<BR><br />
+<strong>・RTPパケット(音声、映像などのメディアパケット)</strong><br />
+通話開始後は、音声を相手に届けるために、RTPという音声パケットが流れるのですが、これが、上記図の 10 の矢印に相当するモノになります。<br />
+パケットサイズ的には、256Bytes前後のパケットが1秒間に50個、流れます。（256Bytes * 50packets/s * 2(全二重) = 4kBytes/s = 32kbps です。すなわち、ISDNが64kbps(同時2通話)なのと同じとなります。)</p>
+
+<p>で、上記図をよく見ていただくと、セッションを張ったUA同士で直接やりとりされます。すなわち、P2Pでやりとりされているのです！</p>
+
+<p><BR><br />
+<strong>・パケットのまとめ</strong><br />
+要するに、SIP網において、サーバを経由するパケットは、最初の通話開始の(セッションを張る)SIPパケットとキープアライブのSIPパケットだけで、その他のパケットは、P2Pで通信されるのです。(正確には違いますが、大枠としてはそういう認識でOKです。)<br />
+すなわち、サーバを経由するパケットは、通話全体のパケットの数%にも満たないような量しかないのです。</p>
+
+<p><br />
+逆に言うと、(通話全体から見れば)ほとんど、パケットが通らないはずのSIPサーバが、高負荷状態となって落ちているのです！！！<br />
+それくらい、SIPサーバというヤツは、負荷に弱いわけです。</p>
+
+<p><br />
+<BR><br />
+<strong>●原因</strong><br />
+負荷に弱い原因は、下記の理由と思われます。<br />
+<blockquote>・Text型パケットである<br />
+・可変長のパケット、ヘッダーである<br />
+・何らかのDBに依存して、ルーティングを行う</blockquote><br />
+という特性があるため、ASIC(チップ)化しにくいのです。それは、ソフトウェアで処理する場合も、よって、ソフトウェアで処理せねばならず、負荷に弱い構造となってしまうのです。<br />
+(ASICとソフトウェア処理では、数百倍の性能差は、余裕で出てしまいます。)</p>
+
+<p><BR><br />
+<strong>■バグについて</strong><br />
+つづいて、バグについてですが、ご存じのようにバグというモノは、コードの量に比例して増加し、運用年数に反比例して減っていきます。</p>
+
+<p><BR><br />
+<strong>●今後のSIP網</strong><br />
+現在の通話のSIP網は、今後、NGN(IMS)に置き換えられていく流れとなっています。<br />
+すなわち、現在のコードがさらに拡張(増加)され、新規運用となるのです。</p>
+
+<p><BR><br />
+<strong>●まとめ</strong><br />
+バグの性質と今後のSIP網を考慮すれば、当面の間は、バグを取り切ることは不可能ではないかと思います。</p>
+
+<p><BR><br />
+<strong>■対策</strong><br />
+さて、ここでSIP網がどのような構造をしているかを考えますと、NGNがインターネットを再構築しようとしていると言われているように、SIP網というのは本質的にインターネットと同じ構造をしています。</p>
+
+<p>しかし、現在のSIP-Proxy(SIPにおけるRouterの役割をするもの)は、ある発信先への経路情報は、唯一に決定されるという実装になっていることが多いようです。NTTさんの実装がどうなっているかは分かりませんが、経験から言わせてもらえれば唯一に決定される実装になっているはずです。<br />
+<blockquote>すなわち、インターネットが安定して稼働するキモである「迂回路」が実装されていないのです。</blockquote></p>
+
+<p>そして、「迂回路の実装」こそが、SIP網に施すべき安定化対策であると、私は考えています。これにより、「負荷分散」が可能となり付加対策され、「マルチベンダー」になることにより「一つのバグにより全体が落ちる」ことが無くなります。</p>
+
+<p><br />
+現状での対策としては、キャリアやISP間で相互接続をして、迂回路を設定できるようにするというあたりが、現実的なところだと思います。<br />
+さらに、その先としては、SIP-Proxy自体に迂回設定を実装していくことも考えられます。SIP自体が、セッション層のTransportととしての役割を持っているため、SIP自体をIPに近い機能を持ったRoutingプロトコルとして使用してしまおうという考え方です。<br />
+これの具体例としては、SIPベースで、BGPのようなプロトコルを実装してしまうようなイメージです。<a href="http://www.sipix.jp/">SIP IX</a>さんが、一番近いところにいるといえるでしょう。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/sip_3.html" title="NTTさんの障害対策を考察する">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 01:00</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000276"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/276"
+    dc:title="携帯を固定電話代わりに使える「気分ゾーン」事情"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000276"
+    dc:subject="NEWS"
+    dc:description="「FMCに暗雲？──携帯を固定電話代わりに使える「気分ゾーン」事情」という記事で..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-12T00:01:10+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;12&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000276" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/post_49.html" title="携帯を固定電話代わりに使える「気分ゾーン」事情">携帯を固定電話代わりに使える「気分ゾーン」事情</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://www.itmedia.co.jp/enterprise/mobile/articles/0610/06/news135.html">FMCに暗雲？──携帯を固定電話代わりに使える「気分ゾーン」事情</a>」という記事です。</p>
+
+<blockquote>固定電話事業者は「携帯電話で固定電話にかける時だけ料金を安くするのは非加入者に対する差別行為で、電気通信事業法に違反する」と訴え、これを是正するよう通信委員会に提訴した。</blockquote>
+あらあら、こんなことになってますか。。。
+キモとしては、
+<blockquote>固定電話事業者は、気分ゾーンのようなシステムが広まれば、固定電話をおびやかすサービスがLGT以外のキャリアからも続々と登場することを不安視しているのかもしれないが、それは「VoIP」論議のように、気分ゾーンでなくとも起こり得ることだ。</blockquote>
+というところですね。日本でも、ISDNを普及させたいNTTさんが、ADSLの普及に懸念を示しましたが、実を結ばなかったように、時代の流れには逆らえないかと思います。
+
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/post_49.html" title="携帯を固定電話代わりに使える「気分ゾーン」事情">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:01</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/news/" title="">NEWS</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000275"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/275"
+    dc:title="マイクロソフトの次世代デジタルエンターテイメント戦略"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000275"
+    dc:subject="セマンティック"
+    dc:description="「MS 堺常務「エンターテイメント分野に注力する理由」」 と 「マイクロソフト、..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-10T00:03:29+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;10&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000275" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/post_48.html" title="マイクロソフトの次世代デジタルエンターテイメント戦略">マイクロソフトの次世代デジタルエンターテイメント戦略</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://www.watch.impress.co.jp/av/docs/20061004/ceatec09.htm">MS 堺常務「エンターテイメント分野に注力する理由」</a>」 と 「<a href="http://www.watch.impress.co.jp/av/docs/20061005/ms.htm">マイクロソフト、Vista搭載PCによる家電連携戦略を説明</a>」というCEATEC関連の記事が出ております。</p>
+
+<p><br />
+<blockquote>Media CenterのUIをテレビに利用することで、「家電メーカーには、テレビにはネットワーク機能とデコーダ部さえあれば、複雑なGUIはPCがやる、といった機能の製品を一緒に作りませんか?とはたらきかけている」と述べた。</blockquote><br />
+まさに、AppleさんやYahoo!さんと同じ分野への進出ですね。<br />
+ITの巨人たちの新たなる戦いが、来年あたりから本格始動しそうですね。要注目です！！！<br />
+(現在、Media CenterやXBOXを擁する、マイクロソフトさんが、一歩リードという感じではありますが、AppleさんにはiTS、Yahoo!さんにはポータルとケータイがありますので、まだまだ、勝負の行方はわかりません。)<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/post_48.html" title="マイクロソフトの次世代デジタルエンターテイメント戦略">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:03</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/oa/" title="">セマンティック</a></li>
+                  
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/post_48.html#trackbacks" title="マイクロソフトの次世代デジタルエンターテイメント戦略にトラックバック">Trackbacks</a> (1) </li>
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000274"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/274"
+    dc:title="Yahoo!さんのEverywhere戦略"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000274"
+    dc:subject="NGN(IMS)"
+    dc:description="「ヤフー、DLNAなどあらゆる方法でYahoo!のサービスをテレビにも提供」 と..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-09T00:01:46+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;09&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000274" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/yahooeverywhere.html" title="Yahoo!さんのEverywhere戦略">Yahoo!さんのEverywhere戦略</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://internet.watch.impress.co.jp/cda/event/2006/10/05/13528.html">ヤフー、DLNAなどあらゆる方法でYahoo!のサービスをテレビにも提供</a>」 という記事が出ており、Yahoo!さんが、CEATECにて、「Yahoo! Everywhere戦略」の講演を行ったそうです。</p>
+
+<p>内容的に、正直、目新しいモノはないという感じではありますが、<br />
+ <blockquote>坂東氏はYahoo! Everywhere戦略について、「インターネットにYahoo!は100以上のサービスを持っている。これらのサービスをPCと携帯電話に提供してきたが、さらに第3、第4のデバイスに提供していきたい」と説明する。blockquote><br />
+の、第3，第4のデバイスというヤツが、気になりますね。<br />
+この前の「<a href="http://k-tai.impress.co.jp/cda/article/news_toppage/31225.html">ボーダフォン孫社長、新端末とコンテンツで「一気に変えていく」</a>」では、まだまだ、隠し球があるという感じでしたし、これとあわせて、どでかいサービスが2007年度中に公開されるのではないかと思われます。</p>
+
+<p>個人的には、AppleさんのiTV&iPhoneの日本展開での全面提携とかやってもらいたいところです。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/yahooeverywhere.html" title="Yahoo!さんのEverywhere戦略">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:01</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000254"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/254"
+    dc:title="バッテリートラブル"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000254"
+    dc:subject="HardWare"
+    dc:description="先日、My母艦マシン・ThinkPadT42pをバッテリー環境で使用していたら、..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-07T15:00:21+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;07&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000254" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/post_41.html" title="バッテリートラブル">バッテリートラブル</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>先日、My母艦マシン・ThinkPadT42pをバッテリー環境で使用していたら、いきなり、電源がOffとなり、その後は、電源を投入しても、電源ランプが光ってはすぐにOffになるという状態になりました。</p>
+
+<p>一瞬、<a href="http://japan.cnet.com/news/tech/story/0,2000056025,20240689,00.htm?ref=rss">こちらの事件</a>が、頭をよぎったわけで、慎重に検証を行いました。</p>
+
+<p>まず、私の環境としては、<br />
+<blockquote>・マシンは、ThinkPadT42p<br />
+・バッテリーは、「大容量バッテリー」＋「ウルトラスリムベイ用セカンドバッテリー」のダブルバッテリー環境<br />
+・「大容量バッテリー」は、状況により取り外して、ダミーバッテリーに変えることがある<br />
+　→4時間以内のMtgなどでは、「大容量バッテリー」を装着し、それ以上の場合は、「ダミーバッテリー」＋「ACアダプタ」を使用する<br />
+　→これは、極力軽量化するための作戦で、「大容量バッテリー」か「ACアダプタ」のどちらかだけを持ち運べばよいようにしている。</blockquote><br />
+という、環境であったりします。</p>
+
+<p>今回の状況を調査してみると、<br />
+<blockquote>・「ACアダプタ」を装着すると、正常に動作する<br />
+・「大容量バッテリー」だけだと、正常に動作する<br />
+・「大容量バッテリー」＋「ウルトラスリムベイ用セカンドバッテリー」だと、動作しない。<br />
+・「ウルトラスリムベイ用セカンドバッテリー」だけだと、動作しない。</blockquote><br />
+という状態で、どうやら、「ウルトラスリムベイ用セカンドバッテリー」が悪さをしているようです。</p>
+
+<p>ひとまず、「ACアダプタ」で起動後、「ウルトラスリムベイ用セカンドバッテリー」の状態を調べたら、<br />
+<blockquote>・バッテリー残量「ゼロ」・・・orz</blockquote><br />
+ということが判明しました。<br />
+これが原因であることは、間違いないようですが、この場合、<br />
+<blockquote>・「大容量バッテリー」＋「ウルトラスリムベイ用セカンドバッテリー」だと、動作しない。</blockquote><br />
+が、説明つかないのです。本来は、「ウルトラスリムベイ用セカンドバッテリー」が残量ゼロであれば、「大容量バッテリー」を使用して起動するはずなのですが、なぜか、今回はのトラブルではそのような動作になりませんでした。</p>
+
+<p>いろいろと実験してみたところ、<br />
+<blockquote>・「大容量バッテリー」＋「ウルトラスリムベイ用セカンドバッテリー」の状態で、レジュームして、「大容量バッテリー」を外すと、電源が落ちます。<br />
+・ただし、ACアダプタを使用している場合は、大丈夫ですが、その後、「ウルトラスリムベイ用セカンドバッテリー」の認識がおかしくなることがあります。<br />
+　→再起動するまで、充電されないなどの症状が出ます。<br />
+　→「ウルトラスリムベイ用セカンドバッテリー」の残量が残っている場合、「大容量バッテリー」が装着されていようが、「ウルトラスリムベイ用セカンドバッテリー」を使い切った時点<br />
+　　→パターン1：「何の警告もなく」電源が落ちます。←これが今回の現象<br />
+　　→パターン2：「サスペンドモードへ移行します」と出て、画面が遷移したあと、フリーズ状態で先に進みません<br />
+</blockquote><br />
+ということで、再現できました。パターン的には、何パターンかあるようです。何にせよ、レジューム中に、バッテリーを抜くとカオス状態になるということです</p>
+
+<p>オチとしては、ちゃんと、「バッテリーの交換」コマンド(サスペンドモードへ移行)を使えということですかね。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/post_41.html" title="バッテリートラブル">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 15:00</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/hardware/" title="">HardWare</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000272"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/272"
+    dc:title="NTTのNGNは「オープンな標準を使ったクローズド網」"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000272"
+    dc:subject="NGN(IMS)"
+    dc:description="IIJさんが、NTTさんのNGNに関する報道関係者向けセミナーを行ったそうです。..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-05T00:04:51+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;05&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000272" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/nttngn_2.html" title="NTTのNGNは「オープンな標準を使ったクローズド網」">NTTのNGNは「オープンな標準を使ったクローズド網」</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>IIJさんが、NTTさんのNGNに関する報道関係者向けセミナーを行ったそうです。<a href="http://internet.watch.impress.co.jp/cda/news/2006/10/03/13500.html">こちら</a>。</p>
+
+<blockquote>「NTTのNGNは、インターネットを代替するものではないし、今のネットワークが抱える問題をすべて解消する魔法の箱でもない。一方で、我々インターネット側の人間からすれば、インターネットはIPまでしか規定せず、シンプルだったからこそ急速に巨大なネットワークになった。その自由さがあったからこそ、これだけのコンテンツがあり、アプリケーションが世界で生まれてきた。NGNも、1つのネットワークとしてそれだけの地位を占めるだろうが、NGN一色になるということはないと感じている」</blockquote>
+日本のインターネット黎明期を支えたIIJさんの言葉であり、非常に重みがあります。
+
+<p>で、IIJさんの株主は、HPによると下記のようになっているそうです。 <br />
+<blockquote>日本電信電話株式会社 <br />
+ ヒーローアンドカンパニー<br />
+鈴木　幸一 <br />
+伊藤忠商事株式会社 <br />
+エヌ・ティ・ティ・コミュニケーションズ株式会社 <br />
+他</blockquote><br />
+株主さんは、この発言を是としているのですかね？？？この点が、とても、非常に、恐ろしいまでに気になるのですが。。。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/nttngn_2.html" title="NTTのNGNは「オープンな標準を使ったクローズド網」">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:04</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000270"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/270"
+    dc:title="つながらないのが“常識”の標準プロトコル「SIP」"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000270"
+    dc:subject="SIP"
+    dc:description="つながらないのが“常識”の標準プロトコル「SIP」 という記事が出ております。 ..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-04T00:02:47+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;04&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000270" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/sip_2.html" title="つながらないのが“常識”の標準プロトコル「SIP」">つながらないのが“常識”の標準プロトコル「SIP」</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20061002/249558/">つながらないのが“常識”の標準プロトコル「SIP」</a> という記事が出ております。</p>
+
+<p>この件の詳細は、<a href="http://www.siprop.org/">SIProp</a>もあわせて、ご覧いただければと思います。</p>
+
+<p>相互接続問題のほかに、あまり語られていないことが、語られていますので、スポットを当てます。<br />
+<blockquote>SIPは，IP電話以外にも用途が広がる重要な標準プロトコルである。</blockquote><br />
+この「IP電話以外の用途」が、本当のSIPの神髄なのです。</p>
+
+<p>SIPは、Session Initiation Protocolの略であり、2点間(以上)のセッションの制御をするというシンプルな機能であり、これは、今までのインターネットなプロトコルであるHTTPやFTPなどで採用されている、クライアント-サーバモデルではなく、クライアント-クライアント(P2P)モデルなのです。<br />
+これこそが、今までのプロトコルとの決定的な違いであり、今までと違った「用途が広がる重要な標準プロトコル」であるわけです。<br />
+その典型的な使用例の一つとして、「電話用のプロトコル」として、使用されたのです。</p>
+
+<p>もちろん、クライアント-サーバモデルでいろいろなプロトコルが策定されたように、クライアント-クライアント(P2P)モデルのSIPでも現在も活発にいろいろな拡張がなされています。</p>
+
+<p>ただ、この拡張しすぎや汎用性を高くしすぎているため、逆に、相互接続性に難が出てしまったわけですね。。。。。。<br />
+いずれ、SGMLが汎用性が高すぎて使いにくく、サブセットとしてXMLが定義されたような感じで、SIPも機能単位で再定義されるかもしれません。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/sip_2.html" title="つながらないのが“常識”の標準プロトコル「SIP」">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:02</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000261"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/261"
+    dc:title="環境知能シンポジウム2006"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000261"
+    dc:subject="AI"
+    dc:description="「「Googleの強大化」は我々に何をもたらす？――NTTがシンポジウムを開催」..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-03T00:01:34+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;03&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000261" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/2006.html" title="環境知能シンポジウム2006">環境知能シンポジウム2006</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20060925/248841/">「Googleの強大化」は我々に何をもたらす？――NTTがシンポジウムを開催</a>」という記事が出ております。これは、環境知能シンポジウムの記事のようです。</p>
+
+<p>これで面白いのは、東さんの「環境管理」の話ですね。<br />
+<blockquote>環境管理とは、「人間を信用しないで、社会秩序を維持しようとする方法」<br />
+(中略)<br />
+例えば「飲酒運転をさせない」という目的を達成するために、従来の「酒を飲んだら運転しない」という規律だけでは十分ではなく、環境管理型社会に移行しつつある今は「呼気のアルコール濃度が高いと発進させない車を作る」という策が採られるようになってきている。</blockquote><br />
+こちらのエントリー(映画「マイノリティ・リポート)の「キモい」部分を的確に表現しているのではないかと思います。<br />
+すなわち、「アノテーション」が行き過ぎると、それは、「コントロール」になってしまいかねないという話ですね。ここが、「キモさ」となって、感じるのではないかと思います。<br />
+ただ、これも、<a href="http://japan.cnet.com/research/column/market/story/0,2000067181,20242028,00.htm">時代とともに感じる「キモさ」も変わるわけで</a>、どうなっていくのか、まだまだ、議論の余地があるというところですが、現在は、ちょっとずつちょっとずつならされていって、茹で蛙状態になっていくのではないかと危惧していたりします。</p>
+
+<p><BR><br />
+後日、シンポジウムの映像が公開されるということですので、期待大です。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/2006.html" title="環境知能シンポジウム2006">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:01</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/oa/" title="">セマンティック</a> ≫ <a href="http://www.noritsuna.jp/archives/e/oa/ai/" title="">AI</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000269"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/269"
+    dc:title="意味索引付け検索エンジン"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000269"
+    dc:subject="セマンティック"
+    dc:description="「キーワード検索を超えるオープンソース検索技術」という記事が出ております。 入力..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-03T00:01:08+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            
+
+            <!-- エントリータイトル -->
+            <h3 id="a000269" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/post_47.html" title="意味索引付け検索エンジン">意味索引付け検索エンジン</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://opentechpress.jp/developer/06/09/28/0122201.shtml">キーワード検索を超えるオープンソース検索技術</a>」という記事が出ております。</p>
+
+<blockquote>入力された文字列に一致するものを探すのではなく、照会の意図を認識して検索する技術だ。(中略)この技術は意味索引付けを利用している。さまざまな応用が考えられるが、最も簡単な応用に類語の検索がある。たとえば、「果物」で在庫データベースを検索すると「リンゴ」や「オレンジ」が抽出されるといった具合だ。
+(中略)
+「このことから、メタデータを自動生成するツールや、蔵書目録のようなメタデータがまだ作られていない大規模収集品の情報を抽出するツールがあれば極めて有用だろうと考えたのです」</blockquote>
+というところで、メタデータを自動で切り出して、意味づけを行うエンジンのようです。
+
+<p>う〜ん、とても興味深いですね。近々GPLで公開されると言うことですので、公開されたら覗いてみたいなぁと思っています。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/post_47.html" title="意味索引付け検索エンジン">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:01</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">開発</a> ≫ <a href="http://www.noritsuna.jp/archives/e/oa/" title="">セマンティック</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/10/index.html#000266"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/266"
+    dc:title="NGNの裾野"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/10/index.html#000266"
+    dc:subject="NEWS"
+    dc:description="NEC、NGNに対応したネットワークサービス基盤ソフト「NC7000シリーズ」 ..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-01T00:18:11+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;01&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000266" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/ngn_8.html" title="NGNの裾野">NGNの裾野</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://enterprise.watch.impress.co.jp/cda/network/2006/09/27/8721.html">NEC、NGNに対応したネットワークサービス基盤ソフト「NC7000シリーズ」 </a>という記事が出ております。</p>
+
+<p>まぁ、一見するとNGN用のサーバソフトの販売開始という話なのですが、販売対象として<br />
+<blockquote>通信事業者・ISP/ASP事業者向けに販売を開始する。 </blockquote><br />
+と、ASPが入っているあたりが、キモとなりそうですね。<br />
+サービスを提供しているような企業さんも対象であり、これは近いうちにSIerさんなどのソリューションを提供する企業さんもターゲットとなってくるのではないかと思います。<br />
+すなわち、この基盤ソフトが、J2EEのような存在となってくることが予想されます。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/ngn_8.html" title="NGNの裾野">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:18</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/news/" title="">NEWS</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+          
+
+        </div><!-- content_end -->
+      </div><!-- main_end -->
+
+      <!--右メニュー-->
+      <div id="right-menu">
+        <div  class="right-content">
+
+          <!-- 最近のエントリー -->
+          <!-- 最近のコメント -->
+          <!-- 最近のトラックバック -->
+
+          <!-- リンク -->
+          <div class="site-link">
+          <h3>Links</h3>
+            <ul><li><a href="http://www.siprop.org/">SIProp Project</a></li></ul>
+          </div><!-- site-link_end -->
+
+                    <!-- クリエイティブコモンズライセンス -->
+          <div class="cclicense">
+            <a href="http://creativecommons.org/licenses/by-nc/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />This weblog is licensed under a <a href="http://creativecommons.org/licenses/by-nc/1.0/">Creative Commons License</a>.
+          </div><!-- cclicense_end -->
+          
+
+          <!-- Powered -->
+          <div class="powered">
+            <ul>
+              <li>Powered by <a href="http://www.movabletype.jp">Movable Type 3.33-ja</a></li>
+              <li>Template by <a href="http://drblog.jp/"><img src="http://drblog.jp/info/img/drblog.gif" alt="Dr.Blog" width="128" height="22" /></a></li>
+            </ul>
+          </div><!-- Powered_end -->
+
+        </div><!-- right-content_end -->
+      </div><!-- right-menu_end -->
+
+      <div id="footer">
+        <ul class="syndicate">
+          <li><a href="http://www.noritsuna.jp/index.xml" title="なんとなく実験 with SIProp開発記 RSS Feed (XML)">RSS Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/atom.xml" title="なんとなく実験 with SIProp開発記 Atom Feed (XML)">Atom Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記">Archives</a></li>
+          <li><a href="#banner">Page Top</a></li>
+        </ul>
+      </div><!-- footer_end -->
+
+    </div><!-- main-container_end -->
+
+  </body>
+</html>

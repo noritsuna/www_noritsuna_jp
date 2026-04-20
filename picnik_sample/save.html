@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Picnik の編集結果</title>
+<script type="text/javascript">
+function display_image() {
+  if(/(?:\?|&)file=([^&]+)/.exec(location.search)) {
+    var img = document.createElement('IMG');
+    img.src = unescape(RegExp.$1);
+    document.body.appendChild(img);
+  }
+}
+
+function display_name() {
+  if(/(?:\?|&)cc([^&]+)/.exec(location.search)) {
+    var img = document.createTextNode(RegExp.$1);
+    document.body.appendChild(img);
+  }
+}
+
+</script>
+</head>
+
+<body onload="display_name();">
+<h1>Picnik の編集結果</h1>
+</body>
+
+</html>

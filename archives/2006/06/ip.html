@@ -1,0 +1,246 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験 with SIProp開発記: 「IP電話の通話品質を上げる」ミドルウエア</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+
+<link rel="start" href="http://www.noritsuna.jp/" title="Home" />
+<link rel="prev" href="http://www.noritsuna.jp/archives/2006/06/googlev6_1.html" title="GoogleV6" />
+
+<link rel="next" href="http://www.noritsuna.jp/archives/2006/06/p2p_1.html" title="著作物のP2P共有非合法化？？？" />
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var HOST = 'www.noritsuna.jp';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + (expires ? "; expires=" + expires : "") + (path ? "; path=" + path : "") + (domain ? "; domain=" + domain : "") + (secure ? "secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function rememberMe (f) {
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+    now = now.toGMTString();
+    if (f.author != undefined)
+       setCookie('mtcmtauth', f.author.value, now, '/', '', '');
+    if (f.email != undefined)
+       setCookie('mtcmtmail', f.email.value, now, '/', '', '');
+    if (f.url != undefined)
+       setCookie('mtcmthome', f.url.value, now, '/', '', '');
+}
+
+function forgetMe (f) {
+    deleteCookie('mtcmtmail', '/', '');
+    deleteCookie('mtcmthome', '/', '');
+    deleteCookie('mtcmtauth', '/', '');
+    f.email.value = '';
+    f.author.value = '';
+    f.url.value = '';
+}
+
+//-->
+</script>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/06/ip.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/122"
+    dc:title="「IP電話の通話品質を上げる」ミドルウエア"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/06/ip.html"
+    dc:subject="SIP"
+    dc:description="「IP電話の通話品質を上げる」ミドルウエアというものが、出てきたそうです。 ht..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-30T00:00:44+09:00" />
+</rdf:RDF>
+-->
+
+
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2006/06/ip.html">
+<dc:title>「IP電話の通話品質を上げる」ミドルウエア</dc:title>
+<dc:description>「IP電話の通話品質を上げる」ミドルウエアというものが、出てきたそうです。 ht...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2006-06-30T00:00:44+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+
+
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験 with SIProp開発記</a></h1>
+<h2>SIPやVoIP、P2Pに関する技術情報を書き殴っているBlogです。
+また、SIPropプロジェクトの開発記も兼ねています。</h2>
+</div>
+
+<div class="content">
+
+<p align="right">
+<a href="http://www.noritsuna.jp/archives/2006/06/googlev6_1.html">&laquo; GoogleV6</a> |
+
+<a href="http://www.noritsuna.jp/">メイン</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/p2p_1.html">著作物のP2P共有非合法化？？？ &raquo;</a>
+
+</p>
+
+<h2>2006&#24180;06&#26376;30&#26085;</h2>
+
+<h3>「IP電話の通話品質を上げる」ミドルウエア</h3>
+
+<p>「IP電話の通話品質を上げる」ミドルウエアというものが、出てきたそうです。<br />
+http://itpro.nikkeibp.co.jp/article/NEWS/20060623/241659/</p>
+
+<p>発想的には、SIPropと同じようなところで、SIPropの音声版という感じですね。まさに、補完関係にありますので、仲良くさせていただければとなどと妄想してしまいます。(;^_^A</p>
+
+<p><br />
+といったところで、この問題なのですが、この辺も相当大変なんですよ。</p>
+
+<p>無音圧縮(無音が続くとRTP送信をStopする)とか、下手にいれると「RTPが10秒間届かなかったら、切断」などという電話機があると切れてしまうわけです。<br />
+とくに、ジッター/バッファー調整の自動調整なんて、涙ものですね。これ、実際に繋げて、聞いてみるしかないのですが、神様が聞かないと差が解らなかったりするんです。</p>
+
+<blockquote>ジッター（パケットごとに転送速度や到着間隔がばらつくこと）の状態を検知し，動的にバッファの大きさを変える「ジッタバッファ制御技術」も開発</blockquote>
+
+
+<div id="a000122more"><div id="more">
+
+</div></div>
+
+<p class="posted">投稿者 noritsuna : 2006&#24180;06&#26376;30&#26085; 00:00</p>
+
+<h2 id="trackbacks">トラックバック</h2>
+<p class="techstuff">このエントリーのトラックバックURL:<br />
+http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/122</p>
+
+
+
+
+
+<h2 id="comments">コメント</h2>
+
+
+
+
+
+<h2>コメントしてください</h2>
+
+ 
+
+
+
+<form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-comments.cgi" name="comments_form" onsubmit="if (this.bakecookie[0].checked) rememberMe(this)">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="122" />
+
+<div id="name_email">
+<p><label for="author">名前:</label><br />
+<input tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">メールアドレス:</label><br />
+<input tabindex="2" id="email" name="email" /></p>
+</div>
+
+
+
+<p><label for="url">URL:</label><br />
+<input tabindex="3" type="text" name="url" id="url" />
+保存しますか?
+<input type="radio" id="remember" onclick="rememberMe(this.form)" name="bakecookie" /><label for="remember">はい</label><input type="radio" id="forget" name="bakecookie" onclick="forgetMe(this.form)" value="Forget Info" style="margin-left: 15px;" /><label for="forget">いいえ</label><br style="clear: both;" />
+</p>
+
+<p><label for="text">コメント:</label> <br/>
+<textarea tabindex="4" id="text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input type="submit" name="preview" tabindex="5" 
+    value="&nbsp;確認&nbsp;" />
+<input style="font-weight: bold;" type="submit" name="post" 
+    tabindex="6" value="&nbsp;投稿&nbsp;" />
+</div>
+</form>
+
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+if (document.comments_form.email != undefined)
+    document.comments_form.email.value = getCookie("mtcmtmail");
+if (document.comments_form.author != undefined)
+    document.comments_form.author.value = getCookie("mtcmtauth");
+if (document.comments_form.url != undefined)
+    document.comments_form.url.value = getCookie("mtcmthome");
+if (getCookie("mtcmtauth") || getCookie("mtcmthome")) {
+    document.comments_form.bakecookie[0].checked = true;
+} else {
+    document.comments_form.bakecookie[1].checked = true;
+}
+//-->
+</script>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

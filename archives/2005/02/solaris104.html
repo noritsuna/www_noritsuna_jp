@@ -1,0 +1,292 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: Solaris10インストール・その4</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+
+<link rel="start" href="http://www.noritsuna.jp/" title="Home" />
+<link rel="prev" href="http://www.noritsuna.jp/archives/2005/02/post_11.html" title="株仲間出来ました" />
+
+<link rel="next" href="http://www.noritsuna.jp/archives/2005/02/macmini1.html" title="MACmini・初回起動" />
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var HOST = 'www.noritsuna.jp';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + (expires ? "; expires=" + expires : "") + (path ? "; path=" + path : "") + (domain ? "; domain=" + domain : "") + (secure ? "secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function rememberMe (f) {
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+    now = now.toGMTString();
+    if (f.author != undefined)
+       setCookie('mtcmtauth', f.author.value, now, '/', '', '');
+    if (f.email != undefined)
+       setCookie('mtcmtmail', f.email.value, now, '/', '', '');
+    if (f.url != undefined)
+       setCookie('mtcmthome', f.url.value, now, '/', '', '');
+}
+
+function forgetMe (f) {
+    deleteCookie('mtcmtmail', '/', '');
+    deleteCookie('mtcmthome', '/', '');
+    deleteCookie('mtcmtauth', '/', '');
+    f.email.value = '';
+    f.author.value = '';
+    f.url.value = '';
+}
+
+//-->
+</script>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2005/02/solaris104.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/20"
+    dc:title="Solaris10インストール・その4"
+    dc:identifier="http://www.noritsuna.jp/archives/2005/02/solaris104.html"
+    dc:subject="Server"
+    dc:description="■Phase3〜実インストール〜 ・CDE、起動中。 軽く、感動してください。ぺ..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-10T08:30:04+09:00" />
+</rdf:RDF>
+-->
+
+
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2005/02/solaris104.html">
+<dc:title>Solaris10インストール・その4</dc:title>
+<dc:description>■Phase3〜実インストール〜 ・CDE、起動中。 軽く、感動してください。ぺ...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2005-02-10T08:30:04+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+
+
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+
+<p align="right">
+<a href="http://www.noritsuna.jp/archives/2005/02/post_11.html">&laquo; 株仲間出来ました</a> |
+
+<a href="http://www.noritsuna.jp/">メイン</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/macmini1.html">MACmini・初回起動 &raquo;</a>
+
+</p>
+
+<h2>2005&#24180;02&#26376;10&#26085;</h2>
+
+<h3>Solaris10インストール・その4</h3>
+
+<p>■Phase3〜実インストール〜<br />
+・CDE、起動中。<br />
+軽く、感動してください。ぺこ <(＿ ＿)><br />
+マウスも使えるようになってます。<br />
+<p><a href="/images/server/solaris10-install_044.PNG" target="_blank"><img src="/images/server/solaris10-install_044.PNG" width="200" border="0"></a></p><br />
+<p>　</p><br />
+<p>　</p></p>
+
+<p><br />
+・インストール元の指定。<br />
+「Solaris10 Software 2 for x86 Platforms」すなわち、Disk2を入れろといわれるので<br />
+指示に従ってください。</p>
+
+<p>このあと、Disk3→Disk4→Language→Documentation(☆)→Java Enterprise System(☆)→<br />
+companion の順でインストールされます。<br />
+が、☆付きのやつは、別途、入手しなければならないようです。持っていない場合は、<br />
+素直にスキップしてしまいましょう。<br />
+<p><a href="/images/server/solaris10-install_045.PNG" target="_blank"><img src="/images/server/solaris10-install_045.PNG" width="200" border="0"></a></p></p>
+
+<p>・ディスク2のインストール。<br />
+<p><a href="/images/server/solaris10-install_046.PNG" target="_blank"><img src="/images/server/solaris10-install_046.PNG" width="200" border="0"></a></p></p>
+
+<p>・インストールの確認。<br />
+<p><a href="/images/server/solaris10-install_047.PNG" target="_blank"><img src="/images/server/solaris10-install_047.PNG" width="200" border="0"></a></p></p>
+
+<p>・インストール中。<br />
+<p><a href="/images/server/solaris10-install_048.PNG" target="_blank"><img src="/images/server/solaris10-install_048.PNG" width="200" border="0"></a></p><br />
+<p>　</p><br />
+<p>　</p></p>
+
+<p><br />
+・終了。<br />
+自動でリブートが開始されます。<br />
+お疲れ様です。<br />
+以上で、終了です。<br />
+<p><a href="/images/server/solaris10-install_049.PNG" target="_blank"><img src="/images/server/solaris10-install_049.PNG" width="200" border="0"></a></p><br />
+<p>　</p><br />
+<p>　</p></p>
+
+<p><br />
+・起動画面(ログイン画面)。<br />
+感動の起動直後の画面です。<br />
+ひとまず、rootとパスワードを入れて、ログインしましょう。<br />
+本来なら、自分用のユーザを作って、それでログインします。<br />
+<p><a href="/images/server/solaris10-install_050.PNG" target="_blank"><img src="/images/server/solaris10-install_050.PNG" width="200" border="0"></a></p></p>
+
+<p>・デスクトップの指定。<br />
+やはり、Solarisといえば、CDEってことで。<br />
+GNOMEは、使えないんですかね？<br />
+<p><a href="/images/server/solaris10-install_051.PNG" target="_blank"><img src="/images/server/solaris10-install_051.PNG" width="200" border="0"></a></p><br />
+<p>　</p></p>
+
+<p>・起動直後。<br />
+やっと、起動しました。<br />
+これで、Solaris10の世界を堪能できます。<br />
+<p><a href="/images/server/solaris10-install_052.PNG" target="_blank"><img src="/images/server/solaris10-install_052.PNG" width="200" border="0"></a></p><br />
+<p>　</p><br />
+以上で、Solaris10インストールシリーズも終了です。<br />
+気が向けば、管理編もやるかも。確率は、かなり低いですが。(^-^;A<br />
+</p>
+
+<div id="a000020more"><div id="more">
+
+</div></div>
+
+<p class="posted">投稿者 noritsuna : 2005&#24180;02&#26376;10&#26085; 08:30</p>
+
+<h2 id="trackbacks">トラックバック</h2>
+<p class="techstuff">このエントリーのトラックバックURL:<br />
+http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/20</p>
+
+
+
+
+
+<h2 id="comments">コメント</h2>
+
+
+
+
+
+<h2>コメントしてください</h2>
+
+ 
+
+
+
+<form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-comments.cgi" name="comments_form" onsubmit="if (this.bakecookie[0].checked) rememberMe(this)">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="20" />
+
+<div id="name_email">
+<p><label for="author">名前:</label><br />
+<input tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">メールアドレス:</label><br />
+<input tabindex="2" id="email" name="email" /></p>
+</div>
+
+
+
+<p><label for="url">URL:</label><br />
+<input tabindex="3" type="text" name="url" id="url" />
+保存しますか?
+<input type="radio" id="remember" onclick="rememberMe(this.form)" name="bakecookie" /><label for="remember">はい</label><input type="radio" id="forget" name="bakecookie" onclick="forgetMe(this.form)" value="Forget Info" style="margin-left: 15px;" /><label for="forget">いいえ</label><br style="clear: both;" />
+</p>
+
+<p><label for="text">コメント:</label> <br/>
+<textarea tabindex="4" id="text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input type="submit" name="preview" tabindex="5" 
+    value="&nbsp;確認&nbsp;" />
+<input style="font-weight: bold;" type="submit" name="post" 
+    tabindex="6" value="&nbsp;投稿&nbsp;" />
+</div>
+</form>
+
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+if (document.comments_form.email != undefined)
+    document.comments_form.email.value = getCookie("mtcmtmail");
+if (document.comments_form.author != undefined)
+    document.comments_form.author.value = getCookie("mtcmtauth");
+if (document.comments_form.url != undefined)
+    document.comments_form.url.value = getCookie("mtcmthome");
+if (getCookie("mtcmtauth") || getCookie("mtcmthome")) {
+    document.comments_form.bakecookie[0].checked = true;
+} else {
+    document.comments_form.bakecookie[1].checked = true;
+}
+//-->
+</script>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,297 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: ホログラムディスク、ファンレス化、遠隔ブート</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+
+<link rel="start" href="http://www.noritsuna.jp/" title="Home" />
+<link rel="prev" href="http://www.noritsuna.jp/archives/2005/02/plan9.html" title="Plan9インストール" />
+
+<link rel="next" href="http://www.noritsuna.jp/archives/2005/02/post_15.html" title="仮想マシン" />
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var HOST = 'www.noritsuna.jp';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + (expires ? "; expires=" + expires : "") + (path ? "; path=" + path : "") + (domain ? "; domain=" + domain : "") + (secure ? "secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function rememberMe (f) {
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+    now = now.toGMTString();
+    if (f.author != undefined)
+       setCookie('mtcmtauth', f.author.value, now, '/', '', '');
+    if (f.email != undefined)
+       setCookie('mtcmtmail', f.email.value, now, '/', '', '');
+    if (f.url != undefined)
+       setCookie('mtcmthome', f.url.value, now, '/', '', '');
+}
+
+function forgetMe (f) {
+    deleteCookie('mtcmtmail', '/', '');
+    deleteCookie('mtcmthome', '/', '');
+    deleteCookie('mtcmtauth', '/', '');
+    f.email.value = '';
+    f.author.value = '';
+    f.url.value = '';
+}
+
+//-->
+</script>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2005/02/post_8.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/21"
+    dc:title="ホログラムディスク、ファンレス化、遠隔ブート"
+    dc:identifier="http://www.noritsuna.jp/archives/2005/02/post_8.html"
+    dc:subject="HardWare"
+    dc:description="●ホログラムディスク 個人的に、数年前から追いかけているホログラムディスクが、や..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-07T01:35:16+09:00" />
+</rdf:RDF>
+-->
+
+
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2005/02/post_8.html">
+<dc:title>ホログラムディスク、ファンレス化、遠隔ブート</dc:title>
+<dc:description>●ホログラムディスク 個人的に、数年前から追いかけているホログラムディスクが、や...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2005-02-07T01:35:16+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+
+
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+
+<p align="right">
+<a href="http://www.noritsuna.jp/archives/2005/02/plan9.html">&laquo; Plan9インストール</a> |
+
+<a href="http://www.noritsuna.jp/">メイン</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/post_15.html">仮想マシン &raquo;</a>
+
+</p>
+
+<h2>2005&#24180;02&#26376;07&#26085;</h2>
+
+<h3>ホログラムディスク、ファンレス化、遠隔ブート</h3>
+
+<p>●ホログラムディスク<br />
+個人的に、数年前から追いかけているホログラムディスクが、や〜〜〜っと、<br />
+現実味を帯びてきたようです。<br />
+(数年前から、でるでるっていう情報だけはあるんですが。(^-^;A)<br />
+http://www.itmedia.co.jp/lifestyle/articles/0502/04/news079.html</p>
+
+<p><br />
+原理は、こちらを参照してね。<br />
+要は、光の波の特性を利用して、多重化し、3D空間に多層的に「写真に撮る」<br />
+ってことっすかね？ < 違う？<br />
+http://www.itmedia.co.jp/news/0209/13/nj00_opt.html</p>
+
+<p>　</p>
+う〜ん、日立マクセルの担当者さん、歯切れ悪いですなぁ。(^-^;A
+「まずは形にすること」って、強調しまくってるし、しばらくは使い物に
+ならなそうですね。(値段も高そうですし。)
+
+<p>ライトワンス(R系メディア)で、あと、5年という感じでしょうか？<br />
+ただ、原理的に一度波に乗ってしまえば、大容量化は非常に早そうなので<br />
+期待しているのですが。。。<br />
+(とはいいつつ、最近は大容量メディアって必要としてないんですよねぇ。)</p>
+
+<p>　</p>
+<p>　</p>
+●静穏化
+Myブームの静穏化(ファンレス化)ですが、おもしろそうなのが出てきました。
+Dualでファンレス。。。。すてきな響きだ。
+http://www.watch.impress.co.jp/akiba/hotline/20050205/etc_geodenx.html
+
+<p>後は、VGAをうまくファンレス化できるかですね。<br />
+こんなのもあるようですが。<br />
+http://www.thermaltake.com/japan/products/coolers/fanlessvga/clg0009.htm</p>
+
+<p>ちなみに、個人的に試しているところですと、PemMをファンレスヒートシンク<br />
+＋ファンレス電源で動かしてみているのですが、やはり、「厳しい」です。<br />
+5〜60度くらいいってしまうので、夏を超えることは無理でしょう。</p>
+
+<p>12cmファンをケースにつけて、低速で回転させてあげると、一気に熱は、<br />
+無くなりますので、このような構成がお奨め。</p>
+
+<p>電源に12〜14cmファンがついているやつが、お奨めです。</p>
+
+<p>ただ、個人的にはファンレス化による、「埃の排除」が目的なので、<br />
+ファンはどうにかしてはずしたいところですが、静穏を目的とするなら<br />
+上記構成でほぼ無音化できます。</p>
+
+<p>　</p>
+<p>　</p>
+●遠隔リブート
+こんなのが、ふらっとホームに入荷して模様。
+遠隔地からWebアクセスにより、物理的にリセットボタンを押せるという代物。
+http://www.servprise.com/info/
+
+<p>んで、ほかにもこんなのがある。<br />
+LinuxKernelからLinuxKernelを、呼び出して実行できる代物。<br />
+http://japan.linux.com/kernel/03/06/25/1825255.shtml?topic=1<br />
+http://www-6.ibm.com/jp/developerworks/linux/040618/j_l-kexec.html</p>
+
+<p>これがインストールしてある専用のLinux領域を作っておいて、まずはそれを起動し<br />
+このソフトを使って、目的のKernelのブートを制御してあげる。<br />
+すなわち、スーパーlilo(ブートローダー)として、使用すると遠隔によるブート<br />
+などの制御が可能になる(予定)。</p>
+
+<p>いずれ、実験してみたいなぁとは思っているものの一つ。<br />
+</p>
+
+<div id="a000021more"><div id="more">
+
+</div></div>
+
+<p class="posted">投稿者 noritsuna : 2005&#24180;02&#26376;07&#26085; 01:35</p>
+
+<h2 id="trackbacks">トラックバック</h2>
+<p class="techstuff">このエントリーのトラックバックURL:<br />
+http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/21</p>
+
+
+
+
+
+<h2 id="comments">コメント</h2>
+
+
+
+
+
+<h2>コメントしてください</h2>
+
+ 
+
+
+
+<form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-comments.cgi" name="comments_form" onsubmit="if (this.bakecookie[0].checked) rememberMe(this)">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="21" />
+
+<div id="name_email">
+<p><label for="author">名前:</label><br />
+<input tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">メールアドレス:</label><br />
+<input tabindex="2" id="email" name="email" /></p>
+</div>
+
+
+
+<p><label for="url">URL:</label><br />
+<input tabindex="3" type="text" name="url" id="url" />
+保存しますか?
+<input type="radio" id="remember" onclick="rememberMe(this.form)" name="bakecookie" /><label for="remember">はい</label><input type="radio" id="forget" name="bakecookie" onclick="forgetMe(this.form)" value="Forget Info" style="margin-left: 15px;" /><label for="forget">いいえ</label><br style="clear: both;" />
+</p>
+
+<p><label for="text">コメント:</label> <br/>
+<textarea tabindex="4" id="text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input type="submit" name="preview" tabindex="5" 
+    value="&nbsp;確認&nbsp;" />
+<input style="font-weight: bold;" type="submit" name="post" 
+    tabindex="6" value="&nbsp;投稿&nbsp;" />
+</div>
+</form>
+
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+if (document.comments_form.email != undefined)
+    document.comments_form.email.value = getCookie("mtcmtmail");
+if (document.comments_form.author != undefined)
+    document.comments_form.author.value = getCookie("mtcmtauth");
+if (document.comments_form.url != undefined)
+    document.comments_form.url.value = getCookie("mtcmthome");
+if (getCookie("mtcmtauth") || getCookie("mtcmthome")) {
+    document.comments_form.bakecookie[0].checked = true;
+} else {
+    document.comments_form.bakecookie[1].checked = true;
+}
+//-->
+</script>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

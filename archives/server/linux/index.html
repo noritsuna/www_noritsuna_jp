@@ -1,0 +1,399 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: Linux アーカイブ</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/server/linux/index.html#000052"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/52"
+    dc:title="Kernel 2.6.11 リリース"
+    dc:identifier="http://www.noritsuna.jp/archives/server/linux/index.html#000052"
+    dc:subject="Linux"
+    dc:description="Linux Kernel 2.6.11 リリース しかし、相変わらずchange..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-05T00:24:44+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;03&#26376;05&#26085;</h2>
+
+
+<h3 id="a000052">Kernel 2.6.11 リリース</h3>
+
+<p><a href="http://slashdot.jp/linuxkernel/05/03/03/0656228.shtml?topic=2">Linux Kernel 2.6.11 リリース</a></p>
+
+<p><br />
+しかし、相変わらずchangeLog 見にくいですねぇ。。。<br />
+せめて、ジャンル別とか表示できないかなぁ。</p>
+
+<p>ということで、個人的に気になったモノを抜き出してみました。<br />
+かなり、偏見と無能に満ちたモノとなっています。(^-^;A<br />
+<BR><br />
+●IPv6<br />
+IPv6まんせ〜！ ということで。</p>
+
+<p>実装ミスっぽ。<br />
+・[IPV6] Don't update FAILED entries on receipt of NAs.<br />
+	<br />
+	As NAs do not create new entries (RFC2461 7.2.5),<br />
+	NA should not change state of FAILED entries.</p>
+
+<p><BR><br />
+●TUN/TAP系<br />
+自宅のIPv6環境にて使用中のTUNドライバ関連。</p>
+
+<p>今回の目玉かな？ queuingが改良されてるっぽいっす。<br />
+・TUN/TAP driver packet queuing fixes and improvements<br />
+	<br />
+	Patch from Harald Roelle <harald.roelle@nm.ifi.lmu.de><br />
+	<br />
+	Fixes for the following issues<br />
+	- "Kicking" packet behavior in case of kernel packet scheduler (! TUN_ONE_QUEUE):<br />
+	  When the netif queue is stopped because of an overrun of the driver's queue,<br />
+	  no new packets are delivered to the driver until a new packet arrives, not even<br />
+	  when in the meantime there's again space in the driver's queue (gained by a<br />
+	  reading user process). In short, whenever netif queue was stopped, one needs an<br />
+	  additional packet to "kick" packet delivery to the driver.<br />
+	  The reason for this is, that the netif queue is started but not woken up, i.e.<br />
+	  the rest of the kernel is not signaled to resume packet delivery.<br />
+	<br />
+	- Adjustment of tx queue length by ifconfig has only effect when TUN_ONE_QUEUE<br />
+	  is set.  Otherwise always constant TUN_READQ_SIZE queue length is used.<br />
+	<br />
+	- TX queue default length setting is not consistent:<br />
+	  o TAP dev + TUN_ONE_QUEUE: 1000 (by ether_setup())<br />
+	  o all other cases: 10<br />
+	<br />
+	- Default tx queue length is too short in many cases.<br />
+	  IMHO it should be at least twice as long as the number of fragments needed<br />
+	  for a maximum sized IP packet at a "typical" MTU size.<br />
+	  This would ensure that at least one complete IP packet can be delivered<br />
+	  to the attached user space process, even if the packet's fragments<br />
+	  are "misaligned" in the buffer and the user process is not scheduled<br />
+	  in time to read the queue.<br />
+	<br />
+	Additional modifications:<br />
+	<br />
+	- To signal that stopping of the queue has occurred, the tx fifo overrun<br />
+	  counter is increased.<br />
+	<br />
+	- Implemented ethtool api. Primarily added to have a standard method requesting<br />
+	  the driver version.<br />
+	<br />
+	Signed-off-by: Max Krasnyansky <maxk@qualcomm.com></p>
+
+<p><br />
+	Use random_ether_addr() to generate TAP MAC address.<br />
+<BR><br />
+まぁ、まんまですが、私的に影響ありそうなので。<br />
+・[PATCH] Multicast filtering for tun.c<br />
+	<br />
+	From: Shaun Jackman <sjackman@gmail.com><br />
+	<br />
+	This patch adds multicast filtering to the TUN network driver, for<br />
+	packets being sent from the network device to the character device.<br />
+	<br />
+	* drivers/net/tun.c: Add multicast filtering for packets travelling from<br />
+	  the network device to the character device.<br />
+	<br />
+	* include/linux/if_tun.h (tun_struct): Add interface flags, a hardware<br />
+	  device addres, and a multicast filter.<br />
+<BR><br />
+「Please test if this helps in your case」って、そんな。(^-^;A<br />
+・[TUN/TAP]: Add missing trans_start and last_rx setting.<br />
+	<br />
+	But as stated in bonding.txt, the ARP monitor requires the underlying<br />
+	driver to update dev->trans_start and dev->last_rx.<br />
+	<br />
+	The patch below adds the required functionality to the TUN/TAP driver.<br />
+	Please test if this helps in your case.<br />
+	<br />
+<BR><br />
+●TCP/UDP系<br />
+●UML系<br />
+●netfilter系<br />
+●SELinux系<br />
+う〜ん、ざっと見た限りでは、面白そうなのなし。<br />
+<BR><br />
+●ねた！！！<br />
+「crazy Mac OS-X TCP implementations」って。(^-^;A<br />
+・[TCP]: Set PSH bit on all outgoing TSO frames.<br />
+	<br />
+	Helps with crazy Mac OS-X TCP implementations which delay the<br />
+	recvmsg() wakeup of the user until push is seen.<br />
+	<br />
+	Based upon ideas from Alexey Kuznetsov, and a preliminary<br />
+	patch by Stephen Hemminger.</p>
+
+<p><BR><br />
+今回は、アップデートは見送りかなぁ。<br />
+安定したって書いてあるけど、微妙だし。。。</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/03/kernel_2611.html">00:24</a>
+| <a href="http://www.noritsuna.jp/archives/2005/03/kernel_2611.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/03/kernel_2611.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/server/linux/index.html#000046"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/46"
+    dc:title="Red Hat Enterprise Linux 4.0 SELinux編"
+    dc:identifier="http://www.noritsuna.jp/archives/server/linux/index.html#000046"
+    dc:subject="Linux"
+    dc:description="SELinuxについて、つらつらと。。。 ●各デーモンの設定具合 では、本題のS..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-27T00:05:18+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;02&#26376;27&#26085;</h2>
+
+
+<h3 id="a000046">Red Hat Enterprise Linux 4.0 SELinux編</h3>
+
+<p>SELinuxについて、つらつらと。。。</p>
+
+<p>●各デーモンの設定具合<br />
+では、本題のSELinuxが、どのくらい設定されているか確認。<br />
+（Zオプションで、SELinuxのドメインが表示されます。<br />
+　unconfined_tというドメインは、全てOKというSELinux無効モードです。）</p>
+
+<blockquote># ps -eZ</blockquote>
+
+<blockquote>・unconfined_t以外のドメインが設定されている物<BR>
+named,ntpd,postgres,mysql,apache,syslogd,snmpd,squid</blockquote>
+
+<p>と、基本的な物は、SELinuxで設定されているようです。</p>
+
+<p>が、sendmailなどのメール系は、設定されていない模様。<br />
+それに、あまり使用しないような物も、設定されていません。</p>
+
+<p>この手のセキュリティー系は、全てに対して設定しなければ、意味がない<br />
+ため、このままでは、無意味としか言いようがないでしょう。<br />
+（セキュリティーは、一カ所でも破れれば、OKですからね。<br />
+　侵入時に、全てのドアや窓の鍵を破る泥棒はいないのと同じです。）<br />
+<BR><br />
+●各アプリの設定具合<br />
+続いて、どのくらい強固な設定となっているか、設定ファイルをのぞいて<br />
+みようと思います。<br />
+今回の題材は、ネットにいっぱい情報が転がっているapacheちゃんです。</p>
+
+<blockquote>・各ディレクトリに割り振られたドメイン<BR>
+/etc/selinux/targeted/src/policy/file_contexts/program/apache.fc</blockquote>
+<blockquote>・各ドメインの権限<BR>
+/etc/selinux/targeted/src/policy/domains/program/apache.te</blockquote>
+
+<p>二つのファイルが、連携して、各ディレクトリやファイルに対し、権限操作を行って<br />
+います。</p>
+
+<p>「apache.fc」に、どのディレクトリやファイルにどのドメインを割り振るかを記述し、<br />
+「apache.te」に、どのドメインが、どんな権限(書き込み権や実行権など)を持って<br />
+いるかを記述します。</p>
+
+<p>これをのぞいてみると、、、</p>
+
+<p>読み込み用、スクリプト実行用、ログ用、コンフィグ用</p>
+
+<p>など、いろいろロールに分かれており、良さそうに見えなくもないのですが、<br />
+実際には、「httpd_tドメイン」には、書き込み権など強力な権限が割り当て<br />
+られていますので、実環境にあわせて、もう少し権限を絞る必要があると<br />
+思います。<br />
+<BR><br />
+●まとめ<br />
+といったように、全体的に利便性重視の甘い設定がされているようです。</p>
+
+<p>実は、それもそのはずでして、現在のポリシーは、「targeted」というものに<br />
+なっています。<br />
+このポリシー自体が、利便性重視なのです。</p>
+
+<p>そのため、セキュリティー重視の「strictポリシー」という物があり、こちらを<br />
+利用すると、とてもがちがちな設定をしてくれるようですが、動かなくなる<br />
+アプリが続出すると思われますので、すべて、正常動作させるようにするには<br />
+かなり、根気のいる作業となります。<br />
+しかし、そうした場合、かなりのセキュリティー(TCSEC(米国のセキュリティ<br />
+評価基準。通称オレンジブック)でB1レベル相当)を、実現できるはずです。<br />
+<BR><br />
+●感想<br />
+個人的な感想としましては、「strictポリシー」で動作させる気がないのだったら<br />
+素直に、Offにしておいた方がよいように思います。</p>
+
+<p>通常、サーバをたてるときには、開発したアプリをインストールしたり、メール<br />
+サーバなどを動かしたりすると思いますので、デフォルトの設定のまま使用する<br />
+可能性はほとんど無いと思われるためです。<br />
+<BR><br />
+●おまけ</p>
+
+<p>ちなみに、設定法の基本は、下記のパターンで、設定していくことになります。<br />
+もう、気が遠くなりそうですよね。。。</p>
+
+<p>1，「setenforce 0 」で、「permissiveモード」というSELinuxのアクセス制御を<br />
+ 　無効にするモードで、動作確認をする。</p>
+
+<p>2，「setenforce 1 」で、SELinuxのアクセス制御を有効にして、再度、動作確認を<br />
+ 　する。</p>
+
+<p>3，動かない場合には、SELinuxのアクセス制御(*.fc,*.te)を再度設定する。<br />
+ 　「ドメインがどんなファイル・リソースにアクセスできるか」ですので、<br />
+ 　考え方はより詳細に制御できるパーミッション管理と変わりません。<br />
+ 　一つずつ、潰していけば、必ず、設定できるはずですので。</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/02/red_hat_enterpr_1.html">00:05</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/red_hat_enterpr_1.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/02/red_hat_enterpr_1.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/server/linux/index.html#000045"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/45"
+    dc:title="Red Hat Enterprise Linux 4.0 インストール編"
+    dc:identifier="http://www.noritsuna.jp/archives/server/linux/index.html#000045"
+    dc:subject="Linux"
+    dc:description="まっ、入れねばならぬでしょう、ということで。(^-^;A ●変更点 変更点としま..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-26T00:02:09+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;02&#26376;26&#26085;</h2>
+
+
+<h3 id="a000045">Red Hat Enterprise Linux 4.0 インストール編</h3>
+
+<p>まっ、入れねばならぬでしょう、ということで。(^-^;A</p>
+
+<p>●変更点<br />
+変更点としましては、、、という、細かい話は、<br />
+<a href="<br />
+http://www.redhat.com/software/rhel/"><br />
+http://www.redhat.com/software/rhel/</a></p>
+
+<p>を、見て頂くとして、今回の変更点で、<br />
+「プログラマ」としては、</p>
+
+<blockquote>・Kernel2.6<BR>
+・I/Oまわりの変更<BR></blockquote>
+
+<p>が、気になるところでしょうか？<br />
+パフォーマンスやスケーラビリティー、さらに、プログラムの組み方（ﾉД｀）<br />
+が、パワーアップしているらしいです。</p>
+
+<p>組み方については、もちろん、いままでのやり方でも動くのですが、より<br />
+パフォーマンスを出せる組み方が出来るようになっています。<br />
+<BR><br />
+つづいて、「管理者」としては、</p>
+
+<blockquote>・SELinux（Security-Enhanced Linux）<BR>
+　これについては、<a href="http://www.itmedia.co.jp/enterprise/articles/0501/31/news008.html">この辺の連載</a>がよいかも？？？まだ更新されるようですし。<BR></blockquote>
+
+<p><br />
+でしょう。なんといっても。<br />
+しかも、これ、デフォルトでONになっているとのこと。</p>
+
+<p>パーミッションの扱いなどが、大きく変わりますので、移行やバージョン<br />
+アップ組は、苦労するんじゃないでしょうか？<br />
+それに、新規システムだとしても、SELinux流の設計・設定をマスター<br />
+しなくては、構築もままなりません。<br />
+（まぁ、使わなければよいという話もありますが。）</p>
+
+<p>この点から、SELinuxについては、少々、つっこんでみたいと思います。<br />
+（ただし、細かい話はやりません。ほかで、いっぱい出てますので。)<br />
+<BR><br />
+●インストール<br />
+さて、では、早速インストールをしようかと思います。<br />
+インストールマシンは、例のごとく、VMWareちゃんです。</p>
+
+<p>VMWareで、インストールOSとしてLinuxを選択すると、ディスクのインター<br />
+フェースにSCSIが選ばれますが、RHEL4.0では、自動認識されないようです。</p>
+
+<p>使用可能なSCSIドライバは、下記の物なのですが、デフォルトの選択肢には<br />
+ないのです。<br />
+もちろん、ドライバを別途作って読み込ませれば、OKなのですが、ここは<br />
+めんどくさいので、あきらめてIDEに接続し直すことにします。<br />
+<blockquote><br />
+・Buslogic BT-958 Compatible <BR><br />
+・LSI Logic LSI53C10xx Ultra160 <BR></blockquote></p>
+
+<p><br />
+このあとは、いつものanacondaちゃんが起動します。<br />
+いままでのインストーラそのままですので、迷う人もいないでしょう。</p>
+
+<p>ただ、一点、ファイアーウォールの設定のところで、SELinuxを使うかどうかの<br />
+設定が増えています。<br />
+使いたくない人は、ここで、使用しない設定にしましょう。<br />
+今回は、これがメインイベントなので、「アクティブ(デフォルト値)」です。<br />
+<BR><br />
+そして、インストールが無事に終了したら、起動画面が現れます。<br />
+ここからが、今までと少々違うようです。</p>
+
+<p>最初に、Windowsの様にRedHatNetworkアクティべーションを要求されます。</p>
+
+<p>ここで、登録しないと30日のトライアル版扱いとなるようです。</p>
+
+<p>以上でインストールは終了です。<br />
+<BR><br />
+そして、無事にgnomeGUIが起動するわけですが、こちらも大きく変わって<br />
+いるようです。<br />
+あえて、キャプ画面は載せないので、どう変わったかは、皆さんの目で<br />
+お確かめを。</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/02/red_hat_enterpr_2.html">00:02</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/red_hat_enterpr_2.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/02/red_hat_enterpr_2.html#trackbacks">トラックバック</a>
+
+</p>
+
+
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,400 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: 特許と技術者</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+
+<link rel="start" href="http://www.noritsuna.jp/" title="Home" />
+<link rel="prev" href="http://www.noritsuna.jp/archives/2005/03/post_23.html" title="検索エンジン" />
+
+<link rel="next" href="http://www.noritsuna.jp/archives/2005/03/conceptseach_vs.html" title="ConceptSeach VS Google Desktop Search" />
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var HOST = 'www.noritsuna.jp';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + (expires ? "; expires=" + expires : "") + (path ? "; path=" + path : "") + (domain ? "; domain=" + domain : "") + (secure ? "secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function rememberMe (f) {
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+    now = now.toGMTString();
+    if (f.author != undefined)
+       setCookie('mtcmtauth', f.author.value, now, '/', '', '');
+    if (f.email != undefined)
+       setCookie('mtcmtmail', f.email.value, now, '/', '', '');
+    if (f.url != undefined)
+       setCookie('mtcmthome', f.url.value, now, '/', '', '');
+}
+
+function forgetMe (f) {
+    deleteCookie('mtcmtmail', '/', '');
+    deleteCookie('mtcmthome', '/', '');
+    deleteCookie('mtcmtauth', '/', '');
+    f.email.value = '';
+    f.author.value = '';
+    f.url.value = '';
+}
+
+//-->
+</script>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2005/03/post_24.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/54"
+    dc:title="特許と技術者"
+    dc:identifier="http://www.noritsuna.jp/archives/2005/03/post_24.html"
+    dc:subject="OSS"
+    dc:description="EUのソフト特許法案、7日の閣僚会議で承認へ という記事が出ておりました。 「特..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-08T00:06:05+09:00" />
+</rdf:RDF>
+-->
+
+
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2005/03/post_24.html">
+<dc:title>特許と技術者</dc:title>
+<dc:description>EUのソフト特許法案、7日の閣僚会議で承認へ という記事が出ておりました。 「特...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2005-03-08T00:06:05+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+
+
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+
+<p align="right">
+<a href="http://www.noritsuna.jp/archives/2005/03/post_23.html">&laquo; 検索エンジン</a> |
+
+<a href="http://www.noritsuna.jp/">メイン</a>
+| <a href="http://www.noritsuna.jp/archives/2005/03/conceptseach_vs.html">ConceptSeach VS Google Desktop Search &raquo;</a>
+
+</p>
+
+<h2>2005&#24180;03&#26376;08&#26085;</h2>
+
+<h3>特許と技術者</h3>
+
+<p><a href="http://www.itmedia.co.jp/news/articles/0503/05/news014.html">EUのソフト特許法案、7日の閣僚会議で承認へ</a></p>
+
+<p>という記事が出ておりました。</p>
+
+<blockquote>
+「特許で縛ったら、技術革新が止まってしまう！パブリック<BR>
+　ドメインととして誰でも使えるようにすべきだ！！！」<BR>
+「いや、特許がなければ、研究開発の投資をした企業が利益を<BR>
+　得られない！！！」
+</blockquote>
+
+<p>というような話は、正直、いろいろなところで議論し尽くされているので、<br />
+ここでは、おいておいて、この前に気になった記事と絡めて考察させて<br />
+頂ければと思います。<br />
+<BR><br />
+●特許を学ぶこと<a href="http://www.itmedia.co.jp/enterprise/articles/0502/16/news103.html"><br />
+HP幹部：「ソフトウェア特許を無視するのはいささか世間知らず」</a></p>
+
+<p>やはり、現時点で、特許を無視することは出来ないと思います。</p>
+
+<p>パブリックドメインのようなものを認めさせるには、ものすごいエネルギーが<br />
+必要で、おいそれと出来るワケじゃないですし、<br />
+かといって、「出来ないから」といって、何もしなければ、何も変わらない。</p>
+
+<p>そして、もしも、本当にこのままの流れが変わらなければ、全ての技術者は<br />
+特許に怯えないため、法知識を持たざるを得ません。</p>
+
+<p>そこで、今できることの妥協点として、各自が法武装を強化して特許に対し<br />
+耐性をつけていくことが、重要ではないでしょうか。<br />
+<BR><br />
+●特許とつきあうこと<br />
+といっても、技術者が、法武装するなんて、ナンセンスといわざる得ません。<br />
+そこで、気になっているのが、</p>
+
+<p><a href="http://japan.linux.com/opensource/05/02/21/0150241.shtml">Moglenが構想する「運動全体の法律顧問室」</a></p>
+
+<p>です。<br />
+SFLCは、言うならば、IT弁護士養成所 兼 OSS弁護団ですか？(^-^;A</p>
+
+<p>ここでは、オープンソースの法的支援を受けられます。</p>
+
+<p>ということは、自分の開発したコードをオープンソース化すれば、自動的に<br />
+SFLCが、法的バックとして付くわけです。※1<br />
+すなわち、普通のベンチャーでは、絶対に雇えない高額な弁護資料がただで<br />
+得られる上、訴えられる可能性も低くなるということです。※2</p>
+
+<p>このことを考えると、ベンチャーにおいては、開発したコードをオープン<br />
+ソース化することを視野に入れて、ビジネスと組み立てるという選択肢は<br />
+非常に有効ではないでしょうか。<br />
+<BR><br />
+※1・・・そんなに単純な図式ではないと思いますが。。。</p>
+
+<p>※2・・・現時点で、日本において、どのくらい役立つようになるかは、<br />
+　　　　 まだまだ、未知数ですが、日本にも波及してくる可能性も十分に<br />
+　　　　 考えられます。</p>
+
+<div id="a000054more"><div id="more">
+
+</div></div>
+
+<p class="posted">投稿者 noritsuna : 2005&#24180;03&#26376;08&#26085; 00:06</p>
+
+<h2 id="trackbacks">トラックバック</h2>
+<p class="techstuff">このエントリーのトラックバックURL:<br />
+http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/54</p>
+
+<p>このリストは、次のエントリーを参照しています:  <a href="http://www.noritsuna.jp/archives/2005/03/post_24.html">特許と技術者</a>:</p>
+
+<p id="p107">
+&raquo; <a href="http://freett.com/sellers/furniture/Broyhill-Furniture.html">Broyhill Furniture</a> from Broyhill Furniture<br />
+Hi! I want to make the same site that your. I like it very much. Hope thati do i... <a href="http://freett.com/sellers/furniture/Broyhill-Furniture.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;23&#26085; 01:03</p>
+<p id="p170">
+&raquo; <a href="http://epills.fr.nf/buy+xanax">buy xanax</a> from buy xanax<br />
+Hi! Very eye catching site. Best regards. <a href="http://epills.fr.nf/buy+xanax">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;28&#26085; 04:13</p>
+<p id="p176">
+&raquo; <a href="http://epills.fr.nf/buy+ambien">buy ambien</a> from buy ambien<br />
+Well... I try to say a some words about your site. It's very well. I'm say serio... <a href="http://epills.fr.nf/buy+ambien">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;28&#26085; 04:56</p>
+<p id="p180">
+&raquo; <a href="http://epills.fr.nf/buy+effexor">buy effexor</a> from buy effexor<br />
+Hi!I recently lunched my own project and can't find guestbook script for it. I t... <a href="http://epills.fr.nf/buy+effexor">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;28&#26085; 05:46</p>
+<p id="p203">
+&raquo; <a href="http://guccibrand.gu.funpic.de/authentic-gucci-handbag.html">authentic gucci handbag</a> from authentic gucci handbag<br />
+Hi!I recently lunched my own project and can't find guestbook script for it. I t... <a href="http://guccibrand.gu.funpic.de/authentic-gucci-handbag.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;28&#26085; 12:53</p>
+<p id="p272">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/cheap-furniture.html">cheap furniture</a> from cheap furniture<br />
+Hi!I recently lunched my own project and can't find guestbook script for it. I t... <a href="http://vvvvvv.bizland.com/furniture/cheap-furniture.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;30&#26085; 22:26</p>
+<p id="p392">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-suite.html">bathroom suite</a> from bathroom suite<br />
+Hi! I want to make the same site that your. I like it very much. Hope thati do i... <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-suite.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;02&#26085; 07:38</p>
+<p id="p406">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/beds/loft-bed.html">loft bed</a> from loft bed<br />
+This web-site is the coolest! Now I don't have to feel so intimated by science! ... <a href="http://vvvvvv.bizland.com/furniture/beds/loft-bed.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;02&#26085; 13:35</p>
+<p id="p451">
+&raquo; <a href="http://bloc.balearweb.net/get/798/antique-bedroom-furniture.html">antique bedroom furniture</a> from antique bedroom furniture<br />
+Fun Site to view and learn. Look forward to more. <a href="http://bloc.balearweb.net/get/798/antique-bedroom-furniture.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;03&#26085; 09:27</p>
+<p id="p461">
+&raquo; <a href="http://bloc.balearweb.net/get/798/wholesale-furniture.html">wholesale furniture</a> from wholesale furniture<br />
+Good work. It looks cool! You are welcome to my site! <a href="http://bloc.balearweb.net/get/798/wholesale-furniture.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;03&#26085; 14:15</p>
+<p id="p540">
+&raquo; <a href="http://blog.gala.net/uploads/epills/prilosec.html">prilosec</a> from prilosec<br />
+Good work. It looks cool! You are welcome to my site! <a href="http://blog.gala.net/uploads/epills/prilosec.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;05&#26085; 21:15</p>
+<p id="p545">
+&raquo; <a href="http://blog.gala.net/uploads/epills/temovate.html">temovate</a> from temovate<br />
+Hi. A lot of interesting info. Cool site! <a href="http://blog.gala.net/uploads/epills/temovate.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;05&#26085; 23:22</p>
+<p id="p590">
+&raquo; <a href="http://bloc.balearweb.net/get/813/omega-watch-for-sale.html">omega watch for sale</a> from omega watch for sale<br />
+Sounds like a pretty cool book. Looking forward to next months experiment. <a href="http://bloc.balearweb.net/get/813/omega-watch-for-sale.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;06&#26085; 19:35</p>
+<p id="p593">
+&raquo; <a href="http://bloc.balearweb.net/get/813/omega-watch-company.html">omega watch company</a> from omega watch company<br />
+Well... I try to say a some words about your site. It's very well. I'm say serio... <a href="http://bloc.balearweb.net/get/813/omega-watch-company.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;06&#26085; 20:45</p>
+<p id="p648">
+&raquo; <a href="http://bloc.balearweb.net/get/822/generic-xanax.html">generic xanax</a> from generic xanax<br />
+Good work. It looks cool! You are welcome to my site! <a href="http://bloc.balearweb.net/get/822/generic-xanax.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;08&#26085; 03:45</p>
+<p id="p683">
+&raquo; <a href="http://bloc.balearweb.net/get/822/generic-levitra.html">generic levitra</a> from generic levitra<br />
+Simply post message for testing. Sorry in advance! <a href="http://bloc.balearweb.net/get/822/generic-levitra.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;08&#26085; 19:29</p>
+<p id="p711">
+&raquo; <a href="http://bloc.balearweb.net/get/824/effexor-xr.html">effexor xr</a> from effexor xr<br />
+Hi! Very eye catching site. Best regards. <a href="http://bloc.balearweb.net/get/824/effexor-xr.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;09&#26085; 08:20</p>
+<p id="p724">
+&raquo; <a href="http://bloc.balearweb.net/get/824/kenalog.html">kenalog</a> from kenalog<br />
+This is getting to be a very informative site, we just have to take the time to ... <a href="http://bloc.balearweb.net/get/824/kenalog.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;09&#26085; 13:17</p>
+<p id="p731">
+&raquo; <a href="http://bloc.balearweb.net/get/824/ranitidine-hcl.html">ranitidine hcl</a> from ranitidine hcl<br />
+Well... I try to say a some words about your site. It's very well. I'm say serio... <a href="http://bloc.balearweb.net/get/824/ranitidine-hcl.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;09&#26085; 17:24</p>
+<p id="p767">
+&raquo; <a href="http://ebags.eb.funpic.de/gucci-handbags/discounted-gucci-handbag.html">discounted gucci handbag</a> from discounted gucci handbag<br />
+I enjoyed doing this little project, it was easy to so my little brother. <a href="http://ebags.eb.funpic.de/gucci-handbags/discounted-gucci-handbag.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;10&#26085; 09:28</p>
+<p id="p796">
+&raquo; <a href="http://ebags.eb.funpic.de/chanel-handbags/authentic-chanel-handbag.html">authentic chanel handbag</a> from authentic chanel handbag<br />
+I was wondering if you could send me some more information about projects in my ... <a href="http://ebags.eb.funpic.de/chanel-handbags/authentic-chanel-handbag.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;10&#26085; 22:48</p>
+<p id="p807">
+&raquo; <a href="http://ebags.eb.funpic.de/marc-jacobs-handbags/marc-by-marc-jacobs-handbag.html">marc by marc jacobs handbag</a> from marc by marc jacobs handbag<br />
+This is my third visit to your site. Keep up the good work. Fun stuff for all ag... <a href="http://ebags.eb.funpic.de/marc-jacobs-handbags/marc-by-marc-jacobs-handbag.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;11&#26085; 03:38</p>
+
+
+
+
+
+<h2 id="comments">コメント</h2>
+
+
+
+
+
+<h2>コメントしてください</h2>
+
+ 
+
+
+
+<form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-comments.cgi" name="comments_form" onsubmit="if (this.bakecookie[0].checked) rememberMe(this)">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="54" />
+
+<div id="name_email">
+<p><label for="author">名前:</label><br />
+<input tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">メールアドレス:</label><br />
+<input tabindex="2" id="email" name="email" /></p>
+</div>
+
+
+
+<p><label for="url">URL:</label><br />
+<input tabindex="3" type="text" name="url" id="url" />
+保存しますか?
+<input type="radio" id="remember" onclick="rememberMe(this.form)" name="bakecookie" /><label for="remember">はい</label><input type="radio" id="forget" name="bakecookie" onclick="forgetMe(this.form)" value="Forget Info" style="margin-left: 15px;" /><label for="forget">いいえ</label><br style="clear: both;" />
+</p>
+
+<p><label for="text">コメント:</label> <br/>
+<textarea tabindex="4" id="text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input type="submit" name="preview" tabindex="5" 
+    value="&nbsp;確認&nbsp;" />
+<input style="font-weight: bold;" type="submit" name="post" 
+    tabindex="6" value="&nbsp;投稿&nbsp;" />
+</div>
+</form>
+
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+if (document.comments_form.email != undefined)
+    document.comments_form.email.value = getCookie("mtcmtmail");
+if (document.comments_form.author != undefined)
+    document.comments_form.author.value = getCookie("mtcmtauth");
+if (document.comments_form.url != undefined)
+    document.comments_form.url.value = getCookie("mtcmthome");
+if (getCookie("mtcmtauth") || getCookie("mtcmthome")) {
+    document.comments_form.bakecookie[0].checked = true;
+} else {
+    document.comments_form.bakecookie[1].checked = true;
+}
+//-->
+</script>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

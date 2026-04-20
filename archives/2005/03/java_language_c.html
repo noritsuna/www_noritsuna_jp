@@ -1,0 +1,285 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: Java Language Conversion Assistant</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+
+<link rel="start" href="http://www.noritsuna.jp/" title="Home" />
+<link rel="prev" href="http://www.noritsuna.jp/archives/2005/03/post_27.html" title="ちえらぼ行ってきました" />
+
+<link rel="next" href="http://www.noritsuna.jp/archives/2005/03/p2psip.html" title="P2P-SIP" />
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var HOST = 'www.noritsuna.jp';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + (expires ? "; expires=" + expires : "") + (path ? "; path=" + path : "") + (domain ? "; domain=" + domain : "") + (secure ? "secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function rememberMe (f) {
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+    now = now.toGMTString();
+    if (f.author != undefined)
+       setCookie('mtcmtauth', f.author.value, now, '/', '', '');
+    if (f.email != undefined)
+       setCookie('mtcmtmail', f.email.value, now, '/', '', '');
+    if (f.url != undefined)
+       setCookie('mtcmthome', f.url.value, now, '/', '', '');
+}
+
+function forgetMe (f) {
+    deleteCookie('mtcmtmail', '/', '');
+    deleteCookie('mtcmthome', '/', '');
+    deleteCookie('mtcmtauth', '/', '');
+    f.email.value = '';
+    f.author.value = '';
+    f.url.value = '';
+}
+
+//-->
+</script>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2005/03/java_language_c.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/69"
+    dc:title="Java Language Conversion Assistant"
+    dc:identifier="http://www.noritsuna.jp/archives/2005/03/java_language_c.html"
+    dc:subject=".NET"
+    dc:description="JavaのコードをC#に変換してくれるという、すばらしいツールです。 諸事情によ..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-30T23:54:58+09:00" />
+</rdf:RDF>
+-->
+
+
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2005/03/java_language_c.html">
+<dc:title>Java Language Conversion Assistant</dc:title>
+<dc:description>JavaのコードをC#に変換してくれるという、すばらしいツールです。 諸事情によ...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2005-03-30T23:54:58+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+
+
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+
+<p align="right">
+<a href="http://www.noritsuna.jp/archives/2005/03/post_27.html">&laquo; ちえらぼ行ってきました</a> |
+
+<a href="http://www.noritsuna.jp/">メイン</a>
+| <a href="http://www.noritsuna.jp/archives/2005/03/p2psip.html">P2P-SIP &raquo;</a>
+
+</p>
+
+<h2>2005&#24180;03&#26376;30&#26085;</h2>
+
+<h3>Java Language Conversion Assistant</h3>
+
+<p>JavaのコードをC#に変換してくれるという、すばらしいツールです。</p>
+
+<p>諸事情により、手抜き、、、もとい、Javaのコードがどのように変換される<br />
+のか、コピペ、、、もとい、読んでみたく思い、かようなツールを利用して<br />
+みました。</p>
+
+<p>そのすばらしき顛末です。</p>
+
+<p>●準備<br />
+1，まずは、ここからGet。<br />
+<a href="http://www.microsoft.com/japan/msdn/vstudio/downloads/tools/jlca/default.asp">Microsoft Java Language Conversion Assistant 2.0</a></p>
+
+<p><br />
+2，インストール！！！<br />
+VSのアドインとして組み込まれます。</p>
+
+<p><br />
+3，VisualJ++でプロジェクトを作成。<br />
+そこに変換させたいJavaファイルを読み込ませます。</p>
+
+<p><br />
+4，「ファイル」→「開く」→「変換」<br />
+変換を実行します。設定はデフォルトのままを使用。<br />
+<BR><br />
+●結果<br />
+「解析に失敗しました。」と、エラー吐いて落ちます。。。<br />
+コアファイル見ても、意味不明な文字列がならんでいるだけ。。。</p>
+
+<p>う〜ん、意味がわからん。</p>
+
+<p>いろいろと調べてみると、「JDK1.2 の一部のみサポート」ということらしい。<br />
+もしかしたら、この辺に引っかかっているのかも。。</p>
+
+<p>でも、変換できないモノは、そのまま出力するって書いてあるんだけどなぁ。<br />
+<BR><br />
+●再挑戦<br />
+さらに、調査したところ、Ver.3.0βなるものを発見。<br />
+JDK1.3をサポートと書いてあるので、こちらにて、再度挑戦してみる。</p>
+
+<p><a href="betahttp://msdn.microsoft.com/vstudio/downloads/tools/jlca/30beta/default.aspx">Microsoft Java Language Conversion Assistant 3.0 beta </a><br />
+<BR><br />
+●結果2<br />
+ダメです。やっぱ、同じエラー吐いて落ちます。</p>
+
+<p>やはり、高度なプログラムは変換できないんでしょうか？<br />
+↓が、ソースの「全て」なんですが。。。どうやら、JLCA君には、難しい<br />
+プログラムだったようです。＿|￣|○　ガックシ・・・</p>
+
+<blockquote>
+public class Message { <BR>
+	public int HEAD = 0;<BR>
+}
+</blockquote>
+
+<div id="a000069more"><div id="more">
+
+</div></div>
+
+<p class="posted">投稿者 noritsuna : 2005&#24180;03&#26376;30&#26085; 23:54</p>
+
+<h2 id="trackbacks">トラックバック</h2>
+<p class="techstuff">このエントリーのトラックバックURL:<br />
+http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/69</p>
+
+
+
+
+
+<h2 id="comments">コメント</h2>
+
+
+
+
+
+<h2>コメントしてください</h2>
+
+ 
+
+
+
+<form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-comments.cgi" name="comments_form" onsubmit="if (this.bakecookie[0].checked) rememberMe(this)">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="69" />
+
+<div id="name_email">
+<p><label for="author">名前:</label><br />
+<input tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">メールアドレス:</label><br />
+<input tabindex="2" id="email" name="email" /></p>
+</div>
+
+
+
+<p><label for="url">URL:</label><br />
+<input tabindex="3" type="text" name="url" id="url" />
+保存しますか?
+<input type="radio" id="remember" onclick="rememberMe(this.form)" name="bakecookie" /><label for="remember">はい</label><input type="radio" id="forget" name="bakecookie" onclick="forgetMe(this.form)" value="Forget Info" style="margin-left: 15px;" /><label for="forget">いいえ</label><br style="clear: both;" />
+</p>
+
+<p><label for="text">コメント:</label> <br/>
+<textarea tabindex="4" id="text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input type="submit" name="preview" tabindex="5" 
+    value="&nbsp;確認&nbsp;" />
+<input style="font-weight: bold;" type="submit" name="post" 
+    tabindex="6" value="&nbsp;投稿&nbsp;" />
+</div>
+</form>
+
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+if (document.comments_form.email != undefined)
+    document.comments_form.email.value = getCookie("mtcmtmail");
+if (document.comments_form.author != undefined)
+    document.comments_form.author.value = getCookie("mtcmtauth");
+if (document.comments_form.url != undefined)
+    document.comments_form.url.value = getCookie("mtcmthome");
+if (getCookie("mtcmtauth") || getCookie("mtcmthome")) {
+    document.comments_form.bakecookie[0].checked = true;
+} else {
+    document.comments_form.bakecookie[1].checked = true;
+}
+//-->
+</script>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

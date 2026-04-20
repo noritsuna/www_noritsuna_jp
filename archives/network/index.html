@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: Network アーカイブ</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/network/index.html#000050"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/50"
+    dc:title="ネットワークトラブル"
+    dc:identifier="http://www.noritsuna.jp/archives/network/index.html#000050"
+    dc:subject="Network"
+    dc:description="自宅サーバ環境にて、ここ数日のうちに80％くらいの確率でネットワーク 接続エラー..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-02T00:37:26+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;03&#26376;02&#26085;</h2>
+
+
+<h3 id="a000050">ネットワークトラブル</h3>
+
+<p>自宅サーバ環境にて、ここ数日のうちに80％くらいの確率でネットワーク<br />
+接続エラーになる現象が発生。（日に日に影響範囲が広がる）<br />
+現象をまとめると、下記の感じ。</p>
+
+<blockquote>・外部からsmtpやimap,httpに接続すると接続エラー<BR>
+  が80％くらいで出る<BR>
+　(なので、時々はつながる)<BR>
+・同じサーバでも、内部からのアクセスは、ルータを経由<BR>
+  すると同現象が出る<BR>
+・同じサーバでも、内部からのアクセスで、直接接続すると<BR>
+  現象が出ない<BR>
+・内部から外部へアクセスは、エラーが出ない。<BR>
+</blockquote>
+
+<p>この辺のことより、ハブが逝かれたと推測するが、至る所に7個も<br />
+ハブが存在するため、ネットワーク構成を考えながらどの物理経路が<br />
+怪しいかを考えること10分、アップリンクとダウンリンクのLEDが<br />
+ちぐはぐに点滅しているハブを発見。</p>
+
+<p>用意したハブに取り替え、無事、復旧。ヽ（´▽｀）ノ</p>
+
+<p>久しぶりのレイヤー1の作業でした。</p>
+
+<p>ご迷惑をおかけした皆様、どうも、すみませんでした。ぺこ <(＿ ＿)></p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/03/post_22.html">00:37</a>
+| <a href="http://www.noritsuna.jp/archives/2005/03/post_22.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/03/post_22.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/network/index.html#000025"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/25"
+    dc:title="NIS2005とトルネードWeb"
+    dc:identifier="http://www.noritsuna.jp/archives/network/index.html#000025"
+    dc:subject="Network"
+    dc:description="どうやら、NortonInternetSecurity2005とAirH&quot;用Ve..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-20T01:05:36+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;02&#26376;20&#26085;</h2>
+
+
+<h3 id="a000025">NIS2005とトルネードWeb</h3>
+
+<p>どうやら、NortonInternetSecurity2005とAirH"用Venturi Client(トルネードWeb)の<br />
+相性がよろしくない模様。</p>
+
+<p>しばらく、HTTP、HTTPS経由で通信を行っているとどちらかがフリーズして<br />
+HTTP、HTTPS経由のアクセスが一切出来なくなります。<br />
+(まぁ、両方ともHTTP Proxyとして動作するものですからね。競合する可能性は<br />
+ 高いわけで。)</p>
+
+<p>この状態になったら、落ちている方を再起動すると復活します。<br />
+サービスとして登録されているので、そちらから再起動できます。</p>
+
+<blockquote>
+・Symantec Network Proxy<br>
+・Venturi2 Client<br>
+</blockquote>
+
+<p>「回復」タブの中にある、落ちたらサービスを再起動するオプションをつけて<br />
+おくとましになる模様です。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/02/nis2005web.html">01:05</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/nis2005web.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/02/nis2005web.html#trackbacks">トラックバック</a>
+
+</p>
+
+
+
+</div>
+</div>
+
+</body>
+</html>

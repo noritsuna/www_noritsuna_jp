@@ -1,0 +1,924 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験 with SIProp開発記: P2P アーカイブ</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験 with SIProp開発記</a></h1>
+<h2>SIPやVoIP、P2Pに関する技術情報を書き殴っているBlogです。
+また、SIPropプロジェクトの開発記も兼ねています。</h2>
+</div>
+
+<div class="content">
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000139"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/139"
+    dc:title="著作物のP2P共有非合法化？？？"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000139"
+    dc:subject="P2P"
+    dc:description="「スペインで著作物のP2P共有非合法化」という記事が出てます。 P2Pによる不正..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-30T17:47:37+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;30&#26085;</h2>
+
+
+<h3 id="a000139">著作物のP2P共有非合法化？？？</h3>
+
+<p>「<a href="http://slashdot.jp/articles/06/06/30/0739206.shtml">スペインで著作物のP2P共有非合法化</a>」という記事が出てます。</p>
+
+<blockquote>P2Pによる不正なファイル共有を非合法化する知的所有権保護法 (intellectual property law) の改正案がスペイン国会に承認された。</blockquote>
+
+<p>とかありますが、意味がわかりませんね。「不正なファイル共有」って、普通に非合法な気がするのですが。。。それとも、「日本みたいにダウンロードはOK」みたいなのが、ダメになるって感じですかね？<br />
+それに、P2Pの定義自体をどうするんでしょうね？P2Pといっても、厳密に見れば、クライアント-サーバ形態と変わらないという見方も出来るわけで。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/p2p_1.html">17:47</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/p2p_1.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/p2p_1.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000129"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/129"
+    dc:title="GoogleV6"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000129"
+    dc:subject="P2P"
+    dc:description="Googleが、IPv6に本格参戦するという予測が、こちらにでています。 「スラ..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-30T00:00:30+09:00" />
+</rdf:RDF>
+-->
+
+
+
+
+<h3 id="a000129">GoogleV6</h3>
+
+<p>Googleが、IPv6に本格参戦するという予測が、<a href="http://www.itmedia.co.jp/news/articles/0606/26/news020.html">こちら</a>にでています。</p>
+
+<blockquote>「スラッシュ20規模のアドレスを確保しているこのほかの企業を皆さんはご存知だろうか？　Googleだ」とライトマン氏。「Yahoo!もだ。サービスプロバイダーが準備をしていないというわけではないが、高度な集合体と明確な展望を掲げる経営体制を持ち、技術に精通した企業が、（IPv6）導入への準備にかかっている」
+
+<p>　「これがGoogleがモバイルダークファイバーを買収した理由だ。明確な意図がある。『ほかの米企業がのんきにIPv6を導入しないのなら、自分たちが導入してしまおう』という意気込みなのだ」</blockquote></p>
+
+<p>話としては、解りますが、狙いが良くわからないですね。なぜ、IPv6にしなければならないのかが。</p>
+
+<p>IPv6のメリットは、膨大なアドレス空間によるNAT問題の解決にあるかと思われますが、この使い方だとクライアント−サーバ型ではあまり意味をなしません。P2P型において、初めて意味をなすところです。</p>
+
+<p>そうなると、GoogleTalkがらみとなりそうですが、現状のGoogleTalkがIPv6化したところでメリットはなさそうです。<br />
+そこで、もう一歩進んだものが出てくる可能性がありますが。。。一つの答えとしては、MSのGrooveのような方向性ですね。このような使い方を考えるのであれば、P2P型を重視する意味があります。</p>
+
+<p>さて、どうなることやら、見物ですね。IPv6をやってきた人間としては、是非とも、普及させていただきたいものです。<br />
+(デジタル放送とどちらが早く普及するかなんて、自虐ネタを披露しないですむように。(;^_^A )<br />
+<BR><br />
+※余談<br />
+ちなみに、IPv6になったからと言ってNAT問題が解決する保証はありません。なぜなら、GlobalにIPをさらしてしまうとセキュリティーの問題が出てくるためです。<br />
+特に、企業においては、内部のネットワークトポロジーを公開したくないでしょうから、依然としてNATのような技術が使われることでしょう。(某ルータメーカーにお勤めの友人もそういってました。)<br />
+ただ、コンシューマレベルでどうなるかですね。こちらは、ある程度Global化しそうですが。。。要は、ルータメーカーの思惑次第でしょう。(普通、デフォルト設定のまま使用しますから。)<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/googlev6_1.html">00:00</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/googlev6_1.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/googlev6_1.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000131"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/131"
+    dc:title="WiFiルータ、5ドル？？？"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000131"
+    dc:subject="P2P"
+    dc:description="ルータが1台5ドルらしいです。こちら。 FONサービス用ということですが、それで..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-27T16:36:45+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;27&#26085;</h2>
+
+
+<h3 id="a000131">WiFiルータ、5ドル？？？</h3>
+
+<p>ルータが1台5ドルらしいです。<a href="http://www.fmobile.org/fmobile/2006/06/fon_wifi15_b218.html">こちら</a>。</p>
+
+<p>FONサービス用ということですが、それでも、すごい額ですね。場合によっては、販促品としてただで配れるくらいのレベルですよ、これは。</p>
+
+<p>しかし、もう、このくらいの価格も見えてきたんですね。ルータは。。。<br />
+のちほど、エントリーをアップする予定であるのですが、これが厳しいのですよね。「ネットワーク層」に蠢くものにとっては。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/wifi5.html">16:36</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/wifi5.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/wifi5.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000123"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/123"
+    dc:title="SIPropの位置付けの俯瞰"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000123"
+    dc:subject="SIProp"
+    dc:description="私なりに考えている全体像の中でのSIPropの位置付けの解説をしたいと思います。..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-26T00:00:00+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;26&#26085;</h2>
+
+
+<h3 id="a000123">SIPropの位置付けの俯瞰</h3>
+
+<p>私なりに考えている全体像の中でのSIPropの位置付けの解説をしたいと思います。<br />
+今更と言うところや説明不足も多々ありますが、私の説明用資料に近いものなので、ご容赦を。。。<br />
+そのうち、各層について、もっと掘り下げたものを書こうかと思います。</p>
+
+<p>■全体像<br />
+下記のブロック図が、私の考えている全体像となります。（ちょっと、ださい図なので、書き換え予定。）また、最後に、データの流れなどを書いたポンチ絵もありますので、そちらも会わせてみていただければと思います。<br />
+全体の要素として、「アプリケーション」「マイニング」「プラットフォーム」があり、それらが連携することにより、１つのサービスが実現されると考えています。（各要素は、状況により、要素技術へと細分化されていきます。）<br />
+この図を元に、下記に簡単に説明を加えていきます。</p>
+
+<p><a href="/images/siprop/globalimage.png"><img src="/images/siprop/globalimage.png" width="300"></a></p>
+
+<p><BR><br />
+■プラットフォーム<br />
+各デバイス間を相互に接続し、境界を排除するための世界。<br />
+<a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20060423/235999/">シームレス・コミュニケーション</a> といったあたりです。</p>
+
+<p>●アプリ層<br />
+アプリケーションを使う上で、デバイスに依存しないUIや操作性を提供する層。<br />
+この辺のイメージは、中島聡氏の<a href="http://satoshi.blogs.com/life/">ブログ</a>に的確な解説があるので、<a href="http://satoshi.blogs.com/life/2006/04/post_1.html">そちら</a>をご覧いただければと思います。<br />
+デバイスも多様化し、使用法も多様化することがすることが、考えられますので、ある程度分野別にいろいろとミドルウェアが出てくるとは思います。</p>
+
+<p>例：<a href="http://www.uievolution.com/index_ja.html">UIEvolution</a>さんのUIEngine</p>
+
+<p><br />
+●セッション層<br />
+認証やパーミッション管理、デバイス間のセッション管理を行う層。<br />
+セキュリティー機能が付加した電力網のようなものを想定してもらえればよいかと思います。<br />
+<a href="http://www.siprop.org/">SIProp</a>は、ここの標準化を目指しています。<br />
+ここについては、後ほど、詳細な解説をする予定です。</p>
+
+<p>例：NTTコミュニケーションズさんの<a href="http://www.ipv6style.jp/jp/tech/20050131/index.shtml">m2m-x</a></p>
+
+<p><br />
+●ネットワーク層<br />
+デバイス間のコネクションを確立するための層。<br />
+ここは、あまり説明は必要ないでしょう。SkypeのA2Aなどですね。</p>
+
+<p>例：<a href=" http://www.skype.co.jp/">Skyp</a>eさんのSkypeや <a href="http://www.softether.com/jp/">ソフトイーサ</a>さんのPacketiX</p>
+
+<p><br />
+<BR><br />
+■データ<br />
+Googleが目指しているとおもわれる世界。<br />
+こちら側は、あまり強い分野ではないため、まとめ切れていません。名称も適当です。(;^_^A</p>
+
+<p>●AI層<br />
+行動履歴などから「自分」の志向を判断し、適切な結果を導く層。<br />
+セマンティックされたデータと行動データから、思考して、最適解を導き出すという部分となります。</p>
+
+<p>例：ハードディスクレコーダーの自動録画機能<br />
+(まぁ、まだまだAIと呼ぶには、アレですが。。。)</p>
+
+<p><br />
+●ファインダビリティ層<br />
+入力された情報から的確な情報を探し出す層。<br />
+これは、書籍「<a href="http://www.amazon.co.jp/gp/product/4873112834/">アンビエント・ファインダビリティ</a>」より、命名しました。<br />
+必要な情報をどうやって見つけ出すかという部分となります。詳細は、該当書籍をあたってもらえればと思います。</p>
+
+<p>例：各検索エンジン</p>
+
+<p><br />
+●マイニング層<br />
+あまたの情報を収集分類する層。<br />
+セマンティックやタグ付けといった意味づけに関するものやRFIDなどの膨大なデータ、動画といったものを情報処理するかという部分となります。</p>
+
+<p>例：各検索エンジンのBot</p>
+
+<p><br />
+<BR><br />
+■アプリケーション<br />
+●エージェント<br />
+上記の層から上がってきたデータを統合し、ユーザに見せるためのUI層。<br />
+私のイメージとしては、「外部脳・・・もう一人の自分」というものになります。</p>
+
+<p>イメージ的には、<a href="http://www.praesens.co.jp/pws/">こちら</a>が究極に進化したもの。正確には、あの「何か」が出始めてきたときに、見て、「自分の分身がバーチャルな世界で勝手に動き回ったら面白いんじゃないの？」というところが、この妄想の原点になっています。</p>
+
+<p><BR><br />
+このような感じで、<a href="http://www.siprop.org/">SIProp</a>は、「プラットフォーム」の中層である「デバイスを繋げるための要素技術」であるというのが私の考えです。</p>
+
+<p><BR><br />
+最後に、この辺の話をポンチ絵にしたものを、貼り付けておきます。<br />
+2004年10月のあるデスマーチプロジェクト終了後の休暇中に暴走した状態で書いたもので、かなり恥ずかしいのですが、死蔵していても何も生み出さないので、公開してみることにします。<br />
+何かのお役に立つことを祈って。。。<br />
+<a href="/images/siprop/mousou.png"><img src="/images/siprop/mousou.png" width="300"></a></p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/siprop_1.html">00:00</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/siprop_1.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/siprop_1.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000120"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/120"
+    dc:title="セキュアなメッセンジャー"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000120"
+    dc:subject="P2P"
+    dc:description="こちらにセキュアなメッセンジャーソフトが、紹介されています。 企業をターゲットと..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-23T22:03:58+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;23&#26085;</h2>
+
+
+<h3 id="a000120">セキュアなメッセンジャー</h3>
+
+<p><a href="http://enterprise.watch.impress.co.jp/cda/software/2006/06/23/8111.html">こちらに</a>セキュアなメッセンジャーソフトが、紹介されています。<br />
+企業をターゲットとして、中央で集中管理が出来るものということらしいです。まぁ、要するに、SkypeクライアントとSkypeサーバをセットにしたものですね。</p>
+
+<p>前から、アイデアのレベルなどではありましたが、LCSやMSNを抱えるMS社につぶされてしまう可能性が高いため、皆さん、なかなか本気で取り組んでこなかった分野ですね。＜MS社とがちバトルというのは、非常に高いハードルなのですが。。。<br />
+ここに、真っ向から挑戦するアプライアンスと言うことですので、是非とも、がんばってもらいたいですね。ぜひとも、MS社をおそれていては、何も出来ないと言うことを実証してもらいたいです。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/post_3.html">22:03</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_3.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_3.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000104"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/104"
+    dc:title="SC2005参加"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000104"
+    dc:subject="P2P"
+    dc:description="本日は、SC2005へ、参加して参りました。 今回は、なんと言っても人数が、並で..."
+    dc:creator="noritsuna"
+    dc:date="2005-09-03T23:55:40+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;09&#26376;03&#26085;</h2>
+
+
+<h3 id="a000104">SC2005参加</h3>
+
+<p>本日は、<a href="http://muziyoshiz.jp/sc2005/">SC2005</a>へ、参加して参りました。</p>
+
+<p><br />
+今回は、なんと言っても人数が、並ではありませんでした。約150名ほどが参加されていたようです。</p>
+
+<p>各講演については、いろいろと規制があるようですので、あまり、突っ込まないようにしようかと思います。</p>
+
+<p><a href="http://muziyoshiz.jp/sc2005/?%B9%D6%B1%E9%B0%EC%CD%F7">講演内容</a></p>
+
+<p>■徳力 さんの講演<br />
+マーケ的な視点から、Skypeについての解説。さすがという内容でした。</p>
+
+<p><br />
+■池嶋 さんの講演<br />
+Skype Conference 2005 ということで、Skype の使用者(技術者ではなくユーザ)を対象にした、とてもわかりやすくかみ砕いた講演でした。<br />
+ただ、実は、使用者よりも技術者が、多かったようで。。。</p>
+
+<p><br />
+■岩田 さんの講演<br />
+App2App API が、まさに、ビンゴという感じでした。<br />
+これこそ、求めていたものの一つです。</p>
+
+<p>ただ、現バージョンでは、コンタクトリストにある人の間でしか通信できないとのこと。<br />
+まぁ、無制限であれば、Winnyが作れてしまうわけで、しょうがないところなのですが、もう少し、緩く解放してもらいたいところ。</p>
+
+<p><br />
+■吉澤 さんの講演<br />
+私の専門分野に近いところの講演。</p>
+
+<p>突っ込もうかと思っていたところが、あれらしいので、ここは自主規制しておきます。ぺこ <(_ _)></p>
+
+<p><br />
+■横田 さんの講演<br />
+・・・・・・やっちまったよ、横田さん。。。＿|￣|○　ガックシ・・・<br />
+もう、これは、あえて何も言いません。。。</p>
+
+<p><br />
+■清成 さんの講演<br />
+唯一、実機による実演があった講演。<br />
+やはり、実機があると華がありますね。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/09/sc2005.html">23:55</a>
+| <a href="http://www.noritsuna.jp/archives/2005/09/sc2005.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/09/sc2005.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000103"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/103"
+    dc:title="第2回オーバレイネットワーク研究会"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000103"
+    dc:subject="P2P"
+    dc:description="でも、最近、いろいろとあって、更新さぼりまくりです。（ﾉД｀）ｼｸｼｸ2個ほど、..."
+    dc:creator="noritsuna"
+    dc:date="2005-07-09T22:29:45+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;07&#26376;09&#26085;</h2>
+
+
+<h3 id="a000103">第2回オーバレイネットワーク研究会</h3>
+
+<p>でも、最近、いろいろとあって、更新さぼりまくりです。（ﾉД｀）ｼｸｼｸ2個ほど、やりたいネタがあるんですが、ちと、停滞中。。。</p>
+
+<p><br />
+ということで、本日は、「<a href="http://wslash.com/index.php?itemid=220">第2回オーバレイネットワーク研究会</a>」に参加してきました。</p>
+
+<p><br />
+■基調講演:白田 秀彰 氏(法政大学社会学部 助教授) <br />
+簡単には、<a href="http://www.cidf.org/japanese/">コンテンツID</a>のようなインフラシステムを作ろうというような内容と解釈しました。<br />
+そのほかにも、実際の弱小クリエイターに関する視点など、コンテンツ全体にわたる内容となっており、非常に興味をそそられました。</p>
+
+<p>そして、その講演の与太話はやばかった。<br />
+いろいろとアレゲでアレゲな話が飛び出しまして、ここでは、決して書くことが出来ません。(^-^;A<br />
+ですが、非常に面白く興味深い話でしたので、非常に勉強になりました。</p>
+
+<p><br />
+■第１部講演:田中洋平 氏 <br />
+某所で研究していたというPowerGridとコンテンツ配信を掛け合わせたようなシステムと解釈しました。</p>
+
+<p>構成など、非常に面白いと思われる内容でした。<br />
+ただ、現実論となると、某所で行ったアンケート結果などからもまだまだ、改良の余地ありというところです。</p>
+
+<p><br />
+しかし、この辺のシステムは、是非とも、実現したいと個人的にも考えていたりするところですので、もっと、追求していってほしいところであります。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/07/2.html">22:29</a>
+| <a href="http://www.noritsuna.jp/archives/2005/07/2.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/07/2.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000102"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/102"
+    dc:title="P2P訴訟"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000102"
+    dc:subject="P2P"
+    dc:description="徳力さんのエントリーを読んで思ったことを少々。 私も徳力さんのおっしゃるような、..."
+    dc:creator="noritsuna"
+    dc:date="2005-07-01T22:02:08+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;07&#26376;01&#26085;</h2>
+
+
+<h3 id="a000102">P2P訴訟</h3>
+
+<p>徳力さんの<a href="http://japan.cnet.com/column/pers/story/0,2000050150,20084896,00.htm">エントリー</a>を読んで思ったことを少々。</p>
+
+<p>私も徳力さんのおっしゃるような、「大手でガッチリ固めましょう」的なにおいは感じておりましたが、やはり、そうだったのねぇというところです。</p>
+
+<p><br />
+■純粋な技術の視点<br />
+例えば、SkypeなどのP2P通信部分のみを実装したP2P通信用Stackを開発し、公開した場合で、全くの他人が、このStackを使って、Winnyのようなものを作成しWinnyと同じような状況になった場合、Stackを開発した人に法的な責任はあるのだろうか？</p>
+
+<p>答えとしては、「判例がないからわからない」ということになると思いますが、今回の判例を素人レベルで見ると、訴訟リスクがあるような気がします。</p>
+
+<p>理由は、訴訟されるかどうかは、コンテンツホルダーがどう考えるか？ではないかと思っているためです。</p>
+
+<p><br />
+そのため、P2P通信Stackである <a href="http://www.jxta.org/">JXTA </a>などには、訴訟リスクあまりないのでないかという気はします。</p>
+
+<p></p>
+
+<p>そして、今回の本題ですが、P2Pなアプリを考えている人で、P2P通信Stackなんかは出来れば、ありものStackを使いたいという人も多いのではないかと思います。</p>
+
+<p>ちょっと、極端ではありますが、Blogやりたいからと言って、ApacheのようなHTTPサーバからアプリを書く人はいないわけです。</p>
+
+<p>やはり、現時点の黎明期には、コアなコンポーネントを書く気を削ぐということは、技術の発展上、あまりよろしくないと思います。<br />
+「<a href="http://japan.cnet.com/news/tech/story/0,2000047674,20084847,00.htm">ハイテク業界よ、さようなら</a>」というもの、あながちという気がしますが、いかがでしょうか？<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/07/p2p.html">22:02</a>
+| <a href="http://www.noritsuna.jp/archives/2005/07/p2p.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/07/p2p.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000101"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/101"
+    dc:title="ネコソギラジカル"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000101"
+    dc:subject="P2P"
+    dc:description="本日は、DHTオフ会に参加して参りました。 人数は、30名程度でしたが、会場の構..."
+    dc:creator="noritsuna"
+    dc:date="2005-06-26T23:40:26+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;06&#26376;26&#26085;</h2>
+
+
+<h3 id="a000101">ネコソギラジカル</h3>
+
+<p>本日は、<a href="http://toremoro.tea-nifty.com/tomos_hotline/2005/06/dht_5198.html">DHTオフ会</a>に参加して参りました。</p>
+
+<p>人数は、30名程度でしたが、会場の構造の都合上、非常にアットホームな雰囲気だったため、非常に楽しい会となりました。</p>
+
+<p><br />
+●小島さんの講演<br />
+わかりやすく、且つ、ツボを押さえた内容でしたので、大変興味深く、非常に有意義なものでした。<br />
+特に、Scale Free Network と Small World Network の差異とComplex Network の現在の研究状況などは、私にとっては新鮮であり、今後の良い指標となりそうです。<br />
+<BR><br />
+●Tomoさんの講演<br />
+DHTを使って何かできないか？という提案を集めた内容であり、興味を持ったのは、Bloom filter と P2P-VPN のところです。</p>
+
+<p>Bloom filterは、検索というモノが、比較的どのようなP2Pシステムでも必要とされることが多いため、うまく使用すればいろいろと応用が利きそうなあたりが私のツボにはまりました。</p>
+
+<p>P2P-VPN は、ちょっと、思うところがあり、自分なりにもうすこし具体論に落とし込んでみたいなと思っております。<br />
+この辺、何かできたら、アップするかも。。。まぁ、期待せずに。(^-^;A</p>
+
+<p><br />
+最後にひとこと。<br />
+「タイトルは、<a href="http://wslash.com/">P2P today</a> 様に捧ぐ。。。（ｗ」<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/06/post_37.html">23:40</a>
+| <a href="http://www.noritsuna.jp/archives/2005/06/post_37.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/06/post_37.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000067"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/67"
+    dc:title="ちえらぼ行ってきました"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000067"
+    dc:subject="P2P"
+    dc:description="こちらのエントリーでご紹介したちえらぼに行って参りました。 「ユビキタス・コーデ..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-25T23:56:56+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;03&#26376;25&#26085;</h2>
+
+
+<h3 id="a000067">ちえらぼ行ってきました</h3>
+
+<p><a href="http://www.noritsuna.jp/archives/2005/03/post_25.html">こちらのエントリー</a>でご紹介した<a href="http://www.chie-lab.jp/exhibitor.html">ちえらぼ</a>に行って参りました。</p>
+
+<p>「ユビキタス・コーディネーター」こと「田中ヨヘイ」さんに会ってきました。<br />
+(上記のエントリーで、書かせて頂いた情報リークの張本人様です。(^-^;A<br />
+ って、書いて怒られないかな？)</p>
+
+<p>んで、なんと、田中さん、このblogを知っておられました。こんな辺境の地にある<br />
+blogを見てくださっていたとは、、、ちょっと、おどろきです。<br />
+<BR><br />
+さて、肝心の展示アイテム「ショッピングサポーター」についてですが、<br />
+ちょっと、驚いてしまいました。</p>
+
+<p>これ、<a href="http://www.noritsuna.jp/archives/2005/03/ai.html">以前のエントリー</a>に書かせて頂いた「エージェント」に似ているんですよ。</p>
+
+<p>どんなモノかというと、RFIDに書き込まれた個人情報と今居る場所情報を基にして<br />
+その状況に応じた情報をPushするというようなシステムのようなのです。</p>
+
+<p>まだ、インテリジェンスと言うには少々厳しいですが、それなりに情報を分析<br />
+解析し、個人にあった情報を提供するという意味では似ていると思っております。</p>
+
+<p><br />
+そして、さらに、ネタを持っていらっしゃるようで、情報処理学会論文誌の<br />
+第46巻 第2号に、</p>
+
+<p>「ユビキタスコンピューティング環境に適したサービス提供アーキテクチャに<br />
+　おけるサービス合成方式とその実装」</p>
+
+<p>という論文を出していたり、他にも自らの名前を冠した「YOHEIX」なる P2P File<br />
+Sharing の基盤もあるとか。</p>
+
+<p>これらでは、さらに、適用範囲を広げて、WebサービスやSOAのようなものと<br />
+連携させて、より広範囲に適用できるようにしているのです。</p>
+
+<p><br />
+この辺、私の想像しているモノに近いです。<br />
+さらに、技術革新が進めば、セマンティックWebなどの利用して、外部から<br />
+意味のある情報を集めることが出来るようになるので、そうなれば、もっと<br />
+精度が上げられると期待しています。</p>
+
+<p>という感じで、大変刺激を受けて参りました。<br />
+明日は、アレゲなイベントが14時からあると言うことですので、間に合うよう<br />
+なら参加したいなと思っております。<br />
+<BR><br />
+ちなみに、次回のちえらぼは、○芝さんのHDRに負けないようなコードネームで<br />
+肩書きを決めるとヨヘイさんは、申しておりました。ぺこ <(＿ ＿)></p>
+
+<p>ん？なんのことかわからないですって？<br />
+まぁ、↓とか。。。(^-^;A<br />
+<a href="http://www.itmedia.co.jp/lifestyle/articles/0503/14/news014.html">http://www.itmedia.co.jp/lifestyle/articles/0503/14/news014.html</a></p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/03/post_27.html">23:56</a>
+| <a href="http://www.noritsuna.jp/archives/2005/03/post_27.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/03/post_27.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000065"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/65"
+    dc:title="AIについて"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000065"
+    dc:subject="P2P"
+    dc:description="Palmの生みの親、人工知能分野の新会社設立へ-PCフォーラムで発表 という記..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-23T18:56:24+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;03&#26376;23&#26085;</h2>
+
+
+<h3 id="a000065">AIについて</h3>
+
+<p><a href="http://japan.cnet.com/news/ent/story/0,2000047623,20081476,00.htm">Palmの生みの親、人工知能分野の新会社設立へ--PCフォーラムで発表</a></p>
+
+<p>という記事が出ておりました。<br />
+AIですよ、AI。</p>
+
+<p>実は、この辺で、思うところがあるので、書いてみたいと思います。<br />
+<BR><br />
+●現在-未来<br />
+現在、ネットの世界は「ユビキタスの時代」と言われていて、次に来るのが<br />
+「セマンティックの時代」なんて言われていたりします。<br />
+そして、私的には、その先に「エージェントの時代」が、来るのではない<br />
+かと、考えております。<br />
+<BR><br />
+●エージェントとは？<br />
+「エージェント」が、何を指しているかというと、AIを持った下記のような<br />
+ソフトをイメージしています。（UI的にというのではなく、動作的にです。）</p>
+
+<blockquote>
+デスクトップ・エージェント(マスコット?) 「<a href="http://www.praesens.co.jp/">春菜</a>」<BR>
+一言で言えば、RSSリーダーのUI部分を人に見立てたモノ<BR>
+「偽春菜」「何か」「伺か」のほうが、有名ですかね？
+</blockquote>
+
+<p>これに、AIが搭載されることにより、例えば、</p>
+
+<blockquote>
+・株をやっている<BR>
+・個人情報保護法の施行が決定する
+</blockquote>
+
+<p>といった情報を得た場合、これらの情報を考慮し、</p>
+
+<blockquote>
+・セキュリティー関連の株を検索して、有望株の<BR>
+　購入を勧める
+</blockquote>
+
+<p>みたいな感じで、動作するモノを想定しています。<br />
+<BR><br />
+●思考パターン<br />
+こんなことを思考した流れとしては、下記の流れを辿っています。</p>
+
+<blockquote>
+「ユビキタス」で、いつでもどこでも繋がるようになる<BR>
+「セマンティック」で、全ての情報が意味を持つようになる<BR>
+「エージェント」で、情報を解析して必要なモノだけを選別<BR>
+できるようになる。
+</blockquote>
+
+<p>これを、P2Pアプリっぽいものと組み合わせたら、面白そうじゃないですかね？<br />
+この辺も、いろいろと妄想していたりしますが。。。</p>
+
+<p>まっ、ここまで来るには、障壁が恐ろしくありますので、あと何十年かかる<br />
+ことやら。。。<br />
+早くバンダイさんが、<a href="http://rddp.jp/">ドラえもん</a>作ってくれないかなぁ。（笑</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/03/ai.html">18:56</a>
+| <a href="http://www.noritsuna.jp/archives/2005/03/ai.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/03/ai.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000064"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/64"
+    dc:title="Groove買収（いまさら版）"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000064"
+    dc:subject="P2P"
+    dc:description="うぬぬ、yusukeさんのエントリーに、取り上げられてしまった。。。 これは、我..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-22T16:31:21+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;03&#26376;22&#26085;</h2>
+
+
+<h3 id="a000064">Groove買収（いまさら版）</h3>
+
+<p>うぬぬ、<a href="http://www.arclamp.jp/blog/archives/000504.html">yusukeさんのエントリー</a>に、取り上げられてしまった。。。<br />
+これは、我に、反応しろと言っているに違いない！(^-^;A</p>
+
+<p>ということで、軽く反応してみます。</p>
+
+<p>まず、yusukeさんもおっしゃっているように、これ自体に目新しさや驚きは全くと<br />
+言っていいほど無いです。<br />
+yusukeさんのエントリーにも書いてあるように、元々蜜月状態であったからです。<br />
+<BR></p>
+
+<blockquote>
+次期OS Longhornにどれぐらいの機能が入るかは<BR>
+不明瞭だが、将来のパスの中には、<BR>
+MS Office全製品のP2P対応が入っているのでは<BR>
+ないだろか。
+</blockquote>
+
+<p><br />
+こちらのエントリーに書かせて頂いた「<a href="http://www.noritsuna.jp/archives/2005/02/istanbul.html">Istanbul・次期Windowsメッセンジャー</a>」ですが、<br />
+こちらのサーバとして、<a href="http://www.microsoft.com/japan/office/livecomm/prodinfo/default.mspx">Microsoft Office Live Communications Server 2005</a>と、<br />
+言うモノがあります。</p>
+
+<p>見ての通り、Officeの名前を冠する「Microsoft Office System」の一製品だったりします。</p>
+
+<p>そして、これらのAPIが、Longhorn に標準で載ってきます。</p>
+
+<p><br />
+さらに、<a href="http://www.microsoft.com/japan/office/onenote/prodinfo/default.mspx">MS-OneNote2003</a> には、MSNメッセンジャーのホワイトボードみたいな<br />
+編集している画面を共有するような機能が載っています。</p>
+
+<p></p>
+
+<p>これらのことより、yusukeさんの予想通り、将来のパスにP2P技術は、組み込まれて<br />
+いると言って良いでしょう。<br />
+<BR></p>
+
+<blockquote>
+クライアントがWebサービスとP2Pを手に入れた後、<BR>
+企業アプリケーションはどう変わるだろうか。<BR>
+かなり楽しみなだ。
+</blockquote>
+
+<p>まさに！おっしゃるとおり！<br />
+私も、絶対に何かしら革新的なキラーアプリがあると見ております。</p>
+
+<p>いろいろネタ探しはしているんですが、思いつかないんですよねぇ。凡人な私には。（ﾉД｀）ｼｸｼｸ<br />
+誰か、ネタくれ〜〜〜。（ｗ<br />
+(あっ、また、他力本願で落ちてしまった。(^-^;A)</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/03/groove.html">16:31</a>
+| <a href="http://www.noritsuna.jp/archives/2005/03/groove.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/03/groove.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000061"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/61"
+    dc:title="ちえらぼ"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000061"
+    dc:subject="P2P"
+    dc:description="第2回P2P勉強会 で、お知り合いになった方より、話は聞いていたのですが、 「出..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-16T10:54:15+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;03&#26376;16&#26085;</h2>
+
+
+<h3 id="a000061">ちえらぼ</h3>
+
+<p><a href="http://www.noritsuna.jp/archives/2005/02/2p2p.html">第2回P2P勉強会</a> で、お知り合いになった方より、話は聞いていたのですが、<br />
+「出しちゃダメ」と口止めされていたので、放置しておりましたが、このたび<br />
+正式に公開されたようですので、告知を兼ねて、ご紹介です。</p>
+
+<p><br />
+<blockquote><a href="http://www.chie-lab.jp/">ちえらぼ</a></blockquote></p>
+
+<p>内容としては、NTT内で「若手が」研究的にやっているモノの発表の場っと<br />
+いうところです。<br />
+この「若手」というところが、ミソのようでして、ご覧のようなサイトと<br />
+なっております。（ｗ<br />
+(こんな説明でいいのかな？怒られたりして。(^-^;A)</p>
+
+<p>ちなみに、私の方は、3/25(金)のほうで、参加しようかなと画策しており<br />
+ます。</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/03/post_25.html">10:54</a>
+| <a href="http://www.noritsuna.jp/archives/2005/03/post_25.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/03/post_25.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000053"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/53"
+    dc:title="検索エンジン"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/p2p/index.html#000053"
+    dc:subject="P2P"
+    dc:description="先日から、知り合いの関係で検索エンジンについて調査しているの ですが、何か良い情..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-07T10:40:19+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;03&#26376;07&#26085;</h2>
+
+
+<h3 id="a000053">検索エンジン</h3>
+
+<p>先日から、知り合いの関係で検索エンジンについて調査しているの<br />
+ですが、何か良い情報をお持ちの方いませんか？<br />
+何か、良い情報をお持ちでしたら、こそっと教えてください。</p>
+
+<p>今は、下記のモノを調査中。。。</p>
+
+<p>・<a href="http://lucene.apache.org/java/docs/index.html">LUCENE</a><br />
+Jakartaプロジェクトのテキスト検索エンジン</p>
+
+<p>・<a href="http://ultimania.org/sen/">SEN</a><br />
+Java用の形態素解析</p>
+
+<p>・<a href="http://incubator.apache.org/nutch/">Nutch</a><br />
+Jakartaのインキュベーター中の検索エンジン</p>
+
+<p>・<a href="http://www.grub.org/">Grub</a><br />
+Grid的なWebクローラー<br />
+<BR><br />
+おまけ<br />
+・<a href="http://japan.cnet.com/news/media/story/0,2000047715,20081099,00.htm">ぐぐるさんのデータセンター</a></p>
+
+<p>う〜ん、すごい。全て、自作ですか。。。さすが。</p>
+
+<blockquote>
+Google File Systemと呼ばれる自前のファイルシステムも開発した。<BR>
+これは、64Mバイトという巨大なデータブロック・・・
+</blockquote>
+
+<p>64Mですか！一ブロックが。。。すてきなファイルシステムです。</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/03/post_23.html">10:40</a>
+| <a href="http://www.noritsuna.jp/archives/2005/03/post_23.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/03/post_23.html#trackbacks">トラックバック</a>
+
+</p>
+
+
+
+</div>
+</div>
+
+</body>
+</html>

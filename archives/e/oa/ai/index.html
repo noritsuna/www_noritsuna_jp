@@ -1,0 +1,917 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="description" content="SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。" />
+    <meta name="generator" content="http://www.sixapart.jp/movabletype/" />
+    <link rev="made" href="mailto:your@email" title="E-mail address" />
+    <link rel="home" href="http://www.noritsuna.jp/" title="なんとなく実験 with SIProp開発記" />
+    <link rel="index" href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記archives" />
+    
+    
+    <link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.noritsuna.jp/index.xml" /> 
+    <title>なんとなく実験 with SIProp開発記 | AI</title>
+
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/">
+<dc:title>なんとなく実験 with SIProp開発記</dc:title>
+<dc:description>SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</dc:description>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+  </head>
+  <body class="layout-two-column-right">
+
+    <!-- ブログ全体 -->
+    <div id="main-container">
+
+      <!-- ブログタイトル -->
+      <div id="banner">
+        <h1 id="banner-header"><a href="http://www.noritsuna.jp/" accesskey="1" title="なんとなく実験 with SIProp開発記">なんとなく実験 with SIProp開発記</a></h1>
+        <h2 id="banner-description">SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</h2>
+      </div><!-- banner_end -->
+
+      <!-- 左カラム -->
+      <div id="left-menu">
+        <div  class="left-content">
+
+          <!-- サイト内検索 -->
+          <div class="search-form">
+            <h3>Search</h3>
+            <form method="get" action="http://www.noritsuna.jp/cgi-bin/mt/mt-search.cgi">
+              <input type="hidden" name="IncludeBlogs" value="1" />
+              <label for="search" accesskey="4">サイト内検索</label><br />
+              <input id="search" tabindex="5"  accesskey="t"  value="search this blog" name="search" onblur="if(this.value==''){this.style.color=''; this.form.reset()}" onfocus="this.value = ''; this.style.color = '#000000';" />
+              <input type="submit" tabindex="6" accesskey="s" value="submit" class="searchsubmit" />
+            </form>
+          </div><!-- search-form_end -->
+
+                    <!-- Categoryアーカイブ -->
+          <div class="category-archives">
+            <h3>Category Archives</h3>
+	    <div class="category-label">
+              <ul>
+                <li><a href="http://www.noritsuna.jp/archives/gae/" title="">GAE</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/news/" title="">NEWS</a></li>
+              
+                <li class="module-list-item">OS<ul>
+                <li><a href="http://www.noritsuna.jp/archives/os/linux/" title="">Linux</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/windows/" title="">Windows</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/auos/" title="">仮想OS</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/siprop/" title="">SIProp</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/stm/" title="">STM</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/iphone/" title="">iPhone</a></li>
+              </ul></li>
+              
+                <li class="module-list-item">開発<ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ar/" title="">AR</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/amazonec2/" title="">AmazonEC2</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/application/" title="">Application</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/chromium/" title="">Chromium</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/" title="">HardWare</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/fpga/" title="">FPGA</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/gpgpu/" title="">GPGPU</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/java/" title="">Java</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/cat34/" title="">無線</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/nwng/" title="">NwNG</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/p2p/" title="">P2P</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/" title="">セマンティック</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/ai/" title="">AI</a></li>
+              </ul></li>
+              </ul></li>
+              </ul>
+            </div><!-- category-label_end -->
+          </div><!-- category-archives_end -->
+          
+
+                    <!-- Monthlyアーカイブ -->
+          <div class="monthly-archives">
+            <h3><a href="http://www.noritsuna.jp/archives.html">Archives</a></h3>
+            <ul class="module-list">
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2011/01/">2011&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/08/">2010&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/07/">2010&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/06/">2010&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/05/">2010&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/04/">2010&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/03/">2010&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/02/">2010&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/01/">2010&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/12/">2009&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/11/">2009&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/10/">2009&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/09/">2009&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/08/">2009&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/07/">2009&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/06/">2009&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/05/">2009&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/04/">2009&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/03/">2009&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/02/">2009&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/01/">2009&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/12/">2008&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/11/">2008&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/10/">2008&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/09/">2008&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/08/">2008&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/07/">2008&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/06/">2008&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/05/">2008&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/04/">2008&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/03/">2008&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/02/">2008&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/01/">2008&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/12/">2007&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/11/">2007&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/10/">2007&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/09/">2007&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/08/">2007&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/07/">2007&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/06/">2007&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/05/">2007&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/04/">2007&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/03/">2007&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/02/">2007&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/01/">2007&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/12/">2006&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/11/">2006&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/10/">2006&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/09/">2006&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/08/">2006&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/07/">2006&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/06/">2006&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/02/">2006&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/09/">2005&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/07/">2005&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/06/">2005&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/05/">2005&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/04/">2005&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/03/">2005&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/02/">2005&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/01/">2005&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2004/12/">2004&#24180;12&#26376;</a></li>
+            </ul>
+          </div><!-- monthly-archives_end -->
+          
+
+        </div><!-- left-content_end -->
+      </div><!-- left-menu_end -->
+
+      <!-- 中央カラム -->
+      <div id="main">
+        <div  class="content">
+
+          <p class="navi-link"><a href="http://www.noritsuna.jp/">main</a></p>
+
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/oa/ai/index.html#000668"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/668"
+    dc:title="脳内画像を脳活動から再現"
+    dc:identifier="http://www.noritsuna.jp/archives/e/oa/ai/index.html#000668"
+    dc:subject="AI"
+    dc:description="「夢を映像化！？脳内画像を脳活動から再現」って、これすげぇ。 人が目で見て認識し..."
+    dc:creator="noritsuna"
+    dc:date="2008-12-12T02:12:10+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2008&#24180;12&#26376;12&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000668" class="entry-header"><a href="http://www.noritsuna.jp/archives/2008/12/post_123.html" title="脳内画像を脳活動から再現">脳内画像を脳活動から再現</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://sankei.jp.msn.com/science/science/081211/scn0812110201000-n1.htm">夢を映像化！？脳内画像を脳活動から再現</a>」って、これすげぇ。</p>
+
+<blockquote>人が目で見て認識している視覚情報を、脳活動を調べることで読み取り、コンピューターで画像として再現することに国際電気通信基礎技術研究所（ＡＴＲ、京都府）などの研究チームが初めて成功した。まだ単純な図形や文字で成功した段階だが、将来は夢を映画のように再現できる可能性もあるという。</blockquote>
+
+<p>ついに、映像まで来ましたか。<br />
+○×判定などは、見たことありましたけど、ここまで来たとは。。。</p>
+
+<p>どうでもよいですが、早く脳内に描いた文章構成や図表をアウトプットできるようにしてください＞＜<br />
+(まぁ、これやるには、補完技術なども必要なので、難しそうですが。)<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2008/12/post_123.html" title="脳内画像を脳活動から再現">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 02:12</li>
+                  <li><a href="http://www.noritsuna.jp/archives/2008/12/post_123.html#comments" title="脳内画像を脳活動から再現にコメント">Comments</a> (5) </li>
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/oa/ai/index.html#000665"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/665"
+    dc:title="スウェーデンの研究者、「人体入れ替わり」の錯覚実験に成功"
+    dc:identifier="http://www.noritsuna.jp/archives/e/oa/ai/index.html#000665"
+    dc:subject="AI"
+    dc:description="「スウェーデンの研究者、「人体入れ替わり」の錯覚実験に成功」という記事。 実験で..."
+    dc:creator="noritsuna"
+    dc:date="2008-12-05T01:32:36+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2008&#24180;12&#26376;05&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000665" class="entry-header"><a href="http://www.noritsuna.jp/archives/2008/12/post_122.html" title="スウェーデンの研究者、「人体入れ替わり」の錯覚実験に成功">スウェーデンの研究者、「人体入れ替わり」の錯覚実験に成功</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://www.itmedia.co.jp/news/articles/0812/04/news087.html">スウェーデンの研究者、「人体入れ替わり」の錯覚実験に成功</a>」という記事。</p>
+
+<blockquote>実験では、女性の被験者に男性の身体に入れ替わったように錯覚させたり、逆に男性の被験者に女性の身体に入れ替わったように錯覚させたりすることにも成功したという。<BR>
+　「被験者には、この2台のカメラに接続されたゴーグルタイプのディスプレイを装着し、左右のビデオカメラからの映像がそれぞれ左右のディスプレイに表示されるようにすることで、正確な立体映像を提供できるようにした」</blockquote>
+
+<p>視覚情報だけで、可能なのですね。</p>
+
+<p>超リアル3DなSecond Lifeがあり、このHMDを使えば、本当にそこに住んでいると錯覚させることができるかもってことですか。<br />
+これを考えれば、ゲーム系の批評でよく言われる『これ以上映像がきれいになってどうする？』っていうものの答えはここにあるのかもしれません。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2008/12/post_122.html" title="スウェーデンの研究者、「人体入れ替わり」の錯覚実験に成功">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 01:32</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/ssee/android/index.html#000591"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/591"
+    dc:title="その、さらに、先へ"
+    dc:identifier="http://www.noritsuna.jp/archives/ssee/android/index.html#000591"
+    dc:subject="Android"
+    dc:description="さて、実は、前々回のエントリー、前回のエントリーは、まだ、続いています。（そして..."
+    dc:creator="noritsuna"
+    dc:date="2008-05-18T23:52:18+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2008&#24180;05&#26376;18&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000591" class="entry-header"><a href="http://www.noritsuna.jp/archives/2008/05/post_109.html" title="その、さらに、先へ">その、さらに、先へ</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>さて、実は、<a href="http://www.noritsuna.jp/archives/2008/05/distix.html">前々回のエントリー</a>、<a href="http://www.noritsuna.jp/archives/2008/05/post_108.html">前回のエントリー</a>は、まだ、続いています。（そして、これが最後）</p>
+
+<p><br />
+<blockquote>完全にリアルが融合してくる世界</blockquote></p>
+
+<p>が、今回のお題目で、</p>
+
+<blockquote>局所的、刹那的なネットワーク（アドホック通信）が必要な理由</blockquote>
+
+<p>という、ところになるでしょうか？<br />
+(実際に、この世界が来るのは、20年以上はあとでしょう。)</p>
+
+<p><br />
+さて、<a href="http://www.noritsuna.jp/archives/2008/05/distix.html">前々回のエントリー</a>で、『ネットワーク側に、自分の分身を作る』というお話をさせていただきましたが、これは、</p>
+
+<blockquote>全世界の人が、一つの仮想空間に放り込まれる</blockquote>
+
+<p>ということになります。<br />
+これは、<a href="http://jp.secondlife.com/">セカンドライフ</a>や<a href="http://ja.wikipedia.org/wiki/MMORPG">MMORPG</a>の世界です。</p>
+
+<p>この仮想空間内では、その自分の分身が、様々な行動(イベント)を起こすことで、日常やゲームが進行していきます。例えば、仮想空間内での売買取引 や モンスターを倒す などの行動ということになります。</p>
+
+<p><br />
+<BR><br />
+では、『ネットワーク側に、自分の分身を作る』という意味での仮想空間の規模は、どのくらいになりそうか、ちょっと、考えてみましょう。</p>
+
+<p>接続者数(アカウント数)としては、ソーシャルグラフのようなものを考えると、コミュニティー別に疑似人格を作るということもあり得るでしょう。例えば、SIPropのnoritsuna や NEETのnoritsunaなどです。</p>
+
+<p>そうなると、実質的な接続者は、全世界人口の数倍、数百億を超える数となるでしょう。</p>
+
+<p><br />
+さらに、行動(イベント)としては、ゲーム内では、インターフェースの都合上(マウスなど)、平行には、1イベントくらいしか起こせません。</p>
+
+<p>しかし、現実の世界においては、平行で行動(イベント)が起きえるシチュエーションが、考慮され始めています。</p>
+
+<p>例えば、<a href="http://www.tron.org/tronshow/2008/bookmark/exhibit/00001c0000000000000100000009023e.pdf">ユビキタス空間基盤推進協議会</a> というところで、「<a href="http://www.atmarkit.co.jp/frfid/special/ts2008/01.html">場所にucodeを付与する「空間コード」が描く社会</a>」というようなものが、検討・実証実験されています。<br />
+(この空間コードとAR(artificial reality)の世界をうまく融合していけば、ずいぶんと面白そうな世界となると思いませんか？『攻殻機動隊』や『電脳コイル』の世界とか。)</p>
+
+<p>そして、このような世界では、</p>
+
+<blockquote>人が一歩歩くたびに、無数のセンサーからのイベントを受け取ることになる</blockquote>
+
+<p>ため、平行で起きる行動(イベント)が、数十という単位になることが予想されます。</p>
+
+<p><br />
+<BR><br />
+さて、ここで、話を現時点での仮想世界に戻しまして、<a href="http://jp.secondlife.com/">セカンドライフ</a>を考えてみましょう。<br />
+<a href="http://jp.secondlife.com/">セカンドライフ</a>では、1つの島(サーバ？)に、50人までしかアクセスできないという制限があります。<a href="http://ja.wikipedia.org/wiki/MMORPG">MMORPG</a>では、もっと優秀ではありますが、似たような制限があります。</p>
+
+<p><br />
+どうでしょうか？本来は、『数百億アカウント x 数十並列の行動(イベント)』を処理したいのに、現時点での仮想世界では、『数万アカウント x 1〜2並列の行動(イベント)』というレベルにしか達していません。</p>
+
+<p>ここまで、桁が違うと順当な進化では、対応することは不可能でしょう。まったく、新しいブレークスルーが必要と思われます。(これでは、みんな大好き『攻殻機動隊』や『電脳コイル』の世界を、実現できないのです！)</p>
+
+<p><br />
+<BR><br />
+すべてが、接続されてはいながらも、すてが、処理できることが重要な課題の一つなのです。<br />
+そこで、</p>
+
+<blockquote>
+・サーバ側<BR>
+　永続的に保持したい情報<BR>
+・クライアント側<BR>
+　刹那的に処理すればよい情報<BR>
+</blockquote>
+
+<p>という風に分けたりして、分散するなんていう方法論を検討していたりするわけです。<br />
+(本当は、もっともっと考慮すべきことが山積されています。ありすぎるので、割愛。)</p>
+
+<p><br />
+そして、このように、</p>
+
+<blockquote>
+今までとは全く違う世界を見据えて、その世界で、ちゃんと動くネットワークを、『再』設計して、『新規』に作り直そう
+</blockquote>
+
+<p>というが、<a href="http://www.noritsuna.jp/archives/2008/05/p2p_sip_8.html">第八回P2P SIP勉強会</a>の講師の大西さんの研究テーマであります。<br />
+そして、この勉強会は、この世界の知識の共有や情報交換、議論をしている勉強会なのです。</p>
+
+<p><br />
+ちなみに、この話は、<a href="http://forum.nwgn.jp/">NwGN</a>というキーワードの世界のお話となります。<br />
+ご興味のある方は、P2P SIP勉強会に参加してみてください。</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2008/05/post_109.html" title="その、さらに、先へ">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 23:52</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/oa/ai/index.html#000316"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/316"
+    dc:title="情報をためるということ"
+    dc:identifier="http://www.noritsuna.jp/archives/e/oa/ai/index.html#000316"
+    dc:subject="AI"
+    dc:description="先日、ワークショップで気になった質問を聞きました。それは、 「データ(情報)をた..."
+    dc:creator="noritsuna"
+    dc:date="2006-12-14T00:09:04+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;12&#26376;14&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000316" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/12/post_53.html" title="情報をためるということ">情報をためるということ</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>先日、ワークショップで気になった質問を聞きました。それは、</p>
+
+<blockquote>「データ(情報)をため込んで何をするのか？」</blockquote>
+という質問です。
+最近は、メールを初めとして、blogのデータやいろいろなショップの購入履歴などなど、サーバ側や自分のHDD内にどんどんと貯め込んでいるわけですが、
+<blockquote>「そのデータってため込んだだけで、満足しているのではないの？」
+「もし、そのデータを使うとしたら、何に使うの？」</blockquote>
+という話です。
+この一つの解としては、以前<a href="http://www.noritsuna.jp/archives/2006/06/siprop_1.html">のエントリー</a>で書かせていただいた下記の部分
+<blockquote>「自分の分身がバーチャルな世界で勝手に動き回ったら面白いんじゃないの？」</blockquote>
+すなわち、
+<blockquote>「自分の分身を作るためではないか？」</blockquote>
+とか、思いました。
+
+<p>理由としては、ユーザが望んでいるのは、<br />
+<blockquote>「今、自分がほしいと思っている情報を得ること」</blockquote><br />
+なのではないかと。<br />
+しかし、どのようなデータが「そのとき、その場所」で必要であるかは、ユーザ本人が一番よく知っていることであり、逆に他人には分からないことである。そこで、<br />
+<blockquote>自分の趣味指向にあったパターンデータを得るために、自分の行動をため込んでいるのではないか？<br />
+すなわち、それが究極に発展すれば、自分の分身をつくるということではないのか？</blockquote><br />
+とおもいました。</p>
+
+<p>この、一番単純な実例は、Amazonさんのリコメンドシステムだと思います。しかし、これは、初歩的な利用法であるため、やはり、こういう技術は、近い未来いろいろと必要になるのだろうなぁと、AIがらみの妄想は、続いていくわけですが。。。(;^_^A アセアセ・・・<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/12/post_53.html" title="情報をためるということ">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:09</li>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/12/post_53.html#comments" title="情報をためるということにコメント">Comments</a> (4) </li>
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/oa/ai/index.html#000261"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/261"
+    dc:title="環境知能シンポジウム2006"
+    dc:identifier="http://www.noritsuna.jp/archives/e/oa/ai/index.html#000261"
+    dc:subject="AI"
+    dc:description="「「Googleの強大化」は我々に何をもたらす？――NTTがシンポジウムを開催」..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-03T00:01:34+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;03&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000261" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/2006.html" title="環境知能シンポジウム2006">環境知能シンポジウム2006</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20060925/248841/">「Googleの強大化」は我々に何をもたらす？――NTTがシンポジウムを開催</a>」という記事が出ております。これは、環境知能シンポジウムの記事のようです。</p>
+
+<p>これで面白いのは、東さんの「環境管理」の話ですね。<br />
+<blockquote>環境管理とは、「人間を信用しないで、社会秩序を維持しようとする方法」<br />
+(中略)<br />
+例えば「飲酒運転をさせない」という目的を達成するために、従来の「酒を飲んだら運転しない」という規律だけでは十分ではなく、環境管理型社会に移行しつつある今は「呼気のアルコール濃度が高いと発進させない車を作る」という策が採られるようになってきている。</blockquote><br />
+こちらのエントリー(映画「マイノリティ・リポート)の「キモい」部分を的確に表現しているのではないかと思います。<br />
+すなわち、「アノテーション」が行き過ぎると、それは、「コントロール」になってしまいかねないという話ですね。ここが、「キモさ」となって、感じるのではないかと思います。<br />
+ただ、これも、<a href="http://japan.cnet.com/research/column/market/story/0,2000067181,20242028,00.htm">時代とともに感じる「キモさ」も変わるわけで</a>、どうなっていくのか、まだまだ、議論の余地があるというところですが、現在は、ちょっとずつちょっとずつならされていって、茹で蛙状態になっていくのではないかと危惧していたりします。</p>
+
+<p><BR><br />
+後日、シンポジウムの映像が公開されるということですので、期待大です。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/2006.html" title="環境知能シンポジウム2006">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:01</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/oa/ai/index.html#000250"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/250"
+    dc:title="ギートステイト制作日誌"
+    dc:identifier="http://www.noritsuna.jp/archives/e/oa/ai/index.html#000250"
+    dc:subject="AI"
+    dc:description="「ギートステイト制作日誌」という、近未来の社会をライトノベル形式で思考実験すると..."
+    dc:creator="noritsuna"
+    dc:date="2006-09-22T00:09:09+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;09&#26376;22&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000250" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/09/post_40.html" title="ギートステイト制作日誌">ギートステイト制作日誌</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://blog.japan.cnet.com/geetstate/">ギートステイト制作日誌</a>」という、近未来の社会をライトノベル形式で思考実験するというプロジェクトがあります。<br />
+<a href="http://www.noritsuna.jp/archives/2006/06/siprop_1.html">こちらの妄想</a>のさらに先の話と思われるところを、思考実験するものであり、まさに、興奮しまくりのプロジェクトです。</p>
+
+<p>実は、連載開始当初から注目しており、私もいろいろと妄想をふくらませて、エントリーを書こうかと思っていたのですが、いまいちまとまりきらないので、とりあえず、紹介だけをエントリーです。</p>
+
+<p><br />
+この辺、興味ある方は、是非とも、読んでみてください。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/09/post_40.html" title="ギートステイト制作日誌">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:09</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/oa/ai/index.html#000219"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/219"
+    dc:title="新たなる分野への門出"
+    dc:identifier="http://www.noritsuna.jp/archives/e/oa/ai/index.html#000219"
+    dc:subject="AI"
+    dc:description="SIPropもこれからというとところですが、VoIPがらみは、そろそろ、既存の知..."
+    dc:creator="noritsuna"
+    dc:date="2006-09-21T00:02:58+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;09&#26376;21&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000219" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/09/post_31.html" title="新たなる分野への門出">新たなる分野への門出</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://www.siprop.org/">SIProp</a>もこれからというとところですが、VoIPがらみは、そろそろ、既存の知識でこなせるようになってきたので、次の未知なる分野の学習を開始しました。<br />
+次のターゲットは、野望も大きく<a href="http://www.noritsuna.jp/archives/2006/06/siprop_1.html">こちらの妄想</a>でいうところの「AI層」を目指してみたいなと思っております。（FPGAは、趣味の領域で細々とやる予定です。まぁ、どう化けるかは、わからないところでもありますが。）</p>
+
+<p>なぜ、始めたかといえば、きっかけは大きく3点でして、<br />
+<blockquote>・<a href="http://www.ikuya.net/">山田育矢</a>さんから、ＡＩ関連の分野に進出するというメールをいただいたときに、「私も、やりたい！！！」と非常に心を動かされたことがありました。また、「そろそろ、囓り始めるべき次期に来たのかな」という印象も受けた次第です。<BR><br />
+・「ファインダビリティ層」の日本における権威の一人、共同体的全文検索システム「<a href="http://hyperestraier.sourceforge.net/">Hyper Estraier</a>」の<a href="http://qdbm.sourceforge.net/mikio/">平林幹雄</a>さんとガチで呑む機会をいただきまして、そこで刺激され、「ある目標」などをいただいたりしたのです。(「ある目標」は、内緒です。(;^_^A アセアセ・・・)<BR><br />
+・<a href="http://www.piax.org/">PIAX</a>の吉田さん(<a href="http://www.noritsuna.jp/archives/2006/09/2dht.html">こちらのエントリー</a>参照。)と、ちょっとＡＩ関連の分野がらみでメールをやりとりをさせていただきまして、「これは、今、やるしかなさそうだぞ」と確証を得ることができました。</blockquote><br />
+という感じであります。この辺の刺激を受け、学習意欲が高まって、このような行動に出た次第であります。<br />
+また、実務的な目的としましては、こちら方面の妄想が弱いため、そこを補強する目的であります。(話していても、こちらがらみのネタが途中で霧散してしまうという状態をなんとかしたいのです)</p>
+
+<p><br />
+ということで、まずは、基礎中の基礎というところで、下記の本を買いあさりました。<br />
+●参考書一覧<br />
+<a href="http://www.amazon.co.jp/gp/product/4627829418/">学習システムの理論と実現</a><br />
+<a href="http://www.amazon.co.jp/gp/product/4501540605/">メタデータ技術とセマンティックウェブ</a><br />
+<a href="http://www.amazon.co.jp/gp/product/4000068466/">パターン認識と学習の統計学―新しい概念と手法 統計科学のフロンティア 6</a><br />
+<a href="http://www.amazon.co.jp/gp/product/4274200175/">オントロジー工学</a><br />
+<a href="http://www.amazon.co.jp/gp/product/4274131491/">わかりやすいパターン認識</a><br />
+<a href="http://www.amazon.co.jp/gp/product/4320120051/">データ学習アルゴリズム</a><br />
+<a href="http://www.amazon.co.jp/gp/product/4274200426/">テキスト自動要約</a><br />
+<a href="http://www.amazon.co.jp/gp/product/4320120736/">自動要約</a><br />
+<a href="http://www.amazon.co.jp/gp/product/4339023876/">Javaによる知能プログラミング入門</a><br />
+<a href="http://www.amazon.co.jp/gp/product/4320121341/">サポートベクターマシン入門</a> <br />
+<a href="http://www.amazon.co.jp/gp/product/4320121163/">人工知能概論</a></p>
+
+<p><br />
+さて、芽が出始めるのは、1〜2年後くらいかなぁ。そのころには、AI系の用語などの基礎知識が身について、その分野の人と議論が出来るくらいを目指したいところですが、、、、、、そうは問屋が卸さないのだろうなぁ。せめて、お話が理解できるくらいになっていたいですね。<br />
+それと平行して、なにか、アプリでも作れたらとかも、考えていたりします。<br />
+まぁ、気長にいきますかねぇ。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/09/post_31.html" title="新たなる分野への門出">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:02</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/ssee/index.html#000249"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/249"
+    dc:title="第2回DHT勉強会に参加してきました"
+    dc:identifier="http://www.noritsuna.jp/archives/ssee/index.html#000249"
+    dc:subject="コミュニティー"
+    dc:description="第2回DHT勉強会に参加してきました。 個人的に気になったのは、吉田さんの講演で..."
+    dc:creator="noritsuna"
+    dc:date="2006-09-19T00:02:00+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;09&#26376;19&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000249" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/09/2dht.html" title="第2回DHT勉強会に参加してきました">第2回DHT勉強会に参加してきました</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://toremoro.tea-nifty.com/tomos_hotline/2006/08/dht2dht_f9ea.html">第2回DHT勉強会</a>に参加してきました。</p>
+
+<p>個人的に気になったのは、吉田さんの講演でした。<br />
+<blockquote>吉田　幹　氏：(株)BBR 取締役CTO<br />
+「P2Pエージェントプラットフォーム PIAX の理念と実装」</blockquote></p>
+
+<p>P2Pエージェントと呼ばれるオブジェクトがあるようなのですが、これが、何をさせているのかの説明は、DHT勉強会ということもあり、省略されてしまいました。ただ、ヒントとなることはおっしゃっていて、<br />
+<blockquote>第四世代P2P＝セマンティックWebなどに代表されるタグによる「知識高度化」とそれを検索する「P2P」</blockquote><br />
+というものが、基本的な考え方とのことでした。<br />
+こちらの<a href="http://www.noritsuna.jp/archives/2006/06/siprop_1.html">妄想エントリー</a>の「ファインダビリティ層」に近いことを、P2Pを使ってやるような感じでした。<br />
+そのキモとなっているのが、<br />
+<blockquote>「発見型の検索＝柔軟な検索クエリを発行できるP2P検索クエリ」</blockquote><br />
+ということのようです。<br />
+これを実現しているキモが、<br />
+<blockquote>「Skip Graph」</blockquote><br />
+なのだそうです。(詳細は、google先生に聞いてください。)<br />
+これにより、<br />
+<blockquote>「場所を特定するID」と「検索に使えるKey」を同時に保持することが可能になる</blockquote><br />
+ため、「発見型の検索」が可能と言うことのようです。</p>
+
+<p>いろいろと気になるところがあるのですが、なんと、来月にオープンソースとして、公開する予定だそうです！公開されたら、速攻チェックしてみたいです。<br />
+さらに、<a href="http://www.noritsuna.jp/archives/2006/06/siprop_1.html">妄想エントリー</a>の「AI層」も、次期に検討中だそうです！（うおおお、ここのAI部分、やりてぇぇぇ。＜心の叫び）<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/09/2dht.html" title="第2回DHT勉強会に参加してきました">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:02</li>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/09/2dht.html#comments" title="第2回DHT勉強会に参加してきましたにコメント">Comments</a> (2) </li>
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+          
+
+        </div><!-- content_end -->
+      </div><!-- main_end -->
+
+      <!--右メニュー-->
+      <div id="right-menu">
+        <div  class="right-content">
+
+          <!-- 最近のエントリー -->
+          <div class="recent-entry">
+            <h3>Recent Entries</h3>
+              <ol>                <li><a href="http://www.noritsuna.jp/archives/2008/12/post_123.html" title="脳内画像を脳活動から再現">脳内画像を脳活動から再現</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2008/12/post_122.html" title="スウェーデンの研究者、「人体入れ替わり」の錯覚実験に成功">スウェーデンの研究者、「人体入れ替わり」の錯覚実験に成功</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2008/05/post_109.html" title="その、さらに、先へ">その、さらに、先へ</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/12/post_53.html" title="情報をためるということ">情報をためるということ</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/10/2006.html" title="環境知能シンポジウム2006">環境知能シンポジウム2006</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/09/post_40.html" title="ギートステイト制作日誌">ギートステイト制作日誌</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/09/post_31.html" title="新たなる分野への門出">新たなる分野への門出</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/09/2dht.html" title="第2回DHT勉強会に参加してきました">第2回DHT勉強会に参加してきました</a></li>
+              </ol>
+          </div><!-- recent-entry_end -->
+
+          <!-- 最近のコメント -->
+          <!-- 最近のトラックバック -->
+
+
+          <!-- リンク -->
+          <div class="site-link">
+          <h3>Links</h3>
+            <ul><li><a href="http://www.siprop.org/">SIProp Project</a></li></ul>
+          </div><!-- site-link_end -->
+
+                    <!-- クリエイティブコモンズライセンス -->
+          <div class="cclicense">
+            <a href="http://creativecommons.org/licenses/by-nc/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />This weblog is licensed under a <a href="http://creativecommons.org/licenses/by-nc/1.0/">Creative Commons License</a>.
+          </div><!-- cclicense_end -->
+          
+
+          <!-- Powered -->
+          <div class="powered">
+            <ul>
+              <li>Powered by <a href="http://www.movabletype.jp">Movable Type 3.33-ja</a></li>
+              <li>Template by <a href="http://drblog.jp/"><img src="http://drblog.jp/info/img/drblog.gif" alt="Dr.Blog" width="128" height="22" /></a></li>
+            </ul>
+          </div><!-- Powered_end -->
+
+        </div><!-- right-content_end -->
+      </div><!-- right-menu_end -->
+
+      <div id="footer">
+        <ul class="syndicate">
+          <li><a href="http://www.noritsuna.jp/index.xml" title="なんとなく実験 with SIProp開発記 RSS Feed (XML)">RSS Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/atom.xml" title="なんとなく実験 with SIProp開発記 Atom Feed (XML)">Atom Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記">Archives</a></li>
+          <li><a href="#banner">Page Top</a></li>
+        </ul>
+      </div><!-- footer_end -->
+
+    </div><!-- main-container_end -->
+
+  </body>
+</html>

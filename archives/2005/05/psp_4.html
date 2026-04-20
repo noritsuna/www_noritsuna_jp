@@ -1,0 +1,652 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: PSPプログラミングその２</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+
+<link rel="start" href="http://www.noritsuna.jp/" title="Home" />
+<link rel="prev" href="http://www.noritsuna.jp/archives/2005/05/post_34.html" title="新メインマシン" />
+
+<link rel="next" href="http://www.noritsuna.jp/archives/2005/05/65kg.html" title="65kg割れ" />
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var HOST = 'www.noritsuna.jp';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + (expires ? "; expires=" + expires : "") + (path ? "; path=" + path : "") + (domain ? "; domain=" + domain : "") + (secure ? "secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function rememberMe (f) {
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+    now = now.toGMTString();
+    if (f.author != undefined)
+       setCookie('mtcmtauth', f.author.value, now, '/', '', '');
+    if (f.email != undefined)
+       setCookie('mtcmtmail', f.email.value, now, '/', '', '');
+    if (f.url != undefined)
+       setCookie('mtcmthome', f.url.value, now, '/', '', '');
+}
+
+function forgetMe (f) {
+    deleteCookie('mtcmtmail', '/', '');
+    deleteCookie('mtcmthome', '/', '');
+    deleteCookie('mtcmtauth', '/', '');
+    f.email.value = '';
+    f.author.value = '';
+    f.url.value = '';
+}
+
+//-->
+</script>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2005/05/psp_4.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/87"
+    dc:title="PSPプログラミングその２"
+    dc:identifier="http://www.noritsuna.jp/archives/2005/05/psp_4.html"
+    dc:subject="GAME"
+    dc:description="また、PSPと戯れてしまったので、その顛末を記述します。 ■終了関連 普通のゲー..."
+    dc:creator="noritsuna"
+    dc:date="2005-05-22T16:02:35+09:00" />
+</rdf:RDF>
+-->
+
+
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2005/05/psp_4.html">
+<dc:title>PSPプログラミングその２</dc:title>
+<dc:description>また、PSPと戯れてしまったので、その顛末を記述します。 ■終了関連 普通のゲー...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2005-05-22T16:02:35+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+
+
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+
+<p align="right">
+<a href="http://www.noritsuna.jp/archives/2005/05/post_34.html">&laquo; 新メインマシン</a> |
+
+<a href="http://www.noritsuna.jp/">メイン</a>
+| <a href="http://www.noritsuna.jp/archives/2005/05/65kg.html">65kg割れ &raquo;</a>
+
+</p>
+
+<h2>2005&#24180;05&#26376;22&#26085;</h2>
+
+<h3>PSPプログラミングその２</h3>
+
+<p>また、PSPと戯れてしまったので、その顛末を記述します。</p>
+
+<p><br />
+■終了関連<br />
+普通のゲームのように「HOME」ボタンで終了が出来るようになった模様。</p>
+
+<p>これで、強制電源Offしなくてすみます。(^-^;A<br />
+参考サイトは、<a href="http://www.nurs.or.jp/~calcium/wearable/trivia.html">こちら</a>。</p>
+
+<p><br />
+●startup.s<br />
+基本的には、下記の関数のポインタを記述すればOKのはずです。</p>
+
+<blockquote>STUB_START	"ThreadManForUser",0x40010000,0x000B0005<BR>
+STUB_FUNC   0x82826F70,KernelPollCallbacks<BR>
+STUB_FUNC   0xE81CAF8F,sceKernelCreateCallback<BR>
+STUB_END<BR>
+<BR>
+STUB_START   "LoadExecForUser",0x40010000,0x20005<BR>
+STUB_FUNC   0x5572A5F,sceKernelExitGame<BR>
+STUB_FUNC   0x4AC57943,SetExitCallback<BR>
+STUB_END<BR>
+<BR>
+STUB_START   "scePower",0x40010000,0x10005 <BR>
+STUB_FUNC   0x4B7766E,PowerSetCallback <BR>
+STUB_END<BR>
+</blockquote>
+
+<p>●pg.h<br />
+下記の物を追加します。<br />
+終了のみなので、あまり数はありません。</p>
+
+<blockquote>void sceKernelExitGame(void); <BR>
+void SetExitCallback(int cbid); <BR>
+void PowerSetCallback(int zero, int cbid); <BR>
+void KernelPollCallbacks(void); <BR>
+int  sceKernelCreateCallbacks(const char *name, void *func); <BR>
+int  sceKernelCreateThread(const char *name, void *func, int a,int b,int c,int d);<BR>
+</blockquote>
+
+<p>●終了関連の関数<br />
+必要な関数は、下記の物となります。<br />
+これらを、main.c などにコピペしてください。</p>
+
+<blockquote>int exit_callback(void) <BR>
+{ <BR>
+// Cleanup the games resources etc (if required) <BR>
+<BR>
+   sceKernelExitGame(); <BR>
+<BR>
+   return 0; <BR>
+} <BR>
+<BR>
+#define POWER_CB_POWER      0x80000000 <BR>
+#define POWER_CB_HOLDON      0x40000000 <BR>
+#define POWER_CB_STANDBY   0x00080000 <BR>
+#define POWER_CB_RESCOMP   0x00040000 <BR>
+#define POWER_CB_RESUME      0x00020000 <BR>
+#define POWER_CB_SUSPEND   0x00010000 <BR>
+#define POWER_CB_EXT      0x00001000 <BR>
+#define POWER_CB_BATLOW      0x00000100 <BR>
+#define POWER_CB_BATTERY    0x00000080 <BR>
+#define POWER_CB_BATTPOWER   0x0000007F <BR>
+void power_callback(int unknown, int pwrflags) <BR>
+{ <BR>
+   // Combine pwrflags and the above defined masks <BR>
+} <BR>
+<BR>
+// Thread to create the callbacks and then begin polling <BR>
+int CallbackThread(void *arg) <BR>
+{ <BR>
+   int cbid; <BR>
+<BR>
+   cbid = sceKernelCreateCallback("Exit Callback", exit_callback); <BR>
+   SetExitCallback(cbid); <BR>
+   cbid = sceKernelCreateCallback("Power Callback", power_callback); <BR>
+   PowerSetCallback(0, cbid); <BR>
+<BR>
+   KernelPollCallbacks(); <BR>
+} <BR>
+<BR>
+/* Sets up the callback thread and returns its thread id */ <BR>
+int SetupCallbacks(void) <BR>
+{ <BR>
+   int thid = 0; <BR>
+<BR>
+   thid = sceKernelCreateThread("update_thread", CallbackThread, 0x11, 0xFA0, 0, 0); <BR>
+   if(thid >= 0) <BR>
+   { <BR>
+      sceKernelStartThread(thid, 0, 0); <BR>
+   } <BR>
+<BR>
+   return thid; <BR>
+} <BR>
+</blockquote>
+
+<p><br />
+●終了処理用コード<br />
+初期化が、終わったあたりに、下記の一行を追加するだけです。<br />
+これで、「HOME」ボタンを押すと、見慣れた画面が表示されます。</p>
+
+<blockquote>SetupCallbacks();</blockquote>
+
+<p><br />
+<BR><br />
+■サウンド関連<br />
+そして、ついにきました！！！サウンド関連のAPIが使用可能となりました！<br />
+参考サイトは、<a href="http://anon.ug.to/sec/">こちら</a>。</p>
+
+<p></p>
+
+<p>●新ファイルについて<br />
+上記サイトから、サンプルを手に入れてきます。<br />
+今回は、下記のファイルが増えていますので、おもむろに自分の開発環境に<br />
+コピーしちゃいましょう。(^-^;A</p>
+
+<blockquote>・syscall.h<BR>
+・_clib.h<BR>
+・_clib.c<BR>
+</blockquote>
+
+<p>syscall.h は、startup.s で定義しているシステムコールをまとめているヘッダー<br />
+ファイルです。<br />
+これの追加に伴い、pg.h などに定義されているシステムコールは削除してください。</p>
+
+<p>clib.* は、ちょっとだけですが、libc な標準関数が使えます。<br />
+これを拡張していけば。。。(^-^;A</p>
+
+<p><br />
+●startup.s<br />
+基本的には、下記の関数のポインタを記述すればOKのはずです。</p>
+
+<blockquote>
+STUB_START	"sceAudio",0x40010000,0x00090005 <BR>
+STUB_FUNC	0x136CAF51,sceAudio_0<BR>
+STUB_FUNC	0xE2D56B2D,sceAudio_1<BR>
+STUB_FUNC	0x13F592BC,sceAudio_2<BR>
+STUB_FUNC	0x5EC81C55,sceAudio_3<BR>
+STUB_FUNC	0x6FC46853,sceAudio_4<BR>
+STUB_FUNC	0xE9D97901,sceAudio_5<BR>
+STUB_FUNC	0xCB2E439E,sceAudio_6<BR>
+STUB_FUNC	0x95FD0C2D,sceAudio_7<BR>
+STUB_FUNC	0xB7E1D8E7,sceAudio_8<BR>
+STUB_END<BR>
+</blockquote>
+
+<p><br />
+●mk.bat<br />
+ファイルが追加になっている関係上、一部を書き加える必要があります。<br />
+赤字となっている部分を追加してください。</p>
+
+<blockquote>
+"C:\ps2dev\gcc\ee\bin\ee-gcc" -march=r4000 -g -mgp32 -mlong32 -c _clib.c<BR>
+"C:\ps2dev\gcc\ee\bin\ee-ld" -O0 startup.o main.o pg.o _clib.o -M -Ttext 8900000 -q -o out &gt main.map
+outpatch
+</blockquote>
+
+<p><br />
+●pg.c<br />
+これと日本語フォント対応の font.c を、併用するには下記の箇所をコメントアウト<br />
+する必要があります。</p>
+
+<p>・main.c<br />
+12行目 halt() 関数内</p>
+
+<blockquote>pgcPuts(msg);<BR>
+pgcPuts("\r\nHalted.");<BR></blockquote>
+
+<p>・pg.c<br />
+599行目 pgErrorHalt() 関数内</p>
+
+<blockquote>pgcPuts(str);</blockquote>
+
+<p><br />
+ファイル内の下記関数自体</p>
+
+<blockquote>pgPrint()<BR>
+pgPrint2()<BR>
+pgPrint4()<BR>
+pgPutChar()<BR>
+pgcPutchar()<BR>
+pgcPutchar_nocontrol()<BR>
+pgcPuts()<BR>
+pgcPutsn()<BR>
+pgcPutsln()<BR>
+pgcPuthex2()<BR>
+pgcPuthex8()<BR>
+</blockquote>
+
+<p><br />
+・pg.h<br />
+下記のプロトタイプ宣言</p>
+
+<blockquote>void pgPrint(unsigned long x,unsigned long y,unsigned long color,const char *str);<BR>
+void pgPrint2(unsigned long x,unsigned long y,unsigned long color,const char *str);<BR>
+void pgPrint4(unsigned long x,unsigned long y,unsigned long color,const char *str);<BR>
+void pgPutChar(unsigned long x,unsigned long y,unsigned long <BR>
+void pgcPutchar(const char ch);<BR>
+void pgcPutchar_nocontrol(const char ch);<BR>
+void pgcPuts(const char *str);<BR>
+void pgcPutsn(const char *str,unsigned long max);<BR>
+void pgcPutsln(const char *str);<BR>
+void pgcPuthex2(const unsigned long s);<BR>
+void pgcPuthex8(const unsigned long s);<BR>
+</blockquote>
+
+<p><br />
+・syscall.h<br />
+下記に関しては、終了関連 で使用した物を使用してください。</p>
+
+<blockquote>int sceKernelCreateThread(const char *name, pg_threadfunc_t func, unsigned long priority, unsigned long stacksize, unsigned long attrib, void *unk);</blockquote>
+
+<p></p>
+
+<p>●サウンド関連の関数(main.c) <br />
+必要な関数は、下記の物となります。<br />
+これらを、main.c などにコピペしてください。</p>
+
+<blockquote>9行目#define BGDEF MKRGB(0,0,100) から 516行目wavoutLoadWav() 関数</blockquote>
+
+<p></p>
+
+<p>●終了処理用コード<br />
+さきほどの main.c 内、519行目から532行目までが、ファイル用の配列と構造体です。<br />
+必要に応じて、作成してください。</p>
+
+<blockquote>
+#define WAVFILEMAX_BG 8*1024*1024<BR>
+char wavdata_bg[WAVFILEMAX_BG];<BR>
+wavout_wavinfo_t wavinfo_bg;<BR>
+</blockquote>
+
+<p><br />
+使い方は、下記のような感じで、ファイル名と上記の構造体を渡して、<br />
+再生させます。<br />
+「0」と「1」があるのですが、BGMのようなループさせたい音とジャンプ音のような<br />
+一回のみ非同期で再生したい音というような感じで使い分けると思われます。(^-^;A</p>
+
+<p><br />
+「0」のパターン<br />
+<blockquote><br />
+ret=wavoutLoadWav("op.wav",&ampwavinfo_bg,wavdata_bg,sizeof(wavdata_bg));<br />
+	if (ret!=0) halt("op.wav load error");<br />
+	wavinfo_bg.playloop=1; // ループします。<br />
+	wavoutStartPlay0(&ampwavinfo_bg);<br />
+　　//終了処理<br />
+	wavoutWaitEnd0();<br />
+	wavoutStopPlay0();<br />
+</blockquote></p>
+
+<p>「1」のパターン<br />
+<blockquote>ret=wavoutLoadWav("op.wav",&ampwavinfo_bg,wavdata_bg,sizeof(wavdata_bg));<br />
+	if (ret!=0) halt("op.wav load error");<br />
+	wavoutStartPlay1(&wavinfo_bg);<br />
+	//終了処理<br />
+	wavoutStopPlay1();<br />
+</blockquote></p>
+
+<p></p>
+
+<p>以上で、終了です。<br />
+では、私は、さらに広がったPSPの世界に旅立ってきます。("｀д´)ゞ</p>
+
+<div id="a000087more"><div id="more">
+
+</div></div>
+
+<p class="posted">投稿者 noritsuna : 2005&#24180;05&#26376;22&#26085; 16:02</p>
+
+<h2 id="trackbacks">トラックバック</h2>
+<p class="techstuff">このエントリーのトラックバックURL:<br />
+http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/87</p>
+
+<p>このリストは、次のエントリーを参照しています:  <a href="http://www.noritsuna.jp/archives/2005/05/psp_4.html">PSPプログラミングその２</a>:</p>
+
+<p id="p120">
+&raquo; <a href="http://freett.com/sellers/furniture/Pulaski-Furniture.html">Pulaski Furniture</a> from Pulaski Furniture<br />
+Hi all. I think that i can say a few words about this site here. It is very nice... <a href="http://freett.com/sellers/furniture/Pulaski-Furniture.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;23&#26085; 23:49</p>
+<p id="p159">
+&raquo; <a href="http://pills.1k.pl/buy+tramadol">buy tramadol</a> from buy tramadol<br />
+Fun Site to view and learn. Look forward to more. <a href="http://pills.1k.pl/buy+tramadol">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;27&#26085; 20:49</p>
+<p id="p230">
+&raquo; <a href="http://epills.blogs.eurosport.es/files/tetracycline.html">tetracycline</a> from tetracycline<br />
+You have many friends that post in your guestbook - it is cool! <a href="http://epills.blogs.eurosport.es/files/tetracycline.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;29&#26085; 04:57</p>
+<p id="p247">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/furniture-store.html">furniture store</a> from furniture store<br />
+You have many friends that post in your guestbook - it is cool! <a href="http://vvvvvv.bizland.com/furniture/furniture-store.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;30&#26085; 12:39</p>
+<p id="p322">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bedrooms/painting-bedroom.html">painting bedroom</a> from painting bedroom<br />
+Good Moring Great stuff,Keep up the good work. <a href="http://vvvvvv.bizland.com/furniture/bedrooms/painting-bedroom.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;31&#26085; 22:20</p>
+<p id="p331">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bedrooms/bedroom-paint-colors.html">bedroom paint colors</a> from bedroom paint colors<br />
+Fun Site to view and learn. Look forward to more. <a href="http://vvvvvv.bizland.com/furniture/bedrooms/bedroom-paint-colors.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;01&#26085; 01:58</p>
+<p id="p352">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-vanities.html">bathroom vanities</a> from bathroom vanities<br />
+You have many friends that post in your guestbook - it is cool! <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-vanities.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;01&#26085; 13:08</p>
+<p id="p371">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-ceramic-tile.html">bathroom ceramic tile</a> from bathroom ceramic tile<br />
+Great site guys!! We frequently drop by to see whats happening back home! Its gr... <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-ceramic-tile.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;01&#26085; 21:31</p>
+<p id="p381">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bathrooms/small-bathroom-design.html">small bathroom design</a> from small bathroom design<br />
+I was wondering if you could send me some more information about projects in my ... <a href="http://vvvvvv.bizland.com/furniture/bathrooms/small-bathroom-design.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;02&#26085; 00:35</p>
+<p id="p389">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-floor-plan.html">bathroom floor plan</a> from bathroom floor plan<br />
+Good Moring Great stuff,Keep up the good work. <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-floor-plan.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;02&#26085; 03:30</p>
+<p id="p435">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/beds/raised-garden-bed.html">raised garden bed</a> from raised garden bed<br />
+Hi. A lot of interesting info. Cool site! <a href="http://vvvvvv.bizland.com/furniture/beds/raised-garden-bed.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;03&#26085; 01:11</p>
+<p id="p473">
+&raquo; <a href="http://bloc.balearweb.net/get/797/bed-mattress-futon.html">bed mattress futon</a> from bed mattress futon<br />
+You have many friends that post in your guestbook - it is cool! <a href="http://bloc.balearweb.net/get/797/bed-mattress-futon.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;04&#26085; 13:55</p>
+<p id="p497">
+&raquo; <a href="http://blog.gala.net/uploads/epills/acyclovir.html">acyclovir</a> from acyclovir<br />
+Thanks so much and good luck on your book. I can tell it will be a winner:) <a href="http://blog.gala.net/uploads/epills/acyclovir.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;05&#26085; 07:26</p>
+<p id="p503">
+&raquo; <a href="http://blog.gala.net/uploads/epills/amoxicillin.html">amoxicillin</a> from amoxicillin<br />
+Great site guys!! We frequently drop by to see whats happening back home! Its gr... <a href="http://blog.gala.net/uploads/epills/amoxicillin.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;05&#26085; 08:39</p>
+<p id="p534">
+&raquo; <a href="http://blog.gala.net/uploads/epills/nasacort-aQ.html">nasacort aQ</a> from nasacort aQ<br />
+Great site guys!! We frequently drop by to see whats happening back home! Its gr... <a href="http://blog.gala.net/uploads/epills/nasacort-aQ.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;05&#26085; 19:21</p>
+<p id="p569">
+&raquo; <a href="http://bloc.balearweb.net/get/813/timex-watch-battery.html">timex watch battery</a> from timex watch battery<br />
+Good Moring Great stuff,Keep up the good work. <a href="http://bloc.balearweb.net/get/813/timex-watch-battery.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;06&#26085; 13:34</p>
+<p id="p597">
+&raquo; <a href="http://bloc.balearweb.net/get/813/discount-tissot-watch.html">discount tissot watch</a> from discount tissot watch<br />
+I won 10000$ today! I'm very happy and wanted to say all about this! Have a nice... <a href="http://bloc.balearweb.net/get/813/discount-tissot-watch.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;07&#26085; 04:39</p>
+<p id="p598">
+&raquo; <a href="http://bloc.balearweb.net/get/813/automatic-tissot-watch.html">automatic tissot watch</a> from automatic tissot watch<br />
+Very good site! I like it! Thanks! <a href="http://bloc.balearweb.net/get/813/automatic-tissot-watch.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;07&#26085; 04:55</p>
+<p id="p627">
+&raquo; <a href="http://bloc.balearweb.net/get/822/carisoprodol-cheapest.html">carisoprodol cheapest</a> from carisoprodol cheapest<br />
+Hi i just kinda stumbled unto your site and i think its beautiful... <a href="http://bloc.balearweb.net/get/822/carisoprodol-cheapest.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;07&#26085; 15:32</p>
+<p id="p681">
+&raquo; <a href="http://bloc.balearweb.net/get/822/levitra-online.html">levitra online</a> from levitra online<br />
+Hi i just kinda stumbled unto your site and i think its beautiful... <a href="http://bloc.balearweb.net/get/822/levitra-online.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;08&#26085; 18:50</p>
+<p id="p685">
+&raquo; <a href="http://bloc.balearweb.net/get/822/levitra-side-effects.html">levitra side effects</a> from levitra side effects<br />
+Fun Site to view and learn. Look forward to more. <a href="http://bloc.balearweb.net/get/822/levitra-side-effects.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;08&#26085; 21:16</p>
+<p id="p689">
+&raquo; <a href="http://bloc.balearweb.net/get/822/hydrocodone-order.html">hydrocodone order</a> from hydrocodone order<br />
+Hi! I want to make the same site that your. I like it very much. Hope thati do i... <a href="http://bloc.balearweb.net/get/822/hydrocodone-order.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;08&#26085; 23:49</p>
+<p id="p698">
+&raquo; <a href="http://bloc.balearweb.net/get/822/adipex-diet-pill.html">adipex diet pill</a> from adipex diet pill<br />
+This is my third visit to your site. Keep up the good work. Fun stuff for all ag... <a href="http://bloc.balearweb.net/get/822/adipex-diet-pill.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;09&#26085; 02:13</p>
+<p id="p705">
+&raquo; <a href="http://bloc.balearweb.net/get/824/aldara.html">aldara</a> from aldara<br />
+Hi!I recently lunched my own project and can't find guestbook script for it. I t... <a href="http://bloc.balearweb.net/get/824/aldara.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;09&#26085; 04:40</p>
+<p id="p747">
+&raquo; <a href="http://bloc.balearweb.net/get/813/fake-rolex-watch.html">fake rolex watch</a> from fake rolex watch<br />
+This is my third visit to your site. Keep up the good work. Fun stuff for all ag... <a href="http://bloc.balearweb.net/get/813/fake-rolex-watch.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;10&#26085; 00:17</p>
+<p id="p758">
+&raquo; <a href="http://ebags.eb.funpic.de/prada-handbags/authentic-prada-handbag.html">authentic prada handbag</a> from authentic prada handbag<br />
+Saw your posting in the newsgroup and wanted to give this a try. You guys are do... <a href="http://ebags.eb.funpic.de/prada-handbags/authentic-prada-handbag.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;10&#26085; 06:25</p>
+<p id="p762">
+&raquo; <a href="http://ebags.eb.funpic.de/gucci-handbags/">gucci handbag</a> from gucci handbag<br />
+Nice layout. But i didnt find information for me that i try to find on your webs... <a href="http://ebags.eb.funpic.de/gucci-handbags/">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;10&#26085; 07:44</p>
+<p id="p770">
+&raquo; <a href="http://ebags.eb.funpic.de/dior-handbags/dior-handbag.html">dior handbag</a> from dior handbag<br />
+Hi. A lot of interesting info. Cool site! <a href="http://ebags.eb.funpic.de/dior-handbags/dior-handbag.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;10&#26085; 10:39</p>
+<p id="p775">
+&raquo; <a href="http://ebags.eb.funpic.de/dior-handbags/dior-gaucho-handbag.html">dior gaucho handbag</a> from dior gaucho handbag<br />
+Sounds like a pretty cool book. Looking forward to next months experiment. <a href="http://ebags.eb.funpic.de/dior-handbags/dior-gaucho-handbag.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;10&#26085; 12:10</p>
+<p id="p778">
+&raquo; <a href="http://ebags.eb.funpic.de/louis-vuitton-handbags/fake-louis-vuitton-handbag.html">fake louis vuitton handbag</a> from fake louis vuitton handbag<br />
+Thanks so much and good luck on your book. I can tell it will be a winner:) <a href="http://ebags.eb.funpic.de/louis-vuitton-handbags/fake-louis-vuitton-handbag.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;10&#26085; 14:48</p>
+<p id="p805">
+&raquo; <a href="http://ebags.eb.funpic.de/fendi-handbags/discount-fendi-handbag.html">discount fendi handbag</a> from discount fendi handbag<br />
+Good Moring Great stuff,Keep up the good work. <a href="http://ebags.eb.funpic.de/fendi-handbags/discount-fendi-handbag.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;11&#26085; 01:43</p>
+
+
+
+
+
+<h2 id="comments">コメント</h2>
+
+
+
+
+
+<h2>コメントしてください</h2>
+
+ 
+
+
+
+<form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-comments.cgi" name="comments_form" onsubmit="if (this.bakecookie[0].checked) rememberMe(this)">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="87" />
+
+<div id="name_email">
+<p><label for="author">名前:</label><br />
+<input tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">メールアドレス:</label><br />
+<input tabindex="2" id="email" name="email" /></p>
+</div>
+
+
+
+<p><label for="url">URL:</label><br />
+<input tabindex="3" type="text" name="url" id="url" />
+保存しますか?
+<input type="radio" id="remember" onclick="rememberMe(this.form)" name="bakecookie" /><label for="remember">はい</label><input type="radio" id="forget" name="bakecookie" onclick="forgetMe(this.form)" value="Forget Info" style="margin-left: 15px;" /><label for="forget">いいえ</label><br style="clear: both;" />
+</p>
+
+<p><label for="text">コメント:</label> <br/>
+<textarea tabindex="4" id="text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input type="submit" name="preview" tabindex="5" 
+    value="&nbsp;確認&nbsp;" />
+<input style="font-weight: bold;" type="submit" name="post" 
+    tabindex="6" value="&nbsp;投稿&nbsp;" />
+</div>
+</form>
+
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+if (document.comments_form.email != undefined)
+    document.comments_form.email.value = getCookie("mtcmtmail");
+if (document.comments_form.author != undefined)
+    document.comments_form.author.value = getCookie("mtcmtauth");
+if (document.comments_form.url != undefined)
+    document.comments_form.url.value = getCookie("mtcmthome");
+if (getCookie("mtcmtauth") || getCookie("mtcmthome")) {
+    document.comments_form.bakecookie[0].checked = true;
+} else {
+    document.comments_form.bakecookie[1].checked = true;
+}
+//-->
+</script>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

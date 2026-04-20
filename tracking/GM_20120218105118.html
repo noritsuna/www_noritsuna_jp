@@ -1,0 +1,509 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>WBT_Tool</title>
+	<script src="http://maps.google.com/maps?file=api&amp;v=2.s" type="text/javascript"></script>
+	<script type="text/javascript">
+	//<![CDATA[
+		var map = null;
+		var pinID = 0;
+		var TrPint = 0;
+		var nowShapeID = 0;
+		var nowtotal=0;
+		var FirstFlag = 1;
+		var nowConnectTrack=null;
+		var nowPushTrack=null;
+		var nowTrack = [];
+		var nowTime = [];
+		var nowCurrentPoint=null;
+		var allPushFlag = 0;
+		var gpsLogs = [];
+		var Mapzoom=15;
+		var nowCurrentPolyline=null;
+		var nowBounds=null;
+		function SpeedBarControl() { }
+		SpeedBarControl.prototype = new GControl();
+		SpeedBarControl.prototype.initialize = function(map){ 
+		var image = document.createElement('img');
+		image.src="http://gps.wintec.tw/img/SPEEDBAR.gif"; 
+		map.getContainer().appendChild(image);
+		return image;}  
+		SpeedBarControl.prototype.getDefaultPosition = function() { 
+		return new GControlPosition(G_ANCHOR_BOTTOM_LEFT, new GSize(-3, 50)); } 
+		var iconstart = new GIcon();
+		iconstart.image = "http://gps.wintec.tw/img/track_start.png";
+		iconstart.iconSize = new GSize(24, 24);
+		iconstart.iconAnchor = new GPoint(12, 12);
+		iconstart.infoWindowAnchor = new GPoint(12, 12);
+		var iconend = new GIcon();
+		iconend.image = "http://gps.wintec.tw/img/track_end.png";
+		iconend.iconSize = new GSize(24, 24);
+		iconend.iconAnchor = new GPoint(12, 12);
+		iconend.infoWindowAnchor = new GPoint(12, 12);
+		var iconpoints = new GIcon();
+		iconpoints.image = "http://gps.wintec.tw/img/track_point.png";
+		iconpoints.iconSize = new GSize(24, 24);
+		iconpoints.iconAnchor = new GPoint(12, 12);
+		iconpoints.infoWindowAnchor = new GPoint(12, 12);
+		var iconpower = new GIcon();
+		iconpower.image = "http://gps.wintec.tw/img/marker.png";
+		iconpower.iconSize = new GSize(24, 24);
+		iconpower.iconAnchor = new GPoint(12, 12);
+		iconpower.infoWindowAnchor = new GPoint(12, 12);
+		var iconcurrent = new GIcon();
+		iconcurrent.image = "http://gps.wintec.tw/img/center.png";
+		iconcurrent.iconSize = new GSize(24, 24);
+		iconcurrent.iconAnchor = new GPoint(12, 12);
+		iconcurrent.infoWindowAnchor = new GPoint(12, 12);
+		var iconpush = new GIcon();
+		iconpush.image = "http://gps.wintec.tw/img/push_to_log.png";
+		iconpush.iconSize = new GSize(24, 24);
+		iconpush.iconAnchor = new GPoint(12, 12);
+		iconpush.infoWindowAnchor = new GPoint(12, 12);
+		function UPLD(){window.open("http://www.panoramio.com/upload/");}
+		function GetMap(){
+			if (GBrowserIsCompatible()){
+				map = new GMap2(document.getElementById("myMap"));
+				map.addControl(new GLargeMapControl());
+				map.addControl(new GMapTypeControl());
+				map.addControl(new SpeedBarControl);
+				map.addMapType(G_PHYSICAL_MAP);
+				map.addControl(new GScaleControl());
+				map.setCenter(new GLatLng(37.5228160,-122.2608256), 12);
+				document.Myform.colorselect.value='#0000ff';
+				document.Myform.Widthselect.value='5';
+				ChangeColor();
+				var aa="";
+				aa=aa+new String(document.Myform.alltrack.length-1);
+				document.Myform.alltrack.value=aa;
+				ChangeName(aa);
+				FirstFlag = 0;
+				GEvent.addListener(map,"zoomend", function ZoomChange(oldLevel, newLevel){
+				Mapzoom = newLevel; });
+				GEvent.addListener(map,"dragend", function (){var center = map.getCenter(); PanoMove(center); });
+				GEvent.addListener(map,"moveend", function (){var center = map.getCenter(); PanoMove(center); });
+			}
+			else { map = document.getElementById("mymap");
+				map.innerHTML = ""; map.innerHTML = "Sorry, Your browser not support Google Maps"; }
+		}
+		function ShowPoly(){
+			if(nowTrack == null){window.alert('Select one track first.');}
+			else{
+				if(nowCurrentPolyline!=null)
+					map.removeOverlay(nowCurrentPolyline);
+				var nowcolor = document.Myform.colorselect.value;
+				var nowwidth = document.Myform.Widthselect.value;
+				nowCurrentPolyline=new GPolyline(nowTrack,nowcolor,nowwidth,1);
+				map.addOverlay(nowCurrentPolyline);
+			}  }
+		function ChangeColor(){
+			var el=document.getElementById('colorselect');
+			el.style.backgroundColor=document.Myform.colorselect.value;
+			if(allPushFlag==1){window.status='';return;}
+			if(FirstFlag==0)
+				ShowPoly();
+			document.getElementById('colorselect').blur();
+document.getElementById('Widthselect').blur();
+			window.focus();}
+		function GETConnectPoint(){
+			if((nowConnectTrack==null)||(nowConnectTrack.length==0))
+				return;
+			var CCCounter=0;
+			var cp=0;
+			for(pinID=1; pinID < (nowtotal-1); pinID++){
+				cp=parseInt(nowConnectTrack[CCCounter])-1;
+				if(pinID==cp){
+					map.addOverlay(createMarker(pinID,iconpower));
+					CCCounter++;
+					if(CCCounter > nowConnectTrack.length)
+						return;
+				}  }  }
+		function ShowPush(){
+			if((nowPushTrack==null)||(nowPushTrack.length==0))
+				{window.alert("No Push LOG Points.");return;}
+			var CCCounter=0;
+			var cp=0;
+			for(pinID=1; pinID < (nowtotal-1); pinID++){
+				cp=parseInt(nowPushTrack[CCCounter])-1;
+				if(pinID==cp){
+					map.addOverlay(createMarker(pinID,iconpush));
+					CCCounter++;
+					if(CCCounter > nowPushTrack.length)
+						return;}  }  }
+		function createMarker(number,icon){
+			var marker = new GMarker(nowTrack[number],icon);
+			var strDes="";
+			if(allPushFlag==0){ if(number==0)
+				strDes="(Start)";
+			else if(number==(nowtotal-1))
+				strDes="(End)";
+			else{
+				var cp=0;
+				for(pinID=0; pinID < nowConnectTrack.length; pinID++){
+					cp=parseInt(nowConnectTrack[pinID])-1;
+					if(number==cp){
+						strDes="(Shake Power on)";
+						break;} } }
+			if(strDes==""){
+				var cp=0;
+				for(pinID=0; pinID < nowPushTrack.length; pinID++){
+					cp=parseInt(nowPushTrack[pinID])-1;
+					if(number==cp){
+						strDes="(Push LOG)";
+						break;}  }  } }
+			else{strDes="(Push LOG)";}
+			GEvent.addListener(marker, "click", function(overlay, point) {
+			marker.openInfoWindowHtml("<p align=\"left\">"+strDes+'Point number #'+(number+1)+"<br>Latitude: "+nowTrack[number].lat()+"<br>Longitude: "+nowTrack[number].lng()+"<br>Time: "+nowTime[number]+"<br></p>");
+			PanoMove(nowTrack[number]);
+			nowShapeID=number;
+			document.Myform.ToPoint.value=(nowShapeID+1); });
+			return marker;}
+		function PanoMove(newpoint){
+		return;}
+		function GETStartPoint(){map.addOverlay(createMarker(0,iconstart));}
+		function GETEndPoint(){map.addOverlay(createMarker((nowtotal-1),iconend));}
+		function GoToPoint(){
+			form1=document.Myform;
+			if(nowTrack == null){window.alert('Select one track first.');}
+			else{
+				var tmpID;
+				tmpID = parseInt(form1.ToPoint.value);
+				if(tmpID >= 1){
+					if(tmpID <= nowtotal){nowShapeID=tmpID-1;}
+					else{
+						nowShapeID=nowtotal-1;
+						form1.ToPoint.value=nowtotal;}  }
+				else{
+					nowShapeID=0;
+					form1.ToPoint.value="1";}
+				ShowShape();}  }
+		function ShowAllShapes(){
+			if(allPushFlag==1){document.Myform.show_point_select.value=2;document.getElementById('show_point_select').blur();window.focus();return;}
+			if(nowTrack == null){window.alert('Select one track first.');}
+			else{
+				var percent=document.Myform.show_point_select.value;
+				if(percent==2){ShowPush();document.getElementById('show_point_select').blur();
+window.focus();
+return;}
+				if(percent==0){
+					nowShapeID = 0;
+					map.clearOverlays();
+					ShowPoly();
+					GETStartPoint();
+					GETEndPoint();
+					document.getElementById('show_point_select').blur();
+window.focus();
+return;}
+				var showpoints=0;
+				var showCounter=0;
+				var ID2=0;
+				showpoints=parseInt(nowtotal/percent);
+				if(showpoints==0){window.alert('Show Points interval too large. No points show up.');return;}
+				if(showpoints > 2000){
+					choose=window.confirm('WayPoints too much, may led browser lag; "OK" Only show first 2000 points. "Cancel" Show all points.');
+					if(choose==true){showpoints=2000;}}
+				nowShapeID = 0;
+				map.clearOverlays();
+				ShowPoly();
+				GETStartPoint();
+				GETEndPoint();
+				GETConnectPoint();
+				for(ID2=1; ID2 < (nowtotal-1);ID2++){
+					if(ID2%percent==0){
+						var NowSPD = parseInt(gpsLogs[ID2].speed) ;
+						var NowCUR = parseInt(gpsLogs[ID2].course) ;
+						var SPDIndex=0;
+						var CURIndex=0;
+						if(NowSPD<20)
+						        SPDIndex=0;
+						else if(NowSPD<40)
+							SPDIndex=1;
+						else if(NowSPD<60)
+							SPDIndex=2;
+						else if(NowSPD<80)
+							SPDIndex=3;
+						else if(NowSPD<100)
+							SPDIndex=4;
+						else if(NowSPD<120)
+							SPDIndex=5;
+						else if(NowSPD>=120)
+							SPDIndex=6;
+						if(NowCUR >= 360)
+						   NowCUR = NowCUR%360;
+						if(SPDIndex<0) 
+						   SPDIndex=0;
+						CURIndex=Math.round((NowCUR)/10);	
+						var SCPNG = "http://gps.wintec.tw/img/SC_"+SPDIndex+"_"+CURIndex+".png";	
+						var icontest = new GIcon();
+						icontest.image = SCPNG;
+						icontest.iconSize = new GSize(24, 24);
+						icontest.iconAnchor = new GPoint(12, 12);
+						icontest.infoWindowAnchor = new GPoint(12, 12);
+						map.addOverlay(createMarker(ID2,icontest));
+						showCounter++;}
+					if(showCounter>=showpoints){return;}  }
+			document.getElementById('show_point_select').blur();
+window.focus();
+			}  }
+		function ShowShape(){
+			if(nowCurrentPoint!=null){
+				map.removeOverlay(nowCurrentPoint);
+				nowCurrentPoint=null;}
+			if(nowShapeID==0){
+				map.setCenter(nowTrack[nowShapeID]);}
+			else if(nowShapeID==(nowtotal-1)){
+				map.setCenter(nowTrack[nowShapeID]);}
+			else{
+				nowCurrentPoint=createMarker(nowShapeID,iconcurrent);
+				map.addOverlay(nowCurrentPoint);
+				var bound = map.getBounds();
+				if (!bound.contains(nowTrack[nowShapeID])) {map.panTo(nowTrack[nowShapeID]);}
+			}  }
+			function ShowAllPushShapes(){
+				var showpoints=0;  var showCounter=0;  var ID2=0;  showpoints=nowtotal;
+				if(showpoints > 2000){choose=window.confirm('WayPoints too much, may led browser lag; "OK" Only show first 2000 points. "Cancel" Show all points.');
+					if(choose==true){showpoints=2000;}	}
+				for(ID2=0; ID2 < (nowtotal);ID2++){	map.addOverlay(createMarker(ID2,iconpush));
+				showCounter++;if(showCounter>=showpoints){return;} } }
+		function REF(){
+			if(allPushFlag==0){GETStartPoint();
+			GETEndPoint();
+			GETConnectPoint();
+		}
+			map.setCenter(nowTrack[0], map.getBoundsZoomLevel(nowBounds));
+window.status='Reloading new track; please wait!!.....60%';
+			if(allPushFlag==0){ShowPoly();}
+			else{document.Myform.show_point_select.value=2;ShowAllPushShapes();}
+			window.focus();
+		}
+		function ChangeName(index){
+			var	cname="";
+			var	cpoint="";
+			var	ctime="";
+			var	cdis="";
+			switch(index){
+				case "0":nowxml="GTK_20120218105118_0.xml";cname="2012_02_18 10:51:18";cpoint="1309";ctime="3h:58m:53s";cdis="77.96km";nowBounds=Bounds0;nowConnectTrack=ConnectTrack0;nowPushTrack=PushTrack0;allPushFlag = 0;break;
+				default:nowTrack=null;cname="";cpoint="";ctime="";cdis="";nowTime=null;nowid =null;break;}
+			document.getElementById('CName').innerHTML=cname;
+			document.getElementById('CPoint').innerHTML=cpoint;
+			document.getElementById('CTime').innerHTML=ctime;
+			document.getElementById('CDis').innerHTML=cdis;
+			nowtotal=parseInt(cpoint);
+				document.Myform.show_point_select.value='0';
+			nowShapeID = 0;
+			map.clearOverlays();
+			window.status='Reloading new track; please wait!!.....20%';
+			nowTrack = [];
+			nowTime = [];
+			gpsLogs = [];
+			var nAgt = navigator.userAgent;
+			if ((nAgt.indexOf("Chrome"))!=-1) {
+				GDownloadUrl(nowxml, function(data){	
+					var xml = GXml.parse(data);
+					var params = xml.documentElement.getElementsByTagName("param");
+					for (var i = 0; i < params.length; i++){
+					nowTrack.push(new GLatLng(parseFloat(params[i].getAttribute("lat")),parseFloat(params[i].getAttribute("lng"))));
+					nowTime.push(new String(params[i].getAttribute("vv")));
+					gpsLogs.push(new GPSLog(params[i].getAttribute("lat"), params[i].getAttribute("lng"), params[i].getAttribute("vv")));
+					}REF(); });
+			}else{
+			var xmlDoc; 
+			function importXML(file) { 
+				try //Internet Explorer
+				{
+						xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+				}
+				catch(e)
+				{
+					try //Firefox, Mozilla, Opera, etc.
+						{
+				    		xmlDoc=document.implementation.createDocument("","",null);
+						}
+					catch(e)
+						{
+							alert(e.message);
+							return;
+						} 
+				} 
+				xmlDoc.async=false;
+				xmlDoc.load(file);
+			}
+			importXML(nowxml);
+				var params = xmlDoc.getElementsByTagName("param");
+				for (var i = 0; i < params.length; i++){
+					nowTrack.push(new GLatLng(parseFloat(params[i].getAttribute("lat")),parseFloat(params[i].getAttribute("lng"))));
+					nowTime.push(new String(params[i].getAttribute("vv")));
+					gpsLogs.push(new GPSLog(params[i].getAttribute("lat"), params[i].getAttribute("lng"), params[i].getAttribute("vv")));
+					}REF();
+			}
+			document.Myform.ToPoint.value="1";
+window.status='Reloading new track; please wait!!.....40%';
+			window.status='';
+		}
+	var GPSLog = function(lat, lng, vv) {
+				this.latlng = new GLatLng(parseFloat(lat), parseFloat(lng));
+						var arr = vv.split('<br>');
+						this.date     = new Date(arr[0].substr(0, 10).replace(/-/g, '/') + ' ' + arr[0].substr(11, 8)); 
+						this.speed    = parseInt(arr[1].replace(/Speed:/, ''));
+						this.altitude = parseInt(arr[2].replace(/Altitude:/, ''));	
+						this.course = parseInt(arr[3].replace(/Course:/, ''));	
+						GPSLog.prototype.ToString = function() {
+						return '[' + this.point + '] ' + this.date + '(' + this.latlng.lat() + ', ' + this.latlng.lng() + ') ' + this.altitude + 'm ' + this.speed + 'Km/h '+ this.course + ' ';
+						};	}    
+		Bounds0 = new GLatLngBounds(new GLatLng(37.522170,-122.432214), new GLatLng(37.786902,-122.259959));
+		var ConnectTrack0=[
+		];
+		var PushTrack0=[
+		];
+	 //]]>
+	</script>
+	<noscript><b>JavaScript must be enabled in order for you to use Google Maps.</b>
+
+		However, it seems JavaScript is either disabled or not supported by your browser.
+		To view the map, enable JavaScript by changing your browser options, and then try again. </noscript>
+	<style type="text/css">
+	<!--
+	.grey {BACKGROUND: #ecedf4}
+	.block_a {BORDER-RIGHT: #9b9b9b 1px solid; BORDER-TOP: #9b9b9b 1px solid; BORDER-BOTTOM: #9b9b9b 1px solid; BORDER-LEFT: #9b9b9b 1px solid; PADDING: 1px 1px 1px 1px; MARGIN: 1px 1px 1px 1px; FLOAT: right; WIDTH: 99%;}
+	.block_b {BORDER-RIGHT: #9b9b9b 1px solid; BORDER-TOP: #9b9b9b 1px solid; BORDER-LEFT: #9b9b9b 1px solid; BORDER-BOTTOM: #9b9b9b 1px solid; PADDING: 2px 1px 2px 1px; MARGIN: 1px 1px 2px 0.5em; FLOAT: right; WIDTH: 96%;}
+	.block_d {BORDER-RIGHT: #9b9b9b 1px solid; BORDER-TOP: #9b9b9b 1px solid; BORDER-LEFT: #9b9b9b 1px solid; BORDER-BOTTOM: #9b9b9b 1px solid; PADDING: 2px 1px 2px  1px; MARGIN: 1px 1px 1px 1px; FLOAT: left; WIDTH: 100%;}
+	.block_c {BORDER-BOTTOM: #9b9b9b 1px solid; MARGIN: 0.5em 0 1px 1px; FLOAT: left; WIDTH: 100%;}
+	H6 {PADDING-RIGHT: 0.3em; MARGIN-TOP: 0px; PADDING-LEFT: 0.3em; FONT-SIZE: 1em; BACKGROUND: #9b9b9b; MARGIN-BOTTOM: 0.3em; PADDING-BOTTOM: 0.3em; COLOR: #fff; PADDING-TOP: 0.3em}
+	.selected {BACKGROUND-COLOR: #9b9b9b}
+	body{ margin:0; padding:0;}
+	-->
+	</style>
+	<basefont size="3" color="#7d7d7d" />
+	</head>
+	<body onLoad="GetMap()" onunload="GUnload()">
+	<form name="Myform" method="post" action="">
+	<table width="99%" border="0" cellspacing="0" cellpadding="0">
+		<tr><th scope="row">
+		<table class="block_c" rules="none" width="100%" align="left" border="0" cellspacing="0" cellpadding="0">
+		<tr><th class="selected" width="14%" align="center" scope="row"><font color="#FFFFFF">Google Maps</font></th>
+		<td width="86%">&nbsp;</td></tr></table>
+		</th></tr>
+		<tr><th scope="row">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<th valign="top" width="70%" scope="row"><table  width="100%" border="0" cellspacing="0" cellpadding="0">
+			<th class="block_d" scope="row"><div id='myMap' style="position:relative; width:98%;"></div></th>
+		</table></th>
+		<td valign="top" align="center" width="30%"><div class="block_b"><table  width="95%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+<th colspan="2" scope="row"><H6>トラックインフォメーション&#160;</H6></th>			</tr>
+			<tr class="grey">
+<th width="43%%" scope="row"><div align="left">端末名&#160;</div></th><td width="57%%"><div align="left">NoritsunaLogger</div></td>			</tr>
+			<tr>
+<th scope="row"><div align="left">トラック数&#160;</div></th>				<td><div align="left">1</div></td>
+			</tr>
+			<tr class="grey">
+<th scope="row"><div align="left">ポイント数&#160;</div></th>				<td><div align="left">1309</div></td>
+			</tr>
+			<tr>
+<th width="43%%" scope="row"><div align="left"><strong>トラック名&#160;</strong></div></th>				<td width="57%"><div align="left" id="CName"></div></td>
+			</tr>
+			<tr class="grey">
+<th scope="row"><div align="left"><strong>トラックポイント</strong></div></th>				<td><div align="left" id="CPoint"></div></td>
+			</tr>
+			<tr>
+<th scope="row"><div align="left"><strong>所要時間&#160;</strong></div></th>				<td><div align="left"  id="CTime"></div></td>
+			</tr>
+			<tr class="grey">
+<th scope="row"><div align="left"><strong>移動距離</strong></div></th>				<td><div align="left" id="CDis"></div></td>
+			</tr>
+		</table></div>
+			<script type="text/javascript">	
+				var m = document.getElementById("myMap");
+				var facter=0.58;
+				if(screen.height<768)
+					facter=0.87;
+				m.style.height = (Math.round((screen.height)*facter)+5) + "px";
+			</script>
+			<div class="block_b"><table width="95%" border="0" cellspacing="0" cellpadding="0">
+<tr><th scope="row"><H6>トラック選択</H6></th></tr><tr><th class="grey" scope="row"><div align="left">トラック選択				<select name="alltrack" size="1" onChange="window.status='Reloading new track; please wait!!';ChangeName(Myform.alltrack.value);window.status=''" onfocus="window.status='Switch Tracks';return true;">
+				<option value="0">2012_02_18 10:51:18</option>
+				</select></div></th></tr></table></div>
+			<div class="block_b"><table width="95%" border="0" cellspacing="0" cellpadding="0">
+<tr><th scope="row"><H6>トラックポイントツアー&#160;</H6></th></tr>				<tr><th class="grey" scope="row"><div align="left">
+<input id="gotopoint" type="button" value="Go&#160;To" name="gotopoint" onclick="GoToPoint();" />#<input type="text" size="6" name="ToPoint" value="1" />ポイント</div></th></tr></table></div>			<div class="block_b"><table width="95%" border="0" cellspacing="0" cellpadding="0">
+<tr><th scope="row"><H6>トラックポイントマネージャー</H6></th></tr>			<tr><th class="grey" scope="row"><div align="left">
+設定ポイント数ごと表示&#160;<select id="show_point_select" name="show_point_select" size="1" onchange="window.status='Marking track points; please wait!!';ShowAllShapes();window.status='';"><option value="0">全トラックを隠す</option><option value="2">任意ポイント表示</option>					<option value="1">1</option>
+					<option value="3">3</option>
+					<option value="5">5</option>
+					<option value="7">7</option>
+					<option value="10">10</option>
+					<option value="30">30</option>
+					<option value="50">50</option>
+					<option value="70">70</option>
+					<option value="100">100</option>
+					<option value="300">300</option>
+					<option value="500">500</option>
+					<option value="700">700</option>
+					<option value="1000">1000</option>
+					<option value="3000">3000</option>
+					<option value="5000">5000</option>
+				</select>
+ポイント</div></th></tr></table></div>			<div class="block_b"><table width="95%" border="0" cellspacing="0" cellpadding="0">
+<tr><th scope="row"><H6>トラックラインマネージャー&#160;</H6></th></tr>			<tr><th class="grey" scope="row"><div align="left">
+色&#160;<select id="colorselect" name="colorselect" size="1" onChange="window.status='Re-drawing track line; please wait!!';ChangeColor();window.status=''" onfocus="window.status='Switch Track line color';return true;">				<option value="#000000">Black</option>
+				<option value="#ffffff">White</option>
+				<option value="#696969">Grey</option>
+				<option value="#999999">Light Grey</option>
+				<option value="#191970">Midnight blue</option>
+				<option value="#6a5acd">Slate Blue</option>
+				<option value="#0000cd">Medium Blue</option>
+				<option value="#0000ff">Blue</option>
+				<option value="#00bfff">Deep Sky blue</option>
+				<option value="#00ced1">Dark Turquoise</option>
+				<option value="#00ffff">Cyan</option>
+				<option value="#006400">Dark Green</option>
+				<option value="#2e8b57">Sea Green</option>
+				<option value="#00ff7f">Spring Green</option>
+				<option value="#7cfc00">Lawn Green</option>
+				<option value="#00ff00">Green</option>
+				<option value="#32cd32">Lime Green</option>
+				<option value="#ffff00">Yellow</option>
+				<option value="#ffd700">Gold</option>
+				<option value="#daa520">Goldenrod</option>
+				<option value="#b8860b">Dark Goldenrod</option>
+				<option value="#bc8f8f">Rosy Brown</option>
+				<option value="#cd5c5c">Indian Red</option>
+				<option value="#8b4513">Saddle Brown</option>
+				<option value="#b22222">Firebrick</option>
+				<option value="#a52a2a">Brown</option>
+				<option value="#fa8072">Salmon</option>
+				<option value="#ffa500">Orange</option>
+				<option value="#f08080">Light Coral</option>
+				<option value="#ff0000">Red</option>
+				<option value="#ff1493">Deep Pink</option>
+				<option value="#b03060">Maroon</option>
+				<option value="#d02090">Violet Red</option>
+				<option value="#ff00ff">Magenta</option>
+				<option value="#9932cc">Dark Orchid</option>
+				<option value="#8a2be2">Blue Violet</option>
+				<option value="#a020f0">Purple</option>
+				</select>
+幅&#160;				<select id="Widthselect" name="Widthselect" size="1" onChange="window.status='Re-drawing track line; please wait!!';ChangeColor();window.status=''" onfocus="window.status='Switch Track line width';return true;">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+				</select></div></th></tr></table></div>
+			</td></tr></table>
+		</th></tr>
+	</table>
+	</form>
+	</body>
+	</html>

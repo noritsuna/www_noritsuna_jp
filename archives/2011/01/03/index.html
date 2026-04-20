@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="description" content="SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。" />
+    <meta name="generator" content="http://www.sixapart.jp/movabletype/" />
+    <link rev="made" href="mailto:your@email" title="E-mail address" />
+    <link rel="home" href="http://www.noritsuna.jp/" title="なんとなく実験 with SIProp開発記" />
+    <link rel="index" href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記archives" />
+    <link rel="prev" href="http://www.noritsuna.jp/archives/2010/08/28/" title="2010&amp;#24180;08&amp;#26376;28&amp;#26085;" />
+    
+    <link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.noritsuna.jp/index.xml" /> 
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.noritsuna.jp/rsd.xml" />
+    <title>なんとなく実験 with SIProp開発記 | 2011&#24180;01&#26376;03&#26085;</title>
+
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/">
+<dc:title>なんとなく実験 with SIProp開発記</dc:title>
+<dc:description>SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</dc:description>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+  </head>
+  <body class="layout-two-column-right">
+
+    <!-- ブログ全体 -->
+    <div id="main-container">
+
+      <!-- ブログタイトル -->
+      <div id="banner">
+        <h1 id="banner-header"><a href="http://www.noritsuna.jp/" accesskey="1" title="なんとなく実験 with SIProp開発記">なんとなく実験 with SIProp開発記</a></h1>
+        <h2 id="banner-description">SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</h2>
+      </div><!-- banner_end -->
+
+      <!-- 左カラム -->
+      <div id="left-menu">
+        <div  class="left-content">
+
+          <!-- サイト内検索 -->
+          <div class="search-form">
+            <h3>Search</h3>
+            <form method="get" action="http://www.noritsuna.jp/cgi-bin/mt/mt-search.cgi">
+              <input type="hidden" name="IncludeBlogs" value="1" />
+              <label for="search" accesskey="4">サイト内検索</label><br />
+              <input id="search" tabindex="5"  accesskey="t"  value="search this blog" name="search" onblur="if(this.value==''){this.style.color=''; this.form.reset()}" onfocus="this.value = ''; this.style.color = '#000000';" />
+              <input type="submit" tabindex="6" accesskey="s" value="submit" class="searchsubmit" />
+            </form>
+          </div><!-- search-form_end -->
+
+                    <!-- Categoryアーカイブ -->
+          <div class="category-archives">
+            <h3>Category Archives</h3>
+	    <div class="category-label">
+              <ul>
+                <li><a href="http://www.noritsuna.jp/archives/gae/" title="">GAE</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/news/" title="">NEWS</a></li>
+              
+                <li class="module-list-item">OS<ul>
+                <li><a href="http://www.noritsuna.jp/archives/os/linux/" title="">Linux</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/windows/" title="">Windows</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/auos/" title="">仮想OS</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/siprop/" title="">SIProp</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/stm/" title="">STM</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/iphone/" title="">iPhone</a></li>
+              </ul></li>
+              
+                <li class="module-list-item">開発<ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ar/" title="">AR</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/amazonec2/" title="">AmazonEC2</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/application/" title="">Application</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/chromium/" title="">Chromium</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/" title="">HardWare</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/fpga/" title="">FPGA</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/gpgpu/" title="">GPGPU</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/java/" title="">Java</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/cat34/" title="">無線</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/nwng/" title="">NwNG</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/p2p/" title="">P2P</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/" title="">セマンティック</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/ai/" title="">AI</a></li>
+              </ul></li>
+              </ul></li>
+              </ul>
+            </div><!-- category-label_end -->
+          </div><!-- category-archives_end -->
+          
+
+                    <!-- Monthlyアーカイブ -->
+          <div class="monthly-archives">
+            <h3><a href="http://www.noritsuna.jp/archives.html">Archives</a></h3>
+            <ul class="module-list">
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2011/01/">2011&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/08/">2010&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/07/">2010&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/06/">2010&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/05/">2010&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/04/">2010&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/03/">2010&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/02/">2010&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/01/">2010&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/12/">2009&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/11/">2009&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/10/">2009&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/09/">2009&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/08/">2009&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/07/">2009&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/06/">2009&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/05/">2009&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/04/">2009&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/03/">2009&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/02/">2009&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/01/">2009&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/12/">2008&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/11/">2008&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/10/">2008&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/09/">2008&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/08/">2008&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/07/">2008&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/06/">2008&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/05/">2008&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/04/">2008&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/03/">2008&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/02/">2008&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/01/">2008&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/12/">2007&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/11/">2007&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/10/">2007&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/09/">2007&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/08/">2007&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/07/">2007&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/06/">2007&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/05/">2007&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/04/">2007&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/03/">2007&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/02/">2007&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/01/">2007&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/12/">2006&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/11/">2006&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/10/">2006&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/09/">2006&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/08/">2006&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/07/">2006&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/06/">2006&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/02/">2006&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/09/">2005&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/07/">2005&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/06/">2005&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/05/">2005&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/04/">2005&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/03/">2005&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/02/">2005&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/01/">2005&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2004/12/">2004&#24180;12&#26376;</a></li>
+            </ul>
+          </div><!-- monthly-archives_end -->
+          
+
+        </div><!-- left-content_end -->
+      </div><!-- left-menu_end -->
+
+      <!-- 中央カラム -->
+      <div id="main">
+        <div  class="content">
+
+          <p class="navi-link"><a href="http://www.noritsuna.jp/archives/2010/08/28/">&laquo; 2010&#24180;08&#26376;28&#26085;</a> | <a href="http://www.noritsuna.jp/">main</a></p>
+
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2011/01/03/index.html#000833"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/833"
+    dc:title="OpenFrameworks x kinect x Android"
+    dc:identifier="http://www.noritsuna.jp/archives/2011/01/03/index.html#000833"
+    dc:subject="Android"
+    dc:description="The SIProp project&apos;s members finised to ..."
+    dc:creator="noritsuna"
+    dc:date="2011-01-03T18:38:13+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2011&#24180;01&#26376;03&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000833" class="entry-header"><a href="http://www.noritsuna.jp/archives/2011/01/openframeworks_kinect_android.html" title="OpenFrameworks x kinect x Android">OpenFrameworks x kinect x Android</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>The <a href="http://www.siprop.org/">SIProp project</a>'s members finised to make "OpenFrameworks x kinect x Android" Development Environment and to run it on Android(armadillo & beagleboard).</p>
+
+<p><a href="http://yfrog.com/5ryfxz">Demo video</a></p>
+
+<p></p>
+
+<p><BR><br />
+Special Thanks:</p>
+
+<p>We used those OSSs. Thank you for great works!<br />
+<a href="http://www.openframeworks.cc/">OpenFrameworks</a><br />
+<a href="https://github.com/ofTheo/ofxKinect">ofxKinect(Kinect for OpenFrameworks)</a><br />
+<a href="http://www.openframeworks.cc/setup/android-eclipse">ofxAndroid(Android for OpenFrameworks)</a></p>
+
+<p><BR><br />
+SIProp members:<br />
+<a href="http://blog.goo.ne.jp/tuninghigh">Hirotaka Niisato</a><br />
+masaxmasa</p>
+
+<p></p>
+
+<p><br />
+<BR><BR><br />
+How to make:</p>
+
+<p>1.Setup ofxAndroid's Development Environment</p>
+
+<p>Please refer to the following site:</p>
+
+<p>ofxAndroid setup manual<br />
+<a href="http://www.openframeworks.cc/setup/android-eclipse">http://www.openframeworks.cc/setup/android-eclipse</a></p>
+
+<p>If you can read Japanese & want to setup it on Windows, you should refer to this site.<br />
+<a href="http://blog.goo.ne.jp/tuninghigh/e/637821f5b76b370876e3092e860ce7db">http://blog.goo.ne.jp/tuninghigh/e/637821f5b76b370876e3092e860ce7db</a></p>
+
+<p></p>
+
+<p><BR><br />
+2.Merge ofxKinect to ofxAndroid</p>
+
+<p>2-1.Download & Setup to Eclipse</p>
+
+<p>Please download soruce code from the following site:<br />
+<a href="https://github.com/ofTheo/ofxKinect">https://github.com/ofTheo/ofxKinect</a></p>
+
+<p><br />
+Next, Copy [ofxKinect directory]/src/ofxKinect/ to [ofxAndroid directory]/addons/ .</p>
+
+<p>Final, Add include path to Eclipse's "(ofxAndroid's)addons" project.<br />
+Please run Eclipse and add the folloing place & path:</p>
+
+<blockquote>Place: Properties -> C/C++ General -> Pths and Symbols -> Includes tab(GNU C++)<BR>
+Path: [ofxAndroid directory]/addons/src/ofxKinect/src/</blockquote>
+
+<p><br />
+<BR><br />
+2-2.Fix compile error</p>
+
+<p>If ofxAndroid doesn't have ofxThread::waitForThread(bool) function.<br />
+Please add the following source:</p>
+
+<p>[ofxAndroid directory]/addons/ofxThread/src/ofxThread.h<br />
+<blockquote>void waitForThread(bool stop = true);</blockquote></p>
+
+<p><br />
+[ofxAndroid directory]/addons/ofxThread/src/ofxThread.c<br />
+<blockquote><br />
+void ofxThread::waitForThread(bool stop){<br />
+ if (threadRunning){<br />
+  // Reset the thread state<br />
+  if(stop){<br />
+   threadRunning = false;<br />
+   if(verbose)printf("ofxThread: stopping thread\n");<br />
+  }</p>
+
+<p>  if(verbose)printf("ofxThread: waiting for thread to stop\n");<br />
+  // Wait for the thread to finish<br />
+#ifdef TARGET_WIN32<br />
+  WaitForSingleObject(myThread, INFINITE);<br />
+  CloseHandle(myThread);<br />
+#else<br />
+  if(pthread_self()==myThread) printf("ofxThread: error, waitForThread should only be called from outside the thread");<br />
+  pthread_join(myThread, NULL);<br />
+#endif<br />
+  if(verbose)printf("ofxThread: thread stopped\n");<br />
+  myThread = NULL;<br />
+   }else{<br />
+    if(verbose)printf("ofxThread: thread already stopped\n");<br />
+   }<br />
+}<br />
+</blockquote></p>
+
+<p></p>
+
+<p><BR><br />
+2-3.Do customize source code for Android</p>
+
+<p>Please remove the following code in ofxKinect::threadedFunction() function:</p>
+
+<blockquote>ofSleepMillis(20);</blockquote>
+
+<p><br />
+Please add the following code in [ofxKinect directory]/libs/lubusb/io.c file:<br />
+<blockquote><br />
+#define TIMESPEC_TO_TIMEVAL(tv, ts)                                     \<br />
+        do {                                                            \<br />
+                (tv)->tv_sec = (ts)->tv_sec;                            \<br />
+                (tv)->tv_usec = (ts)->tv_nsec / 1000;                   \<br />
+        } while (0)<br />
+</blockquote></p>
+
+<p></p>
+
+<p><BR><br />
+2-4.Create your application project</p>
+
+<p>Please choose sample programs from the following directory:<br />
+<blockquote>[ofxAndroid directory]/apps/androidExamples/</blockquote></p>
+
+<p>And copy it to the following directory:<br />
+<blockquote>[NDK directory]/apps/</blockquote></p>
+
+<p>Final, export this project on Eclipse.</p>
+
+<p><br />
+<BR><br />
+2-5.Build project</p>
+
+<p>You must build JNI at first.<br />
+You execute the following commands:<br />
+<blockquote>cd [NDK directory]/apps/[your app directory]<br />
+[NDK directory]/ndk-build -B<br />
+</blockquote></p>
+
+<p>And, you build android application on Eclipse.</p>
+
+<p></p>
+
+<p>*If you don't know how to use ofxKinect framework, please refer to "[ofxKinect directory]/src/testApp.cpp".</p>
+
+<p><br />
+<BR><br />
+3.Change Android's configuration</p>
+
+<p>Please add the following line to init.rc:<br />
+<blockquote>mount usbfs none /proc/bus/usb -o devmode=0666</blockquote></p>
+
+<p><br />
+<BR><br />
+4.Upgrade Android's kernel</p>
+
+<p>libusb MUST neet "USB FS". And Kinect MUST neet "High Speed USB(USB2.0)".</p>
+
+<p>Therefore, you check the following kernel options:<br />
+.config<br />
+<blockquote>CONFIG_USB_DEVICEFS=y<br />
+CONFIG_USB_EHCI_ARC_OTG_ALLOW_HS=y (only armadillo)</blockquote></p>
+
+<p><BR><br />
+Appendix</p>
+
+<p>If your device can not draw normal Z-camera image and RGB-camera image, you MUST need to build optimized kernel & userland.<br />
+I used  the following optimization option for building kernel, userland & "OpenFrameworks x kinect x Android".</p>
+
+<p>for armadillo<br />
+<blockquote>-O3 -march=armv6 -mtune=arm1136jf-s -mfpu=vfp -ffast-math -fno-math-errno -mfloat-abi=softfp -ftree-vectorize -fomit-frame-pointer -funroll-loops -fstrict-aliasing -funswitch-loops</blockquote></p>
+
+<p>for beagleboard<br />
+<blockquote>-O3 -ffast-math -fno-math-errno -march=armv7-a -mtune=cortex-a8 -mfloat-abi=softfp -mfpu=neon -ftree-vectorize -fomit-frame-pointer -funroll-loops -fstrict-aliasing -funswitch-loops</blockquote></p>
+
+<p><br />
+<BR><BR><br />
+*Download<br />
+<a href="http://www.noritsuna.jp/download/openframeworks_kinect_android_fullIDE_armadillo-20110103.tar.gz">Full "OpenFrameworks x kinect x Android" Development Environment for Armadillo</a><br />
+<a href="http://www.noritsuna.jp/download/openframeworks_kinect_android_fullIDE_beagleboard-20110103.tar.gz">Full "OpenFrameworks x kinect x Android" Development Environment for beagleboard</a><br />
+<a href="http://www.noritsuna.jp/download/openframeworks_kinect_android_src-20110103.tar.gz">Only source code "OpenFrameworks x kinect x Android</a></p>
+
+<p><br />
+Full "OpenFrameworks x kinect x Android" Development Environment has:<br />
+<blockquote>Android NDK crystax version for Linux<br />
+Android SDK for Linux<br />
+C/C++ Eclipse for Linux<br />
+ofxKinect(Kinect for OpenFrameworks)'s source codes<br />
+ofxAndroid(Android for OpenFrameworks)'s source codes<br />
+"OpenFrameworks x kinect x Android" 's source codes<br />
+sample program Eclipse's workspace</blockquote><br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2011/01/openframeworks_kinect_android.html" title="OpenFrameworks x kinect x Android">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 18:38</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a> ≫ <a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+                  <li><a href="http://www.noritsuna.jp/archives/2011/01/openframeworks_kinect_android.html#comments" title="OpenFrameworks x kinect x Androidにコメント">Comments</a> (1) </li>
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+          
+
+        </div><!-- content_end -->
+      </div><!-- main_end -->
+
+      <!--右メニュー-->
+      <div id="right-menu">
+        <div  class="right-content">
+
+          <!-- 最近のエントリー -->
+          <!-- 最近のコメント -->
+          <!-- 最近のトラックバック -->
+
+          <!-- リンク -->
+          <div class="site-link">
+          <h3>Links</h3>
+            <ul><li><a href="http://www.siprop.org/">SIProp Project</a></li></ul>
+          </div><!-- site-link_end -->
+
+                    <!-- クリエイティブコモンズライセンス -->
+          <div class="cclicense">
+            <a href="http://creativecommons.org/licenses/by-nc/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />This weblog is licensed under a <a href="http://creativecommons.org/licenses/by-nc/1.0/">Creative Commons License</a>.
+          </div><!-- cclicense_end -->
+          
+
+          <!-- Powered -->
+          <div class="powered">
+            <ul>
+              <li>Powered by <a href="http://www.movabletype.jp">Movable Type 3.33-ja</a></li>
+              <li>Template by <a href="http://drblog.jp/"><img src="http://drblog.jp/info/img/drblog.gif" alt="Dr.Blog" width="128" height="22" /></a></li>
+            </ul>
+          </div><!-- Powered_end -->
+
+        </div><!-- right-content_end -->
+      </div><!-- right-menu_end -->
+
+      <div id="footer">
+        <ul class="syndicate">
+          <li><a href="http://www.noritsuna.jp/index.xml" title="なんとなく実験 with SIProp開発記 RSS Feed (XML)">RSS Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/atom.xml" title="なんとなく実験 with SIProp開発記 Atom Feed (XML)">Atom Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記">Archives</a></li>
+          <li><a href="#banner">Page Top</a></li>
+        </ul>
+      </div><!-- footer_end -->
+
+    </div><!-- main-container_end -->
+
+  </body>
+</html>

@@ -1,0 +1,280 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: MACmini・初回起動</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+
+<link rel="start" href="http://www.noritsuna.jp/" title="Home" />
+<link rel="prev" href="http://www.noritsuna.jp/archives/2005/02/solaris104.html" title="Solaris10インストール・その4" />
+
+<link rel="next" href="http://www.noritsuna.jp/archives/2005/02/post_15.html" title="仮想マシン" />
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var HOST = 'www.noritsuna.jp';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + (expires ? "; expires=" + expires : "") + (path ? "; path=" + path : "") + (domain ? "; domain=" + domain : "") + (secure ? "secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function rememberMe (f) {
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+    now = now.toGMTString();
+    if (f.author != undefined)
+       setCookie('mtcmtauth', f.author.value, now, '/', '', '');
+    if (f.email != undefined)
+       setCookie('mtcmtmail', f.email.value, now, '/', '', '');
+    if (f.url != undefined)
+       setCookie('mtcmthome', f.url.value, now, '/', '', '');
+}
+
+function forgetMe (f) {
+    deleteCookie('mtcmtmail', '/', '');
+    deleteCookie('mtcmthome', '/', '');
+    deleteCookie('mtcmtauth', '/', '');
+    f.email.value = '';
+    f.author.value = '';
+    f.url.value = '';
+}
+
+//-->
+</script>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2005/02/macmini1.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/26"
+    dc:title="MACmini・初回起動"
+    dc:identifier="http://www.noritsuna.jp/archives/2005/02/macmini1.html"
+    dc:subject="MAC"
+    dc:description="さて、届きました。 今回のこの子は、ある方が半年後に半額で引き取るという条件の下..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-11T13:47:35+09:00" />
+</rdf:RDF>
+-->
+
+
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2005/02/macmini1.html">
+<dc:title>MACmini・初回起動</dc:title>
+<dc:description>さて、届きました。 今回のこの子は、ある方が半年後に半額で引き取るという条件の下...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2005-02-11T13:47:35+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+
+
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+
+<p align="right">
+<a href="http://www.noritsuna.jp/archives/2005/02/solaris104.html">&laquo; Solaris10インストール・その4</a> |
+
+<a href="http://www.noritsuna.jp/">メイン</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/post_15.html">仮想マシン &raquo;</a>
+
+</p>
+
+<h2>2005&#24180;02&#26376;11&#26085;</h2>
+
+<h3>MACmini・初回起動</h3>
+
+<p>さて、届きました。<br />
+今回のこの子は、ある方が半年後に半額で引き取るという条件の下に、<br />
+購入しましたので、夏頃に私の手を離れ、嫁ぐことになっております。<br />
+まぁ、ぶっちゃけ、ネタ用でしかないので、私のとってはありがたい<br />
+ことですが。(^-^;A<br />
+<BR><br />
+<BR><br />
+ということで、早速、電源を投入。</p>
+
+<p>各種設定画面が出てくるのですが、なぜか、名前・住所・電話番号などの<br />
+個人情報を登録しないと先に進めません。<br />
+最近の個人情報保護法などの流れからしても、とても理解できない仕様です。</p>
+
+<p>仕方ないので、本来の持ち主になるであろう人の情報を入れて、先に進み<br />
+ましたが、納得できない。<br />
+そこで、抗議のメールでも、一発送ろうとしたのですが、そんなアドレスがない。<br />
+しかも、電話サポートは、インシデント制らしい。。。<br />
+どうなっとじゃ、これは。<br />
+あまり、サポートはよろしくなさそうですね。期待しないことにします。<br />
+http://www.apple.com/jp/support/contactus.html<br />
+http://www.apple.com/jp/support/products/callcenter.html<br />
+<BR><br />
+<BR><br />
+そして、起動したのですが、正直、使い方がよくわからない。(^-^;A<br />
+私は、コンソールが使いたいだけなのに、どこにあるかわからん！<br />
+注：普通の人は、最初にコンソールなんて使いません。</p>
+
+<p>と、探すこと5分。。。「アプリケーション」→「ユーティリティー」の<br />
+中に発見！<br />
+早速、起動して、おもむろに「su」を発行してみる。<br />
+(TДT)蹴られる。。。蹴られるよ、ハニー。(TДT)</p>
+
+<p>仕方ないので、「sudo」してみることにする。</p>
+
+<p>(n‘∀‘)ηﾜｰｲ 成功です。「sudo」は使えます。</p>
+
+<p>ということで、おもむろに「sudo passwd root」を叩いてみる。</p>
+
+<p>(σﾟДﾟ)σｹﾞｯﾂ!! 成功！！！パスワード変更できました。</p>
+
+<p>ということで、無事、「root」になれました。<br />
+<BR><br />
+続きは、また、次回。<br />
+</p>
+
+<div id="a000026more"><div id="more">
+<p>追記：これをラップしいているGUIツールがあるらしい。＿|￣|○　ガックシ・・・<br />
+1，NetInfoマネージャ（アプリケーション→ユーティリティー）<br />
+2，「セキュリティー→認証」で、認証する。<br />
+3，「セキュリティー→ルートユーザを有効」で、rootが有効になります。<br />
+</p>
+</div></div>
+
+<p class="posted">投稿者 noritsuna : 2005&#24180;02&#26376;11&#26085; 13:47</p>
+
+<h2 id="trackbacks">トラックバック</h2>
+<p class="techstuff">このエントリーのトラックバックURL:<br />
+http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/26</p>
+
+
+
+
+
+<h2 id="comments">コメント</h2>
+
+
+
+
+
+<h2>コメントしてください</h2>
+
+ 
+
+
+
+<form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-comments.cgi" name="comments_form" onsubmit="if (this.bakecookie[0].checked) rememberMe(this)">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="26" />
+
+<div id="name_email">
+<p><label for="author">名前:</label><br />
+<input tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">メールアドレス:</label><br />
+<input tabindex="2" id="email" name="email" /></p>
+</div>
+
+
+
+<p><label for="url">URL:</label><br />
+<input tabindex="3" type="text" name="url" id="url" />
+保存しますか?
+<input type="radio" id="remember" onclick="rememberMe(this.form)" name="bakecookie" /><label for="remember">はい</label><input type="radio" id="forget" name="bakecookie" onclick="forgetMe(this.form)" value="Forget Info" style="margin-left: 15px;" /><label for="forget">いいえ</label><br style="clear: both;" />
+</p>
+
+<p><label for="text">コメント:</label> <br/>
+<textarea tabindex="4" id="text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input type="submit" name="preview" tabindex="5" 
+    value="&nbsp;確認&nbsp;" />
+<input style="font-weight: bold;" type="submit" name="post" 
+    tabindex="6" value="&nbsp;投稿&nbsp;" />
+</div>
+</form>
+
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+if (document.comments_form.email != undefined)
+    document.comments_form.email.value = getCookie("mtcmtmail");
+if (document.comments_form.author != undefined)
+    document.comments_form.author.value = getCookie("mtcmtauth");
+if (document.comments_form.url != undefined)
+    document.comments_form.url.value = getCookie("mtcmthome");
+if (getCookie("mtcmtauth") || getCookie("mtcmthome")) {
+    document.comments_form.bakecookie[0].checked = true;
+} else {
+    document.comments_form.bakecookie[1].checked = true;
+}
+//-->
+</script>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

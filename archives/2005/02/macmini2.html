@@ -1,0 +1,456 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: MACmini・基本のお勉強その2</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+
+<link rel="start" href="http://www.noritsuna.jp/" title="Home" />
+<link rel="prev" href="http://www.noritsuna.jp/archives/2005/02/macmini1_1.html" title="MACmini・基本のお勉強その1" />
+
+<link rel="next" href="http://www.noritsuna.jp/archives/2005/02/teleo.html" title="teleo 試してみました" />
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var HOST = 'www.noritsuna.jp';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + (expires ? "; expires=" + expires : "") + (path ? "; path=" + path : "") + (domain ? "; domain=" + domain : "") + (secure ? "secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function rememberMe (f) {
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+    now = now.toGMTString();
+    if (f.author != undefined)
+       setCookie('mtcmtauth', f.author.value, now, '/', '', '');
+    if (f.email != undefined)
+       setCookie('mtcmtmail', f.email.value, now, '/', '', '');
+    if (f.url != undefined)
+       setCookie('mtcmthome', f.url.value, now, '/', '', '');
+}
+
+function forgetMe (f) {
+    deleteCookie('mtcmtmail', '/', '');
+    deleteCookie('mtcmthome', '/', '');
+    deleteCookie('mtcmtauth', '/', '');
+    f.email.value = '';
+    f.author.value = '';
+    f.url.value = '';
+}
+
+//-->
+</script>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2005/02/macmini2.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/35"
+    dc:title="MACmini・基本のお勉強その2"
+    dc:identifier="http://www.noritsuna.jp/archives/2005/02/macmini2.html"
+    dc:subject="MAC"
+    dc:description="・基本アプリ 有名どころのアプリを少々。 safari・・・Macのデフォルトブ..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-16T00:22:00+09:00" />
+</rdf:RDF>
+-->
+
+
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2005/02/macmini2.html">
+<dc:title>MACmini・基本のお勉強その2</dc:title>
+<dc:description>・基本アプリ 有名どころのアプリを少々。 safari・・・Macのデフォルトブ...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2005-02-16T00:22:00+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+
+
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+
+<p align="right">
+<a href="http://www.noritsuna.jp/archives/2005/02/macmini1_1.html">&laquo; MACmini・基本のお勉強その1</a> |
+
+<a href="http://www.noritsuna.jp/">メイン</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/teleo.html">teleo 試してみました &raquo;</a>
+
+</p>
+
+<h2>2005&#24180;02&#26376;16&#26085;</h2>
+
+<h3>MACmini・基本のお勉強その2</h3>
+
+<p>・基本アプリ<br />
+有名どころのアプリを少々。</p>
+
+<p>safari・・・Macのデフォルトブラウザ。<br />
+<p><a href="/images/mac/safari01.png" target="_blank"><img src="/images/mac/safari01.png" width="200" border="0"></a></p><br />
+iTune・・・たぶん、Macのアプリで一番有名と思われるアプリなので。記念に。(^-^;A<br />
+<p><a href="/images/mac/itune01.png" target="_blank"><img src="/images/mac/itune01.png" width="200" border="0"></a></p><br />
+desktop(Finder)・・・Windowsで言うところのエクスプローラ。GUIのシェルです。<br />
+<p><a href="/images/mac/desktop01.png" target="_blank"><img src="/images/mac/desktop01.png" width="200" border="0"></a></p><br />
+<BR><br />
+<BR><br />
+・ターミナル<br />
+我らが、コンソールウィンドウ。（ｗ</p>
+
+<p>私的には、正直、これしか使えません。（ﾉД｀）ｼｸｼｸ<br />
+<p><a href="/images/mac/terminal01.png" target="_blank"><img src="/images/mac/terminal01.png" width="200" border="0"></a></p><br />
+<BR><br />
+<BR><br />
+・システム環境設定画面<br />
+/etc の設定用のラッパーツールというところでしょうか？</p>
+
+<p>各種設定ファイルをGUIでいじれるようです。</p>
+
+<p>ツールとしては、単純なのですが、設定ファイルって非常に数が多い上、<br />
+設定項目も多いので、この手のツールを作るのは、大変なのですよね。<br />
+本当に、お疲れ様ですという感じです。<br />
+<p><a href="/images/mac/setting01.png" target="_blank"><img src="/images/mac/setting01.png" width="200" border="0"></a></p><br />
+<BR><br />
+<BR><br />
+・アクティビティモニタ<br />
+ps の結果と top や df などの状態をグラフィカルに表示してくれると<br />
+思われるツール。</p>
+
+<p>強制終了なのでも出来るようなので、kill などとも連携している模様。<br />
+<p><a href="/images/mac/activemonitor01.png" target="_blank"><img src="/images/mac/activemonitor01.png" width="200" border="0"></a></p><br />
+<BR><br />
+<BR><br />
+・ディスクユーティリティ<br />
+こいつは、すごい。<br />
+上のアイコンに「新規イメージ」ってやつがありますが、これ、dd を<br />
+ラップしているだけかと思ったら、全然違いました。</p>
+
+<p>DVD/CDイメージ形式で、保存が出来たり、暗号化や圧縮がかけられたり<br />
+あげくには、そのままの形で、このツール上でマウントしてデータの読み<br />
+書きが、できるようです。</p>
+
+<p>さらに、RAIDも作成できるようですが、この辺は最近のUNIXカーネルで<br />
+あれば、標準装備の機能ですので、それほどたいしたことはないかなと言う<br />
+感じ。</p>
+
+<p>ほかに、マウント機能や修復機能があるようですが、こちらは、fsck などの<br />
+ラップかと思われます。</p>
+
+<p>ちなみに、このツールは、コマンドラインからも使用可能なようです。<br />
+diskutil というのが、それだそうです。<br />
+<p><a href="/images/mac/diskutil01.png" target="_blank"><img src="/images/mac/diskutil01.png" width="200" border="0"></a></p><br />
+<BR><br />
+<BR><br />
+・ディレクトリアクセス<br />
+LDAPなどのディレクトリサービスへアクセスツールのようです。</p>
+
+<p>ActiveDirectory(Windows2000以降のディレクトリサービス)やSMB(Windowsの<br />
+ファイルアクセス)、LDAPv3(一般的なディレクトリサービス)など、必要と<br />
+思われるものは、一通り、サポートされています。</p>
+
+<p>Mac的には、NetInfoというものが標準のようですが、今後は、LDAPv3に<br />
+置き換わっていくそうです。<br />
+（Mac Serverは、すでに、置き換わっているそうです。)<br />
+<p><a href="/images/mac/directory01.png" target="_blank"><img src="/images/mac/directory01.png" width="200" border="0"></a></p><br />
+<BR><br />
+<BR><br />
+・ネットワークユーティリティ<br />
+ifconfig と 各種ネットワークツールのラッパーツール。</p>
+
+<p>これといって、取り立てるような要素はなし。<br />
+<p><a href="/images/mac/networkutil01.png" target="_blank"><img src="/images/mac/networkutil01.png" width="200" border="0"></a></p><br />
+<BR><br />
+<BR><br />
+・システムプロファイラ<br />
+ハードウェアは、Linuxで言うところの /proc の下を表示してくれるツール。</p>
+
+<p>ソフトウェアは、ports の内容を表示してくる模様。</p>
+
+<p>これも、これといって、特徴はなし。<br />
+<p><a href="/images/mac/systemconfig01.png" target="_blank"><img src="/images/mac/systemconfig01.png" width="200" border="0"></a></p><br />
+<BR><br />
+<BR><br />
+あと、root 権限が必要なものに関しては、パスワードを要求する画面が<br />
+出てきます。<br />
+これも、sudo をラップしていると思われますが、「芸が細かい！」と感心<br />
+してしまいました。<br />
+<BR><br />
+<BR><br />
+<BR><br />
+お気づきになったと思いますが、UNIXコマンドをラップしているGUIツールの<br />
+説明がメインです。</p>
+
+<p>なぜ、この手のツールを紹介しているかと言えば、LinuxのGUIは初期の頃、<br />
+この手のツールは、ほとんど無い状態でした。<br />
+そして、いろいろな人たちが、何年もかけて作り上げていったのです。</p>
+
+<p>それゆえ、この手のUNIX系OSでは、コマンドのラップツールを見れば、<br />
+ある程度のGUIの完成度がわかるというわけです。<br />
+この辺、さすがは、Appleさんという感じで、充実していますね。<br />
+（まぁ、最初にGUIを普及させたという自負もあるでしょうし、譲れない<br />
+　ところだったとは思いますが。）</p>
+
+<div id="a000035more"><div id="more">
+
+</div></div>
+
+<p class="posted">投稿者 noritsuna : 2005&#24180;02&#26376;16&#26085; 00:22</p>
+
+<h2 id="trackbacks">トラックバック</h2>
+<p class="techstuff">このエントリーのトラックバックURL:<br />
+http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/35</p>
+
+<p>このリストは、次のエントリーを参照しています:  <a href="http://www.noritsuna.jp/archives/2005/02/macmini2.html">MACmini・基本のお勉強その2</a>:</p>
+
+<p id="p104">
+&raquo; <a href="http://freett.com/sellers/furniture/Leather-Living-Room-Furniture.html">Leather Living Room Furniture</a> from Leather Living Room Furniture<br />
+Good Moring Great stuff,Keep up the good work. <a href="http://freett.com/sellers/furniture/Leather-Living-Room-Furniture.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;22&#26085; 23:05</p>
+<p id="p126">
+&raquo; <a href="http://furniture.website.pl/beds/dog-bed.html">dog bed</a> from dog bed<br />
+Well... I try to say a some words about your site. It's very well. I'm say serio... <a href="http://furniture.website.pl/beds/dog-bed.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;24&#26085; 06:28</p>
+<p id="p244">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/living-room-furniture.html">living room furniture</a> from living room furniture<br />
+Good Moring Great stuff,Keep up the good work. <a href="http://vvvvvv.bizland.com/furniture/living-room-furniture.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;30&#26085; 11:48</p>
+<p id="p268">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/kincaid-furniture.html">kincaid furniture</a> from kincaid furniture<br />
+Hi! Very eye catching site. Best regards. <a href="http://vvvvvv.bizland.com/furniture/kincaid-furniture.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;30&#26085; 20:28</p>
+<p id="p299">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bedrooms/cheap-bedroom-set.html">cheap bedroom set</a> from cheap bedroom set<br />
+I won 10000$ today! I'm very happy and wanted to say all about this! Have a nice... <a href="http://vvvvvv.bizland.com/furniture/bedrooms/cheap-bedroom-set.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;31&#26085; 13:31</p>
+<p id="p317">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bedrooms/decorating-kid-bedroom.html">decorating kid bedroom</a> from decorating kid bedroom<br />
+Thanks so much and good luck on your book. I can tell it will be a winner:) <a href="http://vvvvvv.bizland.com/furniture/bedrooms/decorating-kid-bedroom.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;31&#26085; 20:26</p>
+<p id="p336">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/living-rooms/center-living-media-pcs-room.html">center living media pcs room</a> from center living media pcs room<br />
+I am so thankful for finding your website. <a href="http://vvvvvv.bizland.com/furniture/living-rooms/center-living-media-pcs-room.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;01&#26085; 03:29</p>
+<p id="p387">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-degrassi-mirror.html">bathroom degrassi mirror</a> from bathroom degrassi mirror<br />
+Hi i just kinda stumbled unto your site and i think its beautiful... <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-degrassi-mirror.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;02&#26085; 02:55</p>
+<p id="p391">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-decoration.html">bathroom decoration</a> from bathroom decoration<br />
+Simply post message for testing. Sorry in advance! <a href="http://vvvvvv.bizland.com/furniture/bathrooms/bathroom-decoration.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;02&#26085; 03:54</p>
+<p id="p405">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/beds/kid-bed.html">kid bed</a> from kid bed<br />
+Saw your posting in the newsgroup and wanted to give this a try. You guys are do... <a href="http://vvvvvv.bizland.com/furniture/beds/kid-bed.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;02&#26085; 13:33</p>
+<p id="p445">
+&raquo; <a href="http://bloc.balearweb.net/get/798/furniture-store.html">furniture store</a> from furniture store<br />
+Sounds like a pretty cool book. Looking forward to next months experiment. <a href="http://bloc.balearweb.net/get/798/furniture-store.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;03&#26085; 07:25</p>
+<p id="p482">
+&raquo; <a href="http://bloc.balearweb.net/get/797/discount-futon-mattress.html">discount futon mattress</a> from discount futon mattress<br />
+Good Moring Great stuff,Keep up the good work. <a href="http://bloc.balearweb.net/get/797/discount-futon-mattress.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;04&#26085; 17:38</p>
+<p id="p492">
+&raquo; <a href="http://bloc.balearweb.net/get/806/cushion.html">cushion</a> from cushion<br />
+I enjoyed doing this little project, it was easy to so my little brother. <a href="http://bloc.balearweb.net/get/806/cushion.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;04&#26085; 20:15</p>
+<p id="p501">
+&raquo; <a href="http://blog.gala.net/uploads/epills/alesse.html">alesse</a> from alesse<br />
+Hi!I recently lunched my own project and can't find guestbook script for it. I t... <a href="http://blog.gala.net/uploads/epills/alesse.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;05&#26085; 08:25</p>
+<p id="p570">
+&raquo; <a href="http://bloc.balearweb.net/get/813/timex-lady-watch.html">timex lady watch</a> from timex lady watch<br />
+Simply post message for testing. Sorry in advance! <a href="http://bloc.balearweb.net/get/813/timex-lady-watch.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;06&#26085; 13:44</p>
+<p id="p604">
+&raquo; <a href="http://bloc.balearweb.net/get/813/used-rolex-watch.html">used rolex watch</a> from used rolex watch<br />
+Very good site! I like it! Thanks! <a href="http://bloc.balearweb.net/get/813/used-rolex-watch.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;07&#26085; 06:49</p>
+<p id="p606">
+&raquo; <a href="http://bloc.balearweb.net/get/813/bezel-diamond-rolex-watch.html">bezel diamond rolex watch</a> from bezel diamond rolex watch<br />
+This web-site is the coolest! Now I don't have to feel so intimated by science! ... <a href="http://bloc.balearweb.net/get/813/bezel-diamond-rolex-watch.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;07&#26085; 08:08</p>
+<p id="p632">
+&raquo; <a href="http://bloc.balearweb.net/get/822/order-adipex.html">order adipex</a> from order adipex<br />
+You have many friends that post in your guestbook - it is cool! <a href="http://bloc.balearweb.net/get/822/order-adipex.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;07&#26085; 17:14</p>
+<p id="p637">
+&raquo; <a href="http://bloc.balearweb.net/get/822/adipex-pill.html">adipex pill</a> from adipex pill<br />
+Thanks so much and good luck on your book. I can tell it will be a winner:) <a href="http://bloc.balearweb.net/get/822/adipex-pill.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;07&#26085; 18:23</p>
+<p id="p688">
+&raquo; <a href="http://bloc.balearweb.net/get/822/buy-hydrocodone-online.html">buy hydrocodone online</a> from buy hydrocodone online<br />
+Fun Site to view and learn. Look forward to more. <a href="http://bloc.balearweb.net/get/822/buy-hydrocodone-online.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;08&#26085; 23:23</p>
+<p id="p704">
+&raquo; <a href="http://bloc.balearweb.net/get/824/acyclovir.html">acyclovir</a> from acyclovir<br />
+This is getting to be a very informative site, we just have to take the time to ... <a href="http://bloc.balearweb.net/get/824/acyclovir.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;09&#26085; 04:19</p>
+<p id="p710">
+&raquo; <a href="http://bloc.balearweb.net/get/824/dovonex.html">dovonex</a> from dovonex<br />
+You have many friends that post in your guestbook - it is cool! <a href="http://bloc.balearweb.net/get/824/dovonex.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;09&#26085; 08:14</p>
+<p id="p780">
+&raquo; <a href="http://ebags.eb.funpic.de/louis-vuitton-handbags/louis-vuitton-knockoff-handbag.html">louis vuitton knockoff handbag</a> from louis vuitton knockoff handbag<br />
+This is getting to be a very informative site, we just have to take the time to ... <a href="http://ebags.eb.funpic.de/louis-vuitton-handbags/louis-vuitton-knockoff-handbag.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;10&#26085; 15:31</p>
+
+
+
+
+
+<h2 id="comments">コメント</h2>
+
+
+
+
+
+<h2>コメントしてください</h2>
+
+ 
+
+
+
+<form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-comments.cgi" name="comments_form" onsubmit="if (this.bakecookie[0].checked) rememberMe(this)">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="35" />
+
+<div id="name_email">
+<p><label for="author">名前:</label><br />
+<input tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">メールアドレス:</label><br />
+<input tabindex="2" id="email" name="email" /></p>
+</div>
+
+
+
+<p><label for="url">URL:</label><br />
+<input tabindex="3" type="text" name="url" id="url" />
+保存しますか?
+<input type="radio" id="remember" onclick="rememberMe(this.form)" name="bakecookie" /><label for="remember">はい</label><input type="radio" id="forget" name="bakecookie" onclick="forgetMe(this.form)" value="Forget Info" style="margin-left: 15px;" /><label for="forget">いいえ</label><br style="clear: both;" />
+</p>
+
+<p><label for="text">コメント:</label> <br/>
+<textarea tabindex="4" id="text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input type="submit" name="preview" tabindex="5" 
+    value="&nbsp;確認&nbsp;" />
+<input style="font-weight: bold;" type="submit" name="post" 
+    tabindex="6" value="&nbsp;投稿&nbsp;" />
+</div>
+</form>
+
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+if (document.comments_form.email != undefined)
+    document.comments_form.email.value = getCookie("mtcmtmail");
+if (document.comments_form.author != undefined)
+    document.comments_form.author.value = getCookie("mtcmtauth");
+if (document.comments_form.url != undefined)
+    document.comments_form.url.value = getCookie("mtcmthome");
+if (getCookie("mtcmtauth") || getCookie("mtcmthome")) {
+    document.comments_form.bakecookie[0].checked = true;
+} else {
+    document.comments_form.bakecookie[1].checked = true;
+}
+//-->
+</script>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験 with SIProp開発記: Windows Live Messenger</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+
+<link rel="start" href="http://www.noritsuna.jp/" title="Home" />
+<link rel="prev" href="http://www.noritsuna.jp/archives/2006/06/ipa.html" title="IPA未踏ソフトウェア創造事業採択！！！" />
+
+<link rel="next" href="http://www.noritsuna.jp/archives/2006/06/post.html" title="要件定義〜基本設計の概要" />
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var HOST = 'www.noritsuna.jp';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + (expires ? "; expires=" + expires : "") + (path ? "; path=" + path : "") + (domain ? "; domain=" + domain : "") + (secure ? "secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function rememberMe (f) {
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+    now = now.toGMTString();
+    if (f.author != undefined)
+       setCookie('mtcmtauth', f.author.value, now, '/', '', '');
+    if (f.email != undefined)
+       setCookie('mtcmtmail', f.email.value, now, '/', '', '');
+    if (f.url != undefined)
+       setCookie('mtcmthome', f.url.value, now, '/', '', '');
+}
+
+function forgetMe (f) {
+    deleteCookie('mtcmtmail', '/', '');
+    deleteCookie('mtcmthome', '/', '');
+    deleteCookie('mtcmtauth', '/', '');
+    f.email.value = '';
+    f.author.value = '';
+    f.url.value = '';
+}
+
+//-->
+</script>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/06/windows_live_me.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/114"
+    dc:title="Windows Live Messenger"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/06/windows_live_me.html"
+    dc:subject="SIP"
+    dc:description="http://headlines.yahoo.co.jp/hl?a=200606..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-21T03:01:58+09:00" />
+</rdf:RDF>
+-->
+
+
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2006/06/windows_live_me.html">
+<dc:title>Windows Live Messenger</dc:title>
+<dc:description>http://headlines.yahoo.co.jp/hl?a=200606...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2006-06-21T03:01:58+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+
+
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験 with SIProp開発記</a></h1>
+<h2>SIPやVoIP、P2Pに関する技術情報を書き殴っているBlogです。
+また、SIPropプロジェクトの開発記も兼ねています。</h2>
+</div>
+
+<div class="content">
+
+<p align="right">
+<a href="http://www.noritsuna.jp/archives/2006/06/ipa.html">&laquo; IPA未踏ソフトウェア創造事業採択！！！</a> |
+
+<a href="http://www.noritsuna.jp/">メイン</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/post.html">要件定義〜基本設計の概要 &raquo;</a>
+
+</p>
+
+<h2>2006&#24180;06&#26376;21&#26085;</h2>
+
+<h3>Windows Live Messenger</h3>
+
+<p><a href="http://headlines.yahoo.co.jp/hl?a=20060621-00000004-cnet-sci">http://headlines.yahoo.co.jp/hl?a=20060621-00000004-cnet-sci</a>Windows Live Messenger の 正式版が公開されたようです。<a href="http://internet.watch.impress.co.jp/cda/news/2006/06/20/12392.html">こちら</a>のニュースより。</p>
+
+<p>MSさんが、やっと、VoIPやIM関連に本気になってきた模様ですね。<br />
+<a href="http://www.microsoft.com/japan/office/livecomm/prodinfo/default.mspx">LCS2005</a>を出したあと、いまいち、行動が鈍かったので、いかがしたものかと思っていたところでした。<br />
+<a href="http://ideas.live.com/">Windows Live</a>との連携とは、まさに、先を見越したサービスになっていると思います。</p>
+
+<p>ちなみに、この件の本当のキモは、<a href="http://www.itmedia.co.jp/news/articles/0606/16/news027.html">こちらの発表</a>ですね。MSの技術Topが「Groovy&NotesのRay Ozzie氏」になるわけで、<a href="http://ideas.live.com/">Windows Live</a>との連携は当然というレベルであると推測されます。<br />
+たぶん、まだまだ、隠し球を持っていると思われますので、これからも要チェックですね。<br />
+</p>
+
+<div id="a000114more"><div id="more">
+<p><BR><br />
+追記(2006/06/21 04:05)<br />
+<a href="http://k-tai.impress.co.jp/cda/article/news_toppage/29771.html">携帯版</a>もあるようです。<br />
+この手のアプリで、どうしても制限となる部分が、下記の部分なのですが、見事にそのまま制限になっているようですね。今一歩というか、早くこの辺がクリアされるようにキャリアさんに動いてもらいたいですね</p>
+
+<blockquote>・待機状態時の待ち受けはどうするのか？<BR>
+　→アプリを起動していない際、相手からメッセージが寄せられると、「ウェイクアップメール」という機能で通知される<BR>
+・頻繁に通信が発生する<BR>
+　→同社では、「メッセージのやり取りやメールの送受信で通信を頻繁に行なう」として、パケット通信料定額サービスの利用を推奨している。
+</blockquote>
+
+<p><BR><br />
+追記＾２(2006/06/21 15:06)<br />
+やはり、何か企んでいるらしい。<a href="http://headlines.yahoo.co.jp/hl?a=20060621-00000004-cnet-sci">こちら</a>。</p>
+</div></div>
+
+<p class="posted">投稿者 noritsuna : 2006&#24180;06&#26376;21&#26085; 03:01</p>
+
+<h2 id="trackbacks">トラックバック</h2>
+<p class="techstuff">このエントリーのトラックバックURL:<br />
+http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/114</p>
+
+
+
+
+
+<h2 id="comments">コメント</h2>
+
+
+
+
+
+<h2>コメントしてください</h2>
+
+ 
+
+
+
+<form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-comments.cgi" name="comments_form" onsubmit="if (this.bakecookie[0].checked) rememberMe(this)">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="114" />
+
+<div id="name_email">
+<p><label for="author">名前:</label><br />
+<input tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">メールアドレス:</label><br />
+<input tabindex="2" id="email" name="email" /></p>
+</div>
+
+
+
+<p><label for="url">URL:</label><br />
+<input tabindex="3" type="text" name="url" id="url" />
+保存しますか?
+<input type="radio" id="remember" onclick="rememberMe(this.form)" name="bakecookie" /><label for="remember">はい</label><input type="radio" id="forget" name="bakecookie" onclick="forgetMe(this.form)" value="Forget Info" style="margin-left: 15px;" /><label for="forget">いいえ</label><br style="clear: both;" />
+</p>
+
+<p><label for="text">コメント:</label> <br/>
+<textarea tabindex="4" id="text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input type="submit" name="preview" tabindex="5" 
+    value="&nbsp;確認&nbsp;" />
+<input style="font-weight: bold;" type="submit" name="post" 
+    tabindex="6" value="&nbsp;投稿&nbsp;" />
+</div>
+</form>
+
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+if (document.comments_form.email != undefined)
+    document.comments_form.email.value = getCookie("mtcmtmail");
+if (document.comments_form.author != undefined)
+    document.comments_form.author.value = getCookie("mtcmtauth");
+if (document.comments_form.url != undefined)
+    document.comments_form.url.value = getCookie("mtcmthome");
+if (getCookie("mtcmtauth") || getCookie("mtcmthome")) {
+    document.comments_form.bakecookie[0].checked = true;
+} else {
+    document.comments_form.bakecookie[1].checked = true;
+}
+//-->
+</script>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: GAME アーカイブ</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/life/game/index.html#000087"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/87"
+    dc:title="PSPプログラミングその２"
+    dc:identifier="http://www.noritsuna.jp/archives/life/game/index.html#000087"
+    dc:subject="GAME"
+    dc:description="また、PSPと戯れてしまったので、その顛末を記述します。 ■終了関連 普通のゲー..."
+    dc:creator="noritsuna"
+    dc:date="2005-05-22T16:02:35+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;05&#26376;22&#26085;</h2>
+
+
+<h3 id="a000087">PSPプログラミングその２</h3>
+
+<p>また、PSPと戯れてしまったので、その顛末を記述します。</p>
+
+<p><br />
+■終了関連<br />
+普通のゲームのように「HOME」ボタンで終了が出来るようになった模様。</p>
+
+<p>これで、強制電源Offしなくてすみます。(^-^;A<br />
+参考サイトは、<a href="http://www.nurs.or.jp/~calcium/wearable/trivia.html">こちら</a>。</p>
+
+<p><br />
+●startup.s<br />
+基本的には、下記の関数のポインタを記述すればOKのはずです。</p>
+
+<blockquote>STUB_START	"ThreadManForUser",0x40010000,0x000B0005<BR>
+STUB_FUNC   0x82826F70,KernelPollCallbacks<BR>
+STUB_FUNC   0xE81CAF8F,sceKernelCreateCallback<BR>
+STUB_END<BR>
+<BR>
+STUB_START   "LoadExecForUser",0x40010000,0x20005<BR>
+STUB_FUNC   0x5572A5F,sceKernelExitGame<BR>
+STUB_FUNC   0x4AC57943,SetExitCallback<BR>
+STUB_END<BR>
+<BR>
+STUB_START   "scePower",0x40010000,0x10005 <BR>
+STUB_FUNC   0x4B7766E,PowerSetCallback <BR>
+STUB_END<BR>
+</blockquote>
+
+<p>●pg.h<br />
+下記の物を追加します。<br />
+終了のみなので、あまり数はありません。</p>
+
+<blockquote>void sceKernelExitGame(void); <BR>
+void SetExitCallback(int cbid); <BR>
+void PowerSetCallback(int zero, int cbid); <BR>
+void KernelPollCallbacks(void); <BR>
+int  sceKernelCreateCallbacks(const char *name, void *func); <BR>
+int  sceKernelCreateThread(const char *name, void *func, int a,int b,int c,int d);<BR>
+</blockquote>
+
+<p>●終了関連の関数<br />
+必要な関数は、下記の物となります。<br />
+これらを、main.c などにコピペしてください。</p>
+
+<blockquote>int exit_callback(void) <BR>
+{ <BR>
+// Cleanup the games resources etc (if required) <BR>
+<BR>
+   sceKernelExitGame(); <BR>
+<BR>
+   return 0; <BR>
+} <BR>
+<BR>
+#define POWER_CB_POWER      0x80000000 <BR>
+#define POWER_CB_HOLDON      0x40000000 <BR>
+#define POWER_CB_STANDBY   0x00080000 <BR>
+#define POWER_CB_RESCOMP   0x00040000 <BR>
+#define POWER_CB_RESUME      0x00020000 <BR>
+#define POWER_CB_SUSPEND   0x00010000 <BR>
+#define POWER_CB_EXT      0x00001000 <BR>
+#define POWER_CB_BATLOW      0x00000100 <BR>
+#define POWER_CB_BATTERY    0x00000080 <BR>
+#define POWER_CB_BATTPOWER   0x0000007F <BR>
+void power_callback(int unknown, int pwrflags) <BR>
+{ <BR>
+   // Combine pwrflags and the above defined masks <BR>
+} <BR>
+<BR>
+// Thread to create the callbacks and then begin polling <BR>
+int CallbackThread(void *arg) <BR>
+{ <BR>
+   int cbid; <BR>
+<BR>
+   cbid = sceKernelCreateCallback("Exit Callback", exit_callback); <BR>
+   SetExitCallback(cbid); <BR>
+   cbid = sceKernelCreateCallback("Power Callback", power_callback); <BR>
+   PowerSetCallback(0, cbid); <BR>
+<BR>
+   KernelPollCallbacks(); <BR>
+} <BR>
+<BR>
+/* Sets up the callback thread and returns its thread id */ <BR>
+int SetupCallbacks(void) <BR>
+{ <BR>
+   int thid = 0; <BR>
+<BR>
+   thid = sceKernelCreateThread("update_thread", CallbackThread, 0x11, 0xFA0, 0, 0); <BR>
+   if(thid >= 0) <BR>
+   { <BR>
+      sceKernelStartThread(thid, 0, 0); <BR>
+   } <BR>
+<BR>
+   return thid; <BR>
+} <BR>
+</blockquote>
+
+<p><br />
+●終了処理用コード<br />
+初期化が、終わったあたりに、下記の一行を追加するだけです。<br />
+これで、「HOME」ボタンを押すと、見慣れた画面が表示されます。</p>
+
+<blockquote>SetupCallbacks();</blockquote>
+
+<p><br />
+<BR><br />
+■サウンド関連<br />
+そして、ついにきました！！！サウンド関連のAPIが使用可能となりました！<br />
+参考サイトは、<a href="http://anon.ug.to/sec/">こちら</a>。</p>
+
+<p></p>
+
+<p>●新ファイルについて<br />
+上記サイトから、サンプルを手に入れてきます。<br />
+今回は、下記のファイルが増えていますので、おもむろに自分の開発環境に<br />
+コピーしちゃいましょう。(^-^;A</p>
+
+<blockquote>・syscall.h<BR>
+・_clib.h<BR>
+・_clib.c<BR>
+</blockquote>
+
+<p>syscall.h は、startup.s で定義しているシステムコールをまとめているヘッダー<br />
+ファイルです。<br />
+これの追加に伴い、pg.h などに定義されているシステムコールは削除してください。</p>
+
+<p>clib.* は、ちょっとだけですが、libc な標準関数が使えます。<br />
+これを拡張していけば。。。(^-^;A</p>
+
+<p><br />
+●startup.s<br />
+基本的には、下記の関数のポインタを記述すればOKのはずです。</p>
+
+<blockquote>
+STUB_START	"sceAudio",0x40010000,0x00090005 <BR>
+STUB_FUNC	0x136CAF51,sceAudio_0<BR>
+STUB_FUNC	0xE2D56B2D,sceAudio_1<BR>
+STUB_FUNC	0x13F592BC,sceAudio_2<BR>
+STUB_FUNC	0x5EC81C55,sceAudio_3<BR>
+STUB_FUNC	0x6FC46853,sceAudio_4<BR>
+STUB_FUNC	0xE9D97901,sceAudio_5<BR>
+STUB_FUNC	0xCB2E439E,sceAudio_6<BR>
+STUB_FUNC	0x95FD0C2D,sceAudio_7<BR>
+STUB_FUNC	0xB7E1D8E7,sceAudio_8<BR>
+STUB_END<BR>
+</blockquote>
+
+<p><br />
+●mk.bat<br />
+ファイルが追加になっている関係上、一部を書き加える必要があります。<br />
+赤字となっている部分を追加してください。</p>
+
+<blockquote>
+"C:\ps2dev\gcc\ee\bin\ee-gcc" -march=r4000 -g -mgp32 -mlong32 -c _clib.c<BR>
+"C:\ps2dev\gcc\ee\bin\ee-ld" -O0 startup.o main.o pg.o _clib.o -M -Ttext 8900000 -q -o out &gt main.map
+outpatch
+</blockquote>
+
+<p><br />
+●pg.c<br />
+これと日本語フォント対応の font.c を、併用するには下記の箇所をコメントアウト<br />
+する必要があります。</p>
+
+<p>・main.c<br />
+12行目 halt() 関数内</p>
+
+<blockquote>pgcPuts(msg);<BR>
+pgcPuts("\r\nHalted.");<BR></blockquote>
+
+<p>・pg.c<br />
+599行目 pgErrorHalt() 関数内</p>
+
+<blockquote>pgcPuts(str);</blockquote>
+
+<p><br />
+ファイル内の下記関数自体</p>
+
+<blockquote>pgPrint()<BR>
+pgPrint2()<BR>
+pgPrint4()<BR>
+pgPutChar()<BR>
+pgcPutchar()<BR>
+pgcPutchar_nocontrol()<BR>
+pgcPuts()<BR>
+pgcPutsn()<BR>
+pgcPutsln()<BR>
+pgcPuthex2()<BR>
+pgcPuthex8()<BR>
+</blockquote>
+
+<p><br />
+・pg.h<br />
+下記のプロトタイプ宣言</p>
+
+<blockquote>void pgPrint(unsigned long x,unsigned long y,unsigned long color,const char *str);<BR>
+void pgPrint2(unsigned long x,unsigned long y,unsigned long color,const char *str);<BR>
+void pgPrint4(unsigned long x,unsigned long y,unsigned long color,const char *str);<BR>
+void pgPutChar(unsigned long x,unsigned long y,unsigned long <BR>
+void pgcPutchar(const char ch);<BR>
+void pgcPutchar_nocontrol(const char ch);<BR>
+void pgcPuts(const char *str);<BR>
+void pgcPutsn(const char *str,unsigned long max);<BR>
+void pgcPutsln(const char *str);<BR>
+void pgcPuthex2(const unsigned long s);<BR>
+void pgcPuthex8(const unsigned long s);<BR>
+</blockquote>
+
+<p><br />
+・syscall.h<br />
+下記に関しては、終了関連 で使用した物を使用してください。</p>
+
+<blockquote>int sceKernelCreateThread(const char *name, pg_threadfunc_t func, unsigned long priority, unsigned long stacksize, unsigned long attrib, void *unk);</blockquote>
+
+<p></p>
+
+<p>●サウンド関連の関数(main.c) <br />
+必要な関数は、下記の物となります。<br />
+これらを、main.c などにコピペしてください。</p>
+
+<blockquote>9行目#define BGDEF MKRGB(0,0,100) から 516行目wavoutLoadWav() 関数</blockquote>
+
+<p></p>
+
+<p>●終了処理用コード<br />
+さきほどの main.c 内、519行目から532行目までが、ファイル用の配列と構造体です。<br />
+必要に応じて、作成してください。</p>
+
+<blockquote>
+#define WAVFILEMAX_BG 8*1024*1024<BR>
+char wavdata_bg[WAVFILEMAX_BG];<BR>
+wavout_wavinfo_t wavinfo_bg;<BR>
+</blockquote>
+
+<p><br />
+使い方は、下記のような感じで、ファイル名と上記の構造体を渡して、<br />
+再生させます。<br />
+「0」と「1」があるのですが、BGMのようなループさせたい音とジャンプ音のような<br />
+一回のみ非同期で再生したい音というような感じで使い分けると思われます。(^-^;A</p>
+
+<p><br />
+「0」のパターン<br />
+<blockquote><br />
+ret=wavoutLoadWav("op.wav",&ampwavinfo_bg,wavdata_bg,sizeof(wavdata_bg));<br />
+	if (ret!=0) halt("op.wav load error");<br />
+	wavinfo_bg.playloop=1; // ループします。<br />
+	wavoutStartPlay0(&ampwavinfo_bg);<br />
+　　//終了処理<br />
+	wavoutWaitEnd0();<br />
+	wavoutStopPlay0();<br />
+</blockquote></p>
+
+<p>「1」のパターン<br />
+<blockquote>ret=wavoutLoadWav("op.wav",&ampwavinfo_bg,wavdata_bg,sizeof(wavdata_bg));<br />
+	if (ret!=0) halt("op.wav load error");<br />
+	wavoutStartPlay1(&wavinfo_bg);<br />
+	//終了処理<br />
+	wavoutStopPlay1();<br />
+</blockquote></p>
+
+<p></p>
+
+<p>以上で、終了です。<br />
+では、私は、さらに広がったPSPの世界に旅立ってきます。("｀д´)ゞ</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/05/psp_4.html">16:02</a>
+| <a href="http://www.noritsuna.jp/archives/2005/05/psp_4.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/05/psp_4.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/life/game/index.html#000085"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/85"
+    dc:title="PSP小技"
+    dc:identifier="http://www.noritsuna.jp/archives/life/game/index.html#000085"
+    dc:subject="GAME"
+    dc:description="また、ちょっとだけPSPで遊んだので、その辺を少々。 ちょっとした小技という感じ..."
+    dc:creator="noritsuna"
+    dc:date="2005-05-13T02:50:23+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;05&#26376;13&#26085;</h2>
+
+
+<h3 id="a000085">PSP小技</h3>
+
+<p>また、ちょっとだけPSPで遊んだので、その辺を少々。<br />
+ちょっとした小技という感じです。</p>
+
+<p><br />
+●ゲーム選択時に出る画像入れ替え<br />
+メモリースティック内のゲーム選択時に表示される画像は、</p>
+
+<blockquote>ファイル名：ICON0.png<BR>
+ファイルサイズ：144 x 80<BR>
+ファイルフォーマット：PNG</blockquote>
+
+<p>と、なっていますので、これにあわせて画像を作成します。</p>
+
+<p>そして、<a href="http://pdc.me.uk/pbp/">こちら</a>のツールにて、EBOOT.PBP 内のファイルを入れ替える<br />
+ことが出来ますので、「ICON0.png」を作成した物を指定してsaveすれば<br />
+画像を入れ替えることが出来ます。<br />
+<BR><br />
+●日本語フォント<br />
+下記のところから必要なファイルを頂き、自分の環境にコピーしてください。</p>
+
+<p>・第二水準対応フォント<br />
+<a href="http://www.nurs.or.jp/~calcium/psp/font.zip">http://www.nurs.or.jp/~calcium/psp/font.zip</a></p>
+
+<blockquote>font.c</blockquote> 
+
+<p>が、対象物となります。</p>
+
+<p><br />
+・2バイト文字対応print系関数<br />
+<a href="http://psp.holybell.to/uploader/upload/GBFileSelecter003.zip">http://psp.holybell.to/uploader/upload/GBFileSelecter003.zip</a></p>
+
+<blockquote>pg.h<BR>
+pg.c<BR>
+main.c の 6〜188行目までを自分のコードにコピー</blockquote>
+
+<p>が、対象物となります。</p>
+
+<p><br />
+・第二水準対応<br />
+<a href="/download/font_diff.txt">main.cのdiff</a>を参考に、GBFileSelecter003.zip の main.c を書き換えてください。</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/05/psp_2.html">02:50</a>
+| <a href="http://www.noritsuna.jp/archives/2005/05/psp_2.html#comments">コメント (2)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/05/psp_2.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/life/game/index.html#000084"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/84"
+    dc:title="PSPプログラミング"
+    dc:identifier="http://www.noritsuna.jp/archives/life/game/index.html#000084"
+    dc:subject="GAME"
+    dc:description="最近、いろいろと忙しく情報してなかったら、いつの間にかPSPで 自作プログラムが..."
+    dc:creator="noritsuna"
+    dc:date="2005-05-11T23:37:38+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;05&#26376;11&#26085;</h2>
+
+
+<h3 id="a000084">PSPプログラミング</h3>
+
+<p>最近、いろいろと忙しく情報してなかったら、いつの間にかPSPで<br />
+自作プログラムが動く環境が出来ているではないですか！！！</p>
+
+<p>これは、さっそくということで、開発環境を構築してみましたので<br />
+その流れで引っかかりそうなところを抜粋して、書いておきます。<br />
+<BR><br />
+●必要なソフトのダウンロード<br />
+・Cygwin<br />
+<a href="http://cygwin.com/">http://cygwin.com/</a></p>
+
+<p>・PS2Dev<br />
+<a href="http://ps2dev.org/files/PS2Dev_Setup.exe ">http://ps2dev.org/files/PS2Dev_Setup.exe </a><br />
+<a href="http://nnoble.nerim.net/ps2dev/ps2dev-toolchain-mingw32-20050504.zip">http://nnoble.nerim.net/ps2dev/ps2dev-toolchain-mingw32-20050504.zip<br />
+</a><br />
+PS2用の開発環境です。<br />
+これをベースに、開発環境を構築します。</p>
+
+<p><br />
+・算譜職人さん作の HelloPSP R1 の ソースコード<br />
+<a href="http://anon.ug.to/sec/">http://anon.ug.to/sec/</a><br />
+<a href="http://anon.ug.to/sec/pub/hellopsp_src_Rel1.zip">http://anon.ug.to/sec/pub/hellopsp_src_Rel1.zip</a></p>
+
+<p>こちらから、使えそうなコードを頂きます。(^-^;A<br />
+各ファイルの意味は、同梱されている readme.txt を参考にしてください。</p>
+
+<blockquote>
+mk.bat<BR>
+font.c<BR>
+pg.c<BR>
+pg.h<BR>
+outpatch.cpp<BR>
+startup.s
+</blockquote>
+
+<p><br />
+・elf2pbp<br />
+<a href="http://www.internalreality.com/">http://www.internalreality.com/</a><br />
+PSP用elfファイルを EBOOT.PBP ファイルに変換するツール<br />
+<BR><br />
+●インストール<br />
+Cygwin と PS2Dev は、インストーラ付きですので、普通にインストールして<br />
+ください。</p>
+
+<p>他の物は、任意のフォルダにまとめて保存してください。</p>
+
+<p>私の開発用フォルダは下記のようになっています。</p>
+
+<blockquote>
+elf2pbp.exe<BR>
+font.c<BR>
+main.c ←これは、自分で作ったファイル<BR>
+mk.bat<BR>
+pg.c<BR>
+pg.h<BR>
+outpatch.exe<BR>
+outpatch.cpp<BR>
+startup.s
+</blockquote>
+
+<p><BR><br />
+●コンパイル法<br />
+基本は、 mk.bat を叩くだけです。が、やはり、書き換える必要が<br />
+あります。<br />
+(Makefile とか作ってもOK！)</p>
+
+<p>1行目 が、一応メイン関数があるファイルのコンパイルの指定ですので<br />
+これを自分の環境に合わせて書き換えます。</p>
+
+<p>さらに、最後に</p>
+
+<blockquote>elf2pbp outp "Test Program"</blockquote>
+
+<p>を、付け足します。<br />
+これで、EBOOT.PBP が、生成されます。<br />
+第２引数の「"Test Program"」は、プログラム名となります。<br />
+<BR><br />
+・モジュール名の変更<br />
+startup.s の 59行目で変更できます。</p>
+
+<blockquote>.ascii	"HelloWorld"		#up to 28 char</blockquote>
+
+<p>ただし、これを行ってしまうと、outpatch.exe が、</p>
+
+<blockquote>modulename not found</blockquote>
+
+<p>とエラーを吐くようになります。<br />
+回避法は、outpatch.cpp の 6行目で、</p>
+
+<blockquote>#define str_modulename "HelloWorld"</blockquote>
+
+<p>と、モジュール名が指定されていますので、書き換えて、コンパイルし<br />
+直す必要があります。<br />
+<BR><br />
+●まとめ<br />
+これで、コンパイルできる環境が整いました。<br />
+あとは、API を調べて、面白そうな悪さを考えるだけです。(^-^;A</p>
+
+<p>とはいっても、Network系のは、まだ、解析されてなさそうなので<br />
+先の話なのかなぁとか思いつつ、ちょっと、遊んでみようかと<br />
+思います。</p>
+
+<p>・参考サイト<br />
+<a href="http://forums.ps2dev.org/viewforum.php?f=12">http://forums.ps2dev.org/viewforum.php?f=12</a><br />
+<a href="http://forums.ps2dev.org/viewforum.php?f=14">http://forums.ps2dev.org/viewforum.php?f=14</a></p>
+
+<p><br />
+<BR><br />
+※注意事項<br />
+ファームバージョンが1.5以上だと、メモリースティックから起動<br />
+出来るプログラムが正規に暗号化された物じゃないとダメらしく<br />
+この開発環境でコンパイルした物では起動できないそうです。</p>
+
+<p><a href="http://www.watch.impress.co.jp/av/docs/20050511/scei.htm">こちら</a>にも、こんな話も出てますし、かなり信憑性は高そうです。</p>
+
+<p>こうなってくると、ファームバージョン1.0は、プレミアつくかしらん。(^-^;A<br />
+ちなみに、私のPSPは、ファームバージョン1.0ですよ〜。<br />
+<BR><br />
+あと、法的にかなり濃いグレーなブツも出回っているようですね。<br />
+この辺、興味のある方は、2chなどを漁ってみてください。</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/05/psp_1.html">23:37</a>
+| <a href="http://www.noritsuna.jp/archives/2005/05/psp_1.html#comments">コメント (2)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/05/psp_1.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/life/game/index.html#000003"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/3"
+    dc:title="PSP届きました"
+    dc:identifier="http://www.noritsuna.jp/archives/life/game/index.html#000003"
+    dc:subject="GAME"
+    dc:description=" ・ネット対戦 　XLinkによるインターネット経由の対戦。 　結果 　　すっげ..."
+    dc:creator="noritsuna"
+    dc:date="2004-12-25T18:41:54+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2004&#24180;12&#26376;25&#26085;</h2>
+
+
+<h3 id="a000003">PSP届きました</h3>
+
+<p><br />
+・ネット対戦<br />
+　XLinkによるインターネット経由の対戦。</p>
+
+<p>　結果<br />
+　　すっげーおもしろい。<br />
+　　リッジを試しましたが、ラグが出まくるので、車が空飛びます。(^-^;A</p>
+
+<p>　　まぁ、全体としてはOK!　ただ、パソがないと出来ないので、あまり<br />
+　　意味はない。(^-^;A<br />
+　　要は、普通にぱそげーでもやってろって感じ。（ｗ</p>
+
+<p></p>
+
+<p>・静止画変換<br />
+　電子ブックとしてどうか試す!<br />
+　ということで、縦と横を90度変換させて、縦表示出来るようにする。<br />
+　(ディスプレイが横に長いので。)<br />
+　　→悲しいことにプログラムは半分自作。(ノД`)シクシク</p>
+
+<p>　結果<br />
+　　けっこうOK！これは使えるよハニー！！！<br />
+　　ただ、ソースがない。(ノД`)シクシク</p>
+
+<p>　　まぁ、元々電子ブックは想定してないので、しおり機能とかないし<br />
+　　使い勝手はいまいち。</p>
+
+<p></p>
+
+<p>・動画変換<br />
+　携帯動画変換君を使用。</p>
+
+<p>　結果<br />
+　　さすがに、これは完璧。操作感も問題なし。<br />
+　　ばっちり、使えます。ただ、15分くらいの移動時間しかない僕には<br />
+　　無用の長物。(ノД`)シクシク</p>
+
+<p></p>
+
+<p>・ゲームディレクトリ<br />
+　たぶん、今後、一部の人にとっては目玉になると思われる機能。</p>
+
+<p>　メモリースティック内に「GAME」というディレクトリが存在する。<br />
+　セーブデータは別にあるため、ここにゲームをアップすると読み込ませる<br />
+　事が出来る可能性大。たぶん、PS2との連係機能はこれを使うと思われ。<br />
+　すなわち、環境さえ整えば独自プログラムを読み込ませることが可能に<br />
+　なる可能性があるって事!!!</p>
+
+<p>　これを、解析出来れば、すてきな世界が待っている悪寒。<br />
+　解析データくれ〜〜〜。GCCでクロスコンパイル環境だだだだだ。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2004/12/psp.html">18:41</a>
+| <a href="http://www.noritsuna.jp/archives/2004/12/psp.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2004/12/psp.html#trackbacks">トラックバック</a>
+
+</p>
+
+
+
+</div>
+</div>
+
+</body>
+</html>

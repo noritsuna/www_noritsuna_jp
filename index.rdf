@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+
+<rdf:RDF
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+xmlns:admin="http://webns.net/mvcb/"
+xmlns:cc="http://web.resource.org/cc/"
+xmlns="http://purl.org/rss/1.0/">
+
+<channel rdf:about="http://www.noritsuna.jp/">
+<title>なんとなく実験 with SIProp開発記</title>
+<link>http://www.noritsuna.jp/</link>
+<description>SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</description>
+<dc:language>ja</dc:language>
+<dc:creator></dc:creator>
+<dc:date>2011-01-03T18:38:13+09:00</dc:date>
+<admin:generatorAgent rdf:resource="http://www.movabletype.org/?v=3.33-ja" />
+<cc:license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+
+
+<items>
+<rdf:Seq><rdf:li rdf:resource="http://www.noritsuna.jp/archives/2011/01/openframeworks_kinect_android.html" />
+<rdf:li rdf:resource="http://www.noritsuna.jp/archives/2010/08/p2p_sip_23.html" />
+<rdf:li rdf:resource="http://www.noritsuna.jp/archives/2010/08/android_sdk104a.html" />
+<rdf:li rdf:resource="http://www.noritsuna.jp/archives/2010/08/android_search.html" />
+<rdf:li rdf:resource="http://www.noritsuna.jp/archives/2010/08/github_on_android.html" />
+<rdf:li rdf:resource="http://www.noritsuna.jp/archives/2010/07/p2p_sip_22.html" />
+<rdf:li rdf:resource="http://www.noritsuna.jp/archives/2010/06/npoandroidandro.html" />
+<rdf:li rdf:resource="http://www.noritsuna.jp/archives/2010/05/p2p_sip_21.html" />
+<rdf:li rdf:resource="http://www.noritsuna.jp/archives/2010/04/applemarket_pla.html" />
+<rdf:li rdf:resource="http://www.noritsuna.jp/archives/2010/04/linux20105.html" />
+<rdf:li rdf:resource="http://www.noritsuna.jp/archives/2010/04/preinterop_clou.html" />
+<rdf:li rdf:resource="http://www.noritsuna.jp/archives/2010/03/hotaru.html" />
+<rdf:li rdf:resource="http://www.noritsuna.jp/archives/2010/03/post_147.html" />
+<rdf:li rdf:resource="http://www.noritsuna.jp/archives/2010/03/p2p_sip_20.html" />
+<rdf:li rdf:resource="http://www.noritsuna.jp/archives/2010/03/embedded_master.html" />
+</rdf:Seq>
+</items>
+
+</channel>
+
+<item rdf:about="http://www.noritsuna.jp/archives/2011/01/openframeworks_kinect_android.html">
+<title>OpenFrameworks x kinect x Android</title>
+<link>http://www.noritsuna.jp/archives/2011/01/openframeworks_kinect_android.html</link>
+<description><![CDATA[<p>The <a href="http://www.siprop.org/">SIProp project</a>'s members finised to make "OpenFrameworks x kinect x Android" Development Environment and to run it on Android(armadillo & beagleboard).</p>
+
+<p><a href="http://yfrog.com/5ryfxz">Demo video</a></p>
+
+<p></p>
+
+<p><BR><br />
+Special Thanks:</p>
+
+<p>We used those OSSs. Thank you for great works!<br />
+<a href="http://www.openframeworks.cc/">OpenFrameworks</a><br />
+<a href="https://github.com/ofTheo/ofxKinect">ofxKinect(Kinect for OpenFrameworks)</a><br />
+<a href="http://www.openframeworks.cc/setup/android-eclipse">ofxAndroid(Android for OpenFrameworks)</a></p>
+
+<p><BR><br />
+SIProp members:<br />
+<a href="http://blog.goo.ne.jp/tuninghigh">Hirotaka Niisato</a><br />
+masaxmasa</p>
+
+<p></p>
+
+<p><br />
+<BR><BR><br />
+How to make:</p>
+
+<p>1.Setup ofxAndroid's Development Environment</p>
+
+<p>Please refer to the following site:</p>
+
+<p>ofxAndroid setup manual<br />
+<a href="http://www.openframeworks.cc/setup/android-eclipse">http://www.openframeworks.cc/setup/android-eclipse</a></p>
+
+<p>If you can read Japanese & want to setup it on Windows, you should refer to this site.<br />
+<a href="http://blog.goo.ne.jp/tuninghigh/e/637821f5b76b370876e3092e860ce7db">http://blog.goo.ne.jp/tuninghigh/e/637821f5b76b370876e3092e860ce7db</a></p>
+
+<p></p>
+
+<p><BR><br />
+2.Merge ofxKinect to ofxAndroid</p>
+
+<p>2-1.Download & Setup to Eclipse</p>
+
+<p>Please download soruce code from the following site:<br />
+<a href="https://github.com/ofTheo/ofxKinect">https://github.com/ofTheo/ofxKinect</a></p>
+
+<p><br />
+Next, Copy [ofxKinect directory]/src/ofxKinect/ to [ofxAndroid directory]/addons/ .</p>
+
+<p>Final, Add include path to Eclipse's "(ofxAndroid's)addons" project.<br />
+Please run Eclipse and add the folloing place & path:</p>
+
+<blockquote>Place: Properties -> C/C++ General -> Pths and Symbols -> Includes tab(GNU C++)<BR>
+Path: [ofxAndroid directory]/addons/src/ofxKinect/src/</blockquote>
+
+<p><br />
+<BR><br />
+2-2.Fix compile error</p>
+
+<p>If ofxAndroid doesn't have ofxThread::waitForThread(bool) function.<br />
+Please add the following source:</p>
+
+<p>[ofxAndroid directory]/addons/ofxThread/src/ofxThread.h<br />
+<blockquote>void waitForThread(bool stop = true);</blockquote></p>
+
+<p><br />
+[ofxAndroid directory]/addons/ofxThread/src/ofxThread.c<br />
+<blockquote><br />
+void ofxThread::waitForThread(bool stop){<br />
+ if (threadRunning){<br />
+  // Reset the thread state<br />
+  if(stop){<br />
+   threadRunning = false;<br />
+   if(verbose)printf("ofxThread: stopping thread\n");<br />
+  }</p>
+
+<p>  if(verbose)printf("ofxThread: waiting for thread to stop\n");<br />
+  // Wait for the thread to finish<br />
+#ifdef TARGET_WIN32<br />
+  WaitForSingleObject(myThread, INFINITE);<br />
+  CloseHandle(myThread);<br />
+#else<br />
+  if(pthread_self()==myThread) printf("ofxThread: error, waitForThread should only be called from outside the thread");<br />
+  pthread_join(myThread, NULL);<br />
+#endif<br />
+  if(verbose)printf("ofxThread: thread stopped\n");<br />
+  myThread = NULL;<br />
+   }else{<br />
+    if(verbose)printf("ofxThread: thread already stopped\n");<br />
+   }<br />
+}<br />
+</blockquote></p>
+
+<p></p>
+
+<p><BR><br />
+2-3.Do customize source code for Android</p>
+
+<p>Please remove the following code in ofxKinect::threadedFunction() function:</p>
+
+<blockquote>ofSleepMillis(20);</blockquote>
+
+<p><br />
+Please add the following code in [ofxKinect directory]/libs/lubusb/io.c file:<br />
+<blockquote><br />
+#define TIMESPEC_TO_TIMEVAL(tv, ts)                                     \<br />
+        do {                                                            \<br />
+                (tv)->tv_sec = (ts)->tv_sec;                            \<br />
+                (tv)->tv_usec = (ts)->tv_nsec / 1000;                   \<br />
+        } while (0)<br />
+</blockquote></p>
+
+<p></p>
+
+<p><BR><br />
+2-4.Create your application project</p>
+
+<p>Please choose sample programs from the following directory:<br />
+<blockquote>[ofxAndroid directory]/apps/androidExamples/</blockquote></p>
+
+<p>And copy it to the following directory:<br />
+<blockquote>[NDK directory]/apps/</blockquote></p>
+
+<p>Final, export this project on Eclipse.</p>
+
+<p><br />
+<BR><br />
+2-5.Build project</p>
+
+<p>You must build JNI at first.<br />
+You execute the following commands:<br />
+<blockquote>cd [NDK directory]/apps/[your app directory]<br />
+[NDK directory]/ndk-build -B<br />
+</blockquote></p>
+
+<p>And, you build android application on Eclipse.</p>
+
+<p></p>
+
+<p>*If you don't know how to use ofxKinect framework, please refer to "[ofxKinect directory]/src/testApp.cpp".</p>
+
+<p><br />
+<BR><br />
+3.Change Android's configuration</p>
+
+<p>Please add the following line to init.rc:<br />
+<blockquote>mount usbfs none /proc/bus/usb -o devmode=0666</blockquote></p>
+
+<p><br />
+<BR><br />
+4.Upgrade Android's kernel</p>
+
+<p>libusb MUST neet "USB FS". And Kinect MUST neet "High Speed USB(USB2.0)".</p>
+
+<p>Therefore, you check the following kernel options:<br />
+.config<br />
+<blockquote>CONFIG_USB_DEVICEFS=y<br />
+CONFIG_USB_EHCI_ARC_OTG_ALLOW_HS=y (only armadillo)</blockquote></p>
+
+<p><BR><br />
+Appendix</p>
+
+<p>If your device can not draw normal Z-camera image and RGB-camera image, you MUST need to build optimized kernel & userland.<br />
+I used  the following optimization option for building kernel, userland & "OpenFrameworks x kinect x Android".</p>
+
+<p>for armadillo<br />
+<blockquote>-O3 -march=armv6 -mtune=arm1136jf-s -mfpu=vfp -ffast-math -fno-math-errno -mfloat-abi=softfp -ftree-vectorize -fomit-frame-pointer -funroll-loops -fstrict-aliasing -funswitch-loops</blockquote></p>
+
+<p>for beagleboard<br />
+<blockquote>-O3 -ffast-math -fno-math-errno -march=armv7-a -mtune=cortex-a8 -mfloat-abi=softfp -mfpu=neon -ftree-vectorize -fomit-frame-pointer -funroll-loops -fstrict-aliasing -funswitch-loops</blockquote></p>
+
+<p><br />
+<BR><BR><br />
+*Download<br />
+<a href="http://www.noritsuna.jp/download/openframeworks_kinect_android_fullIDE_armadillo-20110103.tar.gz">Full "OpenFrameworks x kinect x Android" Development Environment for Armadillo</a><br />
+<a href="http://www.noritsuna.jp/download/openframeworks_kinect_android_fullIDE_beagleboard-20110103.tar.gz">Full "OpenFrameworks x kinect x Android" Development Environment for beagleboard</a><br />
+<a href="http://www.noritsuna.jp/download/openframeworks_kinect_android_src-20110103.tar.gz">Only source code "OpenFrameworks x kinect x Android</a></p>
+
+<p><br />
+Full "OpenFrameworks x kinect x Android" Development Environment has:<br />
+<blockquote>Android NDK crystax version for Linux<br />
+Android SDK for Linux<br />
+C/C++ Eclipse for Linux<br />
+ofxKinect(Kinect for OpenFrameworks)'s source codes<br />
+ofxAndroid(Android for OpenFrameworks)'s source codes<br />
+"OpenFrameworks x kinect x Android" 's source codes<br />
+sample program Eclipse's workspace</blockquote><br />
+</p>]]></description>
+<dc:subject>Android</dc:subject>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2011-01-03T18:38:13+09:00</dc:date>
+</item>
+<item rdf:about="http://www.noritsuna.jp/archives/2010/08/p2p_sip_23.html">
+<title>第二十一回P2P SIP勉強会の告知</title>
+<link>http://www.noritsuna.jp/archives/2010/08/p2p_sip_23.html</link>
+<description><![CDATA[<p><a href="http://www.siprop.org/ja/2.0/index.php?%B3%AB%C8%AF%2F%A5%B3%A5%DF%A5%E5%A5%CB%A5%C6%A5%A3%A1%BC%2F%CA%D9%B6%AF%B2%F1">第二十一回P2P SIP勉強会</a>の、告知です。</p>
+
+<p>今回は、ついにあのお方の弟子が、<a href="http://www.interop.jp/pavilion/ccc.html">クラウドコンピューティングコンペティション・グランプリ</a>の実績をひっさげて登壇です！！！<br />
+ぜひ、皆様の手で、フルボッコにしてあげてください。<(_ _)></p>
+
+<p><br />
+<blockquote><br />
+*案内<BR><br />
+-日程<BR><br />
+--2010年9月19日(日)<BR><br />
+-時間<BR><br />
+--14:00〜<BR><br />
+-参加費<BR><br />
+--なし<BR><br />
+-懇親会<BR><br />
+--あり。<BR><br />
+-会場<BR><br />
+--東工大 西7号館<BR><br />
+---info あっとまーく siprop.org<BR><br />
+---にお問い合わせください。<BR><br />
+<BR><br />
+*プログラム<BR><br />
+-<a href="http://twitter.com/did2memo">@did2memo</a>氏による『柔軟な経路表に基づくOverlayNetworkの設計と応用〜そろそろ、SkipGraphとドロネーに引導を渡してやるか〜』 <br />
+--本日を、SkipGraphとドロネーの命日にすべく、DHTアルゴリズムの応用可能性を高める手法『柔軟な経路表』の詳細な仕組みと、実際の応用であるグループ間通信抑制手法を中心にDHTについて話します。<br />
+---DHTチュートリアル?／柔軟な経路表のアルゴリズム／応用例のデモ?／柔軟な経路表の応用例LFRT／今後の応用?／OverlayWeaver?<br />
+</blockquote></p>]]></description>
+<dc:subject>SIProp</dc:subject>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2010-08-28T19:17:35+09:00</dc:date>
+</item>
+<item rdf:about="http://www.noritsuna.jp/archives/2010/08/android_sdk104a.html">
+<title>書籍「Android SDK開発のレシピ―104個のレシピで学ぶAndroidアプリ開発の極意」絶賛発売中！</title>
+<link>http://www.noritsuna.jp/archives/2010/08/android_sdk104a.html</link>
+<description><![CDATA[<p>「<a href="http://d.hatena.ne.jp/gabuchan/20100806/1281062339">Android SDK開発のレシピ―104個のレシピで学ぶAndroidアプリ開発の極意</a>」という、AndroidのTips集が発売されました。</p>
+
+<p>これは、我らが「<a href="http://www.noritsuna.jp/archives/2009/12/feel_sketch.html">Feel Sketch</a>」の Android側Viewer を開発した、『<a href="http://www.ipa.go.jp/jinzai/mitou/2008/2008_2/hontai/gaiyou/12.html">Puppyチーム</a>』の<a href="http://twitter.com/gabu">gabu</a>たん、こと、塚田翔也氏の力作となっております。</p>
+
+<p>まさに、いままでさまざまな先進的なAndroidアプリを開発してきた氏ならではのノウハウが凝縮された一冊となっておりますので、Android開発者の皆様は是非とも一冊、手元に置いておいていただければ、必ずやお役に立つと思います。</p>]]></description>
+<dc:subject>Android</dc:subject>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2010-08-11T22:48:18+09:00</dc:date>
+</item>
+<item rdf:about="http://www.noritsuna.jp/archives/2010/08/android_search.html">
+<title>Androidソース検索用サイト試験運用開始しました</title>
+<link>http://www.noritsuna.jp/archives/2010/08/android_search.html</link>
+<description><![CDATA[<p>beagleboardをこよなく愛する皆様へ<br />
+そして、アプリの世界から、新たな可能性を求めて、Androidの深層まで降りてき皆様より、<br />
+beagleboard向けにビルドなどをしていると、</p>
+
+<blockquote>エラーが出やがった！ソースコードを調べたいけど、まだ、ツールが使いこなせていない＞＜</blockquote>
+
+<p>というようなお話を聞く機会が何度かありました。</p>
+
+<p><BR><br />
+<BR><br />
+●解決案<br />
+そこで、<a href="http://www.oesf.jp/">一般社団法人Open Embedded Software Foundation</a>より、OESFの<a href="http://www.oesf.jp/modules/activity/index.php?content_id=5">オープンソースポリシー</a>に則り、コミュニティーとのコラボレーションを深めていくために、ブラウザ上からOHA版Androidのソース一式を検索出来る<a href="http://tools.oesf.biz/android-2.2_r1.1/">検索エンジン</a>を、公開することにいたしました。</p>
+
+<p><br />
+使い方などは、<a href="http://www.noritsuna.jp/archives/2008/10/android_17.html">こちら</a>。</p>
+
+<p></p>
+
+<p><BR><br />
+●公開場所<br />
+<a href="http://tools.oesf.biz/android-2.2_r1.1/">Androidのソース一式の検索エンジン</a></p>
+
+<p></p>
+
+<p>●検索出来るバージョン<br />
+OHAリポジトリの「Android-2.2_r1.1」タグのついたソースコード一式</p>
+
+<p></p>
+
+<p>ついしん<br />
+サーバの負荷が高くなりすぎるようなら、他の方法を考えます。<br />
+そのため、試験運用ってことで。</p>]]></description>
+<dc:subject>Android</dc:subject>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2010-08-02T02:23:36+09:00</dc:date>
+</item>
+<item rdf:about="http://www.noritsuna.jp/archives/2010/08/github_on_android.html">
+<title>GitHub上にOHA版Androidのソース一式を公開しました</title>
+<link>http://www.noritsuna.jp/archives/2010/08/github_on_android.html</link>
+<description><![CDATA[<p>ポーティング職人の皆様へ</p>
+
+<p><br />
+最近、</p>
+
+<blockquote>Androidのソースに手を入れたけど、一式丸ごと公開すると約1GBあるので、無料のサービスではホスト出来ない。
+そのため、修正を入れるたびに、diffパッチを作らねばならず、面倒すぐる！</blockquote>
+
+<p>というようなお話を聞く機会が何度かありました。<br />
+たしかに、分散リポジトリであるgitを使っていながら、最終的な配布物が、diffパッチでは悲しい物があります。</p>
+
+<p><BR><br />
+<BR><br />
+●解決案<br />
+<a href="http://github.com/">GitHub</a>上では、freeプランでは300MBの容量しかありませんが、他の人のgitリポジトリを、自分のgitリポジトリとしてforkする分には、どれだけforkしても容量は減りません。<br />
+差分のみ、容量として加算されていきます。</p>
+
+<p>すなわち、だれかが、有料版のGitHubを利用し、<a href="http://android.git.kernel.org/">OHA版Androidのソース一式</a>を、GitHub上に公開すれば、ほとんどの修正ソースコードは、freeプラン内でアップロード出来ると言うことです。<br />
+しかも、当然、gitが使えますので、gitの恩恵をまるまる受けることが出来ます。すなわち、完全な形のソースツリーを『自分のリポジトリ』として管理することが可能です。</p>
+
+<p></p>
+
+<p><BR><br />
+●提供開始！！！<br />
+そこで、<a href="http://www.oesf.jp/">一般社団法人Open Embedded Software Foundation</a>より、OESFの<a href="http://www.oesf.jp/modules/activity/index.php?content_id=5">オープンソースポリシー</a>に則り、コミュニティーとのコラボレーションを深めていくために、<a href="http://android.git.kernel.org/">OHA版Androidのソース一式</a>を、<a href="http://github.com/OESF/OHA-Android-2.2_r1.1/">GitHub上に公開</a>することにいたしました。</p>
+
+<p>ぜひ、皆様の成果をGitHub上に公開してもらえればと思います。</p>
+
+<p><br />
+<BR><br />
+また、僭越ではありますが、優れた成果であれば、ご相談の上、<a href="http://github.com/OESF/Embedded-Master-ARM">Embedded-Master</a>にどんどんと取り入れさせていただきたいと考えておりますので、よろしくお願いいたします。</p>
+
+<p>その他、要望等がありましたら、何でも構いませんので、</p>
+
+<p>em あっとまーく oesf.jp （まっとまーくを、@に変換してください。）</p>
+
+<p>まで、ご連絡いただければと思います。</p>
+
+<p><br />
+<BR><br />
+<BR><br />
+●公開場所<br />
+<a href="http://github.com/OESF/OHA-Android-2.2_r1.1/">GitHub上のOHA版Androidのソース一式</a></p>
+
+<p><br />
+●バージョン<br />
+OHAリポジトリの「Android-2.2_r1.1」タグのついたソースコード一式</p>
+
+<p><br />
+●リポジトリ構成<br />
+<a href="http://www.noritsuna.jp/archives/2010/03/embedded_master.html">こちら</a>の趣旨に則って、リポジトリは一つにまとめてあります。</p>
+
+<p>そのため、変更履歴など参照したい場合には、OHAのgitサーバを参照してください。</p>]]></description>
+<dc:subject>Android</dc:subject>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2010-08-01T01:01:27+09:00</dc:date>
+</item>
+<item rdf:about="http://www.noritsuna.jp/archives/2010/07/p2p_sip_22.html">
+<title>第二十回P2P SIP勉強会の告知</title>
+<link>http://www.noritsuna.jp/archives/2010/07/p2p_sip_22.html</link>
+<description><![CDATA[<p><a href="http://www.siprop.org/ja/2.0/index.php?%B3%AB%C8%AF%2F%A5%B3%A5%DF%A5%E5%A5%CB%A5%C6%A5%A3%A1%BC%2F%CA%D9%B6%AF%B2%F1">第二十回P2P SIP勉強会</a>の、告知です。</p>
+
+<p>今回は、Cloudをdisりに来た若者です。Cloudがどれだけダメでどうしようもないのか、そして、『俺様』が考える最強のCloudシステムについて、騙っていただきます。</p>
+
+<p><br />
+<blockquote><br />
+*案内<BR><br />
+-日程<BR><br />
+--2010年7月25日(日)<BR><br />
+-時間<BR><br />
+--14:00〜<BR><br />
+-参加費<BR><br />
+--なし<BR><br />
+-懇親会<BR><br />
+--あり。<BR><br />
+-会場<BR><br />
+--東工大 西7号館<BR><br />
+---info あっとまーく siprop.org<BR><br />
+---にお問い合わせください。<BR><br />
+<BR><br />
+*プログラム<BR><br />
+-@hamhei氏による『MyCloudの話と、みんなで世界（のファイルシステム）をぶち壊そう』<BR><br />
+--クラウドにはロックイン・遅延などの問題があります。MyCloudは、複数のベンダのパブリッククラウドを構成ノードとして、一つの大きなクラウドストレージを構築します。MyCloudはプライバシー保護・転送速度向上といったメリットを生み出します。<br />
+-- あと最近は既存のファイルシステムに我慢がならない。ディレクトリ構造は人間の記憶がボトルネックになるため大量のデータ管理に適していない。今回はこの問題についても最近考えていることをお話し、皆様からのフィードバックを得られたらと考えております。<br />
+</blockquote></p>]]></description>
+<dc:subject>SIProp</dc:subject>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2010-07-14T22:37:37+09:00</dc:date>
+</item>
+<item rdf:about="http://www.noritsuna.jp/archives/2010/06/npoandroidandro.html">
+<title>NPO日本Androidの会とコミュニティー日本Androidの会の役職を辞任しました</title>
+<link>http://www.noritsuna.jp/archives/2010/06/npoandroidandro.html</link>
+<description><![CDATA[<p>本日付で、NPO日本Androidの会の副理事長ならびにメンバー(社員)を辞任いたしました。そして、コミュニティー日本Androidの会の運営側からも、身を引かせていただくことになりました。</p>
+
+<p>理由としましては、『私が理想と考えるコミュニティー像』からは、随分と乖離した運営組織となってしまったため、これ以上関わることはよろしくないと判断し、このような形となりました。</p>
+
+<p><BR><br />
+これからは、『私が理想と考えるコミュニティー像』を目指して、活動は続けていく予定ですので、よろしくお願いいたします。</p>]]></description>
+<dc:subject>Android</dc:subject>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2010-06-26T15:17:50+09:00</dc:date>
+</item>
+<item rdf:about="http://www.noritsuna.jp/archives/2010/05/p2p_sip_21.html">
+<title>第十九回P2P SIP勉強会の告知</title>
+<link>http://www.noritsuna.jp/archives/2010/05/p2p_sip_21.html</link>
+<description><![CDATA[<p><a href="http://www.siprop.org/ja/2.0/index.php?%B3%AB%C8%AF%2F%A5%B3%A5%DF%A5%E5%A5%CB%A5%C6%A5%A3%A1%BC%2F%CA%D9%B6%AF%B2%F1">第十九回P2P SIP勉強会</a>の、告知です。</p>
+
+<p>今回は、<a href="http://ja.wikipedia.org/wiki/Paxos%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0">Paxos</a>の神を迎えて、分散における合意について迫ってみたいと思います。</p>
+
+<p><br />
+<blockquote><br />
+*案内<BR><br />
+-日程<BR><br />
+--2010年6月13日(日)<BR><br />
+-時間<BR><br />
+--14:00〜<BR><br />
+-参加費<BR><br />
+--なし<BR><br />
+-懇親会<BR><br />
+--あり。<BR><br />
+-会場<BR><br />
+--東工大 西7号館<BR><br />
+---info あっとまーく siprop.org<BR><br />
+---にお問い合わせください。<BR><br />
+<BR><br />
+*プログラム<BR><br />
+-大阪市立大学・鹿野将典氏による<s>「Paxos聞くなら、遠くのLamportより、近くのオレ鹿野」</s> 『分散合意アルゴリズムの神髄〜Paxosを極めて〜』<BR><br />
+--<a href="http://rabbit.media.osaka-cu.ac.jp/research/index.php/P2P%E5%9F%BA%E7%9B%A4%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2musasabi">P2P基盤ソフトウェアmusasabi</a>で培った、分散合意のあるべき姿について、<a href="http://ja.wikipedia.org/wiki/Paxos%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0">Paxos</a>をベースとして語っていただきます。<br />
+</blockquote></p>]]></description>
+<dc:subject>SIProp</dc:subject>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2010-05-29T17:29:21+09:00</dc:date>
+</item>
+<item rdf:about="http://www.noritsuna.jp/archives/2010/04/applemarket_pla.html">
+<title>Appleの流通革命とMarket Place</title>
+<link>http://www.noritsuna.jp/archives/2010/04/applemarket_pla.html</link>
+<description><![CDATA[<p><a href="http://journal.mycom.co.jp/news/2010/04/26/033/?rt=na">ヨドバシ、通販サイト上でのアップル製品販売を終了 - "アップルの意向"で</a> </p>
+
+<blockquote>アップル社の意向により、インターネット通販サイトの「ヨドバシ･ドット･コム」ならびに、テレフォンショッピングの「もしもしヨドバシ」において、iPod、MacBook、iMac、関連アクセサリーを含む、全てのアップル製品の販売を終了しなければならない状況となりました。</blockquote>
+
+<p>とのニュースを受けて、元アップルコンピュータ米国本社副社長の福田尚久さんが、Appleの流通革命について、つぶやいているのを発見。</p>
+
+<p>「<a href="http://togetter.com/li/16441">アップル全製品がヨドバシ等のネット販売停止−アップルの流通改革に関する福田尚久さんのツイートまとめ</a>」</p>
+
+<p>こちらは、読んでもらうとして、私の解釈としては、</p>
+
+<blockquote>ネット向けDAC(DACはDealer Acquisition Costの略で、販売店の仕入価格を指します)と店舗向けDACを分けるのは当然なのに、それを日本で今までやってこなかったのが問題だったのでしょう（あくまでも私的な推測ですよ）。で、ネット向けDACをヨドバシが受けられなかったということなのでは？</blockquote>
+
+<p>のあたりから、流通経路は、『ネット(通信販売)』と『店頭販売(対人販売)』の２つがあり、これは違う物として扱うべきだというのを感じました。<br />
+すなわち、『ネット(通信販売)』には『ネット(通信販売)』としての売り方があり、『店頭販売(対人販売)』には『店頭販売(対人販売)』の売り方があるということなのかなと。</p>
+
+<p>そして、それを踏まえてApple社は、ヨドバシなどの『店頭販売(対人販売)』の店から、『ネット(通信販売)』を禁止したのだと考えます。<br />
+なぜなら、『ネット(通信販売)』は、本来、自社製品を直接販売する場であり、他者を介する必要がない物だからです。だから、禁止したのだと。</p>
+
+<p>こう考えると、『ネット(通信販売)』は、自分の製品を売るためにあらゆる方策をとり、自己表現をする場とも言えるでしょう。<br />
+すなわち、この『ネット(通信販売)』という売り場まで作り込んでこそ、一つの製品になるということです。</p>
+
+<p><BR><br />
+この考え方こそ、『<a href="http://www.noritsuna.jp/archives/2009/11/oesfandroidmark.html">OESF謹製Market Placeの衝撃</a>』のエントリーで書いた、個人レベルでもMarket Placeを作ることが出来る意味の根幹にある物だと信じております。<br />
+要するに、</p>
+
+<blockquote>『店頭販売(対人販売)』・・・Apple社のApp StoreやGoogle社のAndroid Marketなど<BR>
+『ネット(通信販売)』・・・OESF謹製Market Place</blockquote>
+
+<p>と考えれば、アプリケーションやサービスにも、この考え方は波及するわけで、いずれ、この世界が来るわけです。<br />
+</p>]]></description>
+<dc:subject>Android</dc:subject>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2010-04-26T22:44:32+09:00</dc:date>
+</item>
+<item rdf:about="http://www.noritsuna.jp/archives/2010/04/linux20105.html">
+<title>日経Linux2010年5月号より、連載開始しました</title>
+<link>http://www.noritsuna.jp/archives/2010/04/linux20105.html</link>
+<description><![CDATA[<p><a href="http://itpro.nikkeibp.co.jp/article/MAG/20100406/346710/">日経Linux2010年5月号</a>より、連載開始しました。<br />
+連載タイトルは、</p>
+
+<blockquote>AndroidとBeagleBoardで 実践！組み込みLinuxの技　〜拡張現実感デバイスを作ろう〜</blockquote>
+
+<p>となっており、トラブルがなければ半年くらいの連載を予定しております。<br />
+また、共同執筆者として、<a href="http://twitter.com/checkela">demuyan</a>こと<a href="http://blog.cnu.jp/">出村 成和氏</a>も参戦しております！</p>
+
+<p>本連載では、本Blogにて以前に作成中だった「<a href="http://www.noritsuna.jp/archives/2009/06/_beagleboa.html">プロジェクター投影型AR</a>」を、実際に完成まで導く物となります。<br />
+要するに、パティ・マース教授による「第六感」デバイスもどきのようなものを作っていくこととなります。<br />
+「<a href="http://www.ted.com/talks/lang/jpn/pattie_maes_demos_the_sixth_sense.html">Talks パティ・マースによる 「第六感」デバイス のデモ</a>」</p>
+
+<p>かなり、無謀な挑戦となっておりますので、生暖かく見守っておいて貰ればと思います。</p>
+
+<p><br />
+<BR><br />
+そして、現在発売中の第1回目の記事は、いきなり全公開してしまいます！！！<br />
+導入記事ですので、これを読んでいただいて、「おっ。おもしろいかも」と思われた方は、第2回目からでも、購入していただければと思います。<br />
+さらに、すでに購入されてしまった方にも楽しんでいただけますように、あえて、校正前の第一次原稿の方を公開いたしました。雑誌の方に載っております物と、随分と校正が違いますので、合わせてお読みいただけると、『プロの校正にかかるとこうなるのか』などと楽しんでいただけるのではないかと考えております。</p>
+
+<p><a href="http://github.com/noritsuna/android-AR-controller/tree/7404dc3b11605a38ba7bbf75d130752862f08f56/article/nikkeilinux/androidxbeagle/no.1">第1回目原稿</a></p>]]></description>
+<dc:subject>Android</dc:subject>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2010-04-18T11:51:08+09:00</dc:date>
+</item>
+<item rdf:about="http://www.noritsuna.jp/archives/2010/04/preinterop_clou.html">
+<title>pre第三回Interop Clouds合宿 &amp; 第十八回P2P SIP勉強会の告知</title>
+<link>http://www.noritsuna.jp/archives/2010/04/preinterop_clou.html</link>
+<description><![CDATA[<p><a href="http://www.siprop.org/ja/2.0/index.php?%B3%AB%C8%AF%2F%A5%B3%A5%DF%A5%E5%A5%CB%A5%C6%A5%A3%A1%BC%2F%CA%D9%B6%AF%B2%F1">pre第三回Interop Clouds合宿 & 第十八回P2P SIP勉強会</a>の、告知です。</p>
+
+<p>ん？「おまえ台湾にいるんじゃねぇの？」ですって？？？<br />
+いえいえ、私が台湾にいようが、P2P SIP勉強会は開催されるのです！！！</p>
+
+<p><br />
+<blockquote><br />
+    * 主催<br />
+          o 東工大 首藤研究室</p>
+
+<p>    * 日程<br />
+          o 2010 年4月24日(土)<br />
+    * 時間<br />
+          o 14:00〜<br />
+    * 参加費<br />
+          o なし<br />
+    * 懇親会<br />
+          o あり。<br />
+    * 会場<br />
+          o 東工大 西7号館<br />
+                + info あっとまーく siprop.org<br />
+                + にお問い合わせください。</p>
+
+<p><br />
+†プログラム<br />
+IIJ-IIの藤田昭人氏による『PaaS の作り方』</p>
+
+<p>    * TyphoonAE (GAE for Python 互換ソフト)の構造を解説をし、GAE for Java 互換ソフトへ拡張するには、どのような手法がよいのか？TyphoonAEの現状の問題点を交えながら、議論します。<br />
+          o Google App Engine for Java のサポート<br />
+                + TyphoonAE は GAEp SDK の機能を活用して実行環境を実現していますが、GAEj SDK を対象に同様のアプローチで実行環境を実現するためには、jar ファイルのデコンパイルなど幾つか問題があります。<br />
+          o 複数の利用者で環境を共用する上での技術的問題点<br />
+                + TyphoonAE は今のところ１つのアプリケーションしか登録できず、ユーザーアカウントは強制的に admin になってしまいます。<br />
+          o IaaS 環境下での動作<br />
+                + Eucalyptus 上で実行するには、どうしたらよいのか？<br />
+          o 独自サービスの追加<br />
+                + いろいろな状況に応じて最適化された Key-Value Store が登場しているため、いろいろな Key-Value Store を利用するための拡張を行うにはどのような手法がよいのか？<br />
+</blockquote></p>]]></description>
+<dc:subject>SIProp</dc:subject>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2010-04-13T16:56:52+09:00</dc:date>
+</item>
+<item rdf:about="http://www.noritsuna.jp/archives/2010/03/hotaru.html">
+<title>HOTARUプロジェクト、ソースコード公開</title>
+<link>http://www.noritsuna.jp/archives/2010/03/hotaru.html</link>
+<description><![CDATA[<p>私も、初期のコード設計に参画したIMS/NGN相互接続実証実験プロジェクトである「<a href="http://www.luciola.net/">HOTARUプロジェクト</a>」が、ついに、ソースコードの一般公開までたどり着きました。</p>
+
+<p><br />
+最初の江崎先生の</p>
+
+<blockquote>「おまえら、がんがれ。」</blockquote>
+
+<p>の鶴の一声から、およそ4年。<br />
+今思えば、凄まじいスタートではありましたが、何とかソースコードの一般公開までたどり着きました。</p>
+
+<p>現時点のソースコードは、すでに、世界規模のIMSの相互接続イベントである、SIPit(3回)とPlugfestとPlugtestsをくぐり抜けており、それなりの品質に達しております。</p>
+
+<p>もし、IMS/NGNにご興味のある方がおりましたら、ぜひとも、本プロジェクトの成果をお試しいただければと思います。<br />
+</p>]]></description>
+<dc:subject>SIProp</dc:subject>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2010-03-31T23:40:15+09:00</dc:date>
+</item>
+<item rdf:about="http://www.noritsuna.jp/archives/2010/03/post_147.html">
+<title>「台湾」に拠点を移します。</title>
+<link>http://www.noritsuna.jp/archives/2010/03/post_147.html</link>
+<description><![CDATA[<p>2010年4月5日より、台湾にある <a href="http://www.itri.org.tw/">台湾工業技術研究院(ITRI)</a> に行く関係で、台湾に拠点を移します。<br />
+ミッションは、２つ。</p>
+
+<blockquote>・<a href="http://www.oesf.jp">OESF</a> の <a href="http://www.oesf.jp/modules/download/index.php?page=visit&cid=16&lid=62">Test & Certification WG</a>のサポート<BR>
+・ハードウェアやサービスの新時代エコシステムのための開拓</blockquote>
+
+<p>前者はあまり説明しなくてもわかるかと思いますが、後者はわかりにくいかもしれません。</p>
+
+<p>で、後者の説明ですが、ちょうど良い記事が出ていたので、紹介しておきます。</p>
+
+<p>●<a href="http://itpro.nikkeibp.co.jp/article/Interview/20100316/345838/">サービスはハードウエアになる 端末の先のクラウドにこそ価値</a><br />
+<blockquote>「パソコンの父」と呼ばれるアラン・ケイは、「ソフトウエアに真剣に取り組む人間は、ハードウエアも同時に考えないといけない」といった趣旨の発言をしています。新しいソフトやサービスでどういう未来や新しい生活をつくるかを考えるときに、アプリケーションだけでは完結しない場合がある。<br />
+　ITの世界は、どんどんクラウドへ移行しています。アップルやグーグルのハードは、どれも、端末そのものというよりその先にあるクラウドにこそ価値があります。クラウドの価値を引き出すために、端末側のアプリケーションやハードウエアはどうあるべきか、この視点で設計されています。<BR><br />
+　極端なことを言うと、今のハードウエアは全部だめなんですよ。今のハードウエアはことごとく否定されないといけない。カメラもオーディオも場合によっては冷蔵庫や掃除機、あるいは車とか飛行機、いろいろなハードが、クラウドに対応したアーキテクチャーにすべて書き換わらないといけない。そうでないと、これからは利用者に対する価値を生み出せないと思います。</blockquote></p>
+
+<p>と。<br />
+要は、<a href="http://www.noritsuna.jp/archives/2009/02/post_132.html">本Blogでも、何度か主張している</a>のですが、</p>
+
+<blockquote>・いままでは、ハードがあって、その上で動くアプリやサービスを作るという流れだった。<BR>
+・それが、今後は、アプリやサービスを考えて、それに最適なハードを作るという時代になっていく。
+</blockquote>
+
+<p>というところです。<br />
+例えば、最近流行のTwitterやUStreamなどは、パソコンが前提にあるわけです。<br />
+そして、UStreamの場合、配信する側に回るとよくわかるのですが、Webカメラや集音用マイク、インターネット回線などいろいろな機材が必要となります。こうなってくると、専用のハードがほしくなるのです。</p>
+
+<p>要するに、これからのサービスは、ソフトだけでは完結せずに、ハードが必要になってくる。そうなると、最適なハードを作ることが出来る環境が必要になってくる。</p>
+
+<p>ということです。<br />
+そのため、それをすることができる環境（エコシステム）を作るための布石として、台湾を中心に、中国・韓国・ベトナムを回って、いろいろと開拓してこようと思っております。<br />
+そのエコシステム構想の一環として、下記の図を添付しておきます。</p>
+
+<p><a href="/images/EMECOSYSTEM.png"><img src="/images/EMECOSYSTEM.png" width="300"></a></p>]]></description>
+<dc:subject>コミュニティー</dc:subject>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2010-03-18T01:16:44+09:00</dc:date>
+</item>
+<item rdf:about="http://www.noritsuna.jp/archives/2010/03/p2p_sip_20.html">
+<title>第十七回P2P SIP勉強会の告知</title>
+<link>http://www.noritsuna.jp/archives/2010/03/p2p_sip_20.html</link>
+<description><![CDATA[<p><a href="http://www.siprop.org/ja/2.0/index.php?%B3%AB%C8%AF%2F%A5%B3%A5%DF%A5%E5%A5%CB%A5%C6%A5%A3%A1%BC%2F%CA%D9%B6%AF%B2%F1">第十七回P2P SIP勉強会</a>の、告知です。</p>
+
+<p>またまたまた、若者<s>を拉致した</s>が講師に名乗りを上げてくれましたので、開催いたします。<br />
+今回は、筑波の<s>山奥</s>大学より、生きのいい学生を釣り上げました。（ｗ</p>
+
+<blockquote>
+*案内<BR>
+-日程<BR>
+--2010年3月22日(月・祝)<BR>
+-時間<BR>
+--14:00〜<BR>
+-参加費<BR>
+--なし<BR>
+-懇親会<BR>
+--あり。<BR>
+-会場<BR>
+--東工大 西7号館<BR>
+---info あっとまーく siprop.org<BR>
+---にお問い合わせください。<BR>
+<BR>
+*プログラム<BR>
+-<a href="http://twitter.com/oza_x86">oza_x86</a>氏による『仮想化とかカーネルとかのお話』<BR>
+</blockquote>]]></description>
+<dc:subject>SIProp</dc:subject>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2010-03-17T11:14:44+09:00</dc:date>
+</item>
+<item rdf:about="http://www.noritsuna.jp/archives/2010/03/embedded_master.html">
+<title>Embedded Master 1 リリースしました</title>
+<link>http://www.noritsuna.jp/archives/2010/03/embedded_master.html</link>
+<description><![CDATA[<p><a href="http://www.oesf.jp/">一般社団法人Open Embedded Software Foundation</a>にて、組込み向けAndroidディストリビューションである「Embedded Master」の一般公開を開始いたしました。</p>
+
+<p>で、下記、プレスリリース本文より。</p>
+
+<blockquote>Android™ の組込みシステムへの普及・開発を促進する団体、一般社団法人Open Embedded Software Foundation（以下OESFとする）（所在地：東京都新宿区　代表理事：三浦雅孝）は、会員各社で開発を進めていた、組込みシステム向けAndroid（Embedded Master)の一般公開を開始しました。OESFは、発足から1年で参加団体数が６５団体を超えました。会員各社で、共同開発を行っていた組込みシステム向けの拡張をした、Androidを順次公開してまいります。今回公開するEmbedded Masterは、Android1.6をベースとし、ARMプロセッサに対応したバージョンを公開します。
+なお、今回のリリースでは以下の拡張が実装されました。
+
+<p>・IP Phone Extension<br />
+・BlueTooth Extension（Bluetooth拡張対応、HID・SPP・OBEX機能等）<br />
+・Remote Control Extension（赤外線・Bluetoothリモコンでの操作）<br />
+・Pointing Device Extension（マウスやポインタ・カーソル対応）<br />
+・User Interface Extension（大画面向けのGUI作成APIなど）</p>
+
+<p>OESFでは今後、順次対応プロセッサや、共同開発している各種機能を、会員でのテストが完了しだい順次、公開していく予定です。また、Android2.1への対応は6月下旬の公開を予定しております。</p>
+
+<p>■ソースコード公開URL<br />
+<a href="http://github.com/OESF/Embedded-Master-ARM">http://github.com/OESF/Embedded-Master-ARM</a></p>
+
+<p>■手順書等<br />
+<a href="http://wiki.github.com/OESF/Embedded-Master-ARM/em1-environment-constructed ">http://wiki.github.com/OESF/Embedded-Master-ARM/em1-environment-constructed </a><br />
+</blockquote></p>
+
+<p>と、この文章は、どうでもよい((;^_^A アセアセ・・・)のですが、何点か問い合わせを頂いたので、ひとまず、ここに公開しておきます。</p>
+
+<p><br />
+●質問１<br />
+<blockquote>なぜ、OHA準拠のディレクトリ構成になっていないのですか？</blockquote></p>
+
+<p>OHA版のAndroidは、モジュールごとに .git が用意されており、複数のgitにより構成されております。<br />
+しかし、今回のEMは、すべてを一つのgitとしてまとめてあります。</p>
+
+<p>・答え<br />
+<blockquote><a href="http://GitHub.com">GitHub</a>の機能を最大限に利用するため。</blockquote></p>
+
+<p>GitHubを利用しての開発ですので、リポジトリ構造は下記のようになると想定しております。<br />
+すなわち、OESFのGitHubを直接cloneするのではなく、自分のGitHubにforkしてから、cloneする構造となると思います。</p>
+
+<p><a href="/images/android/EM-GitHub.pngg"><img src="/images/android/EM-GitHub.png" width="300"></a></p>
+
+<p>そのため、OHA版のAndroidのようにモジュールが複数あっては、forkが大変となってしまいます。<br />
+さらに、そのような状態ですと、GitHubの便利な機能が使いにくくなってしまいます。</p>
+
+<p>例えば、masterとなるgitとの差分を<a href="http://github.com/OESF/Embedded-Master-ARM/network">確認出来るツール</a>などがあります。<br />
+これが、モジュールごとに一つずつとなってしまうのは、大変使いにくいと考えております。</p>
+
+<p><BR><br />
+ただ、OHA版のAndroidのような構造のリポジトリの要望もあるだろうと思い、準備はしておりますが、GitHub的に見て、上記の構造のリポジトリを推奨したいため、公開は遅らせております。</p>
+
+<p><br />
+<BR><br />
+●質問２<br />
+<blockquote>拡張部分があまりないようなのですが？</blockquote></p>
+
+<p>・答え<br />
+現状、各WGの成果は、ほとんど取り込まれておりません。<br />
+成果の取り込みを、EM2ターゲットとしたWGが、多いためです。</p>
+
+<p>もう一つとしましては、</p>
+
+<blockquote>ベトナムラボの立ち上げ</blockquote>
+
+<p>があります。<br />
+こちらで今後のEMの管理運営を行っていく予定なのですが、まだ立ち上げほやほやと言うところもあり、リリースは問い合わせが少なそうなものだけに絞らせていただきました。<br />
+こちらは、本当に手前の事情であり、申し訳ないところです。</p>
+
+<p>EM1で予定しておりました</p>
+
+<p>・DLNA<br />
+・OSGi</p>
+
+<p>ですが、準備ができ次第、取り入れていきたいと考えておりますので、少々お待ちください。<br />
+こちらは、いろいろと問い合わせが来そうなモノで・・・<br />
+（EM2になるかもしれませんが・・・）<br />
+</p>]]></description>
+<dc:subject>Android</dc:subject>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2010-03-11T13:33:10+09:00</dc:date>
+</item>
+
+
+</rdf:RDF>

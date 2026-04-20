@@ -1,0 +1,588 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="description" content="さきほど、初Bluetoothデバイスとして、対Skype用にヘッドセットを買っ..." />
+    <meta name="generator" content="http://www.sixapart.jp/movabletype/" />
+    <link rev="made" href="mailto:your@email" title="E-mail address" />
+    <link rel="home" href="http://www.noritsuna.jp/" title="なんとなく実験 with SIProp開発記" />
+    <link rel="index" title="なんとなく実験 with SIProp開発記archives" href="http://www.noritsuna.jp/archives.html" />
+    <link rel="prev" href="http://www.noritsuna.jp/archives/2005/03/ni_stm.html" title="N+I STM 募兵会に行ってきました" />
+    <link rel="next" href="http://www.noritsuna.jp/archives/2005/03/post_25.html" title="ちえらぼ" />
+    <link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.noritsuna.jp/index.xml" /> 
+    <script type="text/javascript" src="http://www.noritsuna.jp/mt-site.js"></script>
+    <title>なんとなく実験 with SIProp開発記 | 初めてのBluetooth</title>
+
+    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2005/03/bluetooth.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/58"
+    dc:title="初めてのBluetooth"
+    dc:identifier="http://www.noritsuna.jp/archives/2005/03/bluetooth.html"
+    dc:subject="HardWare"
+    dc:description="さきほど、初Bluetoothデバイスとして、対Skype用にヘッドセットを買っ..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-13T03:09:46+09:00" />
+</rdf:RDF>
+-->
+
+
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2005/03/bluetooth.html">
+<dc:title>初めてのBluetooth</dc:title>
+<dc:description>さきほど、初Bluetoothデバイスとして、対Skype用にヘッドセットを買っ...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2005-03-13T03:09:46+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+  </head>
+  <body class="layout-two-column-right" onload="individualArchivesOnLoad(commenter_name)">
+
+    <!-- ブログ全体 -->
+    <div id="main-container">
+
+      <!-- ブログタイトル -->
+      <div id="banner">
+        <h1 id="banner-header"><a href="http://www.noritsuna.jp/" accesskey="1" title="なんとなく実験 with SIProp開発記">なんとなく実験 with SIProp開発記</a></h1>
+        <h2 id="banner-description">SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</h2>
+      </div><!-- banner_end -->
+
+      <!-- 左カラム -->
+      <div id="left-menu">
+        <div  class="left-content">
+
+          <!-- サイト内検索 -->
+          <div class="search-form">
+            <h3>Search</h3>
+            <form method="get" action="http://www.noritsuna.jp/cgi-bin/mt/mt-search.cgi">
+              <input type="hidden" name="IncludeBlogs" value="1" />
+              <label for="search" accesskey="4">サイト内検索</label><br />
+              <input id="search" tabindex="5"  accesskey="t"  value="search this blog" name="search" onblur="if(this.value==''){this.style.color=''; this.form.reset()}" onfocus="this.value = ''; this.style.color = '#000000';" />
+              <input type="submit" tabindex="6" accesskey="s" value="submit" class="searchsubmit" />
+            </form>
+          </div><!-- search-form_end -->
+
+                    <!-- Categoryアーカイブ -->
+          <div class="category-archives">
+            <h3>Category Archives</h3>
+	    <div class="category-label">
+              <ul>
+                <li><a href="http://www.noritsuna.jp/archives/gae/" title="">GAE</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/news/" title="">NEWS</a></li>
+              
+                <li class="module-list-item">OS<ul>
+                <li><a href="http://www.noritsuna.jp/archives/os/linux/" title="">Linux</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/windows/" title="">Windows</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/auos/" title="">仮想OS</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/siprop/" title="">SIProp</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/stm/" title="">STM</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/iphone/" title="">iPhone</a></li>
+              </ul></li>
+              
+                <li class="module-list-item">開発<ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ar/" title="">AR</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/amazonec2/" title="">AmazonEC2</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/application/" title="">Application</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/chromium/" title="">Chromium</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/" title="">HardWare</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/fpga/" title="">FPGA</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/gpgpu/" title="">GPGPU</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/java/" title="">Java</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/cat34/" title="">無線</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/nwng/" title="">NwNG</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/p2p/" title="">P2P</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/" title="">セマンティック</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/ai/" title="">AI</a></li>
+              </ul></li>
+              </ul></li>
+              </ul>
+            </div><!-- category-label_end -->
+          </div><!-- category-archives_end -->
+          
+
+                    <!-- Monthlyアーカイブ -->
+          <div class="monthly-archives">
+            <h3><a href="http://www.noritsuna.jp/archives.html">Archives</a></h3>
+            <ul class="module-list">
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2011/01/">2011&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/08/">2010&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/07/">2010&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/06/">2010&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/05/">2010&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/04/">2010&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/03/">2010&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/02/">2010&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/01/">2010&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/12/">2009&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/11/">2009&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/10/">2009&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/09/">2009&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/08/">2009&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/07/">2009&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/06/">2009&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/05/">2009&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/04/">2009&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/03/">2009&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/02/">2009&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/01/">2009&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/12/">2008&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/11/">2008&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/10/">2008&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/09/">2008&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/08/">2008&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/07/">2008&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/06/">2008&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/05/">2008&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/04/">2008&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/03/">2008&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/02/">2008&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/01/">2008&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/12/">2007&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/11/">2007&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/10/">2007&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/09/">2007&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/08/">2007&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/07/">2007&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/06/">2007&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/05/">2007&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/04/">2007&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/03/">2007&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/02/">2007&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/01/">2007&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/12/">2006&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/11/">2006&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/10/">2006&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/09/">2006&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/08/">2006&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/07/">2006&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/06/">2006&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/02/">2006&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/09/">2005&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/07/">2005&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/06/">2005&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/05/">2005&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/04/">2005&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/03/">2005&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/02/">2005&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/01/">2005&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2004/12/">2004&#24180;12&#26376;</a></li>
+            </ul>
+          </div><!-- monthly-archives_end -->
+          
+
+        </div><!-- left-content_end -->
+      </div><!-- left-menu_end -->
+
+      <!-- 中央カラム -->
+      <div id="main">
+        <div  class="content">
+
+          <p class="navi-link"><a href="http://www.noritsuna.jp/archives/2005/03/ni_stm.html">&laquo; N+I STM 募兵会に行ってきました</a> | <a href="http://www.noritsuna.jp/">main</a> | <a href="http://www.noritsuna.jp/archives/2005/03/post_25.html">ちえらぼ &raquo;</a></p>
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2005&#24180;03&#26376;13&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 class="entry-header">初めてのBluetooth</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>さきほど、初Bluetoothデバイスとして、対Skype用にヘッドセットを買ってきました。</p>
+
+<p>モノは、corega製の</p>
+
+<p>「<a href="http://www.corega.co.jp/product/list/others/btusb01.htm">無線 USBアダプタ CG-BTUSB01</a>」(以下、レシーバ)<br />
+「<a href="http://www.corega.co.jp/product/list/others/bths01.htm">ワイヤレスヘッドセット CG-BTHS01</a>」(以下、ヘッドセット)</p>
+
+<p>です。</p>
+
+<p>早速、インストールしてみたのですが、はまりまくりました。（ﾉД｀）ｼｸｼｸ<br />
+なので、その顛末を書いてみようと思います。<br />
+誰かの役に立つかもしれませんので。(^-^;A</p>
+
+<p><BR><br />
+●電源と認識の罠<br />
+最初は、レシーバをWindows君に認識させてあげないとなりませんので、USBに<br />
+接続してみました。<br />
+なんと、WindowsXP SP2では、デフォルトドライバで、一発認識！すばらしい。</p>
+
+<p>つづいて、</p>
+
+<blockquote>「ペアリング設定」</blockquote>
+
+<p>というモノをしないとならないので、それを行います。<br />
+これは、このレシーバとデバイスの認証儀式で、デバイスの初回認識時にやらねば<br />
+ならないようです。</p>
+
+<p>早速、ヘッドセットの電源をONにします。<br />
+電源を入れるには、「MODEボタンを7秒の長押し」と書いてあったので、実行。<br />
+LEDが、青く点滅を始めたので、電源は入ったようです。</p>
+
+<p>そして、Bluetoothデバイスコントローラを立ち上げ、認識ボタンをクリック！<br />
+・・・認識されず。＿|￣|○　ガックシ・・・</p>
+
+<p>何度やっても、ダメです。（ﾉД｀）ｼｸｼｸ<br />
+<BR><br />
+・別モード発見<br />
+説明書を読むこと3回目、</p>
+
+<blockquote>
+「ペアリング設定時は、MODEボタン10秒の長押しで<BR>　特別モードにする」</blockquote>
+
+<p>という記述を発見。＿|￣|○　ガックシ・・・</p>
+
+<p>早速、10秒長押ししてみると、見事認識しました。ヽ（´▽｀）ノ<br />
+<p><a href="/images/sip/bluetooth-002.PNG" target="_blank"><img src="/images/sip/bluetooth-002.PNG" width="200" border="0"></a></p></p>
+
+<p><BR><br />
+●デフォルトドライバの罠<br />
+認識が正常に出来たので、早速、Skypeを立ち上げて、サウンドデバイスを<br />
+ヘッドセットに切り替える・・・ことができず。（ﾉД｀）ｼｸｼｸ</p>
+
+<p>どうやっても、ヘッドセットに切り替えることが出来ず。＿|￣|○　ガックシ・・・</p>
+
+<p>いろいろと調査を開始・・・・。</p>
+
+<p>どうやら、</p>
+
+<blockquote>「サービスとBluetoothデバイスを結びつけを行う<BR>　必要がある」</blockquote>
+
+<p>ということのようです。<br />
+サービスとは、OSに対して、Bluetoothデバイスをキーボードやスキャナとして<br />
+みせるためのドライバみたいなものらしいです。<br />
+キーボードやマウス、LANなど、いろいろと定義されているようです。</p>
+
+<p>そこで、サービスのインストールをしようとしてみるが、見つからず。。。<br />
+どうやるのか、全然わからない。<br />
+<BR><br />
+・corega謹製ドライバの登場<br />
+よって、</p>
+
+<blockquote>
+「XP には、サービスが付いていないに違いない」</blockquote>
+
+<p>と判断して、corega謹製ドライバをインストールしてみました。</p>
+
+<p>corega謹製ドライバ君、サービスもインストールしてくれました！<br />
+<p><a href="/images/sip/bluetooth-003.PNG" target="_blank"><img src="/images/sip/bluetooth-003.PNG" width="200" border="0"></a></p></p>
+
+<p><br />
+そして、再度、ヘッドセットを認識させたら、ｷﾀ━━━━━━(ﾟ∀ﾟ)━━━━━━ !!!!!<br />
+成功です。ちゃんと、サウンドデバイスとして使用可能となりました。<br />
+<p><a href="/images/sip/bluetooth-001.PNG" target="_blank"><img src="/images/sip/bluetooth-001.PNG" width="200" border="0"></a></p></p>
+
+<p><BR><br />
+●保留の罠<br />
+早速、音が聞こえるか実験開始・・・全然、聞こえない。＿|￣|○　ガックシ・・・<br />
+ピポーッって音が、定期的に聞こえてくるだけです。（ﾉД｀）ｼｸｼｸ</p>
+
+<p>う〜ん、なぜだ。。。</p>
+
+<p>ミュージックプレーヤなどでも実験してみるが、うまくいかないです。<br />
+何も、音が流れてきません。<br />
+<BR><br />
+・MODEボタン再び<br />
+そこで、ふと、「ピポーッ」音があまりに定期的なので、「保留音かも？」と<br />
+いう考えが頭をよぎりました。</p>
+
+<p>ということは、もう一回MODEボタンを押したら解除できるかもしれないと<br />
+思い、おそるおそるMODEボタンを押すと・・・音が聞こえたよ、ママン！！！</p>
+
+<p>どうやら、「ピポーッ」音は、保留音で、</p>
+
+<blockquote>「電源ON＝保留状態での起動」</blockquote>
+
+<p>ということのようです。これには、してやられました。<br />
+<BR><br />
+以上、3時間くらいの戦いでした。。。長かったですが、無事、動作させることが<br />
+出来ました。。。<br />
+Bluetooth使うときは、お気をつけください。＜って、こんなのはおまいだけだって。</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li>by noritsuna</li>
+                  <li>at 03:09</li>
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+
+          
+
+                    <!-- コメント情報 -->
+          <div class="comments">
+            <h4>comments</h4>
+            <div id="comments" class="comments-body">
+                            <p>Windows XP (SP2)のBluetoothまわりは、そのままだとまだまだ使えないなあ、と感じてます。<br />
+僕も（携帯電話用）Bluetoothヘッドセット買ったんですが、Windowsマシンで使えてないです。。。</p>
+              <ul class="comments-info">
+                <li> しゅどう</li>
+                <li>2005&#24180;03&#26376;14&#26085; 18:45</li>
+              </ul>
+                            <p>> しゅどう さん</p>
+
+<p>そうですか、しゅどう さん もはまられましたか。</p>
+
+<p>出てからずいぶんと経つ技術なので、最初は、XPだけで<br />
+あっさりいくかと思ったのですが、はまりました。。。</p>
+
+<p>やはり、使用者が多くないとダメなんですかね。</p>
+              <ul class="comments-info">
+                <li> <a href="http://www.noritsuna.jp" rel="nofollow">Norn@</a></li>
+                <li>2005&#24180;03&#26376;19&#26085; 09:42</li>
+              </ul>
+                            <p>始めまして、こんにちは。<br />
+もしよければ教えていただきたいのですが、corega謹製ドライバとはユーティリティソフトウェアのことでしょうか。<br />
+それとも他にあるのでしょうか？<br />
+四苦八苦で上手く行かないので、そっと教えていただけると嬉しいです。<br />
+よろしくお願いします。</p>
+              <ul class="comments-info">
+                <li> tsu9net</li>
+                <li>2006&#24180;08&#26376;24&#26085; 02:13</li>
+              </ul>
+                            <p>tsu9net さん</p>
+
+<p>>corega謹製ドライバとはユーティリティソフトウェアのことでしょうか。</p>
+
+<p>はい、そうなります。</p>
+
+<p>ちなみに、ThinkPadをお使いなら、内蔵のBluetioothレシーバでも大丈夫のようです。<br />
+(以下は、T42p＋XP SP2の場合です。また、ライセンス的に問題があるかも知れませんので、自己責任でお願いします。)<br />
+デフォルトでは、「IBM Integrated Bluetooth III」がインストールされておりますが、こいつは、XPドライバ並に対応が少なく使えません。<br />
+そこで、IBMのダウンロードサイトにいきまして、一つ古い「IBM Integrated Bluetooth II」というものがダウンロードできます。<br />
+で、「IBM Integrated Bluetooth III」を削除して、「IBM Integrated Bluetooth II」をインストールしますと、大抵のドライバ類がインストールされ、まともに使用可能となります。</p>
+
+<p>ちなみに、Bluetooth をONにするには、Fn+F5 で出るメニューから操作します。</p>
+              <ul class="comments-info">
+                <li> <a href="http://noritsuna.siprop.org/" rel="nofollow">noritsuna</a></li>
+                <li>2006&#24180;08&#26376;24&#26085; 02:44</li>
+              </ul>
+                            <p>素晴らしく早いお返事ありがとうございます！！<br />
+偶然にも、ThinkPadT42Pユーザーです。（２３７３−Q1ｊ）</p>
+
+<p>早速試させていただきたいところなのですが、なんと現物がしばらく触れない所にいってしまいました・・。<br />
+休み明け早々にチャレンジします。</p>
+
+<p>本当にありがとうございます。<br />
+またご報告に参ります。</p>
+              <ul class="comments-info">
+                <li> tsu9nen</li>
+                <li>2006&#24180;08&#26376;24&#26085; 16:16</li>
+              </ul>
+              
+            </div><!-- comments-body_end -->
+          </div><!-- comments_end -->
+
+                    <!-- コメント入力 -->
+          <form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-cmnts.cgi" name="comments_form" onsubmit="if (this.bakecookie.checked) rememberMe(this)">
+            <input type="hidden" name="static" value="1" />
+            <input type="hidden" name="entry_id" value="58" />
+            <div class="comments-post">
+              <h5>comment form</h5>
+              <div class="typekey-text">
+                <script type="text/javascript">
+                  <!--
+                  writeTypeKeyGreeting(commenter_name, 58);
+                  //-->
+                </script>
+              </div><!-- typekey-text_end -->
+
+              <div class="comments-post-content">
+                
+
+                <div id="comments-open-data">
+                  <fieldset>
+                    <legend accesskey="c">comment form</legend>
+                    <dl id="commenter-info">
+                      <dt><label for="comment-author" accesskey="n">name:</label></dt>
+                      <dd><input tabindex="2" id="comment-author" name="author" size="30" value="" /></dd>
+                      <dt><label for="comment-email" accesskey="e">e-mail:</label></dt>
+                      <dd><input tabindex="3" id="comment-email" name="email" size="30" value="" /></dd>
+                      <dt><label for="comment-url" accesskey="u">URL:</label></dt>
+                      <dd><input tabindex="4" id="comment-url" name="url" size="30" value="" /></dd>
+                    </dl>
+                    <ul class="cookie">
+                      <li><label for="comment-bake-cookie" accesskey="r"><input type="checkbox" id="comment-bake-cookie" name="bakecookie" onclick="if (!this.checked) forgetMe(document.comments_form)" onkeypress="if (!this.checked) forgetMe(document.comments_form)" value="1" tabindex="5" /> 情報を登録しますか?</label></li>
+                    </ul>
+                    <dl id="comments-open-text">
+                      <dt><label for="comment-text">comments: (HTMLタグは使用できません)</label></dt>
+                      <dd><textarea tabindex="6" accesskey="d" id="comment-text" name="text" rows="10" cols="50">コメントを入力してください</textarea></dd>
+                    </dl>
+                    <ul class="comments-open-footer">
+                      <li><input tabindex="7" type="submit" accesskey="v" name="preview" id="comment-preview" value="確認" /></li>
+                      <li><input tabindex="8" type="submit" accesskey="p" name="post" id="comment-post" value="投稿" /></li>
+                    </ul>
+                  </fieldset>
+                </div><!-- comments-open-data_end -->
+
+              </div><!-- comments-post-content_end -->
+            </div><!--  comments-post_end-->
+          </form>
+
+        </div><!-- content_end -->
+      </div><!-- main_end -->
+
+      <!--右メニュー-->
+      <div id="right-menu">
+        <div  class="right-content">
+
+          <!-- 最近のエントリー -->
+          <!-- 最近のコメント -->
+          <!-- 最近のトラックバック -->
+
+          <!-- リンク -->
+          <div class="site-link">
+          <h3>Links</h3>
+            <ul><li><a href="http://www.siprop.org/">SIProp Project</a></li></ul>
+          </div><!-- site-link_end -->
+
+                    <!-- クリエイティブコモンズライセンス -->
+          <div class="cclicense">
+            <a href="http://creativecommons.org/licenses/by-nc/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />This weblog is licensed under a <a href="http://creativecommons.org/licenses/by-nc/1.0/">Creative Commons License</a>.
+          </div><!-- cclicense_end -->
+          
+
+          <!-- Powered -->
+          <div class="powered">
+            <ul>
+              <li>Powered by <a href="http://www.movabletype.jp">Movable Type 3.33-ja</a></li>
+              <li>Template by <a href="http://drblog.jp/"><img src="http://drblog.jp/info/img/drblog.gif" alt="Dr.Blog" width="128" height="22" /></a></li>
+            </ul>
+          </div><!-- Powered_end -->
+
+        </div><!-- right-content_end -->
+      </div><!-- right-menu_end -->
+
+      <div id="footer">
+        <ul class="syndicate">
+          <li><a href="http://www.noritsuna.jp/index.xml" title="なんとなく実験 with SIProp開発記 RSS Feed (XML)">RSS Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/atom.xml" title="なんとなく実験 with SIProp開発記 Atom Feed (XML)">Atom Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記">Archives</a></li>
+          <li><a href="#banner">Page Top</a></li>
+        </ul>
+      </div><!-- footer_end -->
+
+    </div><!-- main-container_end -->
+
+  </body>
+</html>

@@ -1,0 +1,350 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験 with SIProp開発記: ENUMトライアル番号設定メモ</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+
+<link rel="start" href="http://www.noritsuna.jp/" title="Home" />
+<link rel="prev" href="http://www.noritsuna.jp/archives/2006/02/enum.html" title="ENUMトライアル番号取得" />
+
+<link rel="next" href="http://www.noritsuna.jp/archives/2006/06/glex.html" title="G-LEX" />
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var HOST = 'www.noritsuna.jp';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + (expires ? "; expires=" + expires : "") + (path ? "; path=" + path : "") + (domain ? "; domain=" + domain : "") + (secure ? "secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function rememberMe (f) {
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+    now = now.toGMTString();
+    if (f.author != undefined)
+       setCookie('mtcmtauth', f.author.value, now, '/', '', '');
+    if (f.email != undefined)
+       setCookie('mtcmtmail', f.email.value, now, '/', '', '');
+    if (f.url != undefined)
+       setCookie('mtcmthome', f.url.value, now, '/', '', '');
+}
+
+function forgetMe (f) {
+    deleteCookie('mtcmtmail', '/', '');
+    deleteCookie('mtcmthome', '/', '');
+    deleteCookie('mtcmtauth', '/', '');
+    f.email.value = '';
+    f.author.value = '';
+    f.url.value = '';
+}
+
+//-->
+</script>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/02/enum_1.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/106"
+    dc:title="ENUMトライアル番号設定メモ"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/02/enum_1.html"
+    dc:subject="SIP"
+    dc:description="ENUM の 設定を行いましたので、そのメモを貼り付けておきます。 何かの参考に..."
+    dc:creator="noritsuna"
+    dc:date="2006-02-22T23:51:14+09:00" />
+</rdf:RDF>
+-->
+
+
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2006/02/enum_1.html">
+<dc:title>ENUMトライアル番号設定メモ</dc:title>
+<dc:description>ENUM の 設定を行いましたので、そのメモを貼り付けておきます。 何かの参考に...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2006-02-22T23:51:14+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+
+
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験 with SIProp開発記</a></h1>
+<h2>SIPやVoIP、P2Pに関する技術情報を書き殴っているBlogです。
+また、SIPropプロジェクトの開発記も兼ねています。</h2>
+</div>
+
+<div class="content">
+
+<p align="right">
+<a href="http://www.noritsuna.jp/archives/2006/02/enum.html">&laquo; ENUMトライアル番号取得</a> |
+
+<a href="http://www.noritsuna.jp/">メイン</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/glex.html">G-LEX &raquo;</a>
+
+</p>
+
+<h2>2006&#24180;02&#26376;22&#26085;</h2>
+
+<h3>ENUMトライアル番号設定メモ</h3>
+
+<p>ENUM の 設定を行いましたので、そのメモを貼り付けておきます。<br />
+何かの参考になれば、幸いです。</p>
+
+<p>DNSサーバは、BINDバージョン：9.3.2 を、使用しました。</p>
+
+<p>また、構成は、「<a href="http://www.nic.ad.jp/ja/enum-trial/81et-trial-model.html">日本ENUMトライアルのTier構成</a>」の構成となっております。</p>
+
+<p></p>
+
+<p>■Tier1-Bの設定<br />
+設定は、CIDRの設定と同じです。<br />
+JPNICから、通知されるネームサーバ名をそのまま利用してください。</p>
+
+<p>●named.conf<br />
+・設定例<br />
+<blockquote>zone "ns101.0.0.0.0.2.2.0.0.1.8.e164.arpa" {<br />
+        type master;<br />
+        file "8100220000.enum";<br />
+};</blockquote></p>
+
+<p>●ゾーンファイル<br />
+・設定例<br />
+<blockquote>$TTL 86400<br />
+@            IN      SOA ns.noritsuna.jp. master.noritsuna.jp. (<br />
+                     2006021001 ; serial<br />
+                     3600       ; refresh 1hr<br />
+                     900        ; retry 15min<br />
+                     604800     ; expire 1w<br />
+                     86400      ; min 24hr<br />
+)<br />
+         IN      NS      ns.noritsuna.jp.</p>
+
+<p>0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa.           IN      PTR   ns.noritsuna.jp.<br />
+0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa.           IN      PTR   ns.noritsuna.jp.</blockquote></p>
+
+<p></p>
+
+<p></p>
+
+<p>■Tier2の設定<br />
+●named.conf<br />
+ゾーンの指定ですが、逆引きの設定とほぼ同じです。<br />
+簡単に言えば、番号を逆さまにして、ドットで区切り、「e164.arpa」をつけるだけです。</p>
+
+<p><br />
+・RFC<br />
+<a href="http://www.rfc-editor.org/rfc/rfc2916.txt">RFC 2916「E.164 number and DNS」</a></p>
+
+<p></p>
+
+<p>・設定例<br />
+<blockquote>zone "0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa" {<br />
+        type master;<br />
+        file "810022000000.enum";<br />
+};<br />
+zone "1.0.0.0.0.0.2.2.0.0.1.8.e164.arpa" {<br />
+        type master;<br />
+        file "810022000001.enum";<br />
+};</blockquote></p>
+
+<p></p>
+
+<p>●ゾーンファイル<br />
+「SOA」「NS」レコードは、普通のゾーンファイルと一緒です。</p>
+
+<p>ENUM番号用に、「NAPTR」レコードを追加することになります。<br />
+「NAPTR」レコードのフォーマットは、下記の通りです。</p>
+
+<p><br />
+・フォーマット<br />
+<blockquote>X.X.X.X.X.X.X.X.X.X.X.e164.arpa. IN  NAPTR  order  preference  service   flags  regexp  replacement</blockquote></p>
+
+<p>・パラメータの意味<br />
+<blockquote>order・・・数値。プライオリティー。小さいものから処理されます。<br />
+preference・・・数値。orderに対するプライオリティー。<br />
+service・・・文字列。提供するサービスの文字列。<br />
+    SIPサービス：E2U+sip <br />
+    電子メールサービス：E2U+msg:mailto <br />
+    Webサービス：E2U+web:http <br />
+flags・・・文字。「u」をするらしい。<br />
+regexp・・・正規表現。ENUM番号からURIを生成するための正規表現。<br />
+replacement・・・正規表現。「.」を指定すればOK。</blockquote></p>
+
+<p><br />
+・設定例<br />
+<blockquote>0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. IN  NAPTR  100 10  "u" "E2U+sip"    "!^.*$!sip:test-sip@noritsuna.jp!"    .<br />
+0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. IN  NAPTR  100 10  "u" "E2U+msg:mailto"  "!^.*$!mailto:test-sip@noritsuna.jp!"  .<br />
+0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. IN  NAPTR  100 10  "u" "E2U+web:http"    "!^.*$!http:www.noritsuna.jp!"    .</blockquote></p>
+
+<p><br />
+●テスト<br />
+dig コマンド(bindに付属)の結果で、「;; ANSWER SECTION:」に、設定した「NAPTR」が、出てくればOKです。</p>
+
+<p><br />
+・コマンド<br />
+<blockquote>/usr/bin/dig NAPTR X.X.X.X.X.X.X.X.X.X.X.e164.arpa. [@IPアドレス]</blockquote></p>
+
+<p>・結果例<br />
+<blockquote>$/usr/bin/dig NAPTR 0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa.</p>
+
+<p>; <<>> DiG 9.2.4 <<>> NAPTR 0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa.<br />
+;; global options:  printcmd<br />
+;; Got answer:<br />
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 62865<br />
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 1, ADDITIONAL: 0</p>
+
+<p>;; QUESTION SECTION:<br />
+;0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. IN  NAPTR</p>
+
+<p>;; ANSWER SECTION:<br />
+0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. 86285 IN NAPTR 100 10 "u" "E2U+sip" "!^.*$!sip:test-sip@noritsuna.jp!" .<br />
+0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. 86285 IN NAPTR 100 10 "u" "E2U+web:http" "!^.*$!http:www.noritsuna.jp!" .<br />
+0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. 86285 IN NAPTR 100 10 "u" "E2U+msg:mailto" "!^.*$!mailto:test-sip@noritsuna.jp!" .</p>
+
+<p>;; AUTHORITY SECTION:<br />
+0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. 86285 IN NS  ns.noritsuna.jp.</blockquote><br />
+</p>
+
+<div id="a000106more"><div id="more">
+
+</div></div>
+
+<p class="posted">投稿者 noritsuna : 2006&#24180;02&#26376;22&#26085; 23:51</p>
+
+<h2 id="trackbacks">トラックバック</h2>
+<p class="techstuff">このエントリーのトラックバックURL:<br />
+http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/106</p>
+
+
+
+
+
+<h2 id="comments">コメント</h2>
+
+
+
+
+
+<h2>コメントしてください</h2>
+
+ 
+
+
+
+<form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-comments.cgi" name="comments_form" onsubmit="if (this.bakecookie[0].checked) rememberMe(this)">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="106" />
+
+<div id="name_email">
+<p><label for="author">名前:</label><br />
+<input tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">メールアドレス:</label><br />
+<input tabindex="2" id="email" name="email" /></p>
+</div>
+
+
+
+<p><label for="url">URL:</label><br />
+<input tabindex="3" type="text" name="url" id="url" />
+保存しますか?
+<input type="radio" id="remember" onclick="rememberMe(this.form)" name="bakecookie" /><label for="remember">はい</label><input type="radio" id="forget" name="bakecookie" onclick="forgetMe(this.form)" value="Forget Info" style="margin-left: 15px;" /><label for="forget">いいえ</label><br style="clear: both;" />
+</p>
+
+<p><label for="text">コメント:</label> <br/>
+<textarea tabindex="4" id="text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input type="submit" name="preview" tabindex="5" 
+    value="&nbsp;確認&nbsp;" />
+<input style="font-weight: bold;" type="submit" name="post" 
+    tabindex="6" value="&nbsp;投稿&nbsp;" />
+</div>
+</form>
+
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+if (document.comments_form.email != undefined)
+    document.comments_form.email.value = getCookie("mtcmtmail");
+if (document.comments_form.author != undefined)
+    document.comments_form.author.value = getCookie("mtcmtauth");
+if (document.comments_form.url != undefined)
+    document.comments_form.url.value = getCookie("mtcmthome");
+if (getCookie("mtcmtauth") || getCookie("mtcmthome")) {
+    document.comments_form.bakecookie[0].checked = true;
+} else {
+    document.comments_form.bakecookie[1].checked = true;
+}
+//-->
+</script>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

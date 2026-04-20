@@ -1,0 +1,2505 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験 with SIProp開発記: SIP アーカイブ</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験 with SIProp開発記</a></h1>
+<h2>SIPやVoIP、P2Pに関する技術情報を書き殴っているBlogです。
+また、SIPropプロジェクトの開発記も兼ねています。</h2>
+</div>
+
+<div class="content">
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000142"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/142"
+    dc:title="VoIPの「データビジネス」"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000142"
+    dc:subject="SIP"
+    dc:description="中島聡氏のネット時代のデジタルライフスタイルにおいて、Tellmeが、失敗データ..."
+    dc:creator="noritsuna"
+    dc:date="2006-07-03T00:01:36+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;07&#26376;03&#26085;</h2>
+
+
+<h3 id="a000142">VoIPの「データビジネス」</h3>
+
+<p>中島聡氏のネット時代のデジタルライフスタイルにおいて、<a href="http://blog.japan.cnet.com/nakajima/archives/002954.html">Tellmeが、失敗データベースを作っている</a>という、エントリーが出ていました。</p>
+
+<p>そのキモとなる部分は、</p>
+
+<blockquote>Tellmeが最初からVoiceXMLをソフトウェア・パッケージとしてではなく、サービスとして提供することを前提としていた上に、当初から「データを蓄積することにより企業価値を高める」ことを考えていた点にある。
+
+<p>＜中略＞</p>
+
+<p>すでに膨大なデータが蓄積されており、今でも毎日のように蓄積を続けている。VoiceXMLのテクノロジーそのものは、音声認識のソフトさえどこからかライセンスしてくれば誰でも簡単に作れる（実際、Tellmeも音声認識のソフトはNuanceからライセンスしている）。しかし、毎日何十万件の番号案内を処理しながら蓄積しつづけているTellmeのデータベースは、実際に何十万人のユーザーを抱えていない限り不可能であり、それが参入障壁となっているのだ。</blockquote></p>
+
+<p>ということですが、VoIPでもSPIT(SPAMのVoIP版)において、このモデルが使えるのではないかと考えています。</p>
+
+<p>SPITがSPAMと違ってやっかいな点として「出てみるまでSPITかどうか判断しにくい」という点があります。<br />
+理由としては、<br />
+<blockquote><br />
+・非通知で発信されると、発信者情報がIPアドレス以外一切ユーザには届かない<br />
+・近年は暗号化される方向に流れているため、受信端末でしか解読できない<br />
+・リアルタイム通信である<br />
+</blockquote><br />
+といったあたりがあげられます。</p>
+
+<p>そのため、「キャリアによる識別子(ユーザIDやIPアドレスなど）フィルタリング」が、一番効果的ではあるのですが、現状のSPAMの状況を見る限りですと、あまり期待できないと思います。<br />
+そこで、「自動着信して、音声データを解析する」という方法が一つの解であり、その音声データ情報データベース（BlackList）を作成するというところが、「データビジネス」になるのではないかと考えています。<br />
+(まぁ、方法論としては、SPAMのBlackListと同じ考え方なので、目新しくはないのですが、実現法にそれなりのVoIP技術が必要となります。)</p>
+
+<p><br />
+というところで、音声データのマッチング技術をお持ちの方、一緒にやってみませんか？<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/07/voip_1.html">00:01</a>
+| <a href="http://www.noritsuna.jp/archives/2006/07/voip_1.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/07/voip_1.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000140"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/140"
+    dc:title="KDDIが無線IP電話用ミドルウェア"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000140"
+    dc:subject="SIP"
+    dc:description="「KDDIが無線IP電話を使ったSIを支援、デュアル端末にミドルウエア実装」とい..."
+    dc:creator="noritsuna"
+    dc:date="2006-07-02T11:55:23+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;07&#26376;02&#26085;</h2>
+
+
+<h3 id="a000140">KDDIが無線IP電話用ミドルウェア</h3>
+
+<p>「<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20060630/242192/?ST=denwa">KDDIが無線IP電話を使ったSIを支援、デュアル端末にミドルウエア実装</a>」という記事が出ています。</p>
+
+<blockquote>パートナー企業が顧客向けのアプリケーションを開発しやすくするため。ミドルウエア自体がBREWで開発されており、携帯電話網や無線LAN経由でオフィス側に設置した専用のアプリケーションサーバーと直接連携し、データベースなどの業務システムにアクセスできるようにする。システムインテグレータなどが開発したクライアントソフトはこのミドルウエアを介して通信する。これにより、KDDIによるアプリの承認作業などを回避できる。 </blockquote>
+
+<p>ミドルウェアにどのような機能があるかは、記述されていませんが、最大のネックである「KDDIの認証」が不要になるというのは、とても、大きな話ですね。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/07/kddiip.html">11:55</a>
+| <a href="http://www.noritsuna.jp/archives/2006/07/kddiip.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/07/kddiip.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000122"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/122"
+    dc:title="「IP電話の通話品質を上げる」ミドルウエア"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000122"
+    dc:subject="SIP"
+    dc:description="「IP電話の通話品質を上げる」ミドルウエアというものが、出てきたそうです。 ht..."
+    dc:creator="noritsuna"
+    dc:date="2006-07-01T00:00:44+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;07&#26376;01&#26085;</h2>
+
+
+<h3 id="a000122">「IP電話の通話品質を上げる」ミドルウエア</h3>
+
+<p>「IP電話の通話品質を上げる」ミドルウエアというものが、出てきたそうです。<br />
+http://itpro.nikkeibp.co.jp/article/NEWS/20060623/241659/</p>
+
+<p>発想的には、SIPropと同じようなところで、SIPropの音声版という感じですね。まさに、補完関係にありますので、仲良くさせていただければとなどと妄想してしまいます。(;^_^A</p>
+
+<p><br />
+といったところで、この問題なのですが、この辺も相当大変なんですよ。</p>
+
+<p>無音圧縮(無音が続くとRTP送信をStopする)とか、下手にいれると「RTPが10秒間届かなかったら、切断」などという電話機があると切れてしまうわけです。<br />
+とくに、ジッター/バッファー調整の自動調整なんて、涙ものですね。これ、実際に繋げて、聞いてみるしかないのですが、神様が聞かないと差が解らなかったりするんです。</p>
+
+<blockquote>ジッター（パケットごとに転送速度や到着間隔がばらつくこと）の状態を検知し，動的にバッファの大きさを変える「ジッタバッファ制御技術」も開発</blockquote>
+
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/07/ip.html">00:00</a>
+| <a href="http://www.noritsuna.jp/archives/2006/07/ip.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/07/ip.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000130"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/130"
+    dc:title="MS社ビジネスフォン市場へ参戦"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000130"
+    dc:subject="SIP"
+    dc:description="MS社が、オフィス電話市場へ本格参戦するようです。「Microsoft Offi..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-29T00:09:17+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;29&#26085;</h2>
+
+
+<h3 id="a000130">MS社ビジネスフォン市場へ参戦</h3>
+
+<p>MS社が、オフィス電話市場へ本格参戦するようです。<a href="http://www.itmedia.co.jp/news/articles/0606/26/news039.html">「Microsoft Office Communications Server 2007」</a>と<a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20060525/239060/">「Microsoft Exchange Server 2007」</a>と<a href="http://itpro.nikkeibp.co.jp/article/USNEWS/20060627/241790/?ST=win">ロードマップ</a>。<br />
+まさに、ついにという感じですね。</p>
+
+<p>Microsoft Office Communications Server 2007の機能としては、<br />
+<blockquote>この戦略に向け、MicrosoftはOffice 2007の一部として統合的な通信機能を発表した。リアルタイム通信プラットフォーム「Microsoft Office Communications Server 2007」は、既存のソフト、サービス、デバイス間でのVoIP通信管理や音声・ビデオカンファレンス、IM通信を可能にする。このプラットフォームと連係する通信クライアント「Microsoft Office Communicator 2007」は企業向けの「ソフトフォン」、IM、Webカンファレンスなどの機能を提供する。</blockquote><br />
+というところで、コミュニケーションに関する機能をフル実装しているいますね。<br />
+内容的には、こちらの<a href="http://www.noritsuna.jp/archives/2006/06/post_3.html">エントリー</a>で紹介したアプリケーションと全面対決なりそうですね。どのように、MS社の追撃をかわすのか興味深いところです。<br />
+ただ、従来のOffice Live Communications Serverのアップグレード版という位置付けだそうで、どのくらいアップグレードしているかが気になるところです。LCSの機能は、とても、微妙でしたので、つけいる隙がありましたが、今回はどうでしょうか？国内では、ケータイ系の機能で差別化を図るのが、セオリーと言うところですが。</p>
+
+<p><BR><br />
+Microsoft Exchange Server 2007の機能としては、<br />
+<blockquote>「ユニファイド・メッセージング」（UM：Unified Messaging，統合メッセージ機能）という新しい機能が搭載される。MicrosoftはまだUMの仕組みについて公に多くのことを語ってはいないが，予定されているUMの機能には役に立ちそうなものがいくつかある。</blockquote><br />
+というところで、詳細はまだのようですが、概要としては、<br />
+<blockquote>・ボイスメール、FAXのOutlook連携<BR><br />
+・Microsoft Office Communications Server 2007連携<BR><br />
+・IP-PBX連携 </blockquote><br />
+と、いったところでしょうか。<br />
+これが、さらに、MS-Grooveといった他のMS-Office製品とも連携すると思われますので、コミュニケーションアプリベンダーにとっては、強力なライバルとなりそうです。<br />
+<BR><br />
+IP-PBX系の機能は、他社のものとの連携を想定しているようですね。これは、正しい戦略かと思います。米国と日本でさえ、PBXに求められる機能は大きく違うため、一社で世界を相手にするのは不可能だからです。<br />
+そのため、何社か既に提携が発表されているようです。国内では、国内トップメーカーの<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20060515/237881/">NECと提携</a>がすでに発表されています。<br />
+ちなみに、<br />
+<blockquote>そのPBXが「SIP over TCP」と「RTP over TCP」をネイティブでサポートしているのならば，Exchangeの統合メッセージング機能が使えるかもしれない</blockquote><br />
+と、TCPオンリーだそうですので、UDPなSIPサーバとは接続不能だそうです。<br />
+これも相互接続問題の最たる例の一つです。RFC的には、UDP/TCP両実装がMUSTであるにもかかわらず、国内では某社の仕様書にUDPのみと記述があるため、UDPしか実装されていないことがあります。MS社の場合は、その逆であり、まさにSIPの世界の混沌さを示す象徴的な事象になりそうですね。<br />
+もちろん、<a href="http://www.siprop.org/">SIProp</a>は、TCP/UDP変換機能を搭載する予定ですので、もしかしたら、このあたり受けるかもデスね。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/ms.html">00:09</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/ms.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/ms.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000125"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/125"
+    dc:title="NGNなお話し"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000125"
+    dc:subject="SIP"
+    dc:description="南方司氏のBlogにNGN雑感というエントリーが出ていたので、ちょっと、便乗を。..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-29T00:01:32+09:00" />
+</rdf:RDF>
+-->
+
+
+
+
+<h3 id="a000125">NGNなお話し</h3>
+
+<p>南方司氏の<a href="http://d.hatena.ne.jp/mkusunok/">Blog</a>にNGN雑感という<a href="http://d.hatena.ne.jp/mkusunok/20060622/ngn">エントリー</a>が出ていたので、ちょっと、便乗を。</p>
+
+<p>さて、引用。</p>
+
+<blockquote>ただNGNの描く世界が具現化するかというと，甚だ心許ない．The Internetとは別にQoSのかかったclosed IP networkでmanaged serviceを提供し，additional chargeを得るというモデルは，電話会社にとっては「夢よもう一度」だけれども，なぜB-ISDNがコケてInternetが成功したかというと，キラーアプリは末端から産まれるからだ．無料のThe Internet上で提供されるサービスより魅力的なキラーアプリを電話会社が提供できるかというと甚だ心許ない．</blockquote>
+
+<p>この辺のお話しは、まさに同感と言うところであります。このままですと、「NTT版インターネット」の再発明でしかないわけです。</p>
+
+<p>そこで、私的には「課金システム」の解放に期待しています。ADSL費、ISP費、ケータイ費、モバイル通信費、コンテンツ費、etc...を、全部別納という無駄があり、且つ、少額を筆頭に課金の問題はなかなか難しいですからね。<br />
+淡い期待ではありますが「<a href="http://www.amazon.co.jp/gp/product/4756143067/">コンテンツ流通教科書</a>」などの話も現実味が出てくるかもしれませんし、SIerやNIerなどにどんどんと解放していってもらいたいものですね。</p>
+
+<p>ちなみに、階層的には、こちらの<a href="http://www.noritsuna.jp/archives/2006/06/siprop_1.html">エントリー</a>の「セッション層」に位置する機能です。</p>
+
+<p><br />
+ただ、南方司氏も指摘していますが、その投資額が見合うかが微妙なわけですが。。。<br />
+さらに、NTTさんも「土管屋(電力会社と同じような立場)」になりたくはないというところが、本音のようなのでうまくいかなそうなところが、現実なのですが。。。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/ngn_2.html">00:01</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/ngn_2.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/ngn_2.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000137"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/137"
+    dc:title="日立、NGNへ向け再編"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000137"
+    dc:subject="SIP"
+    dc:description="「日立がNGNに向けグループのネットワーク事業を再編」という記事が出ています。 ..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-28T16:46:14+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;28&#26085;</h2>
+
+
+<h3 id="a000137">日立、NGNへ向け再編</h3>
+
+<p>「<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20060628/241983/">日立がNGNに向けグループのネットワーク事業を再編</a>」という記事が出ています。<br />
+対象は、<br />
+<blockquote>今回の再編の対象は日立コミュニケーションテクノロジー（日立COM），日立インフォメーションテクノロジー（日立IT），日立ハイブリッドネットワーク（日立ハイブリッド）の3社。</blockquote><br />
+ということですが、微妙ですね。<br />
+NGNの基盤ネットワークを狙うなら、アラクサラネットワークスが必須でしょうし、IMSやFMCを狙うなら携帯系が必須かと思いますが、どちらも入っていないようで。。。</p>
+
+<p>今まで重複して、無駄があった部分を統合してからということなのですかね？</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/ngn_1.html">16:46</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/ngn_1.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/ngn_1.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000124"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/124"
+    dc:title="標準規格準拠へのジレンマ"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000124"
+    dc:subject="SIProp"
+    dc:description="こちらで掲載中の中川氏のBlogに、SIPropの存在意義と言うべきポイントの解..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-28T00:14:16+09:00" />
+</rdf:RDF>
+-->
+
+
+
+
+<h3 id="a000124">標準規格準拠へのジレンマ</h3>
+
+<p><a href="http://blog.nikkeibp.co.jp/ne/kigyou/">こちら</a>で掲載中の中川氏のBlogに、<a href="http://www.siprop.org/">SIProp</a>の存在意義と言うべきポイントの解説が<a href="http://blog.nikkeibp.co.jp/ne/kigyou/archives/2006/06/skype_2.html">エントリー</a>されていたため、ご紹介させていただきます。</p>
+
+<p>さて、いきなり引用を。</p>
+
+<blockquote>■標準規格準拠へのジレンマ
+
+<p>当初の我々の製品は、当時（今も？）勃興していた「SIPプロトコル準拠」を謳い文句にはしていたが、仕事を続けていると、社内の限られたリソースをどう配分していいのかと悩むことが多々あった。</p>
+
+<p>＜中略＞</p>
+
+<p>Gphoneについては、途中からはビジネスユーザーメインに切り替えたものの、当初は一般コンシューマ相手のSIPソフトフォンであったことから、新機能も追加していかなければユーザーに飽きられる。しかし、追加する新機能は「SIP準拠」かどうか、そういう縛りもあった。</p>
+
+<p>つまり、新機能は自由に追加したいが、新機能が「SIP互換」を保てるのか、保てないものを追加すべきかどうか、というジレンマがあった。</blockquote></p>
+
+<p>まさに、この部分が、SIPの混沌としている部分であります。ビジネスフォン関連では、本当に、各社まちまちに実装してくれておりまして。。。(ノ_・、)シクシク<br />
+そこで、この標準を作るべく、<a href="http://www.siprop.org/">SIProp</a>プロジェクトを立ち上げているというわけであります。</p>
+
+<p><br />
+最後に、もう一点、気になる点があったので、引用いたします。</p>
+
+<blockquote>まぁ、オープンソース化か、実は今後ひっそりとSIP化するという動きがあったりすると、かなり激震が走って面白いかも、と個人的には思う。実際この2つが重なれば、VoIPクライアントのさらに多くがSkypeになるのではないかなぁ。いや、ただの当たらない勘ですが。</blockquote>
+
+<p>私のつたない知識の範囲では、プロプライエタリな通信規格で普及してるものってないかなぁというところです。<br />
+なぜ、普及していないかといえば、通信機器の場合には、いろいろなデバイスへの組み込みが必須要件となるため、一社が独占の状況で普及させるのは非常に困難だと思われるためです。<br />
+特に、このような下位レイヤーの場合、それ自体に製品を魅力的にする価値はなく、当たり前の機能となってしまうため、コスト要求が非常に強い部分となり、より一社独占を妨げる要因となっています。(本当に、どこも払ってくれないのですよ。。。ただの通信モジュールには。こちらの<a href="http://www.noritsuna.jp/archives/2006/06/wifi5.html">エントリー</a>を参照。)</p>
+
+<p>といったところで、現在のSkypeでは、微妙かなぁと言うところですね。たぶん、XMPP(Jubber)系（GoogleTalk,Gizmo)のほうが、有力でしょうね。</p>
+
+<p>ただ、指摘にあるようにSkypeがSIPをしゃべってくれれば相当面白いのですが。。。<br />
+いや、Skypeが通信規格を公開してください！<a href="http://www.siprop.org/">SIProp</a>で、Skype←→SIP変換しますので！（まぁ、これが言いたかっただけなんですが。(;^_^A アセアセ・・・）<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/post_6.html">00:14</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_6.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_6.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000128"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/128"
+    dc:title="自作ケータイ"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000128"
+    dc:subject="SIProp"
+    dc:description="噂の自作ケータイ。こちら。 Java VM（MIDP 2.0）「intent」は..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-28T00:00:21+09:00" />
+</rdf:RDF>
+-->
+
+
+
+
+<h3 id="a000128">自作ケータイ</h3>
+
+<p>噂の自作ケータイ。<a href="http://plusd.itmedia.co.jp/mobile/articles/0606/26/news031.html">こちら</a>。</p>
+
+<p>Java VM（MIDP 2.0）「intent」は、あるけど、SIPフォンが載っていいるわけではないのですよねぇ。<br />
+う〜ん、微妙だなぁ。ガジェットとしては、面白いんだけどなぁ。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/post_5.html">00:00</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_5.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_5.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000123"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/123"
+    dc:title="SIPropの位置付けの俯瞰"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000123"
+    dc:subject="SIProp"
+    dc:description="私なりに考えている全体像の中でのSIPropの位置付けの解説をしたいと思います。..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-26T00:00:00+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;26&#26085;</h2>
+
+
+<h3 id="a000123">SIPropの位置付けの俯瞰</h3>
+
+<p>私なりに考えている全体像の中でのSIPropの位置付けの解説をしたいと思います。<br />
+今更と言うところや説明不足も多々ありますが、私の説明用資料に近いものなので、ご容赦を。。。<br />
+そのうち、各層について、もっと掘り下げたものを書こうかと思います。</p>
+
+<p>■全体像<br />
+下記のブロック図が、私の考えている全体像となります。（ちょっと、ださい図なので、書き換え予定。）また、最後に、データの流れなどを書いたポンチ絵もありますので、そちらも会わせてみていただければと思います。<br />
+全体の要素として、「アプリケーション」「マイニング」「プラットフォーム」があり、それらが連携することにより、１つのサービスが実現されると考えています。（各要素は、状況により、要素技術へと細分化されていきます。）<br />
+この図を元に、下記に簡単に説明を加えていきます。</p>
+
+<p><a href="/images/siprop/globalimage.png"><img src="/images/siprop/globalimage.png" width="300"></a></p>
+
+<p><BR><br />
+■プラットフォーム<br />
+各デバイス間を相互に接続し、境界を排除するための世界。<br />
+<a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20060423/235999/">シームレス・コミュニケーション</a> といったあたりです。</p>
+
+<p>●アプリ層<br />
+アプリケーションを使う上で、デバイスに依存しないUIや操作性を提供する層。<br />
+この辺のイメージは、中島聡氏の<a href="http://satoshi.blogs.com/life/">ブログ</a>に的確な解説があるので、<a href="http://satoshi.blogs.com/life/2006/04/post_1.html">そちら</a>をご覧いただければと思います。<br />
+デバイスも多様化し、使用法も多様化することがすることが、考えられますので、ある程度分野別にいろいろとミドルウェアが出てくるとは思います。</p>
+
+<p>例：<a href="http://www.uievolution.com/index_ja.html">UIEvolution</a>さんのUIEngine</p>
+
+<p><br />
+●セッション層<br />
+認証やパーミッション管理、デバイス間のセッション管理を行う層。<br />
+セキュリティー機能が付加した電力網のようなものを想定してもらえればよいかと思います。<br />
+<a href="http://www.siprop.org/">SIProp</a>は、ここの標準化を目指しています。<br />
+ここについては、後ほど、詳細な解説をする予定です。</p>
+
+<p>例：NTTコミュニケーションズさんの<a href="http://www.ipv6style.jp/jp/tech/20050131/index.shtml">m2m-x</a></p>
+
+<p><br />
+●ネットワーク層<br />
+デバイス間のコネクションを確立するための層。<br />
+ここは、あまり説明は必要ないでしょう。SkypeのA2Aなどですね。</p>
+
+<p>例：<a href=" http://www.skype.co.jp/">Skyp</a>eさんのSkypeや <a href="http://www.softether.com/jp/">ソフトイーサ</a>さんのPacketiX</p>
+
+<p><br />
+<BR><br />
+■データ<br />
+Googleが目指しているとおもわれる世界。<br />
+こちら側は、あまり強い分野ではないため、まとめ切れていません。名称も適当です。(;^_^A</p>
+
+<p>●AI層<br />
+行動履歴などから「自分」の志向を判断し、適切な結果を導く層。<br />
+セマンティックされたデータと行動データから、思考して、最適解を導き出すという部分となります。</p>
+
+<p>例：ハードディスクレコーダーの自動録画機能<br />
+(まぁ、まだまだAIと呼ぶには、アレですが。。。)</p>
+
+<p><br />
+●ファインダビリティ層<br />
+入力された情報から的確な情報を探し出す層。<br />
+これは、書籍「<a href="http://www.amazon.co.jp/gp/product/4873112834/">アンビエント・ファインダビリティ</a>」より、命名しました。<br />
+必要な情報をどうやって見つけ出すかという部分となります。詳細は、該当書籍をあたってもらえればと思います。</p>
+
+<p>例：各検索エンジン</p>
+
+<p><br />
+●マイニング層<br />
+あまたの情報を収集分類する層。<br />
+セマンティックやタグ付けといった意味づけに関するものやRFIDなどの膨大なデータ、動画といったものを情報処理するかという部分となります。</p>
+
+<p>例：各検索エンジンのBot</p>
+
+<p><br />
+<BR><br />
+■アプリケーション<br />
+●エージェント<br />
+上記の層から上がってきたデータを統合し、ユーザに見せるためのUI層。<br />
+私のイメージとしては、「外部脳・・・もう一人の自分」というものになります。</p>
+
+<p>イメージ的には、<a href="http://www.praesens.co.jp/pws/">こちら</a>が究極に進化したもの。正確には、あの「何か」が出始めてきたときに、見て、「自分の分身がバーチャルな世界で勝手に動き回ったら面白いんじゃないの？」というところが、この妄想の原点になっています。</p>
+
+<p><BR><br />
+このような感じで、<a href="http://www.siprop.org/">SIProp</a>は、「プラットフォーム」の中層である「デバイスを繋げるための要素技術」であるというのが私の考えです。</p>
+
+<p><BR><br />
+最後に、この辺の話をポンチ絵にしたものを、貼り付けておきます。<br />
+2004年10月のあるデスマーチプロジェクト終了後の休暇中に暴走した状態で書いたもので、かなり恥ずかしいのですが、死蔵していても何も生み出さないので、公開してみることにします。<br />
+何かのお役に立つことを祈って。。。<br />
+<a href="/images/siprop/mousou.png"><img src="/images/siprop/mousou.png" width="300"></a></p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/siprop_1.html">00:00</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/siprop_1.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/siprop_1.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000112"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/112"
+    dc:title="ＩＰ時代における電気通信番号の在り方に関する研究会第二次報告書について"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000112"
+    dc:subject="SIP"
+    dc:description="総務省から、「ＩＰ時代における電気通信番号の在り方に関する研究会第二次報告書」が..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-25T00:28:46+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;25&#26085;</h2>
+
+
+<h3 id="a000112">ＩＰ時代における電気通信番号の在り方に関する研究会第二次報告書について</h3>
+
+<p>総務省から、「<a href="http://www.soumu.go.jp/s-news/2006/060616_1.html">ＩＰ時代における電気通信番号の在り方に関する研究会第二次報告書</a>」が、公表されました。</p>
+
+<p>気になる点としては、下記の点ですね。</p>
+
+<blockquote>発信者が呼接続を継続するかを選択可能な機会を確保するた
+め、インターネットを経由している点について、インターネットへの転送前にガ
+イダンスにより発信者に告知することが現実的な対策と考えられる。</blockquote>
+
+<p>セキュリティーや品質保証の問題から、必要と言うことになっているようですが、どうなのだろうという気がします。</p>
+
+<p>セキュリティーに関しては、最近では暗号化機能がつき始めていますし、NGNではIPsecを使用しますし、解決は時間の問題と思われます。それに、既存の固定電話も物理的なリーチが必要と言うだけで強固なセキュリティーが施されているわけではないですから。<br />
+品質保証に関しては、ベストエフォートがだんだんと認知されつつある現在、固定電話の品質基準の方を見直した方がよいような・・・というようなことをいうとやばそうなので、この辺はあまりつっこまない方向で。</p>
+
+<p>感想としては、やはり、既存の固定電話ベースでの検討結果という感じですね。IPベースで検討するともっと違う結果となりそうなのですね。<br />
+</p>
+
+<p>追記(2006/06/27)<br />
+つなたい記事ですが、<a href="http://wslash.com/">P2P today ダブルスラッシュ </a>さんに、取り上げていただきました。<br />
+P2P Todayさん、ありがとうございます。</p>
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/fmc.html">00:28</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/fmc.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/fmc.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000116"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/116"
+    dc:title="MVNOへ進出するサイボウズ"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000116"
+    dc:subject="SIP"
+    dc:description="こちらに、サイボウズさんがMVNOへ進出するというインタビュー記事が出ています。..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-24T00:02:47+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;24&#26085;</h2>
+
+
+<h3 id="a000116">MVNOへ進出するサイボウズ</h3>
+
+<p><a href="http://japan.cnet.com/interview/com/story/0,2000055957,20140887,00.htm">こちら</a>に、サイボウズさんがMVNOへ進出するというインタビュー記事が出ています。</p>
+
+<p>期待してしまいますね。</p>
+
+<p>MVNOは、言うならば「網の解放」ということであり、電力網が電力会社から解放されて、家電市場が形成されたように、SIerさんやNIerさんがどんどんといろいろなサービスを開発して、新しい市場を作っていってもらいたいですね。<br />
+さらに、今後、NGN+IMSがでてくれば、もっと使いやすい形で、誰でも網が利用できるようになることが予想されますので、このときに本当の勝負が始まるのではないかと思います。</p>
+
+<p>とはいっても、キャリアもただの土管屋になるつもりはないようで、なかなか、一筋縄ではいかないというところなのですが。。。<br />
+<BR><br />
+もちろん、私の方も、黙っては見ていないつもりはなく、いろいろと活動しているところですが。(;^_^A アセアセ・・・<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/mvno.html">00:02</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/mvno.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/mvno.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000118"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/118"
+    dc:title="VoIP事業者も通信サービス平等化基金「USF」"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000118"
+    dc:subject="SIP"
+    dc:description="こちらによると、米国にてVoIP事業者も通信サービス平等化基金「USF」対象とな..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-23T06:33:34+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;23&#26085;</h2>
+
+
+<h3 id="a000118">VoIP事業者も通信サービス平等化基金「USF」</h3>
+
+<p><a href="http://itpro.nikkeibp.co.jp/article/USNEWS/20060622/241502/">こちら</a>によると、米国にてVoIP事業者も通信サービス平等化基金「USF」対象となるらしい。しかし、書きのような一文が。</p>
+
+<blockquote>USF徴収が義務化されるVoIP事業者は公衆電話回線に接続している業者に限り，IP回線のみを使うSkypeなどのサービスは対象に入れないと報じている。 </blockquote>
+
+<p>ん？SkypeOut は対象外なのか？ウ〜ん、基準が良くわからない。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/voipusf.html">06:33</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/voipusf.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/voipusf.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000117"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/117"
+    dc:title="基本設計"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000117"
+    dc:subject="SIProp"
+    dc:description="基本設計ですが、だいたい、イメージが出来てきたので、設計を一気に更新いたしました..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-23T00:00:00+09:00" />
+</rdf:RDF>
+-->
+
+
+
+
+<h3 id="a000117">基本設計</h3>
+
+<p>基本設計ですが、だいたい、イメージが出来てきたので、<a href="http://www.siprop.org/ja/index.php?%B3%AB%C8%AF%2F%C0%DF%B7%D7">設計</a>を一気に更新いたしました。</p>
+
+<p>とくに、<a href="http://www.siprop.org/ja/index.php?%B3%AB%C8%AF%2F%C0%DF%B7%D7%2F%BC%C2%A5%AA%A5%D6%A5%B8%A5%A7%A5%AF%A5%C8%A5%D6%A5%ED%A5%C3%A5%AF%BF%DE">実オブジェクトブロック図</a> が、よい感じに出来ており、読んでもらえればだいたいの動作がつかめるのではないかと思います。<br />
+あとは、細部を詰めていくという感じですので、詳細設計を見据えつつ、やっていこうかと思います。</p>
+
+<p><BR><br />
+つぶやき<br />
+まぁ、いろいろとつっこまれる要素はあるのですが、今のところ、無視してやっています。</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/post_2.html">00:00</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_2.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_2.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000108"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/108"
+    dc:title="要件定義〜基本設計の概要"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000108"
+    dc:subject="SIProp"
+    dc:description="SIPropの設計ページを作成しました。 今回は、下記のものについての要件定義と..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-22T00:10:08+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;22&#26085;</h2>
+
+
+<h3 id="a000108">要件定義〜基本設計の概要</h3>
+
+<p>SIPropの<a href="http://www.siprop.org/ja/index.php?%B3%AB%C8%AF%2F%C0%DF%B7%D7">設計ページ</a>を作成しました。</p>
+
+<p>今回は、下記のものについての要件定義と基本設計のキモとなりそうなところを洗い出してあります。</p>
+
+<blockquote><a href="http://www.siprop.org/ja/index.php?%B3%AB%C8%AF%2F%C0%DF%B7%D7%2F%C0%A9%B8%E6%A5%E2%A5%B8%A5%E5%A1%BC%A5%EB%2F%A5%E1%A5%C3%A5%BB%A1%BC%A5%B8%CA%D1%B4%B9%C9%F4">・メッセージ部</a><BR>
+<a href="http://www.siprop.org/ja/index.php?%B3%AB%C8%AF%2F%C0%DF%B7%D7%2F%C0%A9%B8%E6%A5%E2%A5%B8%A5%E5%A1%BC%A5%EB%2F%A5%B7%A1%BC%A5%B1%A5%F3%A5%B9%C0%A9%B8%E6%2F%B5%DB%BC%FD%C9%F4">・シーケンス部</a><BR>
+<a href="http://www.siprop.org/ja/index.php?%B3%AB%C8%AF%2F%C0%DF%B7%D7%2F%A5%B3%A5%F3%A5%C8%A5%ED%A1%BC%A5%E9%C9%F4%2F%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8">・スクリプト部</a><BR>
+<a href="http://www.siprop.org/ja/index.php?%B3%AB%C8%AF%2F%C0%DF%B7%D7%2F%A5%B3%A5%F3%A5%C8%A5%ED%A1%BC%A5%E9%C9%F4%2F%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8%2F%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8%CD%D1%B4%D8%BF%F4">・スクリプト用関数</a><BR></blockquote>
+
+<p>という感じですが、たぶん、見ても良くわからないかと思います。次回は、各部分のアーキテクチャをもう少し具体的に設計しようかと思います。この辺を書けば、だんだんと何が言いたいのか見えてくるはずですので。<br />
+その次は、詳細設計と称して、簡単なクラス図を書いていきたいと思います。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/post.html">00:10</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/post.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/post.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000114"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/114"
+    dc:title="Windows Live Messenger"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000114"
+    dc:subject="SIP"
+    dc:description="Windows Live Messenger の 正式版が公開されたようです。こ..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-21T03:01:58+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;21&#26085;</h2>
+
+
+<h3 id="a000114">Windows Live Messenger</h3>
+
+<p><a href="http://headlines.yahoo.co.jp/hl?a=20060621-00000004-cnet-sci">Windows Live Messenger</a> の 正式版が公開されたようです。<a href="http://internet.watch.impress.co.jp/cda/news/2006/06/20/12392.html">こちら</a>のニュースより。</p>
+
+<p>MSさんが、やっと、VoIPやIM関連に本気になってきた模様ですね。<br />
+<a href="http://www.microsoft.com/japan/office/livecomm/prodinfo/default.mspx">LCS2005</a>を出したあと、いまいち、行動が鈍かったので、いかがしたものかと思っていたところでした。<br />
+<a href="http://ideas.live.com/">Windows Live</a>との連携とは、まさに、先を見越したサービスになっていると思います。</p>
+
+<p>ちなみに、この件の本当のキモは、<a href="http://www.itmedia.co.jp/news/articles/0606/16/news027.html">こちらの発表</a>ですね。MSの技術Topが「Groovy&NotesのRay Ozzie氏」になるわけで、<a href="http://ideas.live.com/">Windows Live</a>との連携は当然というレベルであると推測されます。<br />
+たぶん、まだまだ、隠し球を持っていると思われますので、これからも要チェックですね。<br />
+</p>
+
+<p><BR><br />
+追記(2006/06/21 04:05)<br />
+<a href="http://k-tai.impress.co.jp/cda/article/news_toppage/29771.html">携帯版</a>もあるようです。<br />
+この手のアプリで、どうしても制限となる部分が、下記の部分なのですが、見事にそのまま制限になっているようですね。今一歩というか、早くこの辺がクリアされるようにキャリアさんに動いてもらいたいですね</p>
+
+<blockquote>・待機状態時の待ち受けはどうするのか？<BR>
+　→アプリを起動していない際、相手からメッセージが寄せられると、「ウェイクアップメール」という機能で通知される<BR>
+・頻繁に通信が発生する<BR>
+　→同社では、「メッセージのやり取りやメールの送受信で通信を頻繁に行なう」として、パケット通信料定額サービスの利用を推奨している。
+</blockquote>
+
+<p><BR><br />
+追記＾２(2006/06/21 15:06)<br />
+やはり、何か企んでいるらしい。<a href="http://headlines.yahoo.co.jp/hl?a=20060621-00000004-cnet-sci">こちら</a>。</p>
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/windows_live_me_1.html">03:01</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/windows_live_me_1.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/windows_live_me_1.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000107"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/107"
+    dc:title="IPA未踏ソフトウェア創造事業採択！！！"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000107"
+    dc:subject="SIProp"
+    dc:description="しばらく、地下に潜って活動しておりましたが、その結果が出ましたので、ご報告＆リニ..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-20T16:00:59+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;20&#26085;</h2>
+
+
+<h3 id="a000107">IPA未踏ソフトウェア創造事業採択！！！</h3>
+
+<p>しばらく、地下に潜って活動しておりましたが、その結果が出ましたので、ご報告＆リニューアルです！</p>
+
+<blockquote>2006年上期 <a href="http://www.ipa.go.jp/jinzai/esp/index.html">IPA未踏ソフトウェア創造事業</a>に、採択されました。採択内容は、<a href="http://www.ipa.go.jp/jinzai/esp/2006mito1/koubokekka.html#Namiki">こちら(１ 今村　謙之)</a>。</blockquote>
+
+<p>採択された物は、こちらの「<a href="http://www.siprop.org/">SIProp</a>」プロジェクトとなります。詳細は、リンク先のページをご覧ください。<br />
+簡単に説明しますと、SIP(IP電話)の相互接続問題を解決するためのミドルウェアということになります。</p>
+
+<p>しばらくは、これを中心の更新していく予定ですので、SIPやP2Pがらみに興味のある方はよろしくお願いいたします。<br />
+</p>
+
+<p><BR><br />
+ついしん<br />
+SIProp、ついに、Google先生で<a href="http://www.google.co.jp/search?q=SIProp&hl=ja&lr=lang_ja&sa=X&oi=lrtip8">ひっかかる</a>ようになった。しばらく前は、全然、ひっかからなかったのですが。。。<br />
+<BR><br />
+ついしん＾２<br />
+日経にもリリースが出ておりました。<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20060620/241301/">こちら</a>。<br />
+</p>
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/ipa.html">16:00</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/ipa.html#comments">コメント (2)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/ipa.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000110"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/110"
+    dc:title="Asteriskのホスティングサービス"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000110"
+    dc:subject="SIP"
+    dc:description="リンクさんによる、Asteriskのホスティングサービスが開始されました。 As..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-19T18:00:09+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;19&#26085;</h2>
+
+
+<h3 id="a000110">Asteriskのホスティングサービス</h3>
+
+<p><a href="http://www.link.co.jp/index.html">リンクさん</a>による、<a href="http://opentechpress.jp/news/06/06/19/0858259.shtml">Asteriskのホスティングサービス</a>が開始されました。</p>
+
+<p>Asteriskはもちろん、サーバやネットワーク自体も含めて面倒を見てくれますので、管理者不在でも安心して導入できますね。<br />
+また、この手のソフトフォンのサービスで問題となる「<strong>ソフトフォンを起動していないと着信できない</strong>」という点も、外部への転送機能があるため、それを固定電話や携帯電話に転送するように設定しておけば、問題ありません。</p>
+
+<p>電話番号も数百円で追加できるとのことですので、非常に使い勝手のよいサービスに仕上がっていると思います。</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/asterisk.html">18:00</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/asterisk.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/asterisk.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000113"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/113"
+    dc:title="G-LEX"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000113"
+    dc:subject="SIProp"
+    dc:description="こちらのG-LEXですが、まさに、SIPropに相応しいサービスですね。ニュース..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-19T10:02:56+09:00" />
+</rdf:RDF>
+-->
+
+
+
+
+<h3 id="a000113">G-LEX</h3>
+
+<p>こちらの<a href="https://www.g-lex.net/">G-LEX</a>ですが、まさに、<a href="http://www.siprop.org/">SIProp</a>に相応しいサービスですね。ニュースリリースは、<a href="http://www.ufnet.jp/co/press_20060615.pdf">こちら</a>。</p>
+
+<p>使用するIP電話は選択自由と言うことですが、SIPropでも訴えているようにそう簡単に相互接続はうまくいかないのが、現状です。<br />
+そこで、SIPropでG-LEXモジュール提供すれば、様々なIP電話をG-LEXにて使用できるようになるかもしれません。これは、なんとしてでも、G-LEXモジュールを作成せねば！<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/glex.html">10:02</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/glex.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/glex.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000106"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/106"
+    dc:title="ENUMトライアル番号設定メモ"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000106"
+    dc:subject="SIP"
+    dc:description="ENUM の 設定を行いましたので、そのメモを貼り付けておきます。 何かの参考に..."
+    dc:creator="noritsuna"
+    dc:date="2006-02-22T23:51:14+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;02&#26376;22&#26085;</h2>
+
+
+<h3 id="a000106">ENUMトライアル番号設定メモ</h3>
+
+<p>ENUM の 設定を行いましたので、そのメモを貼り付けておきます。<br />
+何かの参考になれば、幸いです。</p>
+
+<p>DNSサーバは、BINDバージョン：9.3.2 を、使用しました。</p>
+
+<p>また、構成は、「<a href="http://www.jpnic.net/ja/enum-trial/81et-trial-model.html">日本ENUMトライアルのTier構成</a>」の構成となっております。</p>
+
+<p></p>
+
+<p>■Tier1-Bの設定<br />
+設定は、CIDRの設定と同じです。<br />
+JPNICから、通知されるネームサーバ名をそのまま利用してください。</p>
+
+<p>●named.conf<br />
+・設定例<br />
+<blockquote>zone "ns101.0.0.0.0.2.2.0.0.1.8.e164.arpa" {<br />
+        type master;<br />
+        file "8100220000.enum";<br />
+};</blockquote></p>
+
+<p>●ゾーンファイル<br />
+・設定例<br />
+<blockquote>$TTL 86400<br />
+@            IN      SOA ns.noritsuna.jp. master.noritsuna.jp. (<br />
+                     2006021001 ; serial<br />
+                     3600       ; refresh 1hr<br />
+                     900        ; retry 15min<br />
+                     604800     ; expire 1w<br />
+                     86400      ; min 24hr<br />
+)<br />
+         IN      NS      ns.noritsuna.jp.</p>
+
+<p>0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa.           IN      PTR   ns.noritsuna.jp.<br />
+0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa.           IN      PTR   ns.noritsuna.jp.</blockquote></p>
+
+<p></p>
+
+<p></p>
+
+<p>■Tier2の設定<br />
+●named.conf<br />
+ゾーンの指定ですが、逆引きの設定とほぼ同じです。<br />
+簡単に言えば、番号を逆さまにして、ドットで区切り、「e164.arpa」をつけるだけです。</p>
+
+<p><br />
+・RFC<br />
+<a href="http://www.rfc-editor.org/rfc/rfc2916.txt">RFC 2916「E.164 number and DNS」</a></p>
+
+<p></p>
+
+<p>・設定例<br />
+<blockquote>zone "0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa" {<br />
+        type master;<br />
+        file "810022000000.enum";<br />
+};<br />
+zone "1.0.0.0.0.0.2.2.0.0.1.8.e164.arpa" {<br />
+        type master;<br />
+        file "810022000001.enum";<br />
+};</blockquote></p>
+
+<p></p>
+
+<p>●ゾーンファイル<br />
+「SOA」「NS」レコードは、普通のゾーンファイルと一緒です。</p>
+
+<p>ENUM番号用に、「NAPTR」レコードを追加することになります。<br />
+「NAPTR」レコードのフォーマットは、下記の通りです。</p>
+
+<p><br />
+・フォーマット<br />
+<blockquote>X.X.X.X.X.X.X.X.X.X.X.e164.arpa. IN  NAPTR  order  preference  service   flags  regexp  replacement</blockquote></p>
+
+<p>・パラメータの意味<br />
+<blockquote>order・・・数値。プライオリティー。小さいものから処理されます。<br />
+preference・・・数値。orderに対するプライオリティー。<br />
+service・・・文字列。提供するサービスの文字列。<br />
+    SIPサービス：E2U+sip <br />
+    電子メールサービス：E2U+msg:mailto <br />
+    Webサービス：E2U+web:http <br />
+flags・・・文字。「u」をするらしい。<br />
+regexp・・・正規表現。ENUM番号からURIを生成するための正規表現。<br />
+replacement・・・正規表現。「.」を指定すればOK。</blockquote></p>
+
+<p><br />
+・設定例<br />
+<blockquote>0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. IN  NAPTR  100 10  "u" "E2U+sip"    "!^.*$!sip:test-sip@noritsuna.jp!"    .<br />
+0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. IN  NAPTR  100 10  "u" "E2U+msg:mailto"  "!^.*$!mailto:test-sip@noritsuna.jp!"  .<br />
+0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. IN  NAPTR  100 10  "u" "E2U+web:http"    "!^.*$!http:www.noritsuna.jp!"    .</blockquote></p>
+
+<p><br />
+●テスト<br />
+dig コマンド(bindに付属)の結果で、「;; ANSWER SECTION:」に、設定した「NAPTR」が、出てくればOKです。</p>
+
+<p><br />
+・コマンド<br />
+<blockquote>/usr/bin/dig NAPTR X.X.X.X.X.X.X.X.X.X.X.e164.arpa. [@IPアドレス]</blockquote></p>
+
+<p>・結果例<br />
+<blockquote>$/usr/bin/dig NAPTR 0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa.</p>
+
+<p>; <<>> DiG 9.2.4 <<>> NAPTR 0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa.<br />
+;; global options:  printcmd<br />
+;; Got answer:<br />
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 62865<br />
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 1, ADDITIONAL: 0</p>
+
+<p>;; QUESTION SECTION:<br />
+;0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. IN  NAPTR</p>
+
+<p>;; ANSWER SECTION:<br />
+0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. 86285 IN NAPTR 100 10 "u" "E2U+sip" "!^.*$!sip:test-sip@noritsuna.jp!" .<br />
+0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. 86285 IN NAPTR 100 10 "u" "E2U+web:http" "!^.*$!http:www.noritsuna.jp!" .<br />
+0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. 86285 IN NAPTR 100 10 "u" "E2U+msg:mailto" "!^.*$!mailto:test-sip@noritsuna.jp!" .</p>
+
+<p>;; AUTHORITY SECTION:<br />
+0.0.0.0.0.0.2.2.0.0.1.8.e164.arpa. 86285 IN NS  ns.noritsuna.jp.</blockquote><br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/02/enum_2.html">23:51</a>
+| <a href="http://www.noritsuna.jp/archives/2006/02/enum_2.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/02/enum_2.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000105"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/105"
+    dc:title="ENUMトライアル番号取得"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000105"
+    dc:subject="SIP"
+    dc:description="JPNICの日本ENUMトライアル にて、申請が受理され、番号を払い出してもらい..."
+    dc:creator="noritsuna"
+    dc:date="2006-02-08T01:52:15+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;02&#26376;08&#26085;</h2>
+
+
+<h3 id="a000105">ENUMトライアル番号取得</h3>
+
+<p>JPNICの<a href="http://www.jpnic.net/ja/enum-trial/">日本ENUMトライアル</a> にて、申請が受理され、番号を払い出してもらいました。</p>
+
+<p><br />
+うちの割り当て番号は、下記の通りです。</p>
+
+<blockquote>810022000000 〜 810022000099</blockquote>
+
+<p><br />
+しかし、上記リンク先を見ると、私が一番乗りのような気がしなくもないのですが、たぶん、気のせいでしょう。(^-^;A</p>
+
+<p>近いうちに、ENUMのDNSサーバを立ち上げますので、そのときのインストールメモを公開予定です。<br />
+ターゲットDNSサーバは、「BIND9」です。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/02/enum.html">01:52</a>
+| <a href="http://www.noritsuna.jp/archives/2006/02/enum.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/02/enum.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000077"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/77"
+    dc:title="P2P-SIPってどうよ？"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000077"
+    dc:subject="SIP"
+    dc:description="無印吉澤さんから、こちらのエントリーに、トラバを頂いたました！！！ (というか、..."
+    dc:creator="noritsuna"
+    dc:date="2005-04-08T17:30:20+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;04&#26376;08&#26085;</h2>
+
+
+<h3 id="a000077">P2P-SIPってどうよ？</h3>
+
+<p><a href="http://muziyoshiz.jp/">無印吉澤</a>さんから、こちらの<a href="http://www.noritsuna.jp/archives/2005/03/p2psip.html">エントリー</a>に、トラバを頂いたました！！！<br />
+(というか、初トラバです！！！(^-^;A) </p>
+
+<p>さて、その中で無印吉澤さんが、P2P-SIPの存在意義について、3点ほど疑問点を<br />
+投げかけているので、反応してみました。<br />
+<BR><br />
+●一点目</p>
+
+<blockquote>
+・P2P SIPは中央集中サーバが不要<BR>
+←Skypeは認証などのための管理サーバ<BR>
+　（Network Management Server）を必要とする 
+</blockquote>
+
+<p>課金を考える以上、やはり、管理サーバ的なものをはずすことは出来ないと<br />
+思います。<br />
+そのため、VoIPとして、考えるのなら「管理サーバは必要」と思います。</p>
+
+<p>しかし、Winnyのようなソフトを作りたい場合、Skypeでは実装できないで<br />
+あろう点は、メリットとしてあげて良いかと思います。<br />
+<BR><br />
+●二点目</p>
+
+<blockquote>
+・P2P SIPはオープンなSIPプロトコルに基づく<BR>
+←Skypeはプロプライエタリなプロトコル 
+
+<p>オープンなプロトコルであれば別にSIPでなくても<br />
+いいわけで、それこそJXTAのようなオープンな<br />
+P2Pプロトコルでも良さそうです。 <br />
+</blockquote></p>
+
+<p>もう、おっしゃる通りかと。<br />
+上であげたWinnyという例であれば、実際、Freenetでも実装すればよいわけで、<br />
+わざわざSIPを絡める必要なんて無いんですよね。</p>
+
+<p>あえてメリットとしてあげるなら、知っている人が比較的多い点かと。<br />
+そのため、コンセンサスが取りやすいといったあたりがメリットとして<br />
+あげられそうです。<br />
+(純粋な技術的メリットではない点は、ここに追記しておきます。)</p>
+
+<p><BR><br />
+●三点目</p>
+
+<blockquote>
+・P2P SIPは既存のSIP端末を利用できる<BR>
+←Skypeを利用するには独自端末が必要 
+</blockquote>
+
+<p>これも、2番目のと似てますが、「既存のSIP端末」ってのが、あるから実装<br />
+コスト安いという点が、メリットなのかと思います。<br />
+(純粋な技術的メリットではない点は、ここに追記しておきます。)</p>
+
+<p>理論的には、SIPスタックはもうあるので、その上に載せるアプリ部分を<br />
+書けばよいというお話です。<br />
+(あくまで、「理論的」にはです。はい。(^-^;A)</p>
+
+<p><BR><br />
+と、書いてきましたが、私自身も別に技術的にはSIPじゃなくてもいいじゃん<br />
+と、思っております。(^-^;A<br />
+ただ、SIPをやってきたので、それをベースにするのが一番楽ですし、ぜひ、<br />
+そうなってほしいという願望があるので、P2P-SIPいいんじゃないの？と<br />
+いっているにすぎなかったりします。<br />
+(事実上、2番目にあげたメリットですね。)</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/04/p2psip_1.html">17:30</a>
+| <a href="http://www.noritsuna.jp/archives/2005/04/p2psip_1.html#comments">コメント (2)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/04/p2psip_1.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000074"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/74"
+    dc:title="IPv6-SIP導入事例"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000074"
+    dc:subject="SIP"
+    dc:description="「IPv6採用で半年間で1万台の電話機をスピード導入」 ですって！ IPv6 の..."
+    dc:creator="noritsuna"
+    dc:date="2005-04-04T18:38:43+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;04&#26376;04&#26085;</h2>
+
+
+<h3 id="a000074">IPv6-SIP導入事例</h3>
+
+<p>「<a href="http://itpro.nikkeibp.co.jp/free/NCC/denwa/20050401/1/">IPv6採用で半年間で1万台の電話機をスピード導入</a>」 ですって！</p>
+
+<p>IPv6 の商用事例としては、世界最大級らしいんですって！</p>
+
+<p>「音声系はIPv6，データ系はIPv4に統一し，・・・・・・・IPv6とIPv4の<br />
+　ネットワークはタグVLANにより論理的に分かれている。」ですって！</p>
+
+<p><BR><br />
+いろいろと解説を入れたいところではありますが、いろいろとありまして<br />
+解説を入れるのは避けようと思います。</p>
+
+<p>ではでは、このへんで、失礼いたします。ぺこ <(＿ ＿)><br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/04/ipv6sip.html">18:38</a>
+| <a href="http://www.noritsuna.jp/archives/2005/04/ipv6sip.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/04/ipv6sip.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000071"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/71"
+    dc:title="Skypo、NTT-DoCoMe に買収される！"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000071"
+    dc:subject="SIP"
+    dc:description="「o」と「e」が、逆らしいですよ。タイトルの。(^-^;A そういえば、今日は、..."
+    dc:creator="noritsuna"
+    dc:date="2005-04-01T00:00:00+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;04&#26376;01&#26085;</h2>
+
+
+<h3 id="a000071">Skypo、NTT-DoCoMe に買収される！</h3>
+
+<p>「o」と「e」が、逆らしいですよ。タイトルの。(^-^;A</p>
+
+<p>そういえば、今日は、「4月1日」らしいですよ。<br />
+まっ、深い意味はないですが、そのままってやつですね。（ｗ</p>
+
+<p>ということで、期待した方、すみませんでした。ぺこ <(＿ ＿)><br />
+<BR><br />
+何かが心に貯まってしまった方は、<a href="http://pc.watch.impress.co.jp/uocchi05/">こちら</a>で、和んでください。</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/04/skyponttdocome.html">00:00</a>
+| <a href="http://www.noritsuna.jp/archives/2005/04/skyponttdocome.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/04/skyponttdocome.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000070"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/70"
+    dc:title="P2P-SIP"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000070"
+    dc:subject="SIP"
+    dc:description="「A P2P Approach to SIP Registration 〜SIP..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-31T20:10:52+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;03&#26376;31&#26085;</h2>
+
+
+<h3 id="a000070">P2P-SIP</h3>
+
+<p>「<a href="http://www.ietf.org/internet-drafts/draft-bryan-sipping-p2p-00.txt">A P2P Approach to SIP Registration 〜SIPレジストへの P2P アプローチ〜</a>」<br />
+というものが、2005/01/20にドラフトとして公開されていました。</p>
+
+<p>そこで、ほぼ、ゼロに近い英語力((^-^;A)を総動員して、読んでみましたので<br />
+その辺の所感をば、少々。<br />
+<BR><br />
+●4.  Peer-to-Peer Background<br />
+DHT-P2P の基本について書かれているようなので、P2P に興味がある方は、<br />
+「入門」として読んでみるとよいかと思います。</p>
+
+<p>あまり、取り立てて面白そうなことは書いてなさそうです。</p>
+
+<p>あと、全体を通して、<a href="http://www.pdos.lcs.mit.edu/chord/">Chord</a> が、題材に取り上げられています。<br />
+私も、Chord は、よく知らないので、そのうち勉強してみようと思います。<br />
+<BR><br />
+●5.  P2P SIP Overview<br />
+DHTを利用したP2Pを動かしたらどんな動作をするか？というものの<br />
+おおざっぱな解説ですね。まぁ、Overview ってタイトルですし。(^-^;A</p>
+
+<p>SIP 的には、SIPProxyサーバ、ロケーションサーバ、レジストラ を、介した<br />
+RFC3261の16.12.1.1  Basic SIP Trapezoid を、どう回避して、UA間で通信<br />
+させるのか？ということになります。</p>
+
+<p>SIP的なミソと思われるのは、ここ！</p>
+
+<blockquote>If the receiving node is not responsible for <BR>
+the portion of the hash space corresponding<BR>
+to that resource-ID, it will return a 302 - <BR>
+Redirect response, and also report the node <BR>
+nearest in the hash space that it is aware of.</blockquote>
+
+<p>問い合わせが来て、自分の管理下にないノードであれば、</p>
+
+<p>「302 - Redirect response」</p>
+
+<p>を返すことにより、他へ転送させようと言うわけです。<br />
+ウ〜ン、SIPの特性をうまく使った良い方法なんじゃないでしょうか。<br />
+<BR><br />
+●6.  Architecture<br />
+基本アーキテクチャは、Chord ベースのようなので、こちらの知識が必要<br />
+かもとか思いましたが、どうやら、Chord のアーキテクチャ解説をしている<br />
+だけな様です。</p>
+
+<p>ここを読むだけでも、Chord をある程度理解できそうな気がします。<br />
+というか、そんな気になりました。(^-^;A<br />
+<BR><br />
+●7.  Headers and Parameters<br />
+●8.  DHT Operations<br />
+●9.  User-level operations<br />
+●10.  Examples<br />
+このあたりが、具体的な実装に関わる話です。</p>
+
+<p>事実上、Chord を SIP に併せて実装したらどうなる？ということが、延々と<br />
+書かれております。</p>
+
+<p>まとめてみると、こんな感じでしょうか？<br />
+SIP(RFC3261など)に準拠した形で、P2P機能を持たせています。<br />
+こう考えると、やはり、SIPの拡張性はすごいですね。</p>
+
+<p>・REGISTER メソッドによる、参加宣言。<br />
+・INVITE メソッドによる、セッションの確立。<br />
+・SUBSCRIBE / NOTIFY メソッドによる、プレゼンス通知。</p>
+
+<p>・3xx応答リダイレクトによる、転送先（ルーティング）の指示。<br />
+・4xx応答による、不在通知。</p>
+
+<p>・セッションタイマ（Expiresヘッダ）による、生存チェック。</p>
+
+<p>・Require ヘッダ、Supported ヘッダによる、P2Pモード通知。</p>
+
+<p>・下記ヘッダによる、ロケーション・ノード情報の伝達。<br />
+　Request-URIヘッダ<br />
+　Toヘッダ<br />
+　Fromヘッダ<br />
+　Contactヘッダ<br />
+<BR><br />
+●11.  Security Considerations<br />
+●12.  Open Issues<br />
+セキュリティーに関するお話。</p>
+
+<p>あっ、あんまり書いてない。。。<br />
+詐称に関するモノだけ、書かれていますが、あまり目新しさはないかな。</p>
+
+<p>事実上、NATもがんばって越えてねって書いてあるだけか。。。<br />
+<BR><br />
+●結論<br />
+ほとんど P2P な人向けの資料。どちらかというと初心者向き。<br />
+でも、SIP の可能性を感じさせてくれる資料でもあります。</p>
+
+<p>P2P に、興味がある方は、是非とも、読んでみることをお奨めします。<br />
+<BR><br />
+●おまけ<br />
+んで、議論の方は、<a href="http://www.p2psip.org/">こちら</a>で進んでいる模様。<br />
+この辺は、また、苦労して読んでみます。<br />
+ここに、Chord の資料もあります。</p>
+
+<p>あと、ほかに、こんなのもあるようです。<br />
+こちらは、SIPをP2Pプロトコルとして使うには、どんな方法論があるかという<br />
+読み物的なモノのようです。<br />
+<a href="http://www.ietf.org/internet-drafts/draft-johnston-sipping-p2p-ipcom-01.txt">http://www.ietf.org/internet-drafts/draft-johnston-sipping-p2p-ipcom-01.txt</a><br />
+<a href="http://www.ietf.org/internet-drafts/draft-matthews-sipping-p2p-industrial-strength-00.txt">http://www.ietf.org/internet-drafts/draft-matthews-sipping-p2p-industrial-strength-00.txt</a><br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/03/p2psip.html">20:10</a>
+| <a href="http://www.noritsuna.jp/archives/2005/03/p2psip.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/03/p2psip.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000066"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/66"
+    dc:title="エッセンシャルSIP"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000066"
+    dc:subject="SIP"
+    dc:description="エッセンシャルSIP ソフトフロント社執筆のSIP本の新刊です。 「あっ、やられ..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-24T23:48:52+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;03&#26376;24&#26085;</h2>
+
+
+<h3 id="a000066">エッセンシャルSIP</h3>
+
+<p><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4822221385/">エッセンシャルSIP</a></p>
+
+<p>ソフトフロント社執筆のSIP本の新刊です。<br />
+「あっ、やられた！」という、感じです。</p>
+
+<p>なぜなら、プロローグが、</p>
+
+<blockquote>「SIP=IP電話ではない」</blockquote>
+
+<p>と、きました。<br />
+さすが、わかってらっしゃると叫んでしまいましたよ。（ｗ<br />
+(まぁ、私になぞに言われたくはないかもしれませんが。)</p>
+
+<p>ということで、雑感を少々。<br />
+<BR><br />
+●第一部<br />
+SIPをちょっと知っているというのでしたら、もう、見飽きた内容でしょう。<br />
+VoIPに関するシーケンスなどの解説です。<br />
+<BR><br />
+●第二部<br />
+ここからが、「本命」の内容となります。</p>
+
+<p><a href="http://www.ietf.org/html.charters/simple-charter.html">SIMPLE</a> の具体的な内容が書かれています。<br />
+簡単に言えば、IMに関するSIPの使用法ということです。</p>
+
+<p>VoIP では、滅多にお目にかかれない、SUBSCRIBE,NOTIFY,MESSAGE,PUBLISHあたりが<br />
+でてきます。</p>
+
+<p>私の知る限りでは、この辺について詳細に解説している書籍はなかったと思います。<br />
+VoIP をメインでやっているSIP屋さんには、ぜひぜひ、読んで頂きたいところです。</p>
+
+<p>SIP に対して、新しい視野が拓けてくること請け合いです！</p>
+
+<p>ちょっと、飛躍はしてしまいますが、SIP の P2Pプロトコルとしての可能性も感じて<br />
+もらえるのではないでしょうか？<br />
+<BR><br />
+●第三部<br />
+SIPより下位のレイヤーのお話ですが、SIPを使用するためにどのような必須技術が<br />
+あるかのお話です。</p>
+
+<p>個人的に不思議な点として、m2m-x が、数行しか書かれていないのですが、、、<br />
+なんでなんでしょう？</p>
+
+<p>・第10章<br />
+必見です。<br />
+SIPに関する情報源の一覧が載っています。</p>
+
+<p>興味がありそうなところのMLに片っ端から登録してしまいましょう！<br />
+<BR><br />
+●第四部<br />
+「<a href="http://www.amazon.co.jp/exec/obidos/ASIN/4844320475">SIP教科書</a>」でおなじみのシーケンス解説です。</p>
+
+<p>フォークと3PCCが、新たに追加されています。</p>
+
+<p>「初代SIP教科書」「改訂版SIP教科書」と合わせれば、VoIPに必要なシーケンスの<br />
+ほぼ、全域がカバーされます。</p>
+
+<p>・第12章<br />
+私的には、涙抜きでは読めないところです。（ﾉД｀）ｼｸｼｸ<br />
+詳しくは、書けませんが、まぁ、避けては通れない「最初の一歩」ですよね。<br />
+<BR><br />
+●まとめ<br />
+とりあえず、「SIP屋さんは買え」という、必携の書ですね。</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/03/sip.html">23:48</a>
+| <a href="http://www.noritsuna.jp/archives/2005/03/sip.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/03/sip.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000058"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/58"
+    dc:title="初めてのBluetooth"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000058"
+    dc:subject="SIP"
+    dc:description="さきほど、初Bluetoothデバイスとして、対Skype用にヘッドセットを買っ..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-13T03:09:46+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;03&#26376;13&#26085;</h2>
+
+
+<h3 id="a000058">初めてのBluetooth</h3>
+
+<p>さきほど、初Bluetoothデバイスとして、対Skype用にヘッドセットを買ってきました。</p>
+
+<p>モノは、corega製の</p>
+
+<p>「<a href="http://www.corega.co.jp/product/list/others/btusb01.htm">無線 USBアダプタ CG-BTUSB01</a>」(以下、レシーバ)<br />
+「<a href="http://www.corega.co.jp/product/list/others/bths01.htm">ワイヤレスヘッドセット CG-BTHS01</a>」(以下、ヘッドセット)</p>
+
+<p>です。</p>
+
+<p>早速、インストールしてみたのですが、はまりまくりました。（ﾉД｀）ｼｸｼｸ<br />
+なので、その顛末を書いてみようと思います。<br />
+誰かの役に立つかもしれませんので。(^-^;A</p>
+
+<p><BR><br />
+●電源と認識の罠<br />
+最初は、レシーバをWindows君に認識させてあげないとなりませんので、USBに<br />
+接続してみました。<br />
+なんと、WindowsXP SP2では、デフォルトドライバで、一発認識！すばらしい。</p>
+
+<p>つづいて、</p>
+
+<blockquote>「ペアリング設定」</blockquote>
+
+<p>というモノをしないとならないので、それを行います。<br />
+これは、このレシーバとデバイスの認証儀式で、デバイスの初回認識時にやらねば<br />
+ならないようです。</p>
+
+<p>早速、ヘッドセットの電源をONにします。<br />
+電源を入れるには、「MODEボタンを7秒の長押し」と書いてあったので、実行。<br />
+LEDが、青く点滅を始めたので、電源は入ったようです。</p>
+
+<p>そして、Bluetoothデバイスコントローラを立ち上げ、認識ボタンをクリック！<br />
+・・・認識されず。＿|￣|○　ガックシ・・・</p>
+
+<p>何度やっても、ダメです。（ﾉД｀）ｼｸｼｸ<br />
+<BR><br />
+・別モード発見<br />
+説明書を読むこと3回目、</p>
+
+<blockquote>
+「ペアリング設定時は、MODEボタン10秒の長押しで<BR>　特別モードにする」</blockquote>
+
+<p>という記述を発見。＿|￣|○　ガックシ・・・</p>
+
+<p>早速、10秒長押ししてみると、見事認識しました。ヽ（´▽｀）ノ<br />
+<p><a href="/images/sip/bluetooth-002.PNG" target="_blank"><img src="/images/sip/bluetooth-002.PNG" width="200" border="0"></a></p></p>
+
+<p><BR><br />
+●デフォルトドライバの罠<br />
+認識が正常に出来たので、早速、Skypeを立ち上げて、サウンドデバイスを<br />
+ヘッドセットに切り替える・・・ことができず。（ﾉД｀）ｼｸｼｸ</p>
+
+<p>どうやっても、ヘッドセットに切り替えることが出来ず。＿|￣|○　ガックシ・・・</p>
+
+<p>いろいろと調査を開始・・・・。</p>
+
+<p>どうやら、</p>
+
+<blockquote>「サービスとBluetoothデバイスを結びつけを行う<BR>　必要がある」</blockquote>
+
+<p>ということのようです。<br />
+サービスとは、OSに対して、Bluetoothデバイスをキーボードやスキャナとして<br />
+みせるためのドライバみたいなものらしいです。<br />
+キーボードやマウス、LANなど、いろいろと定義されているようです。</p>
+
+<p>そこで、サービスのインストールをしようとしてみるが、見つからず。。。<br />
+どうやるのか、全然わからない。<br />
+<BR><br />
+・corega謹製ドライバの登場<br />
+よって、</p>
+
+<blockquote>
+「XP には、サービスが付いていないに違いない」</blockquote>
+
+<p>と判断して、corega謹製ドライバをインストールしてみました。</p>
+
+<p>corega謹製ドライバ君、サービスもインストールしてくれました！<br />
+<p><a href="/images/sip/bluetooth-003.PNG" target="_blank"><img src="/images/sip/bluetooth-003.PNG" width="200" border="0"></a></p></p>
+
+<p><br />
+そして、再度、ヘッドセットを認識させたら、ｷﾀ━━━━━━(ﾟ∀ﾟ)━━━━━━ !!!!!<br />
+成功です。ちゃんと、サウンドデバイスとして使用可能となりました。<br />
+<p><a href="/images/sip/bluetooth-001.PNG" target="_blank"><img src="/images/sip/bluetooth-001.PNG" width="200" border="0"></a></p></p>
+
+<p><BR><br />
+●保留の罠<br />
+早速、音が聞こえるか実験開始・・・全然、聞こえない。＿|￣|○　ガックシ・・・<br />
+ピポーッって音が、定期的に聞こえてくるだけです。（ﾉД｀）ｼｸｼｸ</p>
+
+<p>う〜ん、なぜだ。。。</p>
+
+<p>ミュージックプレーヤなどでも実験してみるが、うまくいかないです。<br />
+何も、音が流れてきません。<br />
+<BR><br />
+・MODEボタン再び<br />
+そこで、ふと、「ピポーッ」音があまりに定期的なので、「保留音かも？」と<br />
+いう考えが頭をよぎりました。</p>
+
+<p>ということは、もう一回MODEボタンを押したら解除できるかもしれないと<br />
+思い、おそるおそるMODEボタンを押すと・・・音が聞こえたよ、ママン！！！</p>
+
+<p>どうやら、「ピポーッ」音は、保留音で、</p>
+
+<blockquote>「電源ON＝保留状態での起動」</blockquote>
+
+<p>ということのようです。これには、してやられました。<br />
+<BR><br />
+以上、3時間くらいの戦いでした。。。長かったですが、無事、動作させることが<br />
+出来ました。。。<br />
+Bluetooth使うときは、お気をつけください。＜って、こんなのはおまいだけだって。</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/03/bluetooth.html">03:09</a>
+| <a href="http://www.noritsuna.jp/archives/2005/03/bluetooth.html#comments">コメント (2)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/03/bluetooth.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000047"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/47"
+    dc:title="SIPとSkype"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000047"
+    dc:subject="SIP"
+    dc:description="さて、いままで、意図的に極力避けてきたのですが、そろそろ、ぽつぽつと 思考系の話..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-25T05:20:21+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;02&#26376;25&#26085;</h2>
+
+
+<h3 id="a000047">SIPとSkype</h3>
+
+<p>さて、いままで、意図的に極力避けてきたのですが、そろそろ、ぽつぽつと<br />
+思考系の話でも書いてみようかと思います。</p>
+
+<p>某MLに入っている人は、お解りかもしれませんが、個人的に、こういうのは、<br />
+大好きなのでして。(^-^;A<br />
+（下手の横好きってことで、大目に見てやってください。）<br />
+<BR><br />
+今回は、ぶっちゃけ、yusuke大先生の<a href="http://www.arclamp.jp/blog/archives/000473.html">話</a>に釣られました。(^-^;A</p>
+
+<p>これをベースに、ちょろちょろと書いてみようかと思います。<br />
+<BR><br />
+●儲ける構図<br />
+個人的に、Skypeが、2ndPhone以上にはなれないと感覚的に考えていたのですが、<br />
+その答えの一つを見つけた感じです。</p>
+
+<p>SIPとSkypeも似た構造にあります。<br />
+SIPは、RFCであり、仕様は一般に公開され、実装は各々が行うことになります。<br />
+Skypeは、ソフトが提供されており、APIを使用する場合、ライセンスが発生すると<br />
+いう構図になっています。</p>
+
+<p>これは、yusuke大先生のblogにある、JavaとZopeの構図の類似といってよい<br />
+と思います。<br />
+<BR><br />
+●現在の構図<br />
+現在、SIPもSkypeも「電話の延長」としてしか実装されていないような状態です。<br />
+そのため、電話をやろうなどと言うところは、限られるわけです。</p>
+
+<p>よって、儲けの構図は、</p>
+
+<blockquote>「電話屋さんが自社の製品のリプレースくらいしかない」</blockquote>
+
+<p>という状況です。<br />
+そのため、一社が握っている技術を主製品の基盤として開発しては、リスクが<br />
+高すぎるため、Skypeが選択肢に入ることはありえないわけです。</p>
+
+<p>そのため、Skypeががんばっても、2nd製品以上には成り得ないわけです。<br />
+<BR><br />
+●未来の構図<br />
+現在、「電話」としてしか使われていませんが、本来的にこれらの物は、</p>
+
+<blockquote>「コミュニケーションツールとした場合」</blockquote>
+
+<p>その真価を発揮できると考えています。<br />
+(正確には、SIPはただのセッション管理でしかないですが、これでは、あまりに<br />
+ 抽象的すぎるので。)</p>
+
+<p>このように発展してくると、現在「電話屋」しかない市場が広がっていき、<br />
+いろいろなベンダーが参入してくることが予想されます。</p>
+
+<p>この状態となると、まさに、JavaとZopeの構図と同一になるといえるのでは<br />
+ないでしょうか？<br />
+<BR><br />
+※※※以上。yusukeさんの説を元とし導き出せる仮説としての考察です※※※</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/02/sipskype.html">05:20</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/sipskype.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/02/sipskype.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000041"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/41"
+    dc:title="teleo まとめ"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000041"
+    dc:subject="SIP"
+    dc:description="やはり、個人的に気になるのが、メッセージプロトコルがHTTP+XMLという点 で..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-18T00:20:58+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;02&#26376;18&#26085;</h2>
+
+
+<h3 id="a000041">teleo まとめ</h3>
+
+<p>やはり、個人的に気になるのが、メッセージプロトコルがHTTP+XMLという点<br />
+ですね。<br />
+まさに、SIP+というか、SIPの別プロトコルを考えたら、こうなるよねという<br />
+典型的なモデルの一つです。</p>
+
+<p>個人的には、非常にアリだと思っています。</p>
+
+<p>ただ、組み込み系を考慮すると、HTTPサーバ+XMLパーサ+teleoStackを積む<br />
+のは、現時点では、スペック的に非常に厳しいと思われます。<br />
+現在の流れを考えると組み込み系ははずせないため、ここをどうするのか？が<br />
+ポイントになるかなと思います。<br />
+(もしかすると、SIP互換という機能は、このためにある可能性アリです。<br />
+ 組み込みは、SIPで通信すると割り切っているのかも。)</p>
+
+<p>でも、これだけじゃ、SIPの問題点は、解消されないという罠。<br />
+けっきょく、互換性が一番の問題点ですので。。。<br />
+<BR><br />
+<BR><br />
+そして、致命的なのが、パスワードの扱いなどのセキュリティーまわり。<br />
+暗号化なし、平文でパスワードを流すというのは、もう、致命的とかそういうのを<br />
+通り越して、リカイフノウ。</p>
+
+<p>さらに、プロトコル的にセッションハイジャックが比較的簡単にできそうな<br />
+印象もあります。</p>
+
+<p>これで、「プリペイド式で金払ってね」と言われても無理がありすぎです。<br />
+<BR><br />
+<BR><br />
+とてもじゃないが、Skype対抗にはならないというのが、印象です。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/02/teleo_2.html">00:20</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/teleo_2.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/02/teleo_2.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000040"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/40"
+    dc:title="teleo プロトコル編"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000040"
+    dc:subject="SIP"
+    dc:description="どうやら、メッセージは、HTTP+XMLで制御メッセージは通信しています。 とい..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-18T00:06:39+09:00" />
+</rdf:RDF>
+-->
+
+
+
+
+<h3 id="a000040">teleo プロトコル編</h3>
+
+<p>どうやら、メッセージは、HTTP+XMLで制御メッセージは通信しています。<br />
+ということは、TCPなんですね。<br />
+やはり、UDPで制御メッセージのやりとりってアレゲなのかなぁ。<br />
+UDPで、やりとりすると、どうしても分割の問題が発生してしまって<br />
+他網と接続することを考えたりすると非常に厳しいんですよね。<br />
+ほかにも、暗号化しようとしたときに問題もありますし。。。</p>
+
+<p>ちなみに、音声は、RTPをそのまま使用しています。UDPです。<br />
+<BR><br />
+<BR><br />
+下記に代表的なメッセージのサンプルをピックアップ。<br />
+(こんなの書いて、開発元からつっこまれたらやばいなぁ。<br />
+ つっこまれたら、速攻、削除するので、その辺ご了承ください。)</p>
+
+<p>●ログインメッセージ。<br />
+＿|￣|○　ガックシ・・・ また、パスワードは平文かよ。。。<br />
+と、いきなりへこみ気味ですが、気を取り直して。</p>
+
+<p>さて、メッセージとしては、単純ですね。<br />
+SIPのREGISTERをかなり単純にした物という感じで、あまり、つっこむ<br />
+ようなところはないですね。<br />
+ただ、バージョン番号が、下記の2種類あるのが気になります。<br />
+う〜ん、これだけ内容が違う物が入っているというのは、いやな感じで<br />
+すね。</p>
+
+<blockquote><PRE>&lt;version id="1.0"&gt;
+&lt;version id="clientManager-client XML v0.9"&gt;
+</PRE>
+</blockquote>
+<BR>
+・サーバへの送信メッセージ
+<PRE>&lt;?xml version='1.0' encoding="UTF-8"?&gt;
+&lt;clientMsg&gt;
+  &lt;version id="1.0"&gt;
+    &lt;date&gt;02/16/2005&lt;/date&gt;
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;
+    &lt;mid&gt;073106872&lt;/mid&gt;
+  &lt;/version&gt;
+  &lt;sipRegister&gt;
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;
+    &lt;Password&gt;password&lt;/Password&gt;
+  &lt;/sipRegister&gt;
+&lt;/clientMsg&gt;</PRE>
+
+<p>・サーバからの応答メッセージ<br />
+<PRE>&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id="clientManager-client XML v0.9"&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:01 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;073106872&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;errno&gt;200&lt;/errno&gt;<br />
+    &lt;errmsg&gt;Ok&lt;/errmsg&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/serverMsg&gt;</PRE><br />
+<BR><br />
+<BR><br />
+●プレゼンス情報<br />
+ユーザリストに登録されている人の生存情報がサーバから送れてきます。<br />
+そのときのメッセージです。</p>
+
+<blockquote> <PRE>&lt;sipAccountStatus&gt;</PRE></blockquote>
+
+<p>が、肝の部分。</p>
+
+<blockquote><PRE>&lt;accountBalance&gt;</PRE></blockquote>  
+
+<p>が、謎ですが、それ以外は、見たまんまと言うところ。<br />
+これが、そのうち拡張されるのかが、個人的には興味アリです。<br />
+<BR><br />
+・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id=""&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:01 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;236411472&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipAccountStatus&gt;<br />
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+    &lt;accountBalance&gt;0.5&lt;/accountBalance&gt;<br />
+    &lt;DID&gt;15109041126&lt;/DID&gt;<br />
+  &lt;/sipAccountStatus&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;236411472&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE><br />
+<BR><br />
+ちなみに、</p>
+
+<blockquote><PRE>&lt;sipAccountStatus&gt;</PRE></blockquote>
+
+<p>だけではなく</p>
+
+<blockquote><PRE>&lt;sipOk&gt;</PRE></blockquote>
+
+<p>という、ものもあるみたい。<br />
+どう違うのかは、現在不明。<br />
+<BR><br />
+<BR><br />
+●コール(発信)<br />
+通話した時のメッセージ内容。<br />
+これは、SIPとは違う動きをするようなので、詳細に追ってみたいと思います。<br />
+<BR><br />
+1，最初に、どこと通話をしたいのかネゴシエーションをとる。</p>
+
+<p>これは、接続先が、teleoやGW、SIPなどいろいろなプロトコルとの相互接続を<br />
+考えているために、プロトコルのネゴシエーションをしているのではないかと<br />
+思います。</p>
+
+<p>・サーバへの送信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;073131767&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipOutboundCall&gt;<br />
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+    &lt;called&gt;15109041126&lt;/called&gt;<br />
+    &lt;receivePort&gt;30000&lt;/receivePort&gt;<br />
+  &lt;/sipOutboundCall&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバからの応答メッセージ1<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id="clientManager-client XML v0.9"&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:26 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;073131767&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;errno&gt;200&lt;/errno&gt;<br />
+    &lt;errmsg&gt;Ok&lt;/errmsg&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバからの応答メッセージ2(相手もOKという情報)<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id=""&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:26 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;450446506&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipOk&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+    &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/sipOk&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE><br />
+<BR><br />
+<BR><br />
+2，サーバから相手のメディアに関するネゴシエーションが送信されてくる。<br />
+SIPでは、発信するクライアントが「1」のパケットにSDPという形で載せるのが</p>
+
+<p>一般的ですが、teleoは、全く逆な形を取っているようです。<br />
+（ちなみに、このように動くSIPもあります。ACKにアンサーSDPを載せます）</p>
+
+<p>ちなみに、SDPに相当する部分は、かなり似通っていますね。</p>
+
+<p>・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id='sipManager-stateMachine XML v0.9'&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:26 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;086512035&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipRTPConnect m='audio'&gt;<br />
+    &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+    &lt;rtpAddress direction='IN' type='IP4'&gt;216.143.130.43&lt;/rtpAddress&gt;<br />
+    &lt;rtpPort&gt;9232&lt;/rtpPort&gt;<br />
+    &lt;availableMedia&gt;<br />
+     &lt;codec a='rtpmap:101' &gt;<br />
+       &lt;version&gt;telephone-event&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:3' &gt;<br />
+       &lt;version&gt;GSM&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:18' &gt;<br />
+       &lt;version&gt;G729&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:8' &gt;<br />
+       &lt;version&gt;PCMA&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:0' &gt;<br />
+       &lt;version&gt;PCMU&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+    &lt;/availableMedia&gt;<br />
+  &lt;/sipRTPConnect&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;450446506&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE><br />
+<BR><br />
+<BR><br />
+3，サーバから相手のメディアに関する最終応答が送信されてくる。<br />
+相手が、受話器を取った状態です。<br />
+内容的には、mid以外、同じ物のようです。</p>
+
+<p>これは、SIPで言うところの200応答に相当する物のようです。</p>
+
+<p>・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id='sipManager-stateMachine XML v0.9'&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:34 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;387355624&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipRTPConnect m='audio'&gt;<br />
+    &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+    &lt;rtpAddress direction='IN' type='IP4'&gt;216.143.130.43&lt;/rtpAddress&gt;<br />
+    &lt;rtpPort&gt;9232&lt;/rtpPort&gt;<br />
+    &lt;availableMedia&gt;<br />
+     &lt;codec a='rtpmap:101' &gt;<br />
+       &lt;version&gt;telephone-event&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:3' &gt;<br />
+       &lt;version&gt;GSM&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:18' &gt;<br />
+       &lt;version&gt;G729&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:8' &gt;<br />
+       &lt;version&gt;PCMA&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:0' &gt;<br />
+       &lt;version&gt;PCMU&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+    &lt;/availableMedia&gt;<br />
+  &lt;/sipRTPConnect&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;387355624&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE><br />
+<BR><br />
+<BR><br />
+4，「3」のメッセージ直後、サーバからACK相当送信されてくる。</p>
+
+<p>これは、SIPで言うところのACKに相当する物のようです。<br />
+これといった、特徴はありません。</p>
+
+<p>・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id=""&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:34 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;435870003&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipOk&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+    &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/sipOk&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;435870003&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE><br />
+<BR><br />
+<BR><br />
+●BYE(切断)<br />
+切断した時のメッセージ内容。<br />
+SIPと違い、両方で投げ合うような動きをしています。</p>
+
+<p>課金を伴うサービスであるため、切断には、万全の体制を取るのが普通であり<br />
+当然の仕様と考えられます。<br />
+万が一、切断情報が相手に届かなければ、誤課金へつながるおそれがあるため<br />
+です。</p>
+
+<p>・サーバへの送信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;073160559&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipHangUp&gt;<br />
+    &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/sipHangUp&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバからの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id="clientManager-client XML v0.9"&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:54 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;073160559&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;errno&gt;200&lt;/errno&gt;<br />
+    &lt;errmsg&gt;Ok&lt;/errmsg&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE><br />
+<BR><br />
+サーバ側から、再度、同じ切断メッセージが送信されてきます。</p>
+
+<p>・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id=""&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:54 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;472351630&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipHangUp&gt;<br />
+     &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+     &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+     &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/sipHangUp&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;472351630&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE><br />
+<BR><br />
+<BR><br />
+●セッションタイマ<br />
+サーバ主導型のようです。定期的に、送信されてきます。</p>
+
+<p>まぁ、NAT越えしているので、その方が、よいのかもしれません。<br />
+ただのポーリングといえば、それまでですが。(^-^;A</p>
+
+<p>・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id="clientManager-client XML v0.9"&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:31 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;708746305&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;teleoHeartbeat /&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;708746305&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE></p>
+
+<p>以上。</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/02/teleo_1.html">00:06</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/teleo_1.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/02/teleo_1.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000039"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/39"
+    dc:title="teleo 試してみました"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000039"
+    dc:subject="SIP"
+    dc:description="SIPとも互換性があると謳っているSkype対抗のソフトウェア・teleo。 売..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-17T00:09:42+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;02&#26376;17&#26085;</h2>
+
+
+<h3 id="a000039">teleo 試してみました</h3>
+
+<p>SIPとも互換性があると謳っているSkype対抗のソフトウェア・<a href="http://www.teleo.com/">teleo</a>。</p>
+
+<p><a href="/images/sip/teleo_start.PNG" target="_blank"><img src="/images/sip/teleo_start.PNG" width="200" border="0"></a></p>
+売りとしては、下記の点らしいです。
+
+<blockquote>・普通の固定電話からの着信にも対応！<BR>
+・IEなどにバーが追加される！（Googleバーみたいなの）<BR>
+・SIPともお話しできる！<BR></blockquote>
+
+<p>ということなので、いろいろと試してみました。<br />
+<BR><br />
+<BR><br />
+まず、アプリケーションとして、とても不安定ぽ。<br />
+アイコン化された後、何をやっても元に戻せないことが。（ﾉД｀）ｼｸｼｸ</p>
+
+<p>さらに、そのあと、登録されているアカウント情報がめちゃくちゃになり<br />
+接続できない事態が発生。。。<br />
+ちゃんとした物に書き換えることにより、接続できましたが、その後、<br />
+何度起動し直しても、アカウント情報壊れちゃいます。orz</p>
+
+<p>んで、アカウントを登録したのですが、その最終認証画面。<br />
+URLの部分をよ〜く見てください。(図、赤い囲みの中)<br />
+「http://www.teleo.com/activate.php?user=teleo@noritsuna.jp&pass=password」</p>
+
+<p>IDとパスワードが、平文&パラメータとしてわたってる。しかも、SSLじゃない。orz<br />
+<p><a href="/images/sip/teleo_setup.PNG" target="_blank"><img src="/images/sip/teleo_setup.PNG" width="200" border="0"></a></p><br />
+<BR><br />
+<BR><br />
+という感じで、ちょっと使っただけですが、α版レベルという印象です。<br />
+<BR><br />
+<BR><br />
+■機能</p>
+
+<p>・メッセージング機能<br />
+電話しかできないんですね、これ。<br />
+メッセージくらい送れればよいのに。。。<br />
+<BR><br />
+<BR><br />
+・通話品質<br />
+は、、、（ﾉД｀）ｼｸｼｸ すみません。ヘッドセット持ってないんです。<br />
+試せませんでした。ぺこ <(＿ ＿)><br />
+<BR><br />
+<BR><br />
+・IE統合機能<br />
+いらないかも。。。IE起動するたびに通信してくれるので重いIEがさらに重く<br />
+なる罠。。。<br />
+<BR><br />
+<BR><br />
+・NAT越え<br />
+Skypeと同じ形式の模様。<br />
+RTPの通信が始まると通信先のIPがプロバイダの物と思われるIPにかわりました。</p>
+
+<p>ただ、これ以上は、下手に調査すると不正アクセスとか言われかねないので<br />
+調査していません。<br />
+<BR><br />
+<BR></p>
+
+<p>次回は、通信プロトコル編の予定。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/02/teleo.html">00:09</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/teleo.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/02/teleo.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000033"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/33"
+    dc:title="Istanbul・次期Windowsメッセンジャー"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000033"
+    dc:subject="SIP"
+    dc:description="噂の企業向けメッセンジャーです。 http://itpro.nikkeibp.c..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-13T00:20:45+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;02&#26376;13&#26085;</h2>
+
+
+<h3 id="a000033">Istanbul・次期Windowsメッセンジャー</h3>
+
+<p>噂の企業向けメッセンジャーです。<br />
+<a href="http://itpro.nikkeibp.co.jp/members/NT/ITARTICLE/20050208/155850/">http://itpro.nikkeibp.co.jp/members/NT/ITARTICLE/20050208/155850/</a></p>
+
+<p>これは、自分とこに「Live Communications Server 2005」をたてるのが、<br />
+前提なので、一般の人には無関係なものなのですが、これ、プロトコルに<br />
+SIPを使用していますので、SIPヲタな私としては、反応しないわけには<br />
+いかないということで、一応、反応しておくことにしました。<br />
+<BR><br />
+<BR><br />
+技術的に見ると、ただ単に、SIP的に正常進化しただけです。<br />
+今までは、RFC2543という、古いSIPの仕様に準拠していたのですが、<br />
+それを、RFC3261という、新しいSIPの仕様に準拠し直したバージョン<br />
+という、ところです。</p>
+
+<p>機能的にも、今までのメッセンジャーで出来ていたことだけですし、<br />
+他社のSIPソフトフォンでは、もっと、機能が豊富なくらいです。</p>
+
+<p>ただ、さすがは、ゲイツ様謹製ソフトは、ひと味違っておりまして<br />
+微妙に、RFC3261からはずれたりして、独自な実装がされている<br />
+部分があります。<br />
+そのため、純粋なSIPとしてみると、結構、微妙なものがあり、実は<br />
+最近、泣かされた経験があります。(^-^;A<br />
+<BR><br />
+<BR><br />
+と、いった感じで、別に、どうでもよいようなものだったりします。</p>
+
+<p>本文の最後に、普及に関してかかれていますが、まさに、その通りで<br />
+国内メーカーが対応してくれるわけがありません。<br />
+SIP的に見ても、独自な部分がありますし、機能的にも思いっきり<br />
+かぶるとなったら、だれが、対応するんでしょ？って感じです。</p>
+
+<p>そんなことをやるんだったら、無償でAPIまで公開するとか、オープン<br />
+ソースするとかしてくれると、非常にうれしいのですが。。。<br />
+※Longhornで、SIP関連のAPIが載ってくるようですので、こちらを<br />
+　利用すれば、もどきを作ることは可能になるかと思います。<br />
+<BR><br />
+<BR><br />
+ただ、この辺は、いつものMSの必勝パターンで、最初は糞のような<br />
+リリースを出して、そのうち、追いつき、気がついたら、トップシェアと<br />
+いうパターンになるんですかね？</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/02/istanbul.html">00:20</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/istanbul.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/02/istanbul.html#trackbacks">トラックバック</a>
+
+</p>
+
+
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,383 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: ConceptSeach VS Google Desktop Search</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+
+<link rel="start" href="http://www.noritsuna.jp/" title="Home" />
+<link rel="prev" href="http://www.noritsuna.jp/archives/2005/03/post_24.html" title="特許と技術者" />
+
+<link rel="next" href="http://www.noritsuna.jp/archives/2005/03/java_computing.html" title="Java Computing 2005 Spring に行ってきました" />
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var HOST = 'www.noritsuna.jp';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + (expires ? "; expires=" + expires : "") + (path ? "; path=" + path : "") + (domain ? "; domain=" + domain : "") + (secure ? "secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function rememberMe (f) {
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+    now = now.toGMTString();
+    if (f.author != undefined)
+       setCookie('mtcmtauth', f.author.value, now, '/', '', '');
+    if (f.email != undefined)
+       setCookie('mtcmtmail', f.email.value, now, '/', '', '');
+    if (f.url != undefined)
+       setCookie('mtcmthome', f.url.value, now, '/', '', '');
+}
+
+function forgetMe (f) {
+    deleteCookie('mtcmtmail', '/', '');
+    deleteCookie('mtcmthome', '/', '');
+    deleteCookie('mtcmtauth', '/', '');
+    f.email.value = '';
+    f.author.value = '';
+    f.url.value = '';
+}
+
+//-->
+</script>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2005/03/conceptseach_vs.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/55"
+    dc:title="ConceptSeach VS Google Desktop Search"
+    dc:identifier="http://www.noritsuna.jp/archives/2005/03/conceptseach_vs.html"
+    dc:subject="Tools"
+    dc:description="某氏と「メールが埋もれる」という話をしまして、どうにかならんかなぁと 思っていた..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-10T13:34:55+09:00" />
+</rdf:RDF>
+-->
+
+
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2005/03/conceptseach_vs.html">
+<dc:title>ConceptSeach VS Google Desktop Search</dc:title>
+<dc:description>某氏と「メールが埋もれる」という話をしまして、どうにかならんかなぁと 思っていた...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2005-03-10T13:34:55+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+
+
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+
+<p align="right">
+<a href="http://www.noritsuna.jp/archives/2005/03/post_24.html">&laquo; 特許と技術者</a> |
+
+<a href="http://www.noritsuna.jp/">メイン</a>
+| <a href="http://www.noritsuna.jp/archives/2005/03/java_computing.html">Java Computing 2005 Spring に行ってきました &raquo;</a>
+
+</p>
+
+<h2>2005&#24180;03&#26376;10&#26085;</h2>
+
+<h3>ConceptSeach VS Google Desktop Search</h3>
+
+<p>某氏と「メールが埋もれる」という話をしまして、どうにかならんかなぁと<br />
+思っていたところに、</p>
+
+<p><a href="http://www.itmedia.co.jp/pcupdate/articles/0503/07/news004.html">自分のPCは宝の山だった――デスクトップ情報検索ソフト<br />
+「ConceptSearch」が教えてくれたこと</a> </p>
+
+<p>こんな記事を発見しました。<br />
+そこで、早速、試してみようかと思いますが、一種類ではなんなので、<br />
+DesktopSearchの雄</p>
+
+<p><a href="http://internet.watch.impress.co.jp/cda/news/2005/03/07/6734.html">Google Desktop Search</a></p>
+
+<p>も、試してみました。<br />
+<BR><br />
+●クローラースペック<br />
+まず、どちらも最初にIndex化を行う必要があります。<br />
+検索先指定法は、下記のようになっています。</p>
+
+<p>個人的には、あまり差はないかなと感じておりますが、さすがは、<br />
+Googleさんという感じはあります。</p>
+
+<blockquote>・ConceptSearch・・・検索対象をディレクトリ単位で指定する<BR>
+・Google Desktop Search・・・自動で全てのディレクトリを検索する</blockquote>
+
+<p>※ConceptSearch は、追加設定が必要です。<br />
+「ConceptSearchフォルダ管理ツール」→「オプション」→<br />
+「テキストファイル拡張子」を</p>
+
+<blockquote>txt,java,cs,c,cpp,h,eml,xml</blockquote>
+
+<p>としてください。これで、ソースファイルなどが検索対象になります。<br />
+<BR><br />
+その後のアップデートは、下記のようになっています。</p>
+
+<p>Google Desktop Search は、常駐による監視なので、少々重く感じます。<br />
+高速なマシンでないと厳しいかもです。（私は、P3-800MHz）</p>
+
+<blockquote>
+・ConceptSearch・・・スケジューラによる定期更新<BR>
+・Google Desktop Search・・・常駐ソフトによるプロセス監視
+</blockquote>
+
+<p><BR><br />
+検索対象物は、、、各HPをみてください。(^-^;A<br />
+私的には、下記のモノが検索出来ればOKなので、これらを基準に判定<br />
+させて頂きます。</p>
+
+<blockquote>
+・ビジネス文書一式（MS-Office系、PDF）<BR>
+・各種資料（テキスト、RFC）<BR>
+・ソースコード（C、C++、C#、Java）<BR>
+・ブラウザのキャッシュ（IE、FireFox）<BR>
+・メール（Becky!、IMAP4）<BR>
+・メッセンジャーのログ（MSNメッセンジャー/XMLログ）
+</blockquote>
+
+<p><BR><br />
+●検索エンジンスペック<br />
+検索対象物を元に、検索エンジンの出来について、調査したいと思います。<br />
+まず、検索エンジンのスペックは、下記のようになっています。</p>
+
+<p>あきらかに、ConceptSearch に一日の長がある感じです。<br />
+ただ、これがどの程度使えるかですね。</p>
+
+<blockquote>
+・ConceptSearch・・・<a href="http://www.justsystem.co.jp/conceptsearch/03.html">自然文検索</a><BR>
+・Google Desktop Search・・・Google と同じ、単語単位
+</blockquote>
+
+<p><BR><br />
+各検索対象物が、引っかかりそうなキーワードやキーフレーズを入力して<br />
+いったところ。。。</p>
+
+<p><strong>・ビジネス文書一式</strong><br />
+Google Desktop Search は、だめ。<br />
+ビジネス文書一式が、全然、引っかからないです。やりかたがあるのかな？</p>
+
+<p><strong>・各種テキスト</strong><br />
+こちらは、ともに、問題なく検索に引っかかるようです。</p>
+
+<p><strong>・ソースコード</strong><br />
+こちらは、ともに、問題なく検索に引っかかるようです。</p>
+
+<p><strong>・ブラウザのキャッシュ</strong><br />
+ConceptSearch は、引っかかるのですが、表示がよろしくない。<br />
+画像リンクが切れてたり、元サイトに飛べなかったりと。<br />
+Google Desktop Search は、この辺さすがで、ばっちりと表示され、かつ、<br />
+Google と同じ感覚で使えます。</p>
+
+<p><strong>・メール</strong><br />
+ConceptSearch は、IMAPは非対応みたい。。。orz<br />
+Google Desktop Search は、Outlook系かFireFox系しか対応していないよう<br />
+です。さらに、噂では、日本語メールは無理だとか。。。</p>
+
+<p>ただし、ConceptSearch は、テキストファイルとしては検索に引っかかりますので、<br />
+IMAPのキャッシュを引っかけることは可能です。<br />
+そのため、一応使えると言うところですが、Subjectが、デコードされないため<br />
+いまいちといったところです。</p>
+
+<p>Google Desktop Search は、歯牙にもかからないという感じです。</p>
+
+<p><strong>・メッセンジャーのログ</strong><br />
+ともに、全く検索できませんでした。</p>
+
+<p><strong>・検索エンジンとしての質</strong><br />
+上記のモノたちがどのくらい希望にあったモノだったかというと、、、</p>
+
+<p>ConceptSearch が、Google Desktop Search の2枚くらい上手という感じです。</p>
+
+<p>たとえば、「見積もり」を検索した場合、</p>
+
+<p>ConceptSearch は、「見積り」「見積」の送りなどを同一視しますが、<br />
+Google Desktop Search は、「見」「積」「も」「り」として、検索する様<br />
+です。</p>
+
+<p>この差は、ビジネス文書において、非常に大きく検索結果に反映されます<br />
+ので、特筆すべき点ではないかと思います。</p>
+
+<p><br />
+実際に引っかかったモノは、ConceptSearch は、</p>
+
+<p><strong>「これなら使える」</strong></p>
+
+<p>というくらいのレベルでしょうか？<br />
+絶賛と言うところには、もう一歩足りないという感じです。</p>
+
+<p>Google Desktop Search は、</p>
+
+<p><strong>「日本語のモノが、少々厳しい」</strong></p>
+
+<p>というレベルでしょうか？<br />
+もう一歩、改善して頂きたいところであります。</p>
+
+<p>※個人的なファイルが多いため検索結果画面は出せません。ぺこ <(＿ ＿)><br />
+※私の検索の仕方が悪い可能性もあることは付け加えておきます。<br />
+<BR><br />
+●まとめ<br />
+当初の予想では、併用して補って使っていく感じかなとも思っていたのですが、<br />
+どう考えても、日本語検索がメインになると思われるため、ConceptSearch に<br />
+一日の長があります。<br />
+しかし、ConceptSearch は、6600円ほど、Google Desktop Search は、無料。</p>
+
+<p>この差を、どう取るかだとおもいますが、個人的には、</p>
+
+<blockquote>「ConceptSearch 買え！」</blockquote>
+
+<p>という結論です。<br />
+メールとか文書とか良く迷子になる人は、是非、使ってみてください。</p>
+
+<p>※あくまで、私の使用法上の感想です。人によって、検索対象物や検索法など<br />
+　違いがあるとも思いますので、体験版にて試用してみることをお奨めします。</p>
+
+<div id="a000055more"><div id="more">
+
+</div></div>
+
+<p class="posted">投稿者 noritsuna : 2005&#24180;03&#26376;10&#26085; 13:34</p>
+
+<h2 id="trackbacks">トラックバック</h2>
+<p class="techstuff">このエントリーのトラックバックURL:<br />
+http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/55</p>
+
+
+
+
+
+<h2 id="comments">コメント</h2>
+
+
+
+
+
+<h2>コメントしてください</h2>
+
+ 
+
+
+
+<form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-comments.cgi" name="comments_form" onsubmit="if (this.bakecookie[0].checked) rememberMe(this)">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="55" />
+
+<div id="name_email">
+<p><label for="author">名前:</label><br />
+<input tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">メールアドレス:</label><br />
+<input tabindex="2" id="email" name="email" /></p>
+</div>
+
+
+
+<p><label for="url">URL:</label><br />
+<input tabindex="3" type="text" name="url" id="url" />
+保存しますか?
+<input type="radio" id="remember" onclick="rememberMe(this.form)" name="bakecookie" /><label for="remember">はい</label><input type="radio" id="forget" name="bakecookie" onclick="forgetMe(this.form)" value="Forget Info" style="margin-left: 15px;" /><label for="forget">いいえ</label><br style="clear: both;" />
+</p>
+
+<p><label for="text">コメント:</label> <br/>
+<textarea tabindex="4" id="text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input type="submit" name="preview" tabindex="5" 
+    value="&nbsp;確認&nbsp;" />
+<input style="font-weight: bold;" type="submit" name="post" 
+    tabindex="6" value="&nbsp;投稿&nbsp;" />
+</div>
+</form>
+
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+if (document.comments_form.email != undefined)
+    document.comments_form.email.value = getCookie("mtcmtmail");
+if (document.comments_form.author != undefined)
+    document.comments_form.author.value = getCookie("mtcmtauth");
+if (document.comments_form.url != undefined)
+    document.comments_form.url.value = getCookie("mtcmthome");
+if (getCookie("mtcmtauth") || getCookie("mtcmthome")) {
+    document.comments_form.bakecookie[0].checked = true;
+} else {
+    document.comments_form.bakecookie[1].checked = true;
+}
+//-->
+</script>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,831 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="description" content="どうやら、メッセージは、HTTP+XMLで制御メッセージは通信しています。 とい..." />
+    <meta name="generator" content="http://www.sixapart.jp/movabletype/" />
+    <link rev="made" href="mailto:your@email" title="E-mail address" />
+    <link rel="home" href="http://www.noritsuna.jp/" title="なんとなく実験 with SIProp開発記" />
+    <link rel="index" title="なんとなく実験 with SIProp開発記archives" href="http://www.noritsuna.jp/archives.html" />
+    <link rel="prev" href="http://www.noritsuna.jp/archives/2005/02/teleo.html" title="teleo 試してみました" />
+    <link rel="next" href="http://www.noritsuna.jp/archives/2005/02/teleo_2.html" title="teleo まとめ" />
+    <link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.noritsuna.jp/index.xml" /> 
+    <script type="text/javascript" src="http://www.noritsuna.jp/mt-site.js"></script>
+    <title>なんとなく実験 with SIProp開発記 | teleo プロトコル編</title>
+
+    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2005/02/teleo_1.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/40"
+    dc:title="teleo プロトコル編"
+    dc:identifier="http://www.noritsuna.jp/archives/2005/02/teleo_1.html"
+    dc:subject="SIP"
+    dc:description="どうやら、メッセージは、HTTP+XMLで制御メッセージは通信しています。 とい..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-18T00:06:39+09:00" />
+</rdf:RDF>
+-->
+
+
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2005/02/teleo_1.html">
+<dc:title>teleo プロトコル編</dc:title>
+<dc:description>どうやら、メッセージは、HTTP+XMLで制御メッセージは通信しています。 とい...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2005-02-18T00:06:39+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+  </head>
+  <body class="layout-two-column-right" onload="individualArchivesOnLoad(commenter_name)">
+
+    <!-- ブログ全体 -->
+    <div id="main-container">
+
+      <!-- ブログタイトル -->
+      <div id="banner">
+        <h1 id="banner-header"><a href="http://www.noritsuna.jp/" accesskey="1" title="なんとなく実験 with SIProp開発記">なんとなく実験 with SIProp開発記</a></h1>
+        <h2 id="banner-description">SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</h2>
+      </div><!-- banner_end -->
+
+      <!-- 左カラム -->
+      <div id="left-menu">
+        <div  class="left-content">
+
+          <!-- サイト内検索 -->
+          <div class="search-form">
+            <h3>Search</h3>
+            <form method="get" action="http://www.noritsuna.jp/cgi-bin/mt/mt-search.cgi">
+              <input type="hidden" name="IncludeBlogs" value="1" />
+              <label for="search" accesskey="4">サイト内検索</label><br />
+              <input id="search" tabindex="5"  accesskey="t"  value="search this blog" name="search" onblur="if(this.value==''){this.style.color=''; this.form.reset()}" onfocus="this.value = ''; this.style.color = '#000000';" />
+              <input type="submit" tabindex="6" accesskey="s" value="submit" class="searchsubmit" />
+            </form>
+          </div><!-- search-form_end -->
+
+                    <!-- Categoryアーカイブ -->
+          <div class="category-archives">
+            <h3>Category Archives</h3>
+	    <div class="category-label">
+              <ul>
+                <li><a href="http://www.noritsuna.jp/archives/gae/" title="">GAE</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/news/" title="">NEWS</a></li>
+              
+                <li class="module-list-item">OS<ul>
+                <li><a href="http://www.noritsuna.jp/archives/os/linux/" title="">Linux</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/windows/" title="">Windows</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/auos/" title="">仮想OS</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/siprop/" title="">SIProp</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/stm/" title="">STM</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/iphone/" title="">iPhone</a></li>
+              </ul></li>
+              
+                <li class="module-list-item">開発<ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ar/" title="">AR</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/amazonec2/" title="">AmazonEC2</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/application/" title="">Application</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/chromium/" title="">Chromium</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/" title="">HardWare</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/fpga/" title="">FPGA</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/gpgpu/" title="">GPGPU</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/java/" title="">Java</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/cat34/" title="">無線</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/nwng/" title="">NwNG</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/p2p/" title="">P2P</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/" title="">セマンティック</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/ai/" title="">AI</a></li>
+              </ul></li>
+              </ul></li>
+              </ul>
+            </div><!-- category-label_end -->
+          </div><!-- category-archives_end -->
+          
+
+                    <!-- Monthlyアーカイブ -->
+          <div class="monthly-archives">
+            <h3><a href="http://www.noritsuna.jp/archives.html">Archives</a></h3>
+            <ul class="module-list">
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2011/01/">2011&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/08/">2010&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/07/">2010&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/06/">2010&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/05/">2010&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/04/">2010&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/03/">2010&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/02/">2010&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/01/">2010&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/12/">2009&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/11/">2009&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/10/">2009&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/09/">2009&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/08/">2009&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/07/">2009&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/06/">2009&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/05/">2009&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/04/">2009&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/03/">2009&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/02/">2009&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/01/">2009&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/12/">2008&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/11/">2008&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/10/">2008&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/09/">2008&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/08/">2008&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/07/">2008&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/06/">2008&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/05/">2008&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/04/">2008&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/03/">2008&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/02/">2008&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/01/">2008&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/12/">2007&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/11/">2007&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/10/">2007&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/09/">2007&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/08/">2007&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/07/">2007&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/06/">2007&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/05/">2007&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/04/">2007&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/03/">2007&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/02/">2007&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/01/">2007&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/12/">2006&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/11/">2006&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/10/">2006&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/09/">2006&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/08/">2006&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/07/">2006&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/06/">2006&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/02/">2006&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/09/">2005&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/07/">2005&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/06/">2005&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/05/">2005&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/04/">2005&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/03/">2005&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/02/">2005&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/01/">2005&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2004/12/">2004&#24180;12&#26376;</a></li>
+            </ul>
+          </div><!-- monthly-archives_end -->
+          
+
+        </div><!-- left-content_end -->
+      </div><!-- left-menu_end -->
+
+      <!-- 中央カラム -->
+      <div id="main">
+        <div  class="content">
+
+          <p class="navi-link"><a href="http://www.noritsuna.jp/archives/2005/02/teleo.html">&laquo; teleo 試してみました</a> | <a href="http://www.noritsuna.jp/">main</a> | <a href="http://www.noritsuna.jp/archives/2005/02/teleo_2.html">teleo まとめ &raquo;</a></p>
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2005&#24180;02&#26376;18&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 class="entry-header">teleo プロトコル編</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>どうやら、メッセージは、HTTP+XMLで制御メッセージは通信しています。<br />
+ということは、TCPなんですね。<br />
+やはり、UDPで制御メッセージのやりとりってアレゲなのかなぁ。<br />
+UDPで、やりとりすると、どうしても分割の問題が発生してしまって<br />
+他網と接続することを考えたりすると非常に厳しいんですよね。<br />
+ほかにも、暗号化しようとしたときに問題もありますし。。。</p>
+
+<p>ちなみに、音声は、RTPをそのまま使用しています。UDPです。<br />
+<BR><br />
+<BR><br />
+下記に代表的なメッセージのサンプルをピックアップ。<br />
+(こんなの書いて、開発元からつっこまれたらやばいなぁ。<br />
+ つっこまれたら、速攻、削除するので、その辺ご了承ください。)</p>
+
+<p>●ログインメッセージ。<br />
+＿|￣|○　ガックシ・・・ また、パスワードは平文かよ。。。<br />
+と、いきなりへこみ気味ですが、気を取り直して。</p>
+
+<p>さて、メッセージとしては、単純ですね。<br />
+SIPのREGISTERをかなり単純にした物という感じで、あまり、つっこむ<br />
+ようなところはないですね。<br />
+ただ、バージョン番号が、下記の2種類あるのが気になります。<br />
+う〜ん、これだけ内容が違う物が入っているというのは、いやな感じで<br />
+すね。</p>
+
+<blockquote><PRE>&lt;version id="1.0"&gt;
+&lt;version id="clientManager-client XML v0.9"&gt;
+</PRE>
+</blockquote>
+<BR>
+・サーバへの送信メッセージ
+<PRE>&lt;?xml version='1.0' encoding="UTF-8"?&gt;
+&lt;clientMsg&gt;
+  &lt;version id="1.0"&gt;
+    &lt;date&gt;02/16/2005&lt;/date&gt;
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;
+    &lt;mid&gt;073106872&lt;/mid&gt;
+  &lt;/version&gt;
+  &lt;sipRegister&gt;
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;
+    &lt;Password&gt;password&lt;/Password&gt;
+  &lt;/sipRegister&gt;
+&lt;/clientMsg&gt;</PRE>
+
+<p>・サーバからの応答メッセージ<br />
+<PRE>&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id="clientManager-client XML v0.9"&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:01 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;073106872&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;errno&gt;200&lt;/errno&gt;<br />
+    &lt;errmsg&gt;Ok&lt;/errmsg&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/serverMsg&gt;</PRE><br />
+<BR><br />
+<BR><br />
+●プレゼンス情報<br />
+ユーザリストに登録されている人の生存情報がサーバから送れてきます。<br />
+そのときのメッセージです。</p>
+
+<blockquote> <PRE>&lt;sipAccountStatus&gt;</PRE></blockquote>
+
+<p>が、肝の部分。</p>
+
+<blockquote><PRE>&lt;accountBalance&gt;</PRE></blockquote>  
+
+<p>が、謎ですが、それ以外は、見たまんまと言うところ。<br />
+これが、そのうち拡張されるのかが、個人的には興味アリです。<br />
+<BR><br />
+・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id=""&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:01 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;236411472&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipAccountStatus&gt;<br />
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+    &lt;accountBalance&gt;0.5&lt;/accountBalance&gt;<br />
+    &lt;DID&gt;15109041126&lt;/DID&gt;<br />
+  &lt;/sipAccountStatus&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;236411472&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE><br />
+<BR><br />
+ちなみに、</p>
+
+<blockquote><PRE>&lt;sipAccountStatus&gt;</PRE></blockquote>
+
+<p>だけではなく</p>
+
+<blockquote><PRE>&lt;sipOk&gt;</PRE></blockquote>
+
+<p>という、ものもあるみたい。<br />
+どう違うのかは、現在不明。<br />
+<BR><br />
+<BR><br />
+●コール(発信)<br />
+通話した時のメッセージ内容。<br />
+これは、SIPとは違う動きをするようなので、詳細に追ってみたいと思います。<br />
+<BR><br />
+1，最初に、どこと通話をしたいのかネゴシエーションをとる。</p>
+
+<p>これは、接続先が、teleoやGW、SIPなどいろいろなプロトコルとの相互接続を<br />
+考えているために、プロトコルのネゴシエーションをしているのではないかと<br />
+思います。</p>
+
+<p>・サーバへの送信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;073131767&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipOutboundCall&gt;<br />
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+    &lt;called&gt;15109041126&lt;/called&gt;<br />
+    &lt;receivePort&gt;30000&lt;/receivePort&gt;<br />
+  &lt;/sipOutboundCall&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバからの応答メッセージ1<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id="clientManager-client XML v0.9"&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:26 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;073131767&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;errno&gt;200&lt;/errno&gt;<br />
+    &lt;errmsg&gt;Ok&lt;/errmsg&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバからの応答メッセージ2(相手もOKという情報)<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id=""&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:26 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;450446506&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipOk&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+    &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/sipOk&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE><br />
+<BR><br />
+<BR><br />
+2，サーバから相手のメディアに関するネゴシエーションが送信されてくる。<br />
+SIPでは、発信するクライアントが「1」のパケットにSDPという形で載せるのが</p>
+
+<p>一般的ですが、teleoは、全く逆な形を取っているようです。<br />
+（ちなみに、このように動くSIPもあります。ACKにアンサーSDPを載せます）</p>
+
+<p>ちなみに、SDPに相当する部分は、かなり似通っていますね。</p>
+
+<p>・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id='sipManager-stateMachine XML v0.9'&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:26 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;086512035&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipRTPConnect m='audio'&gt;<br />
+    &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+    &lt;rtpAddress direction='IN' type='IP4'&gt;216.143.130.43&lt;/rtpAddress&gt;<br />
+    &lt;rtpPort&gt;9232&lt;/rtpPort&gt;<br />
+    &lt;availableMedia&gt;<br />
+     &lt;codec a='rtpmap:101' &gt;<br />
+       &lt;version&gt;telephone-event&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:3' &gt;<br />
+       &lt;version&gt;GSM&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:18' &gt;<br />
+       &lt;version&gt;G729&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:8' &gt;<br />
+       &lt;version&gt;PCMA&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:0' &gt;<br />
+       &lt;version&gt;PCMU&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+    &lt;/availableMedia&gt;<br />
+  &lt;/sipRTPConnect&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;450446506&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE><br />
+<BR><br />
+<BR><br />
+3，サーバから相手のメディアに関する最終応答が送信されてくる。<br />
+相手が、受話器を取った状態です。<br />
+内容的には、mid以外、同じ物のようです。</p>
+
+<p>これは、SIPで言うところの200応答に相当する物のようです。</p>
+
+<p>・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id='sipManager-stateMachine XML v0.9'&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:34 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;387355624&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipRTPConnect m='audio'&gt;<br />
+    &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+    &lt;rtpAddress direction='IN' type='IP4'&gt;216.143.130.43&lt;/rtpAddress&gt;<br />
+    &lt;rtpPort&gt;9232&lt;/rtpPort&gt;<br />
+    &lt;availableMedia&gt;<br />
+     &lt;codec a='rtpmap:101' &gt;<br />
+       &lt;version&gt;telephone-event&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:3' &gt;<br />
+       &lt;version&gt;GSM&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:18' &gt;<br />
+       &lt;version&gt;G729&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:8' &gt;<br />
+       &lt;version&gt;PCMA&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+     &lt;codec a='rtpmap:0' &gt;<br />
+       &lt;version&gt;PCMU&lt;/version&gt;<br />
+       &lt;rate&gt;8000&lt;/rate&gt;<br />
+     &lt;/codec&gt;<br />
+    &lt;/availableMedia&gt;<br />
+  &lt;/sipRTPConnect&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;387355624&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE><br />
+<BR><br />
+<BR><br />
+4，「3」のメッセージ直後、サーバからACK相当送信されてくる。</p>
+
+<p>これは、SIPで言うところのACKに相当する物のようです。<br />
+これといった、特徴はありません。</p>
+
+<p>・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id=""&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:34 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;435870003&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipOk&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+    &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/sipOk&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;435870003&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE><br />
+<BR><br />
+<BR><br />
+●BYE(切断)<br />
+切断した時のメッセージ内容。<br />
+SIPと違い、両方で投げ合うような動きをしています。</p>
+
+<p>課金を伴うサービスであるため、切断には、万全の体制を取るのが普通であり<br />
+当然の仕様と考えられます。<br />
+万が一、切断情報が相手に届かなければ、誤課金へつながるおそれがあるため<br />
+です。</p>
+
+<p>・サーバへの送信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;073160559&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipHangUp&gt;<br />
+    &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+    &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/sipHangUp&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバからの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id="clientManager-client XML v0.9"&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:54 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;073160559&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;errno&gt;200&lt;/errno&gt;<br />
+    &lt;errmsg&gt;Ok&lt;/errmsg&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE><br />
+<BR><br />
+サーバ側から、再度、同じ切断メッセージが送信されてきます。</p>
+
+<p>・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id=""&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:54 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;472351630&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;sipHangUp&gt;<br />
+     &lt;uName&gt;teleo2@noritsuna.jp&lt;/uName&gt;<br />
+     &lt;callID&gt;77757717-3332-8208-4376-688581188635&lt;/callID&gt;<br />
+     &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/sipHangUp&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;472351630&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE><br />
+<BR><br />
+<BR><br />
+●セッションタイマ<br />
+サーバ主導型のようです。定期的に、送信されてきます。</p>
+
+<p>まぁ、NAT越えしているので、その方が、よいのかもしれません。<br />
+ただのポーリングといえば、それまでですが。(^-^;A</p>
+
+<p>・サーバからの受信メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;serverMsg&gt;<br />
+  &lt;version id="clientManager-client XML v0.9"&gt;<br />
+    &lt;date&gt;Wed, 16 Feb 2005 03:25:31 GMT&lt;/date&gt;<br />
+    &lt;mid&gt;708746305&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;teleoHeartbeat /&gt;<br />
+&lt;/serverMsg&gt;<br />
+</PRE></p>
+
+<p>・サーバへの応答メッセージ<br />
+<PRE><br />
+&lt;?xml version='1.0' encoding="UTF-8"?&gt;<br />
+&lt;clientMsg&gt;<br />
+  &lt;version id="1.0"&gt;<br />
+    &lt;date&gt;02/16/2005&lt;/date&gt;<br />
+    &lt;ip&gt;192.168.100.191&lt;/ip&gt;<br />
+    &lt;mid&gt;708746305&lt;/mid&gt;<br />
+  &lt;/version&gt;<br />
+  &lt;tAck&gt;<br />
+    &lt;status&gt;OK&lt;/status&gt;<br />
+    &lt;errmsg&gt;SUCCESS&lt;/errmsg&gt;<br />
+    &lt;sessionID&gt;52896CBF-110C-4708-A1C8-833EB8CCAF4C&lt;/sessionID&gt;<br />
+  &lt;/tAck&gt;<br />
+&lt;/clientMsg&gt;<br />
+</PRE></p>
+
+<p>以上。</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li>by noritsuna</li>
+                  <li>at 00:06</li>
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+
+          
+
+          
+
+        </div><!-- content_end -->
+      </div><!-- main_end -->
+
+      <!--右メニュー-->
+      <div id="right-menu">
+        <div  class="right-content">
+
+          <!-- 最近のエントリー -->
+          <!-- 最近のコメント -->
+          <!-- 最近のトラックバック -->
+
+          <!-- リンク -->
+          <div class="site-link">
+          <h3>Links</h3>
+            <ul><li><a href="http://www.siprop.org/">SIProp Project</a></li></ul>
+          </div><!-- site-link_end -->
+
+                    <!-- クリエイティブコモンズライセンス -->
+          <div class="cclicense">
+            <a href="http://creativecommons.org/licenses/by-nc/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />This weblog is licensed under a <a href="http://creativecommons.org/licenses/by-nc/1.0/">Creative Commons License</a>.
+          </div><!-- cclicense_end -->
+          
+
+          <!-- Powered -->
+          <div class="powered">
+            <ul>
+              <li>Powered by <a href="http://www.movabletype.jp">Movable Type 3.33-ja</a></li>
+              <li>Template by <a href="http://drblog.jp/"><img src="http://drblog.jp/info/img/drblog.gif" alt="Dr.Blog" width="128" height="22" /></a></li>
+            </ul>
+          </div><!-- Powered_end -->
+
+        </div><!-- right-content_end -->
+      </div><!-- right-menu_end -->
+
+      <div id="footer">
+        <ul class="syndicate">
+          <li><a href="http://www.noritsuna.jp/index.xml" title="なんとなく実験 with SIProp開発記 RSS Feed (XML)">RSS Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/atom.xml" title="なんとなく実験 with SIProp開発記 Atom Feed (XML)">Atom Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記">Archives</a></li>
+          <li><a href="#banner">Page Top</a></li>
+        </ul>
+      </div><!-- footer_end -->
+
+    </div><!-- main-container_end -->
+
+  </body>
+</html>

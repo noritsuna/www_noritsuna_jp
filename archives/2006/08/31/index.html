@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="description" content="SIP¤äVoIP¡¢NGN¡¢IMS¡¢P2P¡¢AR¡¢GPGPU¤Ë´Ø¤¹¤ëµ»½Ñ¾ðÊó¤ò½ñ¤­²¥¤Ã¤Æ¤¤¤ëBlog¤Ç¤¹¡£¤¿¤À¡¢ºÇ¶á¤Ï¡¢¼çºÅ¥¤¥Ù¥ó¥È¤Î¹ðÃÎBlog¤È¤Ê¤Ã¤Æ¤¤¤Þ¤¹¡£" />
+    <meta name="generator" content="http://www.sixapart.jp/movabletype/" />
+    <link rev="made" href="mailto:your@email" title="E-mail address" />
+    <link rel="home" href="http://www.noritsuna.jp/" title="¤Ê¤ó¤È¤Ê¤¯¼Â¸³ with SIProp³«È¯µ­" />
+    <link rel="index" href="http://www.noritsuna.jp/archives.html" title="¤Ê¤ó¤È¤Ê¤¯¼Â¸³ with SIProp³«È¯µ­archives" />
+    <link rel="prev" href="http://www.noritsuna.jp/archives/2006/08/30/" title="2006&amp;#24180;08&amp;#26376;30&amp;#26085;" />
+    <link rel="next" href="http://www.noritsuna.jp/archives/2006/09/02/" title="2006&amp;#24180;09&amp;#26376;02&amp;#26085;" />
+    <link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.noritsuna.jp/index.xml" /> 
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.noritsuna.jp/rsd.xml" />
+    <title>¤Ê¤ó¤È¤Ê¤¯¼Â¸³ with SIProp³«È¯µ­ | 2006&#24180;08&#26376;31&#26085;</title>
+
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/">
+<dc:title>¤Ê¤ó¤È¤Ê¤¯¼Â¸³ with SIProp³«È¯µ­</dc:title>
+<dc:description>SIP¤äVoIP¡¢NGN¡¢IMS¡¢P2P¡¢AR¡¢GPGPU¤Ë´Ø¤¹¤ëµ»½Ñ¾ðÊó¤ò½ñ¤­²¥¤Ã¤Æ¤¤¤ëBlog¤Ç¤¹¡£¤¿¤À¡¢ºÇ¶á¤Ï¡¢¼çºÅ¥¤¥Ù¥ó¥È¤Î¹ðÃÎBlog¤È¤Ê¤Ã¤Æ¤¤¤Þ¤¹¡£</dc:description>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+  </head>
+  <body class="layout-two-column-right">
+
+    <!-- ¥Ö¥í¥°Á´ÂÎ -->
+    <div id="main-container">
+
+      <!-- ¥Ö¥í¥°¥¿¥¤¥È¥ë -->
+      <div id="banner">
+        <h1 id="banner-header"><a href="http://www.noritsuna.jp/" accesskey="1" title="¤Ê¤ó¤È¤Ê¤¯¼Â¸³ with SIProp³«È¯µ­">¤Ê¤ó¤È¤Ê¤¯¼Â¸³ with SIProp³«È¯µ­</a></h1>
+        <h2 id="banner-description">SIP¤äVoIP¡¢NGN¡¢IMS¡¢P2P¡¢AR¡¢GPGPU¤Ë´Ø¤¹¤ëµ»½Ñ¾ðÊó¤ò½ñ¤­²¥¤Ã¤Æ¤¤¤ëBlog¤Ç¤¹¡£¤¿¤À¡¢ºÇ¶á¤Ï¡¢¼çºÅ¥¤¥Ù¥ó¥È¤Î¹ðÃÎBlog¤È¤Ê¤Ã¤Æ¤¤¤Þ¤¹¡£</h2>
+      </div><!-- banner_end -->
+
+      <!-- º¸¥«¥é¥à -->
+      <div id="left-menu">
+        <div  class="left-content">
+
+          <!-- ¥µ¥¤¥ÈÆâ¸¡º÷ -->
+          <div class="search-form">
+            <h3>Search</h3>
+            <form method="get" action="http://www.noritsuna.jp/cgi-bin/mt/mt-search.cgi">
+              <input type="hidden" name="IncludeBlogs" value="1" />
+              <label for="search" accesskey="4">¥µ¥¤¥ÈÆâ¸¡º÷</label><br />
+              <input id="search" tabindex="5"  accesskey="t"  value="search this blog" name="search" onblur="if(this.value==''){this.style.color=''; this.form.reset()}" onfocus="this.value = ''; this.style.color = '#000000';" />
+              <input type="submit" tabindex="6" accesskey="s" value="submit" class="searchsubmit" />
+            </form>
+          </div><!-- search-form_end -->
+
+                    <!-- Category¥¢¡¼¥«¥¤¥Ö -->
+          <div class="category-archives">
+            <h3>Category Archives</h3>
+	    <div class="category-label">
+              <ul>
+                <li><a href="http://www.noritsuna.jp/archives/gae/" title="">GAE</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/news/" title="">NEWS</a></li>
+              
+                <li class="module-list-item">OS<ul>
+                <li><a href="http://www.noritsuna.jp/archives/os/linux/" title="">Linux</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/windows/" title="">Windows</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/auos/" title="">²¾ÁÛOS</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/" title="">¥³¥ß¥å¥Ë¥Æ¥£¡¼</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/siprop/" title="">SIProp</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/stm/" title="">STM</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/iphone/" title="">iPhone</a></li>
+              </ul></li>
+              
+                <li class="module-list-item">³«È¯<ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ar/" title="">AR</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/amazonec2/" title="">AmazonEC2</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/application/" title="">Application</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/chromium/" title="">Chromium</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/" title="">HardWare</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/fpga/" title="">FPGA</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/gpgpu/" title="">GPGPU</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/java/" title="">Java</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/cat34/" title="">ÌµÀþ</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/nwng/" title="">NwNG</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/p2p/" title="">P2P</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/" title="">¥»¥Þ¥ó¥Æ¥£¥Ã¥¯</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/ai/" title="">AI</a></li>
+              </ul></li>
+              </ul></li>
+              </ul>
+            </div><!-- category-label_end -->
+          </div><!-- category-archives_end -->
+          
+
+                    <!-- Monthly¥¢¡¼¥«¥¤¥Ö -->
+          <div class="monthly-archives">
+            <h3><a href="http://www.noritsuna.jp/archives.html">Archives</a></h3>
+            <ul class="module-list">
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2011/01/">2011&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/08/">2010&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/07/">2010&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/06/">2010&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/05/">2010&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/04/">2010&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/03/">2010&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/02/">2010&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/01/">2010&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/12/">2009&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/11/">2009&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/10/">2009&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/09/">2009&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/08/">2009&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/07/">2009&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/06/">2009&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/05/">2009&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/04/">2009&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/03/">2009&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/02/">2009&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/01/">2009&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/12/">2008&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/11/">2008&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/10/">2008&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/09/">2008&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/08/">2008&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/07/">2008&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/06/">2008&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/05/">2008&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/04/">2008&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/03/">2008&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/02/">2008&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/01/">2008&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/12/">2007&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/11/">2007&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/10/">2007&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/09/">2007&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/08/">2007&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/07/">2007&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/06/">2007&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/05/">2007&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/04/">2007&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/03/">2007&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/02/">2007&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/01/">2007&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/12/">2006&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/11/">2006&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/10/">2006&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/09/">2006&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/08/">2006&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/07/">2006&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/06/">2006&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/02/">2006&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/09/">2005&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/07/">2005&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/06/">2005&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/05/">2005&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/04/">2005&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/03/">2005&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/02/">2005&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/01/">2005&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2004/12/">2004&#24180;12&#26376;</a></li>
+            </ul>
+          </div><!-- monthly-archives_end -->
+          
+
+        </div><!-- left-content_end -->
+      </div><!-- left-menu_end -->
+
+      <!-- Ãæ±û¥«¥é¥à -->
+      <div id="main">
+        <div  class="content">
+
+          <p class="navi-link"><a href="http://www.noritsuna.jp/archives/2006/08/30/">&laquo; 2006&#24180;08&#26376;30&#26085;</a> | <a href="http://www.noritsuna.jp/">main</a>| <a href="http://www.noritsuna.jp/archives/2006/09/02/">2006&#24180;09&#26376;02&#26085; &raquo;</a></p>
+
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/08/31/index.html#000229"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/229"
+    dc:title="NGN¥¤¥ó¥¿¥Õ¥§¡¼¥¹¸ø³«¤ò½ä¤ë·ãÆÍ"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/08/31/index.html#000229"
+    dc:subject="NGN(IMS)"
+    dc:description="¡ÖNGN¥¤¥ó¥¿¥Õ¥§¡¼¥¹¸ø³«¤ò½ä¤ë·ãÆÍ¡×¤È¤¤¤¦ÆÃ½¸¤¬ÁÈ¤Þ¤ì¤Æ¤ª¤ê¤Þ¤¹¡£¤³¤Á¤é¡£ N..."
+    dc:creator="noritsuna"
+    dc:date="2006-08-31T15:42:51+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- ¥¨¥ó¥È¥ê¡¼ÆüÉÕ -->
+            <p class="date-header">2006&#24180;08&#26376;31&#26085;</p>
+
+            <!-- ¥¨¥ó¥È¥ê¡¼¥¿¥¤¥È¥ë -->
+            <h3 id="a000229" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/08/ngn_5.html" title="NGN¥¤¥ó¥¿¥Õ¥§¡¼¥¹¸ø³«¤ò½ä¤ë·ãÆÍ">NGN¥¤¥ó¥¿¥Õ¥§¡¼¥¹¸ø³«¤ò½ä¤ë·ãÆÍ</a></h3>
+
+            <!-- ¥¨¥ó¥È¥ê¡¼ -->
+            <div class="entry-content">
+              <!-- ¥¨¥ó¥È¥ê¡¼ËÜÊ¸ -->
+              <div class="entry-body">
+                <p>¡ÖNGN¥¤¥ó¥¿¥Õ¥§¡¼¥¹¸ø³«¤ò½ä¤ë·ãÆÍ¡×¤È¤¤¤¦ÆÃ½¸¤¬ÁÈ¤Þ¤ì¤Æ¤ª¤ê¤Þ¤¹¡£<a href="http://itpro.nikkeibp.co.jp/NCC/ex.shtml">¤³¤Á¤é</a>¡£</p>
+
+<p>NTT¤µ¤ó¤ÎNGN¥È¥é¥¤¥¢¥ë¤Î¸½¾õ¤¬¡¢¤è¤¯¤Þ¤È¤Þ¤Ã¤Æ½ñ¤«¤ì¤Æ¤ª¤ê¡¢°ì¸«¤Î²ÁÃÍ¤¢¤ê¤Ç¤¹¡£</p>
+
+<p>¤½¤·¤Æ¡¢Í×Ìó¤¹¤ë¤È¡¢¤³¤³¤ËÍî¤ÁÃå¤¯¤Î¤«¤Ê¤È»×¤Ã¤Æ¤ª¤ê¤Þ¤¹¡£<br />
+<blockquote>¡½¡½¥½¥Õ¥È¥¦¥¨¥¢¡¦¥Ù¥ó¥À¡¼¤Ê¤É¤«¤é¡¤¾å°Ì¥ì¥¤¥ä¡¼¤Î»ÅÍÍ¸ø³«¤¬ÆÃ¤Ë¾¯¤Ê¤¯¤Æ¡¤¤³¤Î¤Þ¤Þ¤Ç¤Ï¿·¤·¤¤¥¢¥×¥ê¥±¡¼¥·¥ç¥ó³«È¯¤¬¤·¤Ë¤¯¤¤¤È¤¤¤¦°Õ¸«¤â¤¢¤ë¡£<BR></p>
+
+<p>¡¡¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¤Ë¤Ä¤¤¤Æ¡¤¤É¤¦¤¤¤¦Í×Ë¾¤¬¤¢¤ë¤Î¤«¤É¤¦¤«¡¤¤Þ¤À¸«¤¨¤Ë¤¯¤¤¡£¥¢¥×¥ê¥±¡¼¥·¥ç¥ó³«È¯¥µ¥¤¥É¤«¤é¡¤¡ÖNGN¤ò»È¤Ã¤Æ¤³¤¦¤¤¤¦¥µ¡¼¥Ó¥¹¤ò¤ä¤ê¤¿¤¤¤Î¤À¤¬¡×¤È¤¤¤¦Í×Ë¾¤¬¤­¤¿¤éÁêÃÌ¤Ë¤Î¤ë¡£¤½¤¦¤ä¤Ã¤ÆÂÐ±þ¤·¤Æ¤¤¤¯¡£</blockquote><br />
+Í×¤¹¤ë¤Ë¡¢¡Ö¤¹¤Ù¤Æ¡¢¤¦¤Á(NTT¤µ¤ó)¤òÄÌ¤·¤Æ¤¯¤À¤µ¤¤¡£¡×¤È¤¤¤¦ÏÃ¤Ã¤Æ¤³¤È¤Ç¤¹¤Í¡£¤µ¤Æ¡¢¡Ö¥±¡¼¥¿¥¤¤ò¥¯¥ì¥¸¥Ã¥È¥«¡¼¥ÉÂå¤ï¤ê¤Ë¤¹¤ë¥µ¡¼¥Ó¥¹¤ò»Ï¤á¤¿¤¤¤Î¤Ç¤¹¤¬¡£¡×¤È¤«¡¢ÁêÃÌ¤Ë¹Ô¤Ã¤¿¤é¤É¤¦¤Ê¤ë¤ó¤Ç¤·¤ç¤¦¤Í<a href="http://www.nttdocomo.co.jp/service/dcmx/index.html">¡£¡£¡£</a>¤È¤«¡¢»×¤ï¤»¤Æ¤·¤Þ¤¦¥Í¥Ã¥È¥ï¡¼¥¯¤¬¡¢¡Ö¥ª¡¼¥×¥ó¡×¤È¤¤¤¦¤«¤¬¡¢NTT¤µ¤ó¤È¤Û¤«¤Î´ë¶È¤µ¤ó¤È¤Î¡Ö·ãÆÍ¡×¤È¤¤¤¦ÉôÊ¬¤ËÅö¤¿¤ë¤Î¤Ç¤Ï¤Ê¤¤¤Ç¤·¤ç¤¦¤«¡£<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- ¥¨¥ó¥È¥ê¡¼ÄÉµ­ -->
+                            <div class="entry-more"><p><a href="http://www.noritsuna.jp/archives/2006/08/ngn_5.html#more" title="NGN¥¤¥ó¥¿¥Õ¥§¡¼¥¹¸ø³«¤ò½ä¤ë·ãÆÍ">NGN¥¤¥ó¥¿¥Õ¥§¡¼¥¹¸ø³«¤ò½ä¤ë·ãÆÍ¤ÎÂ³¤­¤òÆÉ¤à</a></p></div><!-- entry-more_end -->
+              
+
+              <!-- ¥¨¥ó¥È¥ê¡¼¡¦¥¿¥° -->
+              
+
+              <!-- ¥¨¥ó¥È¥ê¡¼¾ðÊó -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/08/ngn_5.html" title="NGN¥¤¥ó¥¿¥Õ¥§¡¼¥¹¸ø³«¤ò½ä¤ë·ãÆÍ">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 15:42</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">³«È¯</a> ¢ä <a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a></li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/08/31/index.html#000227"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/227"
+    dc:title="¹¾ùõ¶µ¼ø¤ÈÑÕÃæKDDI ¼¹¹ÔÌò°÷ ¤ÎNGN²ñÃÌ¤½¤Î3"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/08/31/index.html#000227"
+    dc:subject="NGN(IMS)"
+    dc:description="¹¾Ó¸¶µ¼ø¤ÈÑÕÃæKDDI ¼¹¹ÔÌò°÷¤ÎÂÐÃÌ¤ÎÂè»°ÃÆ¤Ç¤¹¡ªÉ¬¸«¤Ç¤¹¡ª¡ª¡ª¤³¤Á¤é¡£ º£²ó..."
+    dc:creator="noritsuna"
+    dc:date="2006-08-31T00:22:39+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- ¥¨¥ó¥È¥ê¡¼ÆüÉÕ -->
+            
+
+            <!-- ¥¨¥ó¥È¥ê¡¼¥¿¥¤¥È¥ë -->
+            <h3 id="a000227" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/08/kddi_ngn3.html" title="¹¾ùõ¶µ¼ø¤ÈÑÕÃæKDDI ¼¹¹ÔÌò°÷ ¤ÎNGN²ñÃÌ¤½¤Î3">¹¾ùõ¶µ¼ø¤ÈÑÕÃæKDDI ¼¹¹ÔÌò°÷ ¤ÎNGN²ñÃÌ¤½¤Î3</a></h3>
+
+            <!-- ¥¨¥ó¥È¥ê¡¼ -->
+            <div class="entry-content">
+              <!-- ¥¨¥ó¥È¥ê¡¼ËÜÊ¸ -->
+              <div class="entry-body">
+                <p>¹¾ùõ¶µ¼ø¤ÈÑÕÃæKDDI ¼¹¹ÔÌò°÷¤ÎÂÐÃÌ¤ÎÂè»°ÃÆ¤Ç¤¹¡ªÉ¬¸«¤Ç¤¹¡ª¡ª¡ª<a href="http://wbb.forum.impressrd.jp/feature/20060830/253">¤³¤Á¤é</a>¡£</p>
+
+<p>º£²ó¤Ï¡¢¤Ê¤¼¥ª¡¼¥ëIP²½¤Ê¤Î¤«¡©¤È¤¤¤¦ÏÃÂê¤¬Ãæ¿´¤Ç¤¹¡£<br />
+¤¤¤­¤Ê¤ê¡¢¤º¤Ð¤ê¤Î²ò¤¬¡¢¤Ç¤Æ¤Þ¤¹¤Í¡£<br />
+<blockquote>¤â¤¦ÅÅÏÃ¸ò´¹µ¡¤äATM¸ò´¹µ¡¤Ï¡¢¥á¡¼¥«¡¼¤¬ºî¤é¤Ê¤¤¡ÊÀ½Â¤Ãæ»ß¡Ë¤¿¤á¡¢IP¤Ë¤¹¤ë¤·¤«¤Ê¤¤</blockquote></p>
+
+<p><br />
+¤¿¤Ö¤ó¡¢º£²ó¤Î¥­¥â¤Ï¡¢¤³¤³¤ÎÉôÊ¬¤Ê¤Î¤Ç¤Ï¤Ê¤¤¤«¤È»×¤¤¤Þ¤¹¡£<br />
+<blockquote>¥°¥í¡¼¥Ð¥ë¡¦¥ê¡¼¥Á¥ã¥Ó¥ê¥Æ¥£¡Ê¥°¥í¡¼¥Ð¥ë¤ÊÀÜÂ³À­¤Î¹­¤µ¡Ë¤È¤¤¤¦¤Î¤Ï¡¢Âç»ö¤Ê¤³¤È¤Ç¤¹¡£¤Ç¤¹¤«¤é¡¢¥°¥í¡¼¥Ð¥ë¤Ë¥ë¡¼¥Æ¥£¥ó¥°¤Ç¤­¤ë¤È¤¤¤¦¤È¤¤¤¦¤³¤È¤òÊÝ¾Ú¤·¤Æ¤ª¤¤¤Æ¡¢¥æ¡¼¥¶¡¼¤ò°Ï¤¤¹þ¤à¤È¤¤¤¦ÀïË¡¤Î¤Û¤¦¤¬¡¢Â¿Ê¬´ÊÃ±¤À¤È»×¤¦¤Î¤Ç¤¹¡£</p>
+
+<p>¤³¤ÎµÕ¤ò¤ä¤ë¤È¡¢¤Ä¤Þ¤ê°Ï¤¤¹þ¤ó¤Ç¤ª¤¤¤Æ¤«¤é¥Í¥Ã¥È¥ï¡¼¥¯¤òÌµÍýÌðÍý¡¢³°Éô¤È¤Ä¤Ê¤´¤¦¤È¤¹¤ë¤È¡¢ÀÜÂ³¸ý¤Î¤È¤³¤í¤¬¤È¤Æ¤âÂçÊÑ¤Ê¤ï¤±¤Ç¤¹¡£¤½¤¦¤¤¤¦°ÕÌ£¤Ç¥ë¡¼¥Æ¥£¥ó¥°¤Ë¥¤¥ó¥Æ¥ê¥¸¥§¥ó¥¹¤ò¤â¤¿¤»¤Æ¡¢Ç½ÎÏ¤È¤·¤Æ¤ÏÁ´Éô¤Ä¤Ê¤²¤ë¤³¤È¤¬¤Ç¤­¤ë¤è¤¦¤Ë¤·¤Æ¤ª¤¯¤È¤¤¤¦¤Î¤¬¡¢ºÇ½ªÅª¤Ë¤Ï¤è¤¤¤Î¤Ç¤Ï¤Ê¤¤¤«¤È»×¤¤¤Þ¤¹¡£</blockquote><br />
+NTT¤µ¤ó¤ÎNGN¥È¥é¥¤¥¢¥ë¤ÎÆâÍÆ¤Ê¤É¤ò¸«¤Þ¤¹¤È¡¢Ã¯¤Ç¤â»²²Ã¤·¤Æ»î¤»¤ë¤È¤¤¤¦¥°¥í¡¼¥Ð¥ë¡¦¥ê¡¼¥Á¥ã¥Ó¥ê¥Æ¥£¡Ê¥°¥í¡¼¥Ð¥ë¤ÊÀÜÂ³À­¤Î¹­¤µ¡Ë¤È¤¤¤¦ÊýË¡¤ò¤È¤Ã¤Æ¤ª¤ê¤Þ¤¹¤Î¤Ç¡¢¤³¤ì¤ÎÀº¿À¤ò°Ý»ý¤·¡¢¤É¤ó¤É¤ó¤È²òÊü¤·¤Æ¤¤¤¯¤Ù¤­¤Ç¤¢¤ë¤ÈNTT¤µ¤ó¤ËÜü¤òÈô¤Ð¤·¤Æ¤¤¤ë¤Î¤Ç¤Ï¤Ê¤¤¤Ç¤·¤ç¤¦¤«¡£</p>
+
+<p><BR><br />
+¤Ä¤Å¤¤¤Æ¡¢3GPP¡õIMS¡ÊIP Multimedia Subsystem¡¢IP¥Þ¥ë¥Á¥á¥Ç¥£¥¢¡¦¥µ¥Ö¥·¥¹¥Æ¥à¡Ë¤È3GPP2¡õMMD ¡ÊMulti-Media Domain¡¢¥Þ¥ë¥Á¥á¥Ç¥£¥¢¡¦¥É¥á¥¤¥ó¡Ë¤Î¤ªÏÃ¤Ç¤¹¡£<br />
+<blockquote>¼Â¤Ï3GPP2¤ÎÂ¦¤¬MMD¤òIMS¤Ë°ìËÜ²½¤·¤è¤¦¤ÈÊâ¤ß´ó¤Ã¤Æ¤¤¤Þ¤¹¡£<BR><br />
+¹¾ùõ¡¡¤½¤ì¤ÏÁÇÀ²¤é¤·¤¤¤³¤È¤Ç¤¹¡£¤½¤ì¤Ê¤é¤Ð»ä¤â¤ä¤ëµ¤¤Ë¤Ê¤Ã¤Æ¡¢IMS¤Ç¤¤¤³¤¦¤«¤È»×¤¤¤Þ¤¹¤Í¡£</blockquote><br />
+ÀèÀ¸¡¢¤è¤í¤·¤¯¤ª´ê¤¤¤·¤Þ¤¹¡£<(_ _)><br />
+ËÜµ¤¤ÇÉáµÚ¤µ¤»¤Æ¤¯¤À¤µ¤¤¡£<(_ _)><br />
+ÈùÎÏ¤Ê¤¬¤é¡¢¤ª¼êÅÁ¤¤¤µ¤»¤Æ¤¤¤¿¤À¤­¤Þ¤¹¡£<(_ _)><br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- ¥¨¥ó¥È¥ê¡¼ÄÉµ­ -->
+              
+
+              <!-- ¥¨¥ó¥È¥ê¡¼¡¦¥¿¥° -->
+              
+
+              <!-- ¥¨¥ó¥È¥ê¡¼¾ðÊó -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/08/kddi_ngn3.html" title="¹¾ùõ¶µ¼ø¤ÈÑÕÃæKDDI ¼¹¹ÔÌò°÷ ¤ÎNGN²ñÃÌ¤½¤Î3">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:22</li>
+                  <li>in <a href="http://www.noritsuna.jp/archives/e/" title="">³«È¯</a> ¢ä <a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a></li>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/08/kddi_ngn3.html#comments" title="¹¾ùõ¶µ¼ø¤ÈÑÕÃæKDDI ¼¹¹ÔÌò°÷ ¤ÎNGN²ñÃÌ¤½¤Î3¤Ë¥³¥á¥ó¥È">Comments</a> (2) </li>
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+          
+
+        </div><!-- content_end -->
+      </div><!-- main_end -->
+
+      <!--±¦¥á¥Ë¥å¡¼-->
+      <div id="right-menu">
+        <div  class="right-content">
+
+          <!-- ºÇ¶á¤Î¥¨¥ó¥È¥ê¡¼ -->
+          <!-- ºÇ¶á¤Î¥³¥á¥ó¥È -->
+          <!-- ºÇ¶á¤Î¥È¥é¥Ã¥¯¥Ð¥Ã¥¯ -->
+
+          <!-- ¥ê¥ó¥¯ -->
+          <div class="site-link">
+          <h3>Links</h3>
+            <ul><li><a href="http://www.siprop.org/">SIProp Project</a></li></ul>
+          </div><!-- site-link_end -->
+
+                    <!-- ¥¯¥ê¥¨¥¤¥Æ¥£¥Ö¥³¥â¥ó¥º¥é¥¤¥»¥ó¥¹ -->
+          <div class="cclicense">
+            <a href="http://creativecommons.org/licenses/by-nc/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />This weblog is licensed under a <a href="http://creativecommons.org/licenses/by-nc/1.0/">Creative Commons License</a>.
+          </div><!-- cclicense_end -->
+          
+
+          <!-- Powered -->
+          <div class="powered">
+            <ul>
+              <li>Powered by <a href="http://www.movabletype.jp">Movable Type 3.33-ja</a></li>
+              <li>Template by <a href="http://drblog.jp/"><img src="http://drblog.jp/info/img/drblog.gif" alt="Dr.Blog" width="128" height="22" /></a></li>
+            </ul>
+          </div><!-- Powered_end -->
+
+        </div><!-- right-content_end -->
+      </div><!-- right-menu_end -->
+
+      <div id="footer">
+        <ul class="syndicate">
+          <li><a href="http://www.noritsuna.jp/index.xml" title="¤Ê¤ó¤È¤Ê¤¯¼Â¸³ with SIProp³«È¯µ­ RSS Feed (XML)">RSS Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/atom.xml" title="¤Ê¤ó¤È¤Ê¤¯¼Â¸³ with SIProp³«È¯µ­ Atom Feed (XML)">Atom Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/archives.html" title="¤Ê¤ó¤È¤Ê¤¯¼Â¸³ with SIProp³«È¯µ­">Archives</a></li>
+          <li><a href="#banner">Page Top</a></li>
+        </ul>
+      </div><!-- footer_end -->
+
+    </div><!-- main-container_end -->
+
+  </body>
+</html>

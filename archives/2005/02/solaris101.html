@@ -1,0 +1,400 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: Solaris10インストール・その1</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+
+<link rel="start" href="http://www.noritsuna.jp/" title="Home" />
+<link rel="prev" href="http://www.noritsuna.jp/archives/2005/02/post_7.html" title="コメント" />
+
+<link rel="next" href="http://www.noritsuna.jp/archives/2005/02/solaris102.html" title="Solaris10インストール・その2" />
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var HOST = 'www.noritsuna.jp';
+
+// Copyright (c) 1996-1997 Athenia Associates.
+// http://www.webreference.com/js/
+// License is granted if and only if this entire
+// copyright notice is included. By Tomer Shiran.
+
+function setCookie (name, value, expires, path, domain, secure) {
+    var curCookie = name + "=" + escape(value) + (expires ? "; expires=" + expires : "") + (path ? "; path=" + path : "") + (domain ? "; domain=" + domain : "") + (secure ? "secure" : "");
+    document.cookie = curCookie;
+}
+
+function getCookie (name) {
+    var prefix = name + '=';
+    var c = document.cookie;
+    var nullstring = '';
+    var cookieStartIndex = c.indexOf(prefix);
+    if (cookieStartIndex == -1)
+        return nullstring;
+    var cookieEndIndex = c.indexOf(";", cookieStartIndex + prefix.length);
+    if (cookieEndIndex == -1)
+        cookieEndIndex = c.length;
+    return unescape(c.substring(cookieStartIndex + prefix.length, cookieEndIndex));
+}
+
+function deleteCookie (name, path, domain) {
+    if (getCookie(name))
+        document.cookie = name + "=" + ((path) ? "; path=" + path : "") + ((domain) ? "; domain=" + domain : "") + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+
+function fixDate (date) {
+    var base = new Date(0);
+    var skew = base.getTime();
+    if (skew > 0)
+        date.setTime(date.getTime() - skew);
+}
+
+function rememberMe (f) {
+    var now = new Date();
+    fixDate(now);
+    now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+    now = now.toGMTString();
+    if (f.author != undefined)
+       setCookie('mtcmtauth', f.author.value, now, '/', '', '');
+    if (f.email != undefined)
+       setCookie('mtcmtmail', f.email.value, now, '/', '', '');
+    if (f.url != undefined)
+       setCookie('mtcmthome', f.url.value, now, '/', '', '');
+}
+
+function forgetMe (f) {
+    deleteCookie('mtcmtmail', '/', '');
+    deleteCookie('mtcmthome', '/', '');
+    deleteCookie('mtcmtauth', '/', '');
+    f.email.value = '';
+    f.author.value = '';
+    f.url.value = '';
+}
+
+//-->
+</script>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2005/02/solaris101.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/17"
+    dc:title="Solaris10インストール・その1"
+    dc:identifier="http://www.noritsuna.jp/archives/2005/02/solaris101.html"
+    dc:subject="Server"
+    dc:description="最近、はやりのSolaris10インストールをしてみました。 今回は、各画面をす..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-05T01:09:52+09:00" />
+</rdf:RDF>
+-->
+
+
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2005/02/solaris101.html">
+<dc:title>Solaris10インストール・その1</dc:title>
+<dc:description>最近、はやりのSolaris10インストールをしてみました。 今回は、各画面をす...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2005-02-05T01:09:52+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+
+
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+
+<p align="right">
+<a href="http://www.noritsuna.jp/archives/2005/02/post_7.html">&laquo; コメント</a> |
+
+<a href="http://www.noritsuna.jp/">メイン</a>
+| <a href="http://www.noritsuna.jp/archives/2005/02/solaris102.html">Solaris10インストール・その2 &raquo;</a>
+
+</p>
+
+<h2>2005&#24180;02&#26376;05&#26085;</h2>
+
+<h3>Solaris10インストール・その1</h3>
+
+<p>最近、はやりのSolaris10インストールをしてみました。<br />
+今回は、各画面をすべてキャプしてみましたので、全て見ていただければ、<br />
+擬似的なインストールを体験できるのではないかと思います。</p>
+
+<p>興味のある方は、是非是非、閲覧していってください。<br />
+※各画像をクリックするといぢめのようなサイズの画像が出てきます。(^-^;A</p>
+
+<p><br />
+<p>　</p><br />
+<p>　</p><br />
+<p>　</p></p>
+
+<p><br />
+■Phase1〜ブート設定〜<br />
+・ダウンロード。<br />
+ここからダウンロードしてください。http://jp.sun.com/software/solaris/10/download.html<br />
+サイズがでかい上、まだ、込んでいるようで速度も出ません。<br />
+かなり、気長に待つ必要があります。<br />
+<p>　</p></p>
+
+<p><br />
+・CDブート。<br />
+ダウンロードしたら、解凍後、CDやDVDに焼いて、Disk1でCDブートさせます。<br />
+これで、インストーラが自動的に立ち上がります。</p>
+
+<p>※今回は、VMWareにインストールするので、そちらの環境を作成し、ISOイメージの<br />
+　まま、利用します。<br />
+<p>　</p></p>
+
+<p><br />
+・インストール法の選択。<br />
+今回は、「１ Solaris Interactive」のGUIインストールに挑戦です。<br />
+※使用可能な物理メモリが、96MB以下だとGUIインストールは使えません。<br />
+　128MBだと、Textモードになってしまいました。<br />
+<p><a href="/images/server/solaris10-install_001.PNG" target="_blank"><img src="/images/server/solaris10-install_001.PNG" width="200" border="0"></a></p><br />
+<p>　</p><br />
+<p>　</p></p>
+
+<p>・カーネルブート中。。。<br />
+基本的なソフトウェアの読み出しやハードウェアのチェックなどもしている<br />
+ようで、かなり、長い処理になります。<br />
+気長に待ちましょう。<br />
+<p>　</p><br />
+<p>　</p></p>
+
+<p>・解像度の指定。<br />
+この手のOSの最大の難関です。<br />
+1024なモードがデフォルト値となっています<br />
+サイズに不満があったり、新しめのVGAなどを使っている人は、死ぬ気で<br />
+設定しましょう。<br />
+<p><a href="/images/server/solaris10-install_002.PNG" target="_blank"><img src="/images/server/solaris10-install_002.PNG" width="200" border="0"></a></p><br />
+<p>　</p><br />
+<p>　</p><br />
+<p>　</p><br />
+<p>　</p></p>
+
+<div id="a000017more"><div id="more">
+
+</div></div>
+
+<p class="posted">投稿者 noritsuna : 2005&#24180;02&#26376;05&#26085; 01:09</p>
+
+<h2 id="trackbacks">トラックバック</h2>
+<p class="techstuff">このエントリーのトラックバックURL:<br />
+http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/17</p>
+
+<p>このリストは、次のエントリーを参照しています:  <a href="http://www.noritsuna.jp/archives/2005/02/solaris101.html">Solaris10インストール・その1</a>:</p>
+
+<p id="p110">
+&raquo; <a href="http://freett.com/sellers/furniture/Modern-Dining-Room-Furniture.html">Modern Dining Room Furniture</a> from Modern Dining Room Furniture<br />
+I was wondering if you could send me some more information about projects in my ... <a href="http://freett.com/sellers/furniture/Modern-Dining-Room-Furniture.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;23&#26085; 04:17</p>
+<p id="p123">
+&raquo; <a href="http://furniture.website.pl/beds/water-bed.html">water bed</a> from water bed<br />
+I was wondering if you could send me some more information about projects in my ... <a href="http://furniture.website.pl/beds/water-bed.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;24&#26085; 04:05</p>
+<p id="p131">
+&raquo; <a href="http://furniture.website.pl/beds/toddler-bed.html">toddler bed</a> from toddler bed<br />
+I enjoyed doing this little project, it was easy to so my little brother. <a href="http://furniture.website.pl/beds/toddler-bed.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;24&#26085; 07:23</p>
+<p id="p162">
+&raquo; <a href="http://pills.1k.pl/buy+lipitor">buy lipitor</a> from buy lipitor<br />
+Sounds like a pretty cool book. Looking forward to next months experiment. <a href="http://pills.1k.pl/buy+lipitor">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;27&#26085; 23:55</p>
+<p id="p208">
+&raquo; <a href="http://epills.blogs.eurosport.es/files/aldactone.html">aldactone</a> from aldactone<br />
+I won 10000$ today! I'm very happy and wanted to say all about this! Have a nice... <a href="http://epills.blogs.eurosport.es/files/aldactone.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;28&#26085; 19:16</p>
+<p id="p264">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bassett-furniture.html">bassett furniture</a> from bassett furniture<br />
+I am so thankful for finding your website. <a href="http://vvvvvv.bizland.com/furniture/bassett-furniture.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;30&#26085; 19:25</p>
+<p id="p306">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/bedrooms/bedroom-superstore.html">bedroom superstore</a> from bedroom superstore<br />
+Good Moring Great stuff,Keep up the good work. <a href="http://vvvvvv.bizland.com/furniture/bedrooms/bedroom-superstore.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;05&#26376;31&#26085; 16:19</p>
+<p id="p412">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/beds/bed-linen.html">bed linen</a> from bed linen<br />
+Hi!I recently lunched my own project and can't find guestbook script for it. I t... <a href="http://vvvvvv.bizland.com/furniture/beds/bed-linen.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;02&#26085; 16:41</p>
+<p id="p416">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/beds/truck-bed-liner.html">truck bed liner</a> from truck bed liner<br />
+Hi! I want to make the same site that your. I like it very much. Hope thati do i... <a href="http://vvvvvv.bizland.com/furniture/beds/truck-bed-liner.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;02&#26085; 18:36</p>
+<p id="p417">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/beds/electric-adjustable-bed.html">electric adjustable bed</a> from electric adjustable bed<br />
+Hi i just kinda stumbled unto your site and i think its beautiful... <a href="http://vvvvvv.bizland.com/furniture/beds/electric-adjustable-bed.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;02&#26085; 18:39</p>
+<p id="p433">
+&raquo; <a href="http://vvvvvv.bizland.com/furniture/beds/wrought-iron-bed.html">wrought iron bed</a> from wrought iron bed<br />
+Nice layout. But i didnt find information for me that i try to find on your webs... <a href="http://vvvvvv.bizland.com/furniture/beds/wrought-iron-bed.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;03&#26085; 00:38</p>
+<p id="p450">
+&raquo; <a href="http://bloc.balearweb.net/get/798/dining-room-set.html">dining room set</a> from dining room set<br />
+Hi. A lot of interesting info. Cool site! <a href="http://bloc.balearweb.net/get/798/dining-room-set.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;03&#26085; 09:04</p>
+<p id="p452">
+&raquo; <a href="http://bloc.balearweb.net/get/798/modern-furniture-store.html">modern furniture store</a> from modern furniture store<br />
+Hi!I recently lunched my own project and can't find guestbook script for it. I t... <a href="http://bloc.balearweb.net/get/798/modern-furniture-store.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;03&#26085; 09:55</p>
+<p id="p453">
+&raquo; <a href="http://bloc.balearweb.net/get/798/dinning-room-furniture.html">dinning room furniture</a> from dinning room furniture<br />
+Hi all. I think that i can say a few words about this site here. It is very nice... <a href="http://bloc.balearweb.net/get/798/dinning-room-furniture.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;03&#26085; 10:35</p>
+<p id="p566">
+&raquo; <a href="http://bloc.balearweb.net/get/813/timex-gps-watch.html">timex gps watch</a> from timex gps watch<br />
+Sounds like a pretty cool book. Looking forward to next months experiment. <a href="http://bloc.balearweb.net/get/813/timex-gps-watch.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;06&#26085; 12:42</p>
+<p id="p585">
+&raquo; <a href="http://bloc.balearweb.net/get/813/omega-man-watch.html">omega man watch</a> from omega man watch<br />
+I am so thankful for finding your website. <a href="http://bloc.balearweb.net/get/813/omega-man-watch.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;06&#26085; 18:24</p>
+<p id="p600">
+&raquo; <a href="http://bloc.balearweb.net/get/813/rolex.html">rolex</a> from rolex<br />
+Hi i just kinda stumbled unto your site and i think its beautiful... <a href="http://bloc.balearweb.net/get/813/rolex.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;07&#26085; 05:51</p>
+<p id="p638">
+&raquo; <a href="http://bloc.balearweb.net/get/822/ambien-rx.html">ambien rx</a> from ambien rx<br />
+I was wondering if you could send me some more information about projects in my ... <a href="http://bloc.balearweb.net/get/822/ambien-rx.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;07&#26085; 18:27</p>
+<p id="p727">
+&raquo; <a href="http://bloc.balearweb.net/get/824/nasacort-aq.html">nasacort aq</a> from nasacort aq<br />
+I won 10000$ today! I'm very happy and wanted to say all about this! Have a nice... <a href="http://bloc.balearweb.net/get/824/nasacort-aq.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;09&#26085; 14:22</p>
+<p id="p729">
+&raquo; <a href="http://bloc.balearweb.net/get/824/patanol.html">patanol</a> from patanol<br />
+I won 10000$ today! I'm very happy and wanted to say all about this! Have a nice... <a href="http://bloc.balearweb.net/get/824/patanol.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;09&#26085; 16:13</p>
+<p id="p808">
+&raquo; <a href="http://ebags.eb.funpic.de/marc-jacobs-handbags/marc-jacobs-womens-accessory-handbag.html">marc jacobs womens accessory handbag</a> from marc jacobs womens accessory handbag<br />
+I won 10000$ today! I'm very happy and wanted to say all about this! Have a nice... <a href="http://ebags.eb.funpic.de/marc-jacobs-handbags/marc-jacobs-womens-accessory-handbag.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;11&#26085; 04:50</p>
+<p id="p822">
+&raquo; <a href="http://www.lacomunitat.net/furniture2006/dining-room-tables.html">dining room tables</a> from dining room tables<br />
+Hi! Very eye catching site. Best regards. <a href="http://www.lacomunitat.net/furniture2006/dining-room-tables.html">[続きを読む]</a>
+</p>
+<p class="posted">トラックバック時刻:  2006&#24180;06&#26376;11&#26085; 14:12</p>
+
+
+
+
+
+<h2 id="comments">コメント</h2>
+
+
+
+
+
+<h2>コメントしてください</h2>
+
+ 
+
+
+
+<form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-comments.cgi" name="comments_form" onsubmit="if (this.bakecookie[0].checked) rememberMe(this)">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="17" />
+
+<div id="name_email">
+<p><label for="author">名前:</label><br />
+<input tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">メールアドレス:</label><br />
+<input tabindex="2" id="email" name="email" /></p>
+</div>
+
+
+
+<p><label for="url">URL:</label><br />
+<input tabindex="3" type="text" name="url" id="url" />
+保存しますか?
+<input type="radio" id="remember" onclick="rememberMe(this.form)" name="bakecookie" /><label for="remember">はい</label><input type="radio" id="forget" name="bakecookie" onclick="forgetMe(this.form)" value="Forget Info" style="margin-left: 15px;" /><label for="forget">いいえ</label><br style="clear: both;" />
+</p>
+
+<p><label for="text">コメント:</label> <br/>
+<textarea tabindex="4" id="text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input type="submit" name="preview" tabindex="5" 
+    value="&nbsp;確認&nbsp;" />
+<input style="font-weight: bold;" type="submit" name="post" 
+    tabindex="6" value="&nbsp;投稿&nbsp;" />
+</div>
+</form>
+
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+if (document.comments_form.email != undefined)
+    document.comments_form.email.value = getCookie("mtcmtmail");
+if (document.comments_form.author != undefined)
+    document.comments_form.author.value = getCookie("mtcmtauth");
+if (document.comments_form.url != undefined)
+    document.comments_form.url.value = getCookie("mtcmthome");
+if (getCookie("mtcmtauth") || getCookie("mtcmthome")) {
+    document.comments_form.bakecookie[0].checked = true;
+} else {
+    document.comments_form.bakecookie[1].checked = true;
+}
+//-->
+</script>
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

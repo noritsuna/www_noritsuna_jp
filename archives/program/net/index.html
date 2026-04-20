@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験: .NET アーカイブ</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験</a></h1>
+<h2></h2>
+</div>
+
+<div class="content">
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/program/net/index.html#000069"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/69"
+    dc:title="Java Language Conversion Assistant"
+    dc:identifier="http://www.noritsuna.jp/archives/program/net/index.html#000069"
+    dc:subject=".NET"
+    dc:description="JavaのコードをC#に変換してくれるという、すばらしいツールです。 諸事情によ..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-30T23:54:58+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2005&#24180;03&#26376;30&#26085;</h2>
+
+
+<h3 id="a000069">Java Language Conversion Assistant</h3>
+
+<p>JavaのコードをC#に変換してくれるという、すばらしいツールです。</p>
+
+<p>諸事情により、手抜き、、、もとい、Javaのコードがどのように変換される<br />
+のか、コピペ、、、もとい、読んでみたく思い、かようなツールを利用して<br />
+みました。</p>
+
+<p>そのすばらしき顛末です。</p>
+
+<p>●準備<br />
+1，まずは、ここからGet。<br />
+<a href="http://www.microsoft.com/japan/msdn/vstudio/downloads/tools/jlca/default.asp">Microsoft Java Language Conversion Assistant 2.0</a></p>
+
+<p><br />
+2，インストール！！！<br />
+VSのアドインとして組み込まれます。</p>
+
+<p><br />
+3，VisualJ++でプロジェクトを作成。<br />
+そこに変換させたいJavaファイルを読み込ませます。</p>
+
+<p><br />
+4，「ファイル」→「開く」→「変換」<br />
+変換を実行します。設定はデフォルトのままを使用。<br />
+<BR><br />
+●結果<br />
+「解析に失敗しました。」と、エラー吐いて落ちます。。。<br />
+コアファイル見ても、意味不明な文字列がならんでいるだけ。。。</p>
+
+<p>う〜ん、意味がわからん。</p>
+
+<p>いろいろと調べてみると、「JDK1.2 の一部のみサポート」ということらしい。<br />
+もしかしたら、この辺に引っかかっているのかも。。</p>
+
+<p>でも、変換できないモノは、そのまま出力するって書いてあるんだけどなぁ。<br />
+<BR><br />
+●再挑戦<br />
+さらに、調査したところ、Ver.3.0βなるものを発見。<br />
+JDK1.3をサポートと書いてあるので、こちらにて、再度挑戦してみる。</p>
+
+<p><a href="betahttp://msdn.microsoft.com/vstudio/downloads/tools/jlca/30beta/default.aspx">Microsoft Java Language Conversion Assistant 3.0 beta </a><br />
+<BR><br />
+●結果2<br />
+ダメです。やっぱ、同じエラー吐いて落ちます。</p>
+
+<p>やはり、高度なプログラムは変換できないんでしょうか？<br />
+↓が、ソースの「全て」なんですが。。。どうやら、JLCA君には、難しい<br />
+プログラムだったようです。＿|￣|○　ガックシ・・・</p>
+
+<blockquote>
+public class Message { <BR>
+	public int HEAD = 0;<BR>
+}
+</blockquote>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2005/03/java_language_c.html">23:54</a>
+| <a href="http://www.noritsuna.jp/archives/2005/03/java_language_c.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2005/03/java_language_c.html#trackbacks">トラックバック</a>
+
+</p>
+
+
+
+</div>
+</div>
+
+</body>
+</html>

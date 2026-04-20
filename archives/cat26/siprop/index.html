@@ -1,0 +1,576 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+<meta name="generator" content="http://www.movabletype.org/" />
+
+<title>なんとなく実験 with SIProp開発記: SIProp アーカイブ</title>
+
+<link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.noritsuna.jp/index.rdf" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="banner">
+<h1><a href="http://www.noritsuna.jp/" accesskey="1">なんとなく実験 with SIProp開発記</a></h1>
+<h2>SIPやVoIP、P2Pに関する技術情報を書き殴っているBlogです。
+また、SIPropプロジェクトの開発記も兼ねています。</h2>
+</div>
+
+<div class="content">
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat27/sip/index.html#000130"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/130"
+    dc:title="MS社ビジネスフォン市場へ参戦"
+    dc:identifier="http://www.noritsuna.jp/archives/cat27/sip/index.html#000130"
+    dc:subject="SIP"
+    dc:description="MS社が、オフィス電話市場へ本格参戦するようです。「Microsoft Offi..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-29T00:09:17+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;29&#26085;</h2>
+
+
+<h3 id="a000130">MS社ビジネスフォン市場へ参戦</h3>
+
+<p>MS社が、オフィス電話市場へ本格参戦するようです。<a href="http://www.itmedia.co.jp/news/articles/0606/26/news039.html">「Microsoft Office Communications Server 2007」</a>と<a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20060525/239060/">「Microsoft Exchange Server 2007」</a>と<a href="http://itpro.nikkeibp.co.jp/article/USNEWS/20060627/241790/?ST=win">ロードマップ</a>。<br />
+まさに、ついにという感じですね。</p>
+
+<p>Microsoft Office Communications Server 2007の機能としては、<br />
+<blockquote>この戦略に向け、MicrosoftはOffice 2007の一部として統合的な通信機能を発表した。リアルタイム通信プラットフォーム「Microsoft Office Communications Server 2007」は、既存のソフト、サービス、デバイス間でのVoIP通信管理や音声・ビデオカンファレンス、IM通信を可能にする。このプラットフォームと連係する通信クライアント「Microsoft Office Communicator 2007」は企業向けの「ソフトフォン」、IM、Webカンファレンスなどの機能を提供する。</blockquote><br />
+というところで、コミュニケーションに関する機能をフル実装しているいますね。<br />
+内容的には、こちらの<a href="http://www.noritsuna.jp/archives/2006/06/post_3.html">エントリー</a>で紹介したアプリケーションと全面対決なりそうですね。どのように、MS社の追撃をかわすのか興味深いところです。<br />
+ただ、従来のOffice Live Communications Serverのアップグレード版という位置付けだそうで、どのくらいアップグレードしているかが気になるところです。LCSの機能は、とても、微妙でしたので、つけいる隙がありましたが、今回はどうでしょうか？国内では、ケータイ系の機能で差別化を図るのが、セオリーと言うところですが。</p>
+
+<p><BR><br />
+Microsoft Exchange Server 2007の機能としては、<br />
+<blockquote>「ユニファイド・メッセージング」（UM：Unified Messaging，統合メッセージ機能）という新しい機能が搭載される。MicrosoftはまだUMの仕組みについて公に多くのことを語ってはいないが，予定されているUMの機能には役に立ちそうなものがいくつかある。</blockquote><br />
+というところで、詳細はまだのようですが、概要としては、<br />
+<blockquote>・ボイスメール、FAXのOutlook連携<BR><br />
+・Microsoft Office Communications Server 2007連携<BR><br />
+・IP-PBX連携 </blockquote><br />
+と、いったところでしょうか。<br />
+これが、さらに、MS-Grooveといった他のMS-Office製品とも連携すると思われますので、コミュニケーションアプリベンダーにとっては、強力なライバルとなりそうです。<br />
+<BR><br />
+IP-PBX系の機能は、他社のものとの連携を想定しているようですね。これは、正しい戦略かと思います。米国と日本でさえ、PBXに求められる機能は大きく違うため、一社で世界を相手にするのは不可能だからです。<br />
+そのため、何社か既に提携が発表されているようです。国内では、国内トップメーカーの<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20060515/237881/">NECと提携</a>がすでに発表されています。<br />
+ちなみに、<br />
+<blockquote>そのPBXが「SIP over TCP」と「RTP over TCP」をネイティブでサポートしているのならば，Exchangeの統合メッセージング機能が使えるかもしれない</blockquote><br />
+と、TCPオンリーだそうですので、UDPなSIPサーバとは接続不能だそうです。<br />
+これも相互接続問題の最たる例の一つです。RFC的には、UDP/TCP両実装がMUSTであるにもかかわらず、国内では某社の仕様書にUDPのみと記述があるため、UDPしか実装されていないことがあります。MS社の場合は、その逆であり、まさにSIPの世界の混沌さを示す象徴的な事象になりそうですね。<br />
+もちろん、<a href="http://www.siprop.org/">SIProp</a>は、TCP/UDP変換機能を搭載する予定ですので、もしかしたら、このあたり受けるかもデスね。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/ms.html">00:09</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/ms.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/ms.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000124"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/124"
+    dc:title="標準規格準拠へのジレンマ"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000124"
+    dc:subject="SIProp"
+    dc:description="こちらで掲載中の中川氏のBlogに、SIPropの存在意義と言うべきポイントの解..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-28T00:14:16+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;28&#26085;</h2>
+
+
+<h3 id="a000124">標準規格準拠へのジレンマ</h3>
+
+<p><a href="http://blog.nikkeibp.co.jp/ne/kigyou/">こちら</a>で掲載中の中川氏のBlogに、<a href="http://www.siprop.org/">SIProp</a>の存在意義と言うべきポイントの解説が<a href="http://blog.nikkeibp.co.jp/ne/kigyou/archives/2006/06/skype_2.html">エントリー</a>されていたため、ご紹介させていただきます。</p>
+
+<p>さて、いきなり引用を。</p>
+
+<blockquote>■標準規格準拠へのジレンマ
+
+<p>当初の我々の製品は、当時（今も？）勃興していた「SIPプロトコル準拠」を謳い文句にはしていたが、仕事を続けていると、社内の限られたリソースをどう配分していいのかと悩むことが多々あった。</p>
+
+<p>＜中略＞</p>
+
+<p>Gphoneについては、途中からはビジネスユーザーメインに切り替えたものの、当初は一般コンシューマ相手のSIPソフトフォンであったことから、新機能も追加していかなければユーザーに飽きられる。しかし、追加する新機能は「SIP準拠」かどうか、そういう縛りもあった。</p>
+
+<p>つまり、新機能は自由に追加したいが、新機能が「SIP互換」を保てるのか、保てないものを追加すべきかどうか、というジレンマがあった。</blockquote></p>
+
+<p>まさに、この部分が、SIPの混沌としている部分であります。ビジネスフォン関連では、本当に、各社まちまちに実装してくれておりまして。。。(ノ_・、)シクシク<br />
+そこで、この標準を作るべく、<a href="http://www.siprop.org/">SIProp</a>プロジェクトを立ち上げているというわけであります。</p>
+
+<p><br />
+最後に、もう一点、気になる点があったので、引用いたします。</p>
+
+<blockquote>まぁ、オープンソース化か、実は今後ひっそりとSIP化するという動きがあったりすると、かなり激震が走って面白いかも、と個人的には思う。実際この2つが重なれば、VoIPクライアントのさらに多くがSkypeになるのではないかなぁ。いや、ただの当たらない勘ですが。</blockquote>
+
+<p>私のつたない知識の範囲では、プロプライエタリな通信規格で普及してるものってないかなぁというところです。<br />
+なぜ、普及していないかといえば、通信機器の場合には、いろいろなデバイスへの組み込みが必須要件となるため、一社が独占の状況で普及させるのは非常に困難だと思われるためです。<br />
+特に、このような下位レイヤーの場合、それ自体に製品を魅力的にする価値はなく、当たり前の機能となってしまうため、コスト要求が非常に強い部分となり、より一社独占を妨げる要因となっています。(本当に、どこも払ってくれないのですよ。。。ただの通信モジュールには。こちらの<a href="http://www.noritsuna.jp/archives/2006/06/wifi5.html">エントリー</a>を参照。)</p>
+
+<p>といったところで、現在のSkypeでは、微妙かなぁと言うところですね。たぶん、XMPP(Jubber)系（GoogleTalk,Gizmo)のほうが、有力でしょうね。</p>
+
+<p>ただ、指摘にあるようにSkypeがSIPをしゃべってくれれば相当面白いのですが。。。<br />
+いや、Skypeが通信規格を公開してください！<a href="http://www.siprop.org/">SIProp</a>で、Skype←→SIP変換しますので！（まぁ、これが言いたかっただけなんですが。(;^_^A アセアセ・・・）<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/post_6.html">00:14</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_6.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_6.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000128"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/128"
+    dc:title="自作ケータイ"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000128"
+    dc:subject="SIProp"
+    dc:description="噂の自作ケータイ。こちら。 Java VM（MIDP 2.0）「intent」は..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-28T00:00:21+09:00" />
+</rdf:RDF>
+-->
+
+
+
+
+<h3 id="a000128">自作ケータイ</h3>
+
+<p>噂の自作ケータイ。<a href="http://plusd.itmedia.co.jp/mobile/articles/0606/26/news031.html">こちら</a>。</p>
+
+<p>Java VM（MIDP 2.0）「intent」は、あるけど、SIPフォンが載っていいるわけではないのですよねぇ。<br />
+う〜ん、微妙だなぁ。ガジェットとしては、面白いんだけどなぁ。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/post_5.html">00:00</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_5.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_5.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000126"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/126"
+    dc:title="Next DI???"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000126"
+    dc:subject="SIProp"
+    dc:description="さきほど、アークランプのゆすけ氏と密会して参りました。 そこで、ゆすけ氏より 次..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-27T00:12:56+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;27&#26085;</h2>
+
+
+<h3 id="a000126">Next DI???</h3>
+
+<p>さきほど、<a href="http://www.arclamp.jp/">アークランプ</a>のゆすけ氏と密会して参りました。</p>
+
+<p>そこで、ゆすけ氏より</p>
+
+<blockquote>次期DIは、SOAの融合点において、バージョニング管理が必須となる</blockquote>
+
+<p>という、旨の発言がありました。</p>
+
+<p>これは、まさに、<a href="http://www.siprop.org/">SIProp</a>エンジンのゴールとしているところであります。</p>
+
+<p><a href="http://www.siprop.org/">SIProp</a>のアーキテクチャとしては、<a href="http://www.siprop.org/ja/index.php?%B3%AB%C8%AF%2F%C0%DF%B7%D7">こちら</a>のようになっております。</p>
+
+<p>最終的に、インスタンス化されるビジネスロジックに相当する部分は、「シーケンス制御/吸収部」となるのですが、SIPにおいては、UAのバージョンが変わると動作が変わることがあったり、通話機能においては差異がなかったりするため、初期状態ではどの「シーケンス制御/吸収部」を使用すべきか決定できません。<br />
+そのため、<a href="http://www.siprop.org/">SIProp</a>では、特定しなくても動作可能なように、「メッセージ変換部(JBI)」と「Router/Resolver部(スクリプト)」を設けております。<br />
+これらの動作としては、受けたメッセージ(プロトコル)を、「メッセージ変換部(JBI)」がパラレルにForkingして、「Router/Resolver部(スクリプト)」が状況に合わせて、篩い掛けをしていくという構造を取っております。<br />
+これにより、バージョンの違いや同一メッセージ(プロトコル)でも、正常に動作可能なようなアーキテクチャとなっています。</p>
+
+<p>これは、まさに、バージョンの違いによる動作を吸収するアーキテクチャであり、ゆすけ氏の指摘している次期DIのような動作となっております。</p>
+
+<p><br />
+う〜ん、話が、だんだんと大きくなってきてしまったなぁ。。。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/next_di.html">00:12</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/next_di.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/next_di.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000123"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/123"
+    dc:title="SIPropの位置付けの俯瞰"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000123"
+    dc:subject="SIProp"
+    dc:description="私なりに考えている全体像の中でのSIPropの位置付けの解説をしたいと思います。..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-26T00:00:00+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;26&#26085;</h2>
+
+
+<h3 id="a000123">SIPropの位置付けの俯瞰</h3>
+
+<p>私なりに考えている全体像の中でのSIPropの位置付けの解説をしたいと思います。<br />
+今更と言うところや説明不足も多々ありますが、私の説明用資料に近いものなので、ご容赦を。。。<br />
+そのうち、各層について、もっと掘り下げたものを書こうかと思います。</p>
+
+<p>■全体像<br />
+下記のブロック図が、私の考えている全体像となります。（ちょっと、ださい図なので、書き換え予定。）また、最後に、データの流れなどを書いたポンチ絵もありますので、そちらも会わせてみていただければと思います。<br />
+全体の要素として、「アプリケーション」「マイニング」「プラットフォーム」があり、それらが連携することにより、１つのサービスが実現されると考えています。（各要素は、状況により、要素技術へと細分化されていきます。）<br />
+この図を元に、下記に簡単に説明を加えていきます。</p>
+
+<p><a href="/images/siprop/globalimage.png"><img src="/images/siprop/globalimage.png" width="300"></a></p>
+
+<p><BR><br />
+■プラットフォーム<br />
+各デバイス間を相互に接続し、境界を排除するための世界。<br />
+<a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20060423/235999/">シームレス・コミュニケーション</a> といったあたりです。</p>
+
+<p>●アプリ層<br />
+アプリケーションを使う上で、デバイスに依存しないUIや操作性を提供する層。<br />
+この辺のイメージは、中島聡氏の<a href="http://satoshi.blogs.com/life/">ブログ</a>に的確な解説があるので、<a href="http://satoshi.blogs.com/life/2006/04/post_1.html">そちら</a>をご覧いただければと思います。<br />
+デバイスも多様化し、使用法も多様化することがすることが、考えられますので、ある程度分野別にいろいろとミドルウェアが出てくるとは思います。</p>
+
+<p>例：<a href="http://www.uievolution.com/index_ja.html">UIEvolution</a>さんのUIEngine</p>
+
+<p><br />
+●セッション層<br />
+認証やパーミッション管理、デバイス間のセッション管理を行う層。<br />
+セキュリティー機能が付加した電力網のようなものを想定してもらえればよいかと思います。<br />
+<a href="http://www.siprop.org/">SIProp</a>は、ここの標準化を目指しています。<br />
+ここについては、後ほど、詳細な解説をする予定です。</p>
+
+<p>例：NTTコミュニケーションズさんの<a href="http://www.ipv6style.jp/jp/tech/20050131/index.shtml">m2m-x</a></p>
+
+<p><br />
+●ネットワーク層<br />
+デバイス間のコネクションを確立するための層。<br />
+ここは、あまり説明は必要ないでしょう。SkypeのA2Aなどですね。</p>
+
+<p>例：<a href=" http://www.skype.co.jp/">Skyp</a>eさんのSkypeや <a href="http://www.softether.com/jp/">ソフトイーサ</a>さんのPacketiX</p>
+
+<p><br />
+<BR><br />
+■データ<br />
+Googleが目指しているとおもわれる世界。<br />
+こちら側は、あまり強い分野ではないため、まとめ切れていません。名称も適当です。(;^_^A</p>
+
+<p>●AI層<br />
+行動履歴などから「自分」の志向を判断し、適切な結果を導く層。<br />
+セマンティックされたデータと行動データから、思考して、最適解を導き出すという部分となります。</p>
+
+<p>例：ハードディスクレコーダーの自動録画機能<br />
+(まぁ、まだまだAIと呼ぶには、アレですが。。。)</p>
+
+<p><br />
+●ファインダビリティ層<br />
+入力された情報から的確な情報を探し出す層。<br />
+これは、書籍「<a href="http://www.amazon.co.jp/gp/product/4873112834/">アンビエント・ファインダビリティ</a>」より、命名しました。<br />
+必要な情報をどうやって見つけ出すかという部分となります。詳細は、該当書籍をあたってもらえればと思います。</p>
+
+<p>例：各検索エンジン</p>
+
+<p><br />
+●マイニング層<br />
+あまたの情報を収集分類する層。<br />
+セマンティックやタグ付けといった意味づけに関するものやRFIDなどの膨大なデータ、動画といったものを情報処理するかという部分となります。</p>
+
+<p>例：各検索エンジンのBot</p>
+
+<p><br />
+<BR><br />
+■アプリケーション<br />
+●エージェント<br />
+上記の層から上がってきたデータを統合し、ユーザに見せるためのUI層。<br />
+私のイメージとしては、「外部脳・・・もう一人の自分」というものになります。</p>
+
+<p>イメージ的には、<a href="http://www.praesens.co.jp/pws/">こちら</a>が究極に進化したもの。正確には、あの「何か」が出始めてきたときに、見て、「自分の分身がバーチャルな世界で勝手に動き回ったら面白いんじゃないの？」というところが、この妄想の原点になっています。</p>
+
+<p><BR><br />
+このような感じで、<a href="http://www.siprop.org/">SIProp</a>は、「プラットフォーム」の中層である「デバイスを繋げるための要素技術」であるというのが私の考えです。</p>
+
+<p><BR><br />
+最後に、この辺の話をポンチ絵にしたものを、貼り付けておきます。<br />
+2004年10月のあるデスマーチプロジェクト終了後の休暇中に暴走した状態で書いたもので、かなり恥ずかしいのですが、死蔵していても何も生み出さないので、公開してみることにします。<br />
+何かのお役に立つことを祈って。。。<br />
+<a href="/images/siprop/mousou.png"><img src="/images/siprop/mousou.png" width="300"></a></p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/siprop_1.html">00:00</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/siprop_1.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/siprop_1.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000117"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/117"
+    dc:title="基本設計"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000117"
+    dc:subject="SIProp"
+    dc:description="基本設計ですが、だいたい、イメージが出来てきたので、設計を一気に更新いたしました..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-23T00:00:00+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;23&#26085;</h2>
+
+
+<h3 id="a000117">基本設計</h3>
+
+<p>基本設計ですが、だいたい、イメージが出来てきたので、<a href="http://www.siprop.org/ja/index.php?%B3%AB%C8%AF%2F%C0%DF%B7%D7">設計</a>を一気に更新いたしました。</p>
+
+<p>とくに、<a href="http://www.siprop.org/ja/index.php?%B3%AB%C8%AF%2F%C0%DF%B7%D7%2F%BC%C2%A5%AA%A5%D6%A5%B8%A5%A7%A5%AF%A5%C8%A5%D6%A5%ED%A5%C3%A5%AF%BF%DE">実オブジェクトブロック図</a> が、よい感じに出来ており、読んでもらえればだいたいの動作がつかめるのではないかと思います。<br />
+あとは、細部を詰めていくという感じですので、詳細設計を見据えつつ、やっていこうかと思います。</p>
+
+<p><BR><br />
+つぶやき<br />
+まぁ、いろいろとつっこまれる要素はあるのですが、今のところ、無視してやっています。</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/post_2.html">00:00</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_2.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_2.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000108"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/108"
+    dc:title="要件定義〜基本設計の概要"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000108"
+    dc:subject="SIProp"
+    dc:description="SIPropの設計ページを作成しました。 今回は、下記のものについての要件定義と..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-22T00:10:08+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;22&#26085;</h2>
+
+
+<h3 id="a000108">要件定義〜基本設計の概要</h3>
+
+<p>SIPropの<a href="http://www.siprop.org/ja/index.php?%B3%AB%C8%AF%2F%C0%DF%B7%D7">設計ページ</a>を作成しました。</p>
+
+<p>今回は、下記のものについての要件定義と基本設計のキモとなりそうなところを洗い出してあります。</p>
+
+<blockquote><a href="http://www.siprop.org/ja/index.php?%B3%AB%C8%AF%2F%C0%DF%B7%D7%2F%C0%A9%B8%E6%A5%E2%A5%B8%A5%E5%A1%BC%A5%EB%2F%A5%E1%A5%C3%A5%BB%A1%BC%A5%B8%CA%D1%B4%B9%C9%F4">・メッセージ部</a><BR>
+<a href="http://www.siprop.org/ja/index.php?%B3%AB%C8%AF%2F%C0%DF%B7%D7%2F%C0%A9%B8%E6%A5%E2%A5%B8%A5%E5%A1%BC%A5%EB%2F%A5%B7%A1%BC%A5%B1%A5%F3%A5%B9%C0%A9%B8%E6%2F%B5%DB%BC%FD%C9%F4">・シーケンス部</a><BR>
+<a href="http://www.siprop.org/ja/index.php?%B3%AB%C8%AF%2F%C0%DF%B7%D7%2F%A5%B3%A5%F3%A5%C8%A5%ED%A1%BC%A5%E9%C9%F4%2F%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8">・スクリプト部</a><BR>
+<a href="http://www.siprop.org/ja/index.php?%B3%AB%C8%AF%2F%C0%DF%B7%D7%2F%A5%B3%A5%F3%A5%C8%A5%ED%A1%BC%A5%E9%C9%F4%2F%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8%2F%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8%CD%D1%B4%D8%BF%F4">・スクリプト用関数</a><BR></blockquote>
+
+<p>という感じですが、たぶん、見ても良くわからないかと思います。次回は、各部分のアーキテクチャをもう少し具体的に設計しようかと思います。この辺を書けば、だんだんと何が言いたいのか見えてくるはずですので。<br />
+その次は、詳細設計と称して、簡単なクラス図を書いていきたいと思います。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/post.html">00:10</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/post.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/post.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000107"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/107"
+    dc:title="IPA未踏ソフトウェア創造事業採択！！！"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000107"
+    dc:subject="SIProp"
+    dc:description="しばらく、地下に潜って活動しておりましたが、その結果が出ましたので、ご報告＆リニ..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-20T16:00:59+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;20&#26085;</h2>
+
+
+<h3 id="a000107">IPA未踏ソフトウェア創造事業採択！！！</h3>
+
+<p>しばらく、地下に潜って活動しておりましたが、その結果が出ましたので、ご報告＆リニューアルです！</p>
+
+<blockquote>2006年上期 <a href="http://www.ipa.go.jp/jinzai/esp/index.html">IPA未踏ソフトウェア創造事業</a>に、採択されました。採択内容は、<a href="http://www.ipa.go.jp/jinzai/esp/2006mito1/koubokekka.html#Namiki">こちら(１ 今村　謙之)</a>。</blockquote>
+
+<p>採択された物は、こちらの「<a href="http://www.siprop.org/">SIProp</a>」プロジェクトとなります。詳細は、リンク先のページをご覧ください。<br />
+簡単に説明しますと、SIP(IP電話)の相互接続問題を解決するためのミドルウェアということになります。</p>
+
+<p>しばらくは、これを中心の更新していく予定ですので、SIPやP2Pがらみに興味のある方はよろしくお願いいたします。<br />
+</p>
+
+<p><BR><br />
+ついしん<br />
+SIProp、ついに、Google先生で<a href="http://www.google.co.jp/search?q=SIProp&hl=ja&lr=lang_ja&sa=X&oi=lrtip8">ひっかかる</a>ようになった。しばらく前は、全然、ひっかからなかったのですが。。。<br />
+<BR><br />
+ついしん＾２<br />
+日経にもリリースが出ておりました。<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20060620/241301/">こちら</a>。<br />
+</p>
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/ipa.html">16:00</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/ipa.html#comments">コメント (2)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/ipa.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000109"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/109"
+    dc:title="キックオフ"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000109"
+    dc:subject="SIProp"
+    dc:description="2006/07/15(土) 9:00より、「2006年度上期　黒川・千葉・並木・..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-19T16:32:46+09:00" />
+</rdf:RDF>
+-->
+
+
+<h2>2006&#24180;06&#26376;19&#26085;</h2>
+
+
+<h3 id="a000109">キックオフ</h3>
+
+<p>2006/07/15(土) 9:00より、「2006年度上期　黒川・千葉・並木・斎藤４PM合同キックオフ」が開催されます。簡単に言えば、未踏事業にてどのようなことをやるかの概要説明会です。(たぶん)</p>
+
+<p>誰でも参加可能ですので、ご興味のある方は是非ともご参加ください。キックオフ終了後には、懇親会(有料)も企画されているようです。</p>
+
+<p>参加概要は、<a href="http://mitou.mysite.ddo.jp/modules/eguide/event.php?eid=28">こちら</a>。<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/post_1.html">16:32</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_1.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/post_1.html#trackbacks">トラックバック</a>
+
+</p>
+
+<!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000113"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-tb.cgi/113"
+    dc:title="G-LEX"
+    dc:identifier="http://www.noritsuna.jp/archives/cat26/siprop/index.html#000113"
+    dc:subject="SIProp"
+    dc:description="こちらのG-LEXですが、まさに、SIPropに相応しいサービスですね。ニュース..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-19T10:02:56+09:00" />
+</rdf:RDF>
+-->
+
+
+
+
+<h3 id="a000113">G-LEX</h3>
+
+<p>こちらの<a href="https://www.g-lex.net/">G-LEX</a>ですが、まさに、<a href="http://www.siprop.org/">SIProp</a>に相応しいサービスですね。ニュースリリースは、<a href="http://www.ufnet.jp/co/press_20060615.pdf">こちら</a>。</p>
+
+<p>使用するIP電話は選択自由と言うことですが、SIPropでも訴えているようにそう簡単に相互接続はうまくいかないのが、現状です。<br />
+そこで、SIPropでG-LEXモジュール提供すれば、様々なIP電話をG-LEXにて使用できるようになるかもしれません。これは、なんとしてでも、G-LEXモジュールを作成せねば！<br />
+</p>
+
+
+
+<p class="posted">
+投稿者 noritsuna : <a href="http://www.noritsuna.jp/archives/2006/06/glex.html">10:02</a>
+| <a href="http://www.noritsuna.jp/archives/2006/06/glex.html#comments">コメント (0)</a>
+
+| <a href="http://www.noritsuna.jp/archives/2006/06/glex.html#trackbacks">トラックバック</a>
+
+</p>
+
+
+
+</div>
+</div>
+
+</body>
+</html>

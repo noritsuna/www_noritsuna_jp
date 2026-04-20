@@ -1,0 +1,544 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="description" content="まずは、どんなモンか感じをつかむため、プログラミング言語でいうところの「Hell..." />
+    <meta name="generator" content="http://www.sixapart.jp/movabletype/" />
+    <link rev="made" href="mailto:your@email" title="E-mail address" />
+    <link rel="home" href="http://www.noritsuna.jp/" title="なんとなく実験 with SIProp開発記" />
+    <link rel="index" title="なんとなく実験 with SIProp開発記archives" href="http://www.noritsuna.jp/archives.html" />
+    <link rel="prev" href="http://www.noritsuna.jp/archives/2006/08/kddi_ngn2.html" title="江��教授と冲中KDDI 執行役員 のNGN会談その2" />
+    <link rel="next" href="http://www.noritsuna.jp/archives/2006/08/p2p_2.html" title="漢は皆、、、もとい、P2P納涼会に参加してきました。" />
+    <link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.noritsuna.jp/index.xml" /> 
+    <script type="text/javascript" src="http://www.noritsuna.jp/mt-site.js"></script>
+    <title>なんとなく実験 with SIProp開発記 | SPARTAN-3E開発最初の一歩</title>
+
+    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2006/08/spartan3e_4.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/208"
+    dc:title="SPARTAN-3E開発最初の一歩"
+    dc:identifier="http://www.noritsuna.jp/archives/2006/08/spartan3e_4.html"
+    dc:subject="FPGA"
+    dc:description="まずは、どんなモンか感じをつかむため、プログラミング言語でいうところの「Hell..."
+    dc:creator="noritsuna"
+    dc:date="2006-08-26T00:10:08+09:00" />
+</rdf:RDF>
+-->
+
+
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2006/08/spartan3e_4.html">
+<dc:title>SPARTAN-3E開発最初の一歩</dc:title>
+<dc:description>まずは、どんなモンか感じをつかむため、プログラミング言語でいうところの「Hell...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2006-08-26T00:10:08+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+  </head>
+  <body class="layout-two-column-right" onload="individualArchivesOnLoad(commenter_name)">
+
+    <!-- ブログ全体 -->
+    <div id="main-container">
+
+      <!-- ブログタイトル -->
+      <div id="banner">
+        <h1 id="banner-header"><a href="http://www.noritsuna.jp/" accesskey="1" title="なんとなく実験 with SIProp開発記">なんとなく実験 with SIProp開発記</a></h1>
+        <h2 id="banner-description">SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</h2>
+      </div><!-- banner_end -->
+
+      <!-- 左カラム -->
+      <div id="left-menu">
+        <div  class="left-content">
+
+          <!-- サイト内検索 -->
+          <div class="search-form">
+            <h3>Search</h3>
+            <form method="get" action="http://www.noritsuna.jp/cgi-bin/mt/mt-search.cgi">
+              <input type="hidden" name="IncludeBlogs" value="1" />
+              <label for="search" accesskey="4">サイト内検索</label><br />
+              <input id="search" tabindex="5"  accesskey="t"  value="search this blog" name="search" onblur="if(this.value==''){this.style.color=''; this.form.reset()}" onfocus="this.value = ''; this.style.color = '#000000';" />
+              <input type="submit" tabindex="6" accesskey="s" value="submit" class="searchsubmit" />
+            </form>
+          </div><!-- search-form_end -->
+
+                    <!-- Categoryアーカイブ -->
+          <div class="category-archives">
+            <h3>Category Archives</h3>
+	    <div class="category-label">
+              <ul>
+                <li><a href="http://www.noritsuna.jp/archives/gae/" title="">GAE</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/news/" title="">NEWS</a></li>
+              
+                <li class="module-list-item">OS<ul>
+                <li><a href="http://www.noritsuna.jp/archives/os/linux/" title="">Linux</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/windows/" title="">Windows</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/auos/" title="">仮想OS</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/siprop/" title="">SIProp</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/stm/" title="">STM</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/iphone/" title="">iPhone</a></li>
+              </ul></li>
+              
+                <li class="module-list-item">開発<ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ar/" title="">AR</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/amazonec2/" title="">AmazonEC2</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/application/" title="">Application</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/chromium/" title="">Chromium</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/" title="">HardWare</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/fpga/" title="">FPGA</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/gpgpu/" title="">GPGPU</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/java/" title="">Java</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/cat34/" title="">無線</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/nwng/" title="">NwNG</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/p2p/" title="">P2P</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/" title="">セマンティック</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/ai/" title="">AI</a></li>
+              </ul></li>
+              </ul></li>
+              </ul>
+            </div><!-- category-label_end -->
+          </div><!-- category-archives_end -->
+          
+
+                    <!-- Monthlyアーカイブ -->
+          <div class="monthly-archives">
+            <h3><a href="http://www.noritsuna.jp/archives.html">Archives</a></h3>
+            <ul class="module-list">
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2011/01/">2011&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/08/">2010&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/07/">2010&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/06/">2010&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/05/">2010&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/04/">2010&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/03/">2010&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/02/">2010&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/01/">2010&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/12/">2009&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/11/">2009&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/10/">2009&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/09/">2009&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/08/">2009&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/07/">2009&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/06/">2009&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/05/">2009&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/04/">2009&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/03/">2009&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/02/">2009&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/01/">2009&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/12/">2008&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/11/">2008&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/10/">2008&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/09/">2008&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/08/">2008&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/07/">2008&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/06/">2008&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/05/">2008&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/04/">2008&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/03/">2008&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/02/">2008&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/01/">2008&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/12/">2007&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/11/">2007&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/10/">2007&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/09/">2007&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/08/">2007&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/07/">2007&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/06/">2007&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/05/">2007&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/04/">2007&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/03/">2007&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/02/">2007&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/01/">2007&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/12/">2006&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/11/">2006&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/10/">2006&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/09/">2006&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/08/">2006&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/07/">2006&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/06/">2006&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/02/">2006&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/09/">2005&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/07/">2005&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/06/">2005&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/05/">2005&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/04/">2005&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/03/">2005&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/02/">2005&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/01/">2005&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2004/12/">2004&#24180;12&#26376;</a></li>
+            </ul>
+          </div><!-- monthly-archives_end -->
+          
+
+        </div><!-- left-content_end -->
+      </div><!-- left-menu_end -->
+
+      <!-- 中央カラム -->
+      <div id="main">
+        <div  class="content">
+
+          <p class="navi-link"><a href="http://www.noritsuna.jp/archives/2006/08/kddi_ngn2.html">&laquo; 江��教授と冲中KDDI 執行役員 のNGN会談その2</a> | <a href="http://www.noritsuna.jp/">main</a> | <a href="http://www.noritsuna.jp/archives/2006/08/p2p_2.html">漢は皆、、、もとい、P2P納涼会に参加してきました。 &raquo;</a></p>
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;08&#26376;26&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 class="entry-header">SPARTAN-3E開発最初の一歩</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>まずは、どんなモンか感じをつかむため、プログラミング言語でいうところの「Hello World」を表示するプログラムを作成したいと思います。</p>
+
+<p>で、調査したところ、FPGAでやる場合は、「LCDコントローラ」を書く必要があるようで、「文字の表示」の難度は高いようです。<br />
+そこで、「LEDを光らせる」というプログラムを書いてみようかと思います。これが、一番の入門プログラムらしいので。<br />
+<font size="-2">※下記は、「<a href="http://www.amazon.co.jp/gp/product/4774128562/">組込みプレス Vol.4</a>」の「特集2　FPGA基礎」という記事を参考にさせていただきました。</font></p>
+
+<p><br />
+<font size="+1"><strong>1，新規プロジェクト作成</strong></font><br />
+まず、ISEを起動してください。<br />
+そして、起動後、[File] → [New Project]  とクリックします。</p>
+
+<p><strong>1-1，[Create New Project]ウィンドウ</strong><br />
+下記の値を好きなように入力してください。</p>
+
+<blockquote>Project Name<BR>
+Project Location<BR>
+Top-Level Source Type:HDL</blockquote>
+
+<p><br />
+<strong>1-2，[Device Properties]ウィンドウ</strong><br />
+デバイスの設定情報を設定します。Spartan-3Eでは、下記のような値を入力します。</p>
+
+<blockquote>Product Category:ALL<BR>
+Family:spartan3e<BR>
+Device:xc3s500e<BR>
+Package:fg320<BR>
+Speed:-4<BR>
+Top-Level Source Type:HDL<BR>
+Synthesis Tool:XST(VHDL/Verilog)<BR>
+Simulator:ISE Simulator(VHDL/Verilog)<BR>
+Enable Enhanced Design Summary:チェック</blockquote>
+
+<p><strong>1-3，[Select Source Type]ウィンドウ</strong><br />
+ソースファイルを作成します。ファイル名は、お好きなもので構いません。</p>
+
+<blockquote>Verilog Moduleを選択<BR>
+File name:sw_led</blockquote>
+
+<p><strong>1-4，[Define Module]ウィンドウ</strong><br />
+ポートの入出力設定をします。下記のようにしてください。</p>
+
+<blockquote>・一行目<BR>
+Port Name:led <BR>
+Direction:output<BR>
+・二行目<BR>
+Port Name:sw<BR>
+Direction:input</blockquote>
+
+<p><br />
+<strong>1-5，[Add Existing Sources]ウィンドウ</strong><br />
+追加ソースがあれば、指定しますが、今回はナシでOKです。</p>
+
+<p><br />
+<strong>1-6，終了</strong><br />
+[Finish]をクリックします。<br />
+その後、[Adding Source Files]ウィンドウが出現しますが、[OK]をクリックします。</p>
+
+<p>以上で、新規プロジェクト作成が終了です。<br />
+つづいて、プログラミングを行います。</p>
+
+<p><br />
+<font size="+1"><strong>2，プログラム作成</strong></font><br />
+左上の[Sources]ウィンドウにある、上記で作成したファイルをダブルクリックします。<br />
+そうすると、ソースファイルが変更可能状態となります。<br />
+コメントを抜いた4行目に、下記コードを記述します。swの状態をled1の状態にするという記述です。</p>
+
+<blockquote>assign led1 = sw;</blockquote>
+
+<p>以上で、プログラミング終了です。(;^_^A アセアセ・・・<br />
+つづいて、配線を行います。どうやら、FPGAでのキモとなる部分のようです。</p>
+
+<p><br />
+<font size="+1"><strong>3，配線ファイルの作成</strong></font><br />
+「1-4，[Define Module]」で、指定したものを具体的に配置します。</p>
+
+<p><strong>3-1，[Select Source Type]ウィンドウ</strong><br />
+左上のWindow[Sources] にある、上記で作成したファイル上で、右クリック　→ [New source]をクリックします。<br />
+[Select Source Type]ウィンドウが、出現しますので、下記のようにします。</p>
+
+<blockquote>Implementation Constraints Fileを選択<BR>
+File name:sw_led</blockquote>
+
+<p><br />
+<strong>3-2，[Associate Source]ウィンドウ</strong><br />
+右クリックで選択したファイルがあることを確認して、[Finish]をクリックします。<br />
+そうすると、[Sources]ウィンドウ に、ucfファイルが追加されます。</p>
+
+<p><br />
+<strong>3-3，[Xilinx PACE]ウィンドウ</strong><br />
+上記で作成したucfファイルを選択すると、左下の[Processes]ウィンドウの内容が変わります。<br />
+その中の [User Constraints]  → [Assign Package Pins]をダブルクリックします。</p>
+
+<p>そうすると、[Xilinx PACE]という新しいウィンドウが開らきます。<br />
+これは、I/O(ピン配置)を設定できるツールとなります。</p>
+
+<p><strong>3-3-1，[Design Object List]ウィンドウ</strong><br />
+[Design Object List]ウィンドウに、「1-4，[[Define Module]」で指定したデバイスがあるはずです。<br />
+そこの[Loc] に、下記のように入力します。</p>
+
+<blockquote>led1 = F12<BR>
+sw = L13</blockquote>
+
+<p><br />
+<strong>3-3-2，[Save]する</strong><br />
+[File] → [Save]で、セーブを行います。<br />
+このときに、[Bus Delimiter]ウィンドウが出現しますので、下記の設定で[Finish]をクリックします。</p>
+
+<blockquote>[Symplify Verilog Default:[]]</blockquote>
+
+<p>以上で、[Xilinx PACE]ウィンドウを終了します。</p>
+
+<p><br />
+<strong>3-4，[Processes]ウィンドウ</strong><br />
+[Sources]ウィンドウの[sw_led.v]ファイルをクリックします。<br />
+そうすると、[Processes]ウィンドウの内容が変更され、[Implement Design] に、オレンジ色の「？」がついているはずです。<br />
+※よくわかりませんが、設定が反映されないことがあるようです。そのときは、ISEを再起動してみてください。</p>
+
+<p>このオレンジ色の「？」をダブルクリックします。<br />
+そうすると、配線が自動で作成されます。</p>
+
+<p></p>
+
+<p><font size="+1"><strong>4，回路作成</strong></font><br />
+FPGAへ送るための配線データファイル(ビットファイル)を作成します。</p>
+
+<p><strong>4-1，[Generate Programming File]ウィンドウ</strong><br />
+[Processes]ウィンドウの[Generate Programming File]  → 右クリック → [Properties]をクリックします。<br />
+[Process Properties] ウィンドウが出現しますので、下記のようにし、[OK]をクリックします。</p>
+
+<blockquote>[Readback Oprions]内の<BR>
+[Create ReadBack Data Files] チェック<BR>
+[Create Mask File] チェック</blockquote>
+
+<p><br />
+<strong>4-2，データ生成</strong><br />
+[Processes]ウィンドウの[Generate Programming File] を、ダブルクリックします。</p>
+
+<p>以上で、論理合成などが生成されます。</p>
+
+<p><br />
+<strong>4-3，ボード接続</strong><br />
+ここまで終了したら、ボードを接続してください。これ以降は、ボードがないと動作しません。</p>
+
+<p><br />
+<strong>4-4，[iMPACT]ウィンドウ</strong><br />
+[Generate Programming File] → [Configure Device (iMPACT)] を、ダブルクリックします。</p>
+
+<p>[iMPACT]ウィンドウが出現しますので、下記を選択して、[Finish]をクリックします。</p>
+
+<blockquote>[Configure devices using Boundary-Scan]<BR>
+Automatically connect to a cable and idenify Boundary-Scan chain</blockquote>
+
+<p>以上で、コンパイルが始まりますが、数十分かかるので、覚悟の上でクリックしてください。</p>
+
+<p><br />
+<strong>4-5，[Assign New Configuration File]ウィンドウ</strong><br />
+「4-4」が終了すると、[Assign New Configuration File]ウィンドウが出現しますので、[sw_led.bit]を選択して、[Open]をクリックします。<br />
+その後、このウィンドウを終了します。</p>
+
+<p>※「4-4」操作をしてから、この画面が出るまで、数十分くらいかかります。</p>
+
+<p><br />
+<strong>4-6，[Programming Properties]ウィンドウ</strong><br />
+[Boundary Scan]ウィンドウの[xc3s500e]を右クリックして、[Programming Properties]をクリックします。<br />
+[Programming Properties]ウィンドウが出現したら、何も変更せずに、[OK]をクリックします。</p>
+
+<p>[Boundary Scan]ウィンドウに、「Program Successed」と表示されたら成功です。</p>
+
+<p><br />
+以上で、データがボードに転送されます。<br />
+あとは、ボード上のsw0スイッチを操作するとLEDが点灯/消灯します。</p>
+
+<p><br />
+以上、終了です。</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li>by noritsuna</li>
+                  <li>at 00:10</li>
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+
+          
+
+          
+
+        </div><!-- content_end -->
+      </div><!-- main_end -->
+
+      <!--右メニュー-->
+      <div id="right-menu">
+        <div  class="right-content">
+
+          <!-- 最近のエントリー -->
+          <!-- 最近のコメント -->
+          <!-- 最近のトラックバック -->
+
+          <!-- リンク -->
+          <div class="site-link">
+          <h3>Links</h3>
+            <ul><li><a href="http://www.siprop.org/">SIProp Project</a></li></ul>
+          </div><!-- site-link_end -->
+
+                    <!-- クリエイティブコモンズライセンス -->
+          <div class="cclicense">
+            <a href="http://creativecommons.org/licenses/by-nc/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />This weblog is licensed under a <a href="http://creativecommons.org/licenses/by-nc/1.0/">Creative Commons License</a>.
+          </div><!-- cclicense_end -->
+          
+
+          <!-- Powered -->
+          <div class="powered">
+            <ul>
+              <li>Powered by <a href="http://www.movabletype.jp">Movable Type 3.33-ja</a></li>
+              <li>Template by <a href="http://drblog.jp/"><img src="http://drblog.jp/info/img/drblog.gif" alt="Dr.Blog" width="128" height="22" /></a></li>
+            </ul>
+          </div><!-- Powered_end -->
+
+        </div><!-- right-content_end -->
+      </div><!-- right-menu_end -->
+
+      <div id="footer">
+        <ul class="syndicate">
+          <li><a href="http://www.noritsuna.jp/index.xml" title="なんとなく実験 with SIProp開発記 RSS Feed (XML)">RSS Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/atom.xml" title="なんとなく実験 with SIProp開発記 Atom Feed (XML)">Atom Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記">Archives</a></li>
+          <li><a href="#banner">Page Top</a></li>
+        </ul>
+      </div><!-- footer_end -->
+
+    </div><!-- main-container_end -->
+
+  </body>
+</html>

@@ -1,0 +1,1164 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="description" content="I implemented NyARToolkit for Android to..." />
+    <meta name="generator" content="http://www.sixapart.jp/movabletype/" />
+    <link rev="made" href="mailto:your@email" title="E-mail address" />
+    <link rel="home" href="http://www.noritsuna.jp/" title="なんとなく実験 with SIProp開発記" />
+    <link rel="index" title="なんとなく実験 with SIProp開発記archives" href="http://www.noritsuna.jp/archives.html" />
+    <link rel="prev" href="http://www.noritsuna.jp/archives/2008/11/android_on_ubun.html" title="Androidコンパイル環境 on Ubuntu" />
+    <link rel="next" href="http://www.noritsuna.jp/archives/2008/11/p2p_sip_12.html" title="第十一回P2P SIP勉強会の告知" />
+    <link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.noritsuna.jp/index.xml" /> 
+    <script type="text/javascript" src="http://www.noritsuna.jp/mt-site.js"></script>
+    <title>なんとなく実験 with SIProp開発記 | NyARToolkit for Android & G1</title>
+
+    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/2008/11/nyartoolkitandroid.html"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/660"
+    dc:title="NyARToolkit for Android &amp; G1"
+    dc:identifier="http://www.noritsuna.jp/archives/2008/11/nyartoolkitandroid.html"
+    dc:subject="Android"
+    dc:description="I implemented NyARToolkit for Android to..."
+    dc:creator="noritsuna"
+    dc:date="2008-11-13T13:54:07+09:00" />
+</rdf:RDF>
+-->
+
+
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/archives/2008/11/nyartoolkitandroid.html">
+<dc:title>NyARToolkit for Android &amp; G1</dc:title>
+<dc:description>I implemented NyARToolkit for Android to...</dc:description>
+<dc:creator>noritsuna</dc:creator>
+<dc:date>2008-11-13T13:54:07+09:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+  </head>
+  <body class="layout-two-column-right" onload="individualArchivesOnLoad(commenter_name)">
+
+    <!-- ブログ全体 -->
+    <div id="main-container">
+
+      <!-- ブログタイトル -->
+      <div id="banner">
+        <h1 id="banner-header"><a href="http://www.noritsuna.jp/" accesskey="1" title="なんとなく実験 with SIProp開発記">なんとなく実験 with SIProp開発記</a></h1>
+        <h2 id="banner-description">SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</h2>
+      </div><!-- banner_end -->
+
+      <!-- 左カラム -->
+      <div id="left-menu">
+        <div  class="left-content">
+
+          <!-- サイト内検索 -->
+          <div class="search-form">
+            <h3>Search</h3>
+            <form method="get" action="http://www.noritsuna.jp/cgi-bin/mt/mt-search.cgi">
+              <input type="hidden" name="IncludeBlogs" value="1" />
+              <label for="search" accesskey="4">サイト内検索</label><br />
+              <input id="search" tabindex="5"  accesskey="t"  value="search this blog" name="search" onblur="if(this.value==''){this.style.color=''; this.form.reset()}" onfocus="this.value = ''; this.style.color = '#000000';" />
+              <input type="submit" tabindex="6" accesskey="s" value="submit" class="searchsubmit" />
+            </form>
+          </div><!-- search-form_end -->
+
+                    <!-- Categoryアーカイブ -->
+          <div class="category-archives">
+            <h3>Category Archives</h3>
+	    <div class="category-label">
+              <ul>
+                <li><a href="http://www.noritsuna.jp/archives/gae/" title="">GAE</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/news/" title="">NEWS</a></li>
+              
+                <li class="module-list-item">OS<ul>
+                <li><a href="http://www.noritsuna.jp/archives/os/linux/" title="">Linux</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/windows/" title="">Windows</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/auos/" title="">仮想OS</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/siprop/" title="">SIProp</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/stm/" title="">STM</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/iphone/" title="">iPhone</a></li>
+              </ul></li>
+              
+                <li class="module-list-item">開発<ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ar/" title="">AR</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/amazonec2/" title="">AmazonEC2</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/application/" title="">Application</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/chromium/" title="">Chromium</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/" title="">HardWare</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/fpga/" title="">FPGA</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/gpgpu/" title="">GPGPU</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/java/" title="">Java</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/cat34/" title="">無線</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/nwng/" title="">NwNG</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/p2p/" title="">P2P</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/" title="">セマンティック</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/ai/" title="">AI</a></li>
+              </ul></li>
+              </ul></li>
+              </ul>
+            </div><!-- category-label_end -->
+          </div><!-- category-archives_end -->
+          
+
+                    <!-- Monthlyアーカイブ -->
+          <div class="monthly-archives">
+            <h3><a href="http://www.noritsuna.jp/archives.html">Archives</a></h3>
+            <ul class="module-list">
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2011/01/">2011&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/08/">2010&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/07/">2010&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/06/">2010&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/05/">2010&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/04/">2010&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/03/">2010&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/02/">2010&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/01/">2010&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/12/">2009&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/11/">2009&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/10/">2009&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/09/">2009&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/08/">2009&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/07/">2009&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/06/">2009&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/05/">2009&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/04/">2009&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/03/">2009&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/02/">2009&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/01/">2009&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/12/">2008&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/11/">2008&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/10/">2008&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/09/">2008&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/08/">2008&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/07/">2008&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/06/">2008&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/05/">2008&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/04/">2008&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/03/">2008&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/02/">2008&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/01/">2008&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/12/">2007&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/11/">2007&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/10/">2007&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/09/">2007&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/08/">2007&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/07/">2007&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/06/">2007&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/05/">2007&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/04/">2007&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/03/">2007&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/02/">2007&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/01/">2007&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/12/">2006&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/11/">2006&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/10/">2006&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/09/">2006&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/08/">2006&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/07/">2006&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/06/">2006&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/02/">2006&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/09/">2005&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/07/">2005&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/06/">2005&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/05/">2005&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/04/">2005&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/03/">2005&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/02/">2005&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/01/">2005&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2004/12/">2004&#24180;12&#26376;</a></li>
+            </ul>
+          </div><!-- monthly-archives_end -->
+          
+
+        </div><!-- left-content_end -->
+      </div><!-- left-menu_end -->
+
+      <!-- 中央カラム -->
+      <div id="main">
+        <div  class="content">
+
+          <p class="navi-link"><a href="http://www.noritsuna.jp/archives/2008/11/android_on_ubun.html">&laquo; Androidコンパイル環境 on Ubuntu</a> | <a href="http://www.noritsuna.jp/">main</a> | <a href="http://www.noritsuna.jp/archives/2008/11/p2p_sip_12.html">第十一回P2P SIP勉強会の告知 &raquo;</a></p>
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2008&#24180;11&#26376;13&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 class="entry-header">NyARToolkit for Android & G1</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>I implemented <a href="http://sourceforge.jp/projects/nyartoolkit/">NyARToolkit for Android</a> to G1.</p>
+
+<p>*Usage<br />
+1, Please install NyARToolkit for Android & G1 from Android Market(Applications: Software libraries) or ADB install NyARToolkitAndroid.apk.<br />
+2, Please print <a href="http://www.noritsuna.jp/download/marker.jpg">marker.jpg</a> file.<br />
+3, Please start NyARToolkit for Android & G1.<br />
+4, Please preview <a href="http://www.noritsuna.jp/download/marker.jpg">marker.jpg</a> with a camera.<br />
+5, A Cube object appears on <a href="http://www.noritsuna.jp/download/marker.jpg">marker.jpg</a>. <br />
+ </p>
+
+<p>*Source Download<br />
+ - <a href="http://www.noritsuna.jp/download/NyARToolkitAndroid-1.0.1.zip">Eclipse Project with Source Code</a><br />
+ - <a href="http://www.noritsuna.jp/download/NyARToolkitAndroid.apk">Apk package</a><br />
+ - <a href="http://www.noritsuna.jp/download/marker.jpg">marker.jpg</a><br />
+ - <a href="http://www.noritsuna.jp/download/NyARToolkitAndroid_socket-1.0.0.zip">Socket Version</a><br />
+ --It is not a Camera device but a version which acquires a picture by Socket as before.</p>
+
+<p><br />
+*Thnaks<br />
+ - <a href="http://sourceforge.jp/projects/nyartoolkit/">NyARToolkit</a> Project<br />
+ - <a href="http://www.cave.co.jp/">CAVE CO., LTD. </a><br />
+ - <a href="http://www.android-group.jp/">Japan Android Group</a><br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              
+
+              <!-- エントリー・タグ -->
+              
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li>by noritsuna</li>
+                  <li>at 13:54</li>
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+
+          
+
+                    <!-- コメント情報 -->
+          <div class="comments">
+            <h4>comments</h4>
+            <div id="comments" class="comments-body">
+                            <p>実機にインストールしましたが、<br />
+マーカーをうまく認識してくれません。<br />
+何か方法がありますか？</p>
+              <ul class="comments-info">
+                <li> moge</li>
+                <li>2009&#24180;06&#26376;23&#26085; 17:19</li>
+              </ul>
+                            <p>mogeさん</p>
+
+<p>注意点は、2点あります。</p>
+
+<p>１，マーカーがよく使われる「Hiro」でありません。<br />
+日本Androidの会っぽく「JAG」としてあります。</p>
+
+<p>２，G2(HT-03AやGDDフォン)では、未テストです。すみません。<br />
+余裕が出来たときに見てみますが、確か動いていた気がします・・・<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2009&#24180;06&#26376;23&#26085; 20:30</li>
+              </ul>
+                            <p>うまく動きました。<br />
+向きがあるんですね。<br />
+印刷したマーカーだとうまくいかず、<br />
+ディスプレイのマーカーだとうまくいきました。</p>
+              <ul class="comments-info">
+                <li> moge</li>
+                <li>2009&#24180;07&#26376;01&#26085; 21:09</li>
+              </ul>
+                            <p>コメントを入力してください<br />
+I am the new in endroid, i am graduate student , i want to make a final project using this technology.</p>
+
+<p>Could you prodes the steps , how to install this toolkit using Ecllipse plugin with google Android (ADT) plug in.</p>
+
+<p>It helps me a lot.</p>
+              <ul class="comments-info">
+                <li> Purvik</li>
+                <li>2009&#24180;11&#26376;08&#26085; 16:24</li>
+              </ul>
+                            <p>Hi, Purvik.</p>
+
+<p>I made SDKr3 version newly. Please use this.</p>
+
+<p></p>
+
+<p>1, Please install ADT with SDK Platform Android 1.1, API2, revision 1.</p>
+
+<p>2, Please download new version sorce code.<br />
+http://www.noritsuna.jp/download/NyARToolkitAndroid-1.0.1-forSDKr3.zip</p>
+
+<p>3, Import NyARToolkitAndroid project into Eclipse workspace.</p>
+
+<p>3,1, Selcet [File] - [Import]<br />
+3,2, Choice [General] - [Existing Projects into Workspace]<br />
+3,3, Imput  [Select root directory] into NyARToolkitAndroid project directory.<br />
+3,4, Click Finish.<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2009&#24180;11&#26376;08&#26085; 18:10</li>
+              </ul>
+                            <p>Hi noritsuna</p>
+
+<p>I've done everything following you but I've got errors in NyARToolkitAndroidActivity.java about onclick,surfacecreated,surfacechanged,surfacedestroyed method<br />
+And the console displays</p>
+
+<p>[2009-11-28 19:35:47 - NyARToolkitAndroidActivity]R.java was modified manually! Reverting to generated version!<br />
+[2009-11-28 19:44:39 - NyARToolkitAndroid]R.java was modified manually! Reverting to generated version!</p>
+
+<p>What should I do next.</p>
+
+<p>Thank you very much</p>
+              <ul class="comments-info">
+                <li> bluz</li>
+                <li>2009&#24180;11&#26376;28&#26085; 21:52</li>
+              </ul>
+                            <p>Hi, bluz</p>
+
+<p>Are you using SDKr3 version NyARToolkitAndroid?</p>
+
+<p>Download<br />
+http://www.noritsuna.jp/download/NyARToolkitAndroid-1.0.1-forSDKr3.zip<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2009&#24180;11&#26376;29&#26085; 18:08</li>
+              </ul>
+                            <p>Hi, All</p>
+
+<p>Sorry!!!</p>
+
+<p>NyARToolkitAndroid-1.0.1-forSDKr3.zip is old version workspace.</p>
+
+<p>I create newer version workspace.<br />
+Please download.<br />
+http://www.noritsuna.jp/download/NyARToolkitAndroid-2.0.0-forSDKr3.zip<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2009&#24180;12&#26376;08&#26085; 21:29</li>
+              </ul>
+                            <p>Sorry, This server clashed & lose comment data.<br />
+I repair by my mail.</p>
+
+<p><br />
+Name: dan<br />
+Date: 1/7/2010 18:28<br />
+Comments:<br />
+Hi ,</p>
+
+<p>Could you please tell me if I can use the code on Android SDK version 1.<br />
+5 or on SDK version 2.0.</p>
+
+<p>When i tried running the code you have shared on SDk version 1.5 the cod<br />
+e crashed on the first call to the core ART at arToolkit = new ARToolkitD<br />
+rawer(camePara, patt, mRenderer);</p>
+
+<p>I have imported both the projects that you have shared and ran it on G1<br />
+phone.</p>
+
+<p>Thanks for the help.</p>
+
+<p></p>
+
+<p>Name: kiki<br />
+Date: 1/8/2010 4:21<br />
+Comments:</p>
+
+<p>I try to run the last version. Why it is just a black screen when I run<br />
+the program on G1 or emulator successfully? Is the program for using the<br />
+camera in G1 or just for using a web camera? Looking forward to your repl<br />
+y! Thank you.</p>
+
+<p></p>
+
+<p>Name: noritsuna<br />
+Data: 1/10/2010 0:00<br />
+[This comment is lost]</p>
+
+<p>New version release.<br />
+http://www.noritsuna.jp/download/NyARToolkitAndroid-2.0.1-forSDKr3.zip</p>
+
+<p><br />
+Name: kiki<br />
+Data: 1/12/2010 7:27<br />
+Comments:</p>
+
+<p>Thanks noritsuna! I have run it successfully! However, the speed is stil<br />
+l slow. Have you consider to improve the speed? How about using video cap<br />
+ture instead of snapshot? How do you think? I really appreciate for your<br />
+help! Looking forward to your reply! Thanks.</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2010&#24180;01&#26376;13&#26085; 18:12</li>
+              </ul>
+                            <p>Hi, noritsuna!<br />
+I am trying to get NyArtoolkitAndroid running on 64-bit Win7 in Eclipse 3.51. I downloaded ...-2.0.1-forSDKr3.zip, imported the 2 projects to Eclipse, but when building I get this: [2010-01-14 19:34:46 - NyARToolkitAndroid]warning: Ignoring InnerClasses attribute for an anonymous inner class that doesn't come with an associated EnclosingMethod attribute. (This class was probably produced by a broken compiler.)<br />
+[2010-01-14 19:35:12 - Dex Loader]Unable to execute dex: null<br />
+[2010-01-14 19:35:12 - NyARToolkitAndroid]Conversion to Dalvik format failed: Unable to execute dex: null</p>
+
+<p>I want to know which operating system and Eclipse version You use?</p>
+              <ul class="comments-info">
+                <li> <a href="http://..." rel="nofollow">Henri</a></li>
+                <li>2010&#24180;01&#26376;15&#26085; 03:01</li>
+              </ul>
+                            <p>Alright I made new workspace and imported the projects and NyARToolKitAndroidActivity started :), but how can I can only use my webcam. How can I send video to a socket. I have a http serving webcam and I got Tom Gibara's HttpCamera working couple of days ago with webcam7 httpcamera.</p>
+              <ul class="comments-info">
+                <li> <a href="http://..." rel="nofollow">Henri</a></li>
+                <li>2010&#24180;01&#26376;15&#26085; 04:19</li>
+              </ul>
+                            <p>Hi </p>
+
+<p>looking forward to get this running. When I'm running from eclipse, it depends on the core-files. I can only run the core-setup = black screen...</p>
+              <ul class="comments-info">
+                <li> Jesper Johansen</li>
+                <li>2010&#24180;01&#26376;17&#26085; 06:05</li>
+              </ul>
+                            <p>I have downloaded NyARToolkitAndroid-2.0.1-forSDKr3.zip and trying to make it work with Google API (platform 2.1, API level 7, SDK version 4). </p>
+
+<p>I made a new project fro the WebcamBroadcaster and changed the strings.xml to use the SocketCamera.  I verified that the connection to the broadcast is made when running in the emulator, but I don't get the picture (only shows the Loading picture on emulator screen).</p>
+
+<p>Is there anything I can do to make it work or I have to use Android SDK 3 and SDK platform 1.5?</p>
+
+<p>Thank you, noritsuna for all your work.</p>
+              <ul class="comments-info">
+                <li> Harrys</li>
+                <li>2010&#24180;01&#26376;20&#26085; 10:31</li>
+              </ul>
+                            <p>Update: I have now been able to get the example running by converting the socket camera to http camera, so currently I download a 320x240 jpg with http that has a marker drawn on it and the code finds the marker and draws that blue 3d model on it :). I tried it with 640x320 sized image, but somewhy there is a very big allocation made and something crashes: 01-20 15:09:29.003: ERROR/AndroidRuntime(214): Uncaught handler: thread Thread-9 exiting due to uncaught exception<br />
+01-20 15:09:29.011: ERROR/AndroidRuntime(214): java.lang.OutOfMemoryError<br />
+01-20 15:09:29.011: ERROR/AndroidRuntime(214):     at jp.nyatla.nyartoolkit.core.param.NyARObserv2IdealMap.(NyARObserv2IdealMap.java:48)</p>
+
+<p>Jesper I reccommend you to look at LogCat and see maybe u get some exception also.</p>
+              <ul class="comments-info">
+                <li> <a href="http://..." rel="nofollow">Henri</a></li>
+                <li>2010&#24180;01&#26376;20&#26085; 23:47</li>
+              </ul>
+                            <p>Hi, Henri & Harrys</p>
+
+<p>Sorry, The reply became slow. </p>
+
+<p>WebCamera program is WebcamBroadcaster/WebcamBroadcaster.class .</p>
+
+<p>Please run WebcamBroadcaster/WebcamBroadcaster.class and write your PC's IP address in values/strings.xml server_addr.<br />
+(with Java Media Framework.)</p>
+
+<p></p>
+
+<p>The parameter which adjusts the size of a Bitmap is </p>
+
+<p>jp.android_group.artoolkit.ARToolkitDrawer<br />
+Line 72 :<br />
+options.inSampleSize = 4;</p>
+
+<p>Bitmap is to 1/4.<br />
+Please adjusts this parameter or </p>
+
+<p>jp.android_group.artoolkit.ARToolkitDrawer<br />
+Line 78 :<br />
+if(bitmap.getHeight() &lt; 240) {</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2010&#24180;01&#26376;21&#26085; 10:06</li>
+              </ul>
+                            <p>Hi, kiki</p>
+
+<p>> However, the speed is stil<br />
+> l slow. Have you consider to improve the speed?</p>
+
+<p>Yes, This program is very slowly.<br />
+I think to make NDK version.<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2010&#24180;01&#26376;21&#26085; 11:34</li>
+              </ul>
+                            <p>hi</p>
+
+<p>i have a htc hero how i can get ur program to work on my phone</p>
+              <ul class="comments-info">
+                <li> robert</li>
+                <li>2010&#24180;01&#26376;21&#26085; 23:24</li>
+              </ul>
+                            <p>I thank you for the answers! But i still can't use WebCamBroadcaster. I think it's because I have windows 7 and JMF won't work on it. My capture device dont have RGBFormat, so I changed it to YUVFormat in WebcamBroadcaster, but then got another error: that said something like ".... jmvfw not in the library.path". I tried reinstalling JMF, but now it wont eaven detect my usb webcam. Im gonna try it on winXP virtual machine. Actually what I need is just drawing the 3D graphics on the video, I do not need marker detection. Do you know what would be the most simple way to do it?</p>
+              <ul class="comments-info">
+                <li> <a href="http://..." rel="nofollow">Henri</a></li>
+                <li>2010&#24180;01&#26376;22&#26085; 21:23</li>
+              </ul>
+                            <p>Hi, robert</p>
+
+<p>Please try this APK.</p>
+
+<p>http://www.noritsuna.jp/download/NyARToolkitAndroid.apk<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2010&#24180;01&#26376;22&#26085; 21:27</li>
+              </ul>
+                            <p>Hi, Henri</p>
+
+<p>> Actually what I need is just drawing the 3D graphics on the video, I do not need marker detection.</p>
+
+<p>Sorry, I don't know.<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2010&#24180;01&#26376;22&#26085; 22:15</li>
+              </ul>
+                            <p>Well, it was a bit foolish of me to ask it that way :). I'll try to be more precise: I just want to draw a cube with OpenGL so that on the background there is the video from the camera. Like with marker detection, the cube is drawn on the video. I don't want to know the simplest way to do it. I want to know which class in NyARToolkitAndroid draws the OpenGL geometry on the bitmapped image?</p>
+              <ul class="comments-info">
+                <li> <a href="http://..." rel="nofollow">Henri</a></li>
+                <li>2010&#24180;01&#26376;22&#26085; 23:15</li>
+              </ul>
+                            <p>Hi, Henri</p>
+
+<p>3D renderer is </p>
+
+<p>jp.android_group.artoolkit.ARToolkitDrawer<br />
+&<br />
+jp.android_group.artoolkit.ModelRenderer</p>
+
+<p>source files.</p>
+
+<p>But this how to do is old version.<br />
+I am developing new version.(Android 2.x native version)</p>
+
+<p>If you want it soon, please you google it.<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2010&#24180;01&#26376;23&#26085; 17:14</li>
+              </ul>
+                            <p>hi</p>
+
+<p>thanks for the APK it worked, can u tell me what u changed + can i get the code </p>
+
+<p>do you know if there is any documentation in english?</p>
+              <ul class="comments-info">
+                <li> Robert</li>
+                <li>2010&#24180;01&#26376;29&#26085; 20:44</li>
+              </ul>
+                            <p>Hi Robert,</p>
+
+<p>source code:<br />
+http://www.noritsuna.jp/download/NyARToolkitAndroid-2.0.1-forSDKr3.zip</p>
+
+<p><br />
+I don't have & know doc in english, sorry.<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2010&#24180;01&#26376;30&#26085; 03:25</li>
+              </ul>
+                            <p>hi noritsuna..<br />
+i've download the source code and it appear some error, it said </p>
+
+<p>The type java.lang.Enum cannot be resolved. It is indirectly referenced from required .class files	Dev1Camera.java	</p>
+
+<p>how to fix this?</p>
+              <ul class="comments-info">
+                <li> </li>
+                <li>2010&#24180;02&#26376;09&#26085; 13:57</li>
+              </ul>
+                            <p>i've import the two projects but it appear some error..</p>
+
+<p>Unhandled exception type IOException	AttachedCamera.java	NyARToolkitAndroid/src/jp/android_group/artoolkit/hardware	line 218	Java Problem</p>
+
+<p>how to fix this?</p>
+              <ul class="comments-info">
+                <li> rassel</li>
+                <li>2010&#24180;02&#26376;09&#26085; 15:00</li>
+              </ul>
+                            <p>Hi rassel,</p>
+
+<p>Do you use on Android-2.x?</p>
+
+<p>This app don't run on Android-2.x.<br />
+I will create new version.<br />
+Please wait a minutes.</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2010&#24180;02&#26376;09&#26085; 20:25</li>
+              </ul>
+                            <p>no, i'm not using android-2.x<br />
+i'm using android 1.6 but it appear some error on the attachedCamera.java and Dev1Camera.java (Unhandled exception type IOException) i've tried to put some try-catch or throw IOexception but not solve the problem..</p>
+
+<p>can you help me?<br />
+Thanks noritsuna.</p>
+              <ul class="comments-info">
+                <li> rassel</li>
+                <li>2010&#24180;02&#26376;10&#26085; 16:06</li>
+              </ul>
+                            <p>I am having some difficulty understanding the code I was wondering if anyone could help me, I would like to modify the existing code to add buttons to the bottom of the display, that will launch new activities. I am just learning the android sdk and I have managed to create buttons that can launch new activities but i am having difficulty integrating it with the current code</p>
+              <ul class="comments-info">
+                <li> Robert</li>
+                <li>2010&#24180;02&#26376;11&#26085; 02:53</li>
+              </ul>
+                            <p>hi robert.<br />
+im having some error on building the nyartoolkit on eclipse using android 1.6..<br />
+can you run the nyartoolkit on yours?<br />
+what ide or version of android do you use?</p>
+              <ul class="comments-info">
+                <li> rassel</li>
+                <li>2010&#24180;02&#26376;11&#26085; 18:20</li>
+              </ul>
+                            <p>eclipse 3.5<br />
+android 1.5<br />
+i can run a verson of nyartoolkit but not the one http://www.noritsuna.jp/download/NyARToolkitAndroid-2.0.1-forSDKr3.zip am trying to install it in a new workspace.</p>
+              <ul class="comments-info">
+                <li> Robert</li>
+                <li>2010&#24180;02&#26376;11&#26085; 22:44</li>
+              </ul>
+                            <p>hi <br />
+I Use eclipse 3.5<br />
+android 1.5 on phone and am working to that, in the code but have up to android 2.x on my pc</p>
+
+<p>? when you import the zip NyARToolkitAndroid-2.0.1-forSDKr3.zip should you get 4 new projects coming up or just 1 or 2?<br />
+I get NyARToolKit,,  NyARToolKit.utils.jogl,,  NyARToolKitAndroid,, NyARToolKitAndroid-2.0_core</p>
+
+<p>the vrs that i have working as only 2 (NyARToolKitAndroid and NyARToolKitAndroid-2.0_core) </p>
+              <ul class="comments-info">
+                <li> </li>
+                <li>2010&#24180;02&#26376;11&#26085; 23:10</li>
+              </ul>
+                            <p>hi Robert<br />
+I use the same tools as you have.. the http://www.noritsuna.jp/download/NyARToolkitAndroid-2.0.1-forSDKr3.zip works on android 1.1, i just got it work yesterday.. now my problem is how to get the socket camera on..currently i'm using the webcam as a camera for my emulator but it cannot work.. do you know how?</p>
+              <ul class="comments-info">
+                <li> rassel</li>
+                <li>2010&#24180;02&#26376;12&#26085; 13:06</li>
+              </ul>
+                            <p>anonymous : <br />
+when you import the zip NyARToolkitAndroid-2.0.1-forSDKr3.zip with eclipse you should get 2 projects, the nyartoolkitandroid and nyartoolkitandroid-2.0_core..</p>
+              <ul class="comments-info">
+                <li> rassel</li>
+                <li>2010&#24180;02&#26376;12&#26085; 13:08</li>
+              </ul>
+                            <p>robert : <br />
+i have the same tools as you have.<br />
+download/NyARToolkitAndroid-2.0.1-forSDKr3.zip works on android 1.1,i get it work yesterday,now my problem is how to get my webcam work as a camera on my emulator.. do you know how?</p>
+              <ul class="comments-info">
+                <li> </li>
+                <li>2010&#24180;02&#26376;12&#26085; 13:11</li>
+              </ul>
+                            <p>finally i get it works..<br />
+for the camera i just installed the jmf and then copying jmvfw.dll to the jmf lib.. editing the xml to use the socket camera, running the webcambroadcaster and it's working..<br />
+thanks.. looking forward for any improvement..</p>
+              <ul class="comments-info">
+                <li> rassel</li>
+                <li>2010&#24180;02&#26376;14&#26085; 11:57</li>
+              </ul>
+                            <p>Hi, Does any one improved the speed of the nyARToolkit ? Pls let me know, that would really help in my final year project.</p>
+
+<p>Thank you.<br />
+LN.<br />
+</p>
+              <ul class="comments-info">
+                <li> FYP Student</li>
+                <li>2010&#24180;02&#26376;16&#26085; 00:23</li>
+              </ul>
+                            <p>Hi All,</p>
+
+<p>NyARToolkit for Android will become official http://en.sourceforge.jp/projects/nyartoolkit/ project at next month.<br />
+Please look up this project page.<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2010&#24180;02&#26376;16&#26085; 00:45</li>
+              </ul>
+                            <p>hi noritsuna..<br />
+do you have nyartoolkit that runs in android 1.6? i've tried the NyARToolkitAndroid-2.0.1-forSDKr3.zip but it only runs in 1.1..<br />
+can u help me?</p>
+              <ul class="comments-info">
+                <li> rassel</li>
+                <li>2010&#24180;02&#26376;22&#26085; 16:19</li>
+              </ul>
+                            <p>Hi rassel,</p>
+
+<p>Please look at official "NyARToolkit for Android" site.</p>
+
+<p>NyARToolkit for Android:<br />
+http://sourceforge.jp/projects/nyartoolkit-and</p>
+
+<p>It is maintained here.<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2010&#24180;02&#26376;22&#26085; 16:39</li>
+              </ul>
+                            <p>hello,<br />
+I downloaded the NyARToolkitAndroid-2.0.1-forSDKr3 toolkit and created 2 new android projects for them .<br />
+the problem is that iam lost with the code, i dont know how to get it working with my webcam on emulator...can anyone help please?<br />
+thank you in advance :)</p>
+              <ul class="comments-info">
+                <li> Ghada</li>
+                <li>2010&#24180;02&#26376;25&#26085; 08:03</li>
+              </ul>
+                            <p>Hi,</p>
+
+<p>   There is a great delay in processing. Anyone have some suggestion on how to solve this ?</p>
+
+<p>Thanks.<br />
+John</p>
+              <ul class="comments-info">
+                <li> John</li>
+                <li>2010&#24180;02&#26376;26&#26085; 13:30</li>
+              </ul>
+                            <p>True John,</p>
+
+<p>Probabily because of the camera calls written in Java may not be so optimal...Try NDK!</p>
+
+<p>Manu.</p>
+              <ul class="comments-info">
+                <li> Manu</li>
+                <li>2010&#24180;02&#26376;26&#26085; 18:12</li>
+              </ul>
+                            <p>hi <br />
+I think I did all for test your source<br />
+-><br />
+1.  installed the jmf and then copying jmvfw.dll to the jmf lib.<br />
+2. editing the xml to use the socket camera, <br />
+3. running the webcambroadcaster and it's working..</p>
+
+<p>like someone above did </p>
+
+<p>but I got black screen..... </p>
+
+<p>In logcat <br />
+I got some error <br />
+ERROR/GLLogger(56): couldn't load  library (Cannot find library)</p>
+
+<p>ERROR/MemoryHeapBase(56): error opening /dev/pmem_gpu1: No such file or directory</p>
+
+<p>ERROR/Camera(265)</p>
+
+<p>How can I fix it ?</p>
+
+<p><br />
+</p>
+              <ul class="comments-info">
+                <li> sang</li>
+                <li>2010&#24180;03&#26376;03&#26085; 14:39</li>
+              </ul>
+                            <p>hi <br />
+I got small improvement in test.<br />
+after your activity open in emulator, <br />
+there are no errors in logcat.<br />
+also socket camera start well.<br />
+and I checked some message about<br />
+AR draw ...</p>
+
+<p>but in emulator screen, <br />
+just only endless <br />
+"loading" message show <br />
+over and over </p>
+
+<p><br />
+I am not sure this result I got is right<br />
+Should i add some code for camera<br />
+preview? </p>
+              <ul class="comments-info">
+                <li> sang</li>
+                <li>2010&#24180;03&#26376;04&#26085; 11:30</li>
+              </ul>
+                            <p>Hi,</p>
+
+<p>If I were to change the marker for detection, I need to change only the patt.hiro and marker.jpg rite?</p>
+
+<p>Pls help.</p>
+
+<p>Thanks.</p>
+              <ul class="comments-info">
+                <li> Ashok</li>
+                <li>2010&#24180;03&#26376;04&#26085; 13:32</li>
+              </ul>
+                            <p>Hi there</p>
+
+<p>I have installed Android 2.1 platform and trying to run NyARToolkit in Eclipse Galileo. But unfortunately I could not. Is it possible to run NyARToolkitAndroid-2.0.1-forSDKr3 in this platform? If yes, then which AVD I should use?</p>
+
+<p>Thanks in advance. </p>
+              <ul class="comments-info">
+                <li> eishita</li>
+                <li>2010&#24180;03&#26376;08&#26085; 12:10</li>
+              </ul>
+                            <p>Hi im trying to run it on a htc hero android version 1.5. It starts the NyARToolkitAndroidActivity but the screen stays black. Im using the AttachedCamera but it stays black. How can I get the camera to work?</p>
+              <ul class="comments-info">
+                <li> jtool</li>
+                <li>2010&#24180;03&#26376;16&#26085; 21:27</li>
+              </ul>
+                            <p>sang : what android version are u using?\<br />
+eishita : i experiencing the same problem too on android 2.1 try using and 1.1<br />
+</p>
+              <ul class="comments-info">
+                <li> </li>
+                <li>2010&#24180;03&#26376;17&#26085; 21:52</li>
+              </ul>
+                            <p>sang : what android version are u using?\<br />
+eishita : i experiencing the same problem too on android 2.1 try using and 1.1</p>
+              <ul class="comments-info">
+                <li> rassel</li>
+                <li>2010&#24180;03&#26376;17&#26085; 23:20</li>
+              </ul>
+                            <p>how do u export two project nyartoolkitandroid and nyartoolkitforandroid into one apk?? does it run separately?</p>
+              <ul class="comments-info">
+                <li> bart</li>
+                <li>2010&#24180;03&#26376;18&#26085; 12:25</li>
+              </ul>
+                            <p>Hello, Noritsua, how far have you gotten with NDK version of NyArToolkit for Android?</p>
+              <ul class="comments-info">
+                <li> <a href="http://betwixt.kirves.pri.ee" rel="nofollow">Henri</a></li>
+                <li>2010&#24180;04&#26376;24&#26085; 17:29</li>
+              </ul>
+                            <p>Hi Henri,</p>
+
+<p>NDK version is discussed by Official development team.</p>
+
+<p>Please wait!</p>
+
+<p>NyARToolkit for Android Official development team:<br />
+http://en.sourceforge.jp/projects/nyartoolkit<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2010&#24180;04&#26376;24&#26085; 17:44</li>
+              </ul>
+                            <p>Hi. Noritsua, How about take picture from NyARToolkit HT03ACamera? <br />
+I hope AR can take picture from android handset(use camera takePicture API), no use socket function take picture.<br />
+Thanks for your support.</p>
+              <ul class="comments-info">
+                <li> Richard</li>
+                <li>2010&#24180;07&#26376;22&#26085; 10:26</li>
+              </ul>
+                            <p>Hi Richard,</p>
+
+<p>Sorry, I do non know it.</p>
+
+<p>Please check NyARToolkit for Android Project site.<br />
+http://sourceforge.jp/projects/nyartoolkit-and/</p>
+
+<p>HT03ACamera source code:<br />
+http://git.sourceforge.jp/view?p=nyartoolkit-and/nyartoolkit-and.git;a=blob;f=src/jp/androidgroup/nyartoolkit/hardware/HT03ACamera.java;h=682afd444992920bd8d6d218c99a1e09d445f1c9;hb=refs/heads/android-1.6<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2010&#24180;07&#26376;22&#26085; 10:44</li>
+              </ul>
+                            <p>Hi. Noritsua, excuse me ,if i wanna change the marker,where should i edit?<br />
+I already have the new marker .</p>
+
+<p>And,if i want it can capture multiple marker how should i do,i cant find out form the simple.</p>
+              <ul class="comments-info">
+                <li> Louis</li>
+                <li>2010&#24180;07&#26376;27&#26085; 18:07</li>
+              </ul>
+                            <p>Hi Louis</p>
+
+<p>> if i wanna change the marker...</p>
+
+<p>marker's path is</p>
+
+<p>res/raw/patt.hiro</p>
+
+<p><br />
+> if i want it can capture multiple marker ...</p>
+
+<p>Please use the official version.<br />
+It is supported multiple marker!</p>
+
+<p>http://sourceforge.jp/projects/nyartoolkit-and<br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2010&#24180;07&#26376;27&#26085; 19:44</li>
+              </ul>
+                            <p>thank you,<br />
+I have changed the version to "2010-06-28".<br />
+but it still cant display multiple model at the same time.<br />
+</p>
+              <ul class="comments-info">
+                <li> Louis</li>
+                <li>2010&#24180;07&#26376;27&#26085; 23:37</li>
+              </ul>
+                            <p>Hi,</p>
+
+<p>I'm starting in programing Android, so I follow all tutorial instructions to run NyARToolkit in Android. But I've obtained some errors, and I don't know why. Let me explain what i'm doing:</p>
+
+<p>- I downloaded Eclipse, Android SDK, ...<br />
+- I imported the last version of NyARToolkit for Android (NyARToolkitAndroid-1.0.1.20080522)<br />
+- And, without any change, I obtained two errors:<br />
+   1.- "The project was not built since its build path is incomplete. Cannot find the class file for java.lang.Object. Fix the build path then try building this project"<br />
+   2.- "The type java.lang.Object cannot be resolved. It is indirectly referenced from required .class files"</p>
+
+<p>Well, Why did I obtained errors? I didn't make any change. It supposed that must to run well &iquest;not?</p>
+
+<p>Please, Can anyone help me?</p>
+
+<p>Thx</p>
+              <ul class="comments-info">
+                <li> Victor</li>
+                <li>2010&#24180;09&#26376;28&#26085; 22:16</li>
+              </ul>
+                            <p>I m new to java and android, is it posible to load other 3d model format than .mqo, like .obj  .dae ?</p>
+              <ul class="comments-info">
+                <li> teonicel</li>
+                <li>2010&#24180;09&#26376;29&#26085; 17:50</li>
+              </ul>
+                            <p>Hi Victor, teonicel,</p>
+
+<p>Please check the current version source code. :-)<br />
+http://sourceforge.jp/projects/nyartoolkit-and</p>
+
+<p><br />
+</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2010&#24180;09&#26376;29&#26085; 17:54</li>
+              </ul>
+                            <p>Hi, I downloaded the two versions is in that folder and compile without errors. The problem is that when run on the phone, the camera turns on but the screen goes black, does anyone know why? I have a Motorola Milestone 2.1<br />
+The "apk" I got version 1.1 it does work for me, but the code gave errors, so that I could not compile.</p>
+              <ul class="comments-info">
+                <li> Victor</li>
+                <li>2010&#24180;10&#26376;04&#26085; 17:40</li>
+              </ul>
+                            <p>Hi Victor,</p>
+
+<p>Sorry, I don't know it.</p>
+
+<p>Please ask this project members.<br />
+Issue Form:<br />
+http://sourceforge.jp/ticket/newticket.php?group_id=4953&display_mode=simple</p>
+              <ul class="comments-info">
+                <li> noritsuna</li>
+                <li>2010&#24180;10&#26376;05&#26085; 15:35</li>
+              </ul>
+                            <p>Thx, I put the ticket, now i'm waiting the answer. but I have no interest in a concrete version, only need that the code can compile without errors and the "apk" run on the phone. Can you provide me the source code?</p>
+
+<p>Regards<br />
+</p>
+              <ul class="comments-info">
+                <li> victor</li>
+                <li>2010&#24180;10&#26376;08&#26085; 17:25</li>
+              </ul>
+                            <p>Hi again. You were right, they answered me suggesting I would change 2 things in the original code:</p>
+
+<p>in NyARToolkitAndroidActivity.java. </p>
+
+<p>- private boolean mTranslucentBackground = true; <br />
++ private boolean mTranslucentBackground = false; </p>
+
+<p>in res/values/strings.xml. </p>
+
+<p>- jp.androidgroup.nyartoolkit.hardware.HT03ACamera <br />
++ jp.androidgroup.nyartoolkit.hardware.UVCCamera </p>
+
+<p><br />
+I tried it and it runs very well now. Thanks for your advice.</p>
+              <ul class="comments-info">
+                <li> victor</li>
+                <li>2010&#24180;10&#26376;18&#26085; 17:53</li>
+              </ul>
+              
+            </div><!-- comments-body_end -->
+          </div><!-- comments_end -->
+
+                    <!-- コメント入力 -->
+          <form method="post" action="http://www.noritsuna.jp/cgi-bin/mt/mt-cmnts.cgi" name="comments_form" onsubmit="if (this.bakecookie.checked) rememberMe(this)">
+            <input type="hidden" name="static" value="1" />
+            <input type="hidden" name="entry_id" value="660" />
+            <div class="comments-post">
+              <h5>comment form</h5>
+              <div class="typekey-text">
+                <script type="text/javascript">
+                  <!--
+                  writeTypeKeyGreeting(commenter_name, 660);
+                  //-->
+                </script>
+              </div><!-- typekey-text_end -->
+
+              <div class="comments-post-content">
+                
+
+                <div id="comments-open-data">
+                  <fieldset>
+                    <legend accesskey="c">comment form</legend>
+                    <dl id="commenter-info">
+                      <dt><label for="comment-author" accesskey="n">name:</label></dt>
+                      <dd><input tabindex="2" id="comment-author" name="author" size="30" value="" /></dd>
+                      <dt><label for="comment-email" accesskey="e">e-mail:</label></dt>
+                      <dd><input tabindex="3" id="comment-email" name="email" size="30" value="" /></dd>
+                      <dt><label for="comment-url" accesskey="u">URL:</label></dt>
+                      <dd><input tabindex="4" id="comment-url" name="url" size="30" value="" /></dd>
+                    </dl>
+                    <ul class="cookie">
+                      <li><label for="comment-bake-cookie" accesskey="r"><input type="checkbox" id="comment-bake-cookie" name="bakecookie" onclick="if (!this.checked) forgetMe(document.comments_form)" onkeypress="if (!this.checked) forgetMe(document.comments_form)" value="1" tabindex="5" /> 情報を登録しますか?</label></li>
+                    </ul>
+                    <dl id="comments-open-text">
+                      <dt><label for="comment-text">comments: (HTMLタグは使用できません)</label></dt>
+                      <dd><textarea tabindex="6" accesskey="d" id="comment-text" name="text" rows="10" cols="50">コメントを入力してください</textarea></dd>
+                    </dl>
+                    <ul class="comments-open-footer">
+                      <li><input tabindex="7" type="submit" accesskey="v" name="preview" id="comment-preview" value="確認" /></li>
+                      <li><input tabindex="8" type="submit" accesskey="p" name="post" id="comment-post" value="投稿" /></li>
+                    </ul>
+                  </fieldset>
+                </div><!-- comments-open-data_end -->
+
+              </div><!-- comments-post-content_end -->
+            </div><!--  comments-post_end-->
+          </form>
+
+        </div><!-- content_end -->
+      </div><!-- main_end -->
+
+      <!--右メニュー-->
+      <div id="right-menu">
+        <div  class="right-content">
+
+          <!-- 最近のエントリー -->
+          <!-- 最近のコメント -->
+          <!-- 最近のトラックバック -->
+
+          <!-- リンク -->
+          <div class="site-link">
+          <h3>Links</h3>
+            <ul><li><a href="http://www.siprop.org/">SIProp Project</a></li></ul>
+          </div><!-- site-link_end -->
+
+                    <!-- クリエイティブコモンズライセンス -->
+          <div class="cclicense">
+            <a href="http://creativecommons.org/licenses/by-nc/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />This weblog is licensed under a <a href="http://creativecommons.org/licenses/by-nc/1.0/">Creative Commons License</a>.
+          </div><!-- cclicense_end -->
+          
+
+          <!-- Powered -->
+          <div class="powered">
+            <ul>
+              <li>Powered by <a href="http://www.movabletype.jp">Movable Type 3.33-ja</a></li>
+              <li>Template by <a href="http://drblog.jp/"><img src="http://drblog.jp/info/img/drblog.gif" alt="Dr.Blog" width="128" height="22" /></a></li>
+            </ul>
+          </div><!-- Powered_end -->
+
+        </div><!-- right-content_end -->
+      </div><!-- right-menu_end -->
+
+      <div id="footer">
+        <ul class="syndicate">
+          <li><a href="http://www.noritsuna.jp/index.xml" title="なんとなく実験 with SIProp開発記 RSS Feed (XML)">RSS Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/atom.xml" title="なんとなく実験 with SIProp開発記 Atom Feed (XML)">Atom Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記">Archives</a></li>
+          <li><a href="#banner">Page Top</a></li>
+        </ul>
+      </div><!-- footer_end -->
+
+    </div><!-- main-container_end -->
+
+  </body>
+</html>

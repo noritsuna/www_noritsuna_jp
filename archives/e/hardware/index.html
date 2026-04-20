@@ -1,0 +1,2078 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="description" content="SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。" />
+    <meta name="generator" content="http://www.sixapart.jp/movabletype/" />
+    <link rev="made" href="mailto:your@email" title="E-mail address" />
+    <link rel="home" href="http://www.noritsuna.jp/" title="なんとなく実験 with SIProp開発記" />
+    <link rel="index" href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記archives" />
+    <link rel="prev" href="http://www.noritsuna.jp/archives/e/chromium/" title="Chromium" />
+    <link rel="next" href="http://www.noritsuna.jp/archives/e/java/"  title="Java" />
+    <link rel="stylesheet" href="http://www.noritsuna.jp/styles-site.css" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.noritsuna.jp/atom.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.noritsuna.jp/index.xml" /> 
+    <title>なんとなく実験 with SIProp開発記 | HardWare</title>
+
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.noritsuna.jp/">
+<dc:title>なんとなく実験 with SIProp開発記</dc:title>
+<dc:description>SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</dc:description>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc/1.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc/1.0/">
+<requires rdf:resource="http://web.resource.org/cc/Attribution" />
+<requires rdf:resource="http://web.resource.org/cc/Notice" />
+<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+<prohibits rdf:resource="http://web.resource.org/cc/CommercialUse" />
+</License>
+</rdf:RDF>
+-->
+
+  </head>
+  <body class="layout-two-column-right">
+
+    <!-- ブログ全体 -->
+    <div id="main-container">
+
+      <!-- ブログタイトル -->
+      <div id="banner">
+        <h1 id="banner-header"><a href="http://www.noritsuna.jp/" accesskey="1" title="なんとなく実験 with SIProp開発記">なんとなく実験 with SIProp開発記</a></h1>
+        <h2 id="banner-description">SIPやVoIP、NGN、IMS、P2P、AR、GPGPUに関する技術情報を書き殴っているBlogです。ただ、最近は、主催イベントの告知Blogとなっています。</h2>
+      </div><!-- banner_end -->
+
+      <!-- 左カラム -->
+      <div id="left-menu">
+        <div  class="left-content">
+
+          <!-- サイト内検索 -->
+          <div class="search-form">
+            <h3>Search</h3>
+            <form method="get" action="http://www.noritsuna.jp/cgi-bin/mt/mt-search.cgi">
+              <input type="hidden" name="IncludeBlogs" value="1" />
+              <label for="search" accesskey="4">サイト内検索</label><br />
+              <input id="search" tabindex="5"  accesskey="t"  value="search this blog" name="search" onblur="if(this.value==''){this.style.color=''; this.form.reset()}" onfocus="this.value = ''; this.style.color = '#000000';" />
+              <input type="submit" tabindex="6" accesskey="s" value="submit" class="searchsubmit" />
+            </form>
+          </div><!-- search-form_end -->
+
+                    <!-- Categoryアーカイブ -->
+          <div class="category-archives">
+            <h3>Category Archives</h3>
+	    <div class="category-label">
+              <ul>
+                <li><a href="http://www.noritsuna.jp/archives/gae/" title="">GAE</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/news/" title="">NEWS</a></li>
+              
+                <li class="module-list-item">OS<ul>
+                <li><a href="http://www.noritsuna.jp/archives/os/linux/" title="">Linux</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/windows/" title="">Windows</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/os/auos/" title="">仮想OS</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/" title="">コミュニティー</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/ssee/android/" title="">Android</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/siprop/" title="">SIProp</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/stm/" title="">STM</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/ssee/iphone/" title="">iPhone</a></li>
+              </ul></li>
+              
+                <li class="module-list-item">開発<ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ar/" title="">AR</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/amazonec2/" title="">AmazonEC2</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/application/" title="">Application</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/chromium/" title="">Chromium</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/" title="">HardWare</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/fpga/" title="">FPGA</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/hardware/gpgpu/" title="">GPGPU</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/java/" title="">Java</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/" title="">NGN(IMS)</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/ngnims/cat34/" title="">無線</a></li>
+              </ul></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/nwng/" title="">NwNG</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/p2p/" title="">P2P</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/sip/" title="">SIP</a></li>
+              
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/" title="">セマンティック</a><ul>
+                <li><a href="http://www.noritsuna.jp/archives/e/oa/ai/" title="">AI</a></li>
+              </ul></li>
+              </ul></li>
+              </ul>
+            </div><!-- category-label_end -->
+          </div><!-- category-archives_end -->
+          
+
+                    <!-- Monthlyアーカイブ -->
+          <div class="monthly-archives">
+            <h3><a href="http://www.noritsuna.jp/archives.html">Archives</a></h3>
+            <ul class="module-list">
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2011/01/">2011&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/08/">2010&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/07/">2010&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/06/">2010&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/05/">2010&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/04/">2010&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/03/">2010&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/02/">2010&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2010/01/">2010&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/12/">2009&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/11/">2009&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/10/">2009&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/09/">2009&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/08/">2009&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/07/">2009&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/06/">2009&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/05/">2009&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/04/">2009&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/03/">2009&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/02/">2009&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2009/01/">2009&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/12/">2008&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/11/">2008&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/10/">2008&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/09/">2008&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/08/">2008&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/07/">2008&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/06/">2008&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/05/">2008&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/04/">2008&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/03/">2008&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/02/">2008&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2008/01/">2008&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/12/">2007&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/11/">2007&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/10/">2007&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/09/">2007&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/08/">2007&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/07/">2007&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/06/">2007&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/05/">2007&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/04/">2007&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/03/">2007&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/02/">2007&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2007/01/">2007&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/12/">2006&#24180;12&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/11/">2006&#24180;11&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/10/">2006&#24180;10&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/09/">2006&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/08/">2006&#24180;08&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/07/">2006&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/06/">2006&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2006/02/">2006&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/09/">2005&#24180;09&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/07/">2005&#24180;07&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/06/">2005&#24180;06&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/05/">2005&#24180;05&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/04/">2005&#24180;04&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/03/">2005&#24180;03&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/02/">2005&#24180;02&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2005/01/">2005&#24180;01&#26376;</a></li>
+            
+              <li class="module-list-item"><a href="http://www.noritsuna.jp/archives/2004/12/">2004&#24180;12&#26376;</a></li>
+            </ul>
+          </div><!-- monthly-archives_end -->
+          
+
+        </div><!-- left-content_end -->
+      </div><!-- left-menu_end -->
+
+      <!-- 中央カラム -->
+      <div id="main">
+        <div  class="content">
+
+          <p class="navi-link"><a href="http://www.noritsuna.jp/">main</a></p>
+
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/ssee/android/index.html#000705"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/705"
+    dc:title="「Open Embedded Software Foundation」（OESF）、リーク情報"
+    dc:identifier="http://www.noritsuna.jp/archives/ssee/android/index.html#000705"
+    dc:subject="Android"
+    dc:description="「Open Embedded Software Foundation」（OESF..."
+    dc:creator="noritsuna"
+    dc:date="2009-03-02T16:34:57+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;03&#26376;02&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000705" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/03/open_embedded_s_1.html" title="「Open Embedded Software Foundation」（OESF）、リーク情報">「Open Embedded Software Foundation」（OESF）、リーク情報</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「Open Embedded Software Foundation」（OESF）の事業説明会の内容が、日経さんによってリークされました。＞＜<br />
+(まぁ、歓迎なんですけどね。一応、リーク記事なので、驚いてみている次第で。(;^_^A アセアセ・・・)</p>
+
+<p>「<a href="http://itpro.nikkeibp.co.jp/article/COLUMN/20090225/325488/?ST=network">AndroidをIP電話やテレビに使う</a>」というリーク記事です。</p>
+
+<p><br />
+<blockquote>米グーグルが携帯電話向けに開発したAndroidを，組み込み機器向けプラットフォームとして活用することを推進する「Open Embedded Software Foundation」（OESF）が，3月に発足する。携帯電話以外の機器に利用する際に足りない機能を開発し，無償公開するのが主な活動だ。</blockquote></p>
+
+<p>事業説明会で使った資料や詳細など希望の方は、下記まで連絡してください。</p>
+
+<p>office アットマーク oesf.jp<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/03/open_embedded_s_1.html" title="「Open Embedded Software Foundation」（OESF）、リーク情報">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 16:34</li>
+                  
+                  <li><a href="http://www.noritsuna.jp/archives/2009/03/open_embedded_s_1.html#trackbacks" title="「Open Embedded Software Foundation」（OESF）、リーク情報にトラックバック">Trackbacks</a> (1) </li>
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/ssee/index.html#000694"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/694"
+    dc:title="マスからマニアへ"
+    dc:identifier="http://www.noritsuna.jp/archives/ssee/index.html#000694"
+    dc:subject="コミュニティー"
+    dc:description="最近、Android関連で『普及しますかね？』と聞かれることが多くなってきました..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-22T02:34:06+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;02&#26376;22&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000694" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/post_132.html" title="マスからマニアへ">マスからマニアへ</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>最近、Android関連で『普及しますかね？』と聞かれることが多くなってきました。そこで、</p>
+
+<blockquote>国内では（対iPhone的なリッチケータイという意味において）、今年の後半くらいに出ると言われている日本仕様を取り入れたAndroidケータイのでき次第である。<BR>
+<BR>
+国外では（対Nokia的な超廉価ケータイという意味において）、台湾が国を挙げてAndroidケータイを作っている。これが、本当に動き出す、2〜3年後に、ケータイの普及率が爆発的に伸びているアフリカなどの後進国において、ブラウザケータイ（日本のi-modeが流行ったときの感覚）として、デファクトになる可能性がある。<BR></blockquote>
+
+<p>という話をしたりするのですが、実は、個人的には、『普及』に関しては、興味がなかったりします。(;^_^A アセアセ・・・<br />
+なぜか？ 要は、『普及』に込められている意味は、『うちの組織が儲けられるくらいの市場規模になりますかね？』という意味であり、組織の規模や市場の狙い方により、根本的に答えが変わるものだからです。</p>
+
+<p>そして、私の規模感は、『1〜3人』くらいのマニア集団的なグループを考えているため、『普及』に関しては、興味がないのです。<br />
+この規模であれば、『市場の見え方』も、ずいぶんと変わってきます。<br />
+単純な話、100万/月の売り上げがあれば十分だから、サービスをする上で必要なユーザ数が、1000とか10000で事足りるかもしれないわけです。</p>
+
+<p><br />
+『いやいや、そんなのは夢物語』をと思われるかもしれませんが、その足音は確実に近づいています。</p>
+
+<p><br />
+<BR><br />
+１，Amazon EC2などに代表されるクラウドサービス<br />
+構築、運用費は、クラウドサービスにより、2桁レベルで下がり、個人で調達が可能になりました。<br />
+これは、いろいろ言われていますので、今更説明するまでもないかと思います。</p>
+
+<p><BR><br />
+２，少ない個数でハードウェアが作れる世界<br />
+昨今は、数年前に比べて、ハードウェアの作成費が、2桁レベルで下がりました。<br />
+そして、『AndroidのようなオープンなViewまでを含めて、ハードウェアを作る上で必要なものをすべて完備フレームワーク』の登場により、これがさらに下がろうとしています。</p>
+
+<p>具体的には、<a href="http://www.noritsuna.jp/archives/2008/10/android_16.html">こちらのエントリー</a>の話を具体化した「一般社団法人Open Embedded Software Foundation」を2009/02/12に登記いたしました。(※この話に関しては、別途エントリーをまとめていますので、お待ちください。)</p>
+
+<p>これらにより、上記で上げたサービス規模である『1000ユーザ』という単位でのハードウェアの発注の芽が出てきているのです。<br />
+（この手のサービスは、『少数のマニア』向けであるため、多少高額でも買ってもらえるという点もあるため、現実的です。）</p>
+
+<p>注：ちなみに、サービスを作る上で、ハードウェアまで作る必要はないのですが、この<a href="http://www.noritsuna.jp/archives/2008/05/post_109.html">エントリー</a>の理由から、ハードを作れる世界にこだわっている次第です。</p>
+
+<p><br />
+<BR><br />
+と、以上により、制作費や運用費が、『1〜3人』くらいの規模でさえ、賄える芽が出てきたのです。<br />
+次の問題点としては、この手のサービスは、『少数のマニア』をターゲットとすることになるでしょう。そうると、『どのようににリーチするか？』が問題となります。が、その解決策も見えつつあります。</p>
+
+<p><br />
+<BR><br />
+３，『同じ指向の人々』のマッチングを行う、ソーシャル系<br />
+mixiなどに代表されるソーシャルネットワークなどの『個人を繋げるコミュニティーツール』です。<br />
+すでに、「<a href="http://www.4gamer.net/games/000/G000000/20090205055/">1億5000万人の巨大プラットフォーム「Facebook」がとんでもないことになっている</a>」なんていう事例もでつつあり、現実のものとなっています。<br />
+（ちなみに、このへんのは、<a href="http://www.siprop.org/ja/2.0/index.php?%B3%AB%C8%AF%2F%A5%B3%A5%DF%A5%E5%A5%CB%A5%C6%A5%A3%A1%BC%2F%C4%EA%CE%E3%A5%DF%A1%BC%A5%C6%A5%A3%A5%F3%A5%B0%2F2008%2F10%2F09">次期のSIProp</a>で成果をお見せできるはずです。10月には出来ているはずだったんですが。。。orz）</p>
+
+<p><br />
+<BR><br />
+４，<a href="http://www.noritsuna.jp/archives/2009/01/_ideal_competit_1.html">Cloud Market</a>社の構想<BR><br />
+最後に、それらを『換金』するための仕掛けとして、上記の3つを完全に取り込める形のマーケットが必要なのです。<BR><br />
+そのための仕掛けが、『<a href="http://www.noritsuna.jp/archives/2009/01/_ideal_competit_1.html">Cloud Market</a>』社でやろうとしているなのです。</p>
+
+<p><br />
+<BR><br />
+と、必要な部品は揃いつつあります。あと10年くらいすれば、『1〜3人』くらいのマニア集団的な生き方も普通に選べるような時代になっているかもしれません。<br />
+正直、是非ともほしい世界です。＞＜</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                <p><a href="http://www.noritsuna.jp/archives/2009/02/post_132.html#more" title="マスからマニアへ">マスからマニアへの続きを読む</a></p>
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/post_132.html" title="マスからマニアへ">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 02:34</li>
+                  
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/post_132.html#trackbacks" title="マスからマニアへにトラックバック">Trackbacks</a> (5) </li>
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000693"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/693"
+    dc:title="シンプルプロセサと超並列と不揮発"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000693"
+    dc:subject="HardWare"
+    dc:description="実は、このあたりの話を先週、某所でしていたのですが、狙ったかのようなタイミングで..."
+    dc:creator="noritsuna"
+    dc:date="2009-02-11T00:05:02+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2009&#24180;02&#26376;11&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000693" class="entry-header"><a href="http://www.noritsuna.jp/archives/2009/02/post_131.html" title="シンプルプロセサと超並列と不揮発">シンプルプロセサと超並列と不揮発</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>実は、このあたりの話を先週、某所でしていたのですが、狙ったかのようなタイミングで各種のプレスリリースがでていたので、まとめがわりにこのエントリーを書いてみました。<br />
+ただ、書いてはみましたが、案の定というか、『ただ思っていることを列挙しただけ』になりました。orz<br />
+まったく、まとまっていないので、読んだ人がフォローしてくれることを祈っております。</p>
+
+<p><br />
+<BR><br />
+●シンプルなプロセサ<br />
+「<a href="http://pc.watch.impress.co.jp/docs/2009/0205/kaigai487.htm">並列コンピューティングの大物を研究部門のトップにスカウトしたNVIDIA</a>」 という記事より。</p>
+
+<blockquote>大雑把には、SIMDのようなシンプルなプロセサが、メインストリームのCPUになるのではないか（とは言っても、10年スパンでしょうけど。）</blockquote>
+
+<p>というお話ですね。</p>
+
+<p>問題点の一つが、</p>
+
+<p>「<a href="http://slashdot.jp/hardware/article.pl?sid=09/02/09/1656250">NVIDIAがx86互換チップ開発へ？</a>」</p>
+
+<p>ですね。なんだかんだいっても、『IAで作られたアプリは捨てられない』わけです。<br />
+で、ここで、CELLのようなヘテロジニアスな方向性で、『FPGAが載せる』なんてのもよいのではないかとおもっています。<br />
+要するに、数クロックで書き換えられるようなFPGA上で、『必要に応じて各種VM走らせてしまえばいいだろ』的な方向です。すでに、MSXはFPGAで再現されているわけですし、JavaVMも開発しているところがありますし、けっこう、良い選択肢と思っていたりします。</p>
+
+<p><br />
+<BR><br />
+●超並列と言語<br />
+SIMDってことは、超並列なワケですが、関数型言語が流行っているってのが、けっこう追い風ですよね。10年以上のスパンでみれば、関数型言語プログラマーの方が多いかもしれず、その場合、スムーズに超並列へいける可能性があるわけです。<br />
+要するに、関数型言語であれば、スムーズに並列処理がかけるわけで、その典型例が、Erlangなわけです。<br />
+（超嘘入ってます。細かい点は、フィーリングで察してください！（ｗ  または、コメントででも突っ込んでください。フォローします。）</p>
+
+<p>さらに、Intelさんも、超並列に向けたコンパイラを、10年スパンとかで開発中らしいです。</p>
+
+<p>なんというか、このCPU側の変化とその間にある言語側（＋コンパイラ）の変化が、絶妙にシンクロしているあたり、波を感じますね。</p>
+
+<p><br />
+<BR><br />
+●不揮発と電池<br />
+ちょっとそれますが、モバイル系では、電池問題というのがあります。<br />
+モバイルデバイス上でいろいろなサービスやアプリを開発する上で、『バッテリーの持ち』というものがネックになります。特に、待ち受けさせることを前提としたサービスやアプリでは、かなり、響いてきます。<br />
+ぶっちゃけ、サービスをするには、ネイティブにチューニングしたアプリじゃないと、かなり厳しいというのが、現状です。</p>
+
+<p>というのを踏まえて、SIMDの構造をみると、メモリ部分に、</p>
+
+<p>「<a href="http://pc.watch.impress.co.jp/docs/2009/0209/toshiba.htm">東芝、世界最大最速の不揮発メモリ「FeRAM」</a>」</p>
+
+<p>とか使えたら、けっこう、『不揮発CPU』作りやすいんじゃないの？とか、素人考えでは夢想してしまいます。<br />
+しかも、OSの世界も、まさに、</p>
+
+<p>「<a href="http://slashdot.jp/articles/09/02/11/0759236.shtml">メイド・イン・ロシアの「永遠に動き続けるOS」、Phantom OS </a>」</p>
+
+<p>『不揮発』に向かって動いているようです。</p>
+
+<p><br />
+で、このあたりの構造をOSやVMなどに組み込めば、ネイティブにチューニングしなくとも待ち受けするアプリをかなり省電力に出来る可能性があるわけです。<br />
+（まっ、かなり、理論展開に無理ありますけど、気にしない。）</p>
+
+<p></p>
+
+<p><br />
+ということで、SIMDのこのシンプルさと  将来性と  現状での使えなさ（ｗ 加減が、けっこう、『革新的イノベーション』の条件を満たしている気がするんですよね。<br />
+このあたりで、妄想するとけっこう楽しい議論が出来そうです。</p>
+
+<p></p>
+
+<p><BR><br />
+ということで、オチとしては、</p>
+
+<blockquote>東芝最強伝説はじまた</blockquote>
+
+<p>かな（ｗ<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2009/02/post_131.html" title="シンプルプロセサと超並列と不揮発">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:05</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000405"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/405"
+    dc:title="Low Power IAプラットフォーム"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000405"
+    dc:subject="HardWare"
+    dc:description="こちらのエントリーでも書いていますが、Intelさんが売却したXScaleにかわ..."
+    dc:creator="noritsuna"
+    dc:date="2007-04-18T00:01:39+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2007&#24180;04&#26376;18&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000405" class="entry-header"><a href="http://www.noritsuna.jp/archives/2007/04/low_power_ia.html" title="Low Power IAプラットフォーム">Low Power IAプラットフォーム</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://www.noritsuna.jp/archives/2006/10/intel1cpulpp.html">こちらのエントリー</a>でも書いていますが、Intelさんが売却したXScaleにかわるCPUの具体的な姿が見えてきたというコラム「<a href="http://pc.watch.impress.co.jp/docs/2007/0416/ubiq184.htm">Low Power IAプラットフォームの未来</a>」です。</p>
+
+<p><br />
+ここですね。<br />
+<blockquote>ウィルコムの「W-ZERO3」やイー・モバイルの「EM-ONE」のようなプラットフォームにLPIAを採用するというのも、十分実現可能なレベルに近づいてくる。PDAにx86という一昔前なら冗談に過ぎなかった話が、現実味を帯びてくるわけだ。<BR><br />
+情報筋によれば、Menlowはちょうど2008年の今頃の発表、投入が予定されており、次回のCeBITあたりで搭載製品がデビューするというのがありそうなストーリーではないだろうか。</blockquote><br />
+ここを意訳をすると、上記のエントリーで紹介した「XScaleの代替CPU」であると読めるわけです。</p>
+
+<p>ただ、さすがは、笠原さん、これだけでは終わりません。<br />
+<blockquote>IntelがこのSoCで狙うマーケットは、ずばりAppleの「iPhone」が今後作り出す市場だろう、と筆者は考えている。</blockquote><br />
+禿同！！！まさに、その通りだと思います。そして、IA32アーキテクチャの資産もそのままモバイルデバイスに持ってこようという計画なのでしょう。</p>
+
+<p>もし、SIMフリーで、かつ、自由にプログラミングができるモバイルデバイス(しかも、IA32アーキテクチャで！)があったら、おもしろいことになると思いませんか？<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                <p><a href="http://www.noritsuna.jp/archives/2007/04/low_power_ia.html#more" title="Low Power IAプラットフォーム">Low Power IAプラットフォームの続きを読む</a></p>
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2007/04/low_power_ia.html" title="Low Power IAプラットフォーム">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:01</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000329"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/329"
+    dc:title="PLCと無線"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000329"
+    dc:subject="HardWare"
+    dc:description="話題のPLCの話が、「経済学者 vs. アマ無線」など、盛り上がっているようです..."
+    dc:creator="noritsuna"
+    dc:date="2006-12-24T00:01:58+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;12&#26376;24&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000329" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/12/plc.html" title="PLCと無線">PLCと無線</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>話題のPLCの話が、「<a href="http://slashdot.jp/askslashdot/06/12/20/2331202.shtml">経済学者 vs. アマ無線</a>」など、盛り上がっているようです。</p>
+
+<p>この辺、思っていることを少々。</p>
+
+<p>アマチュア無線に関しては、私は全くの素人であるのですで、「干渉問題」や「帯域幅の是非」などの技術論は分からないです。<br />
+しかし、アマチュア無線は、是非とも、残してほしいものと考えています。(現状の形がよいのか、どうかは、私には判断できませんので、あしからず。)</p>
+
+<p>理由としては、これからのインターネットの主流が無線通信となると予測されるためです。<br />
+このため、OSIの物理層を自由に実験できる余地を残すため、ぜひとも、アマチュア無線を残しておいてもらいたいです。<br />
+実際に、このあたりをうまく使って、新しいインターネット的なサービスの実験をやろうとしているという話もきいたことがあるため、必要なのではないかと思います。私自身も、この辺、いろいろ手を出してみたくありますし。(;^_^A アセアセ・・・</p>
+
+<p>特に、最近は、FPGAやハードウェア拡張可能なBOXなど、ハードウェアもいろいろと遊べるものが出ていておりますので、それに無線を付加して何かするなど、とても魅力のある分野ではないでしょうか？<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/12/plc.html" title="PLCと無線">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:01</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/news/index.html#000312"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/312"
+    dc:title="PCI Express over Ethernet"
+    dc:identifier="http://www.noritsuna.jp/archives/news/index.html#000312"
+    dc:subject="NEWS"
+    dc:description="「PCI ExpressデバイスをEthernetで接続　NECが次世代インタフ..."
+    dc:creator="noritsuna"
+    dc:date="2006-12-09T10:17:08+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;12&#26376;09&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000312" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/12/pci_express_ove.html" title="PCI Express over Ethernet">PCI Express over Ethernet</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://www.itmedia.co.jp/news/articles/0612/06/news082.html">PCI ExpressデバイスをEthernetで接続　NECが次世代インタフェース</a>」という記事。</p>
+
+<p><br />
+<blockquote>PCなどの内部システムバスとして使われているPCI ExpressをEthernet（1Gbps/10Gbps）に載せ替えて転送するブリッジエンジンを開発した。</blockquote></p>
+
+<p>すごすぎる。これは、すごすぎる。(サイズも（ｗ)<br />
+FPGAでの処理をPCI Express間でダイナミックにやりとりするようなものと組み合わせると面白いことになりそうですね。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/12/pci_express_ove.html" title="PCI Express over Ethernet">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 10:17</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000281"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/281"
+    dc:title="Intelのもう1つの次世代CPU「LPP」"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000281"
+    dc:subject="HardWare"
+    dc:description="Intelのもう1つの次世代CPU「LPP」 という記事が出ておりますね。 以前..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-23T12:28:14+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;23&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000281" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/intel1cpulpp.html" title="Intelのもう1つの次世代CPU「LPP」">Intelのもう1つの次世代CPU「LPP」</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://pc.watch.impress.co.jp/docs/2006/1023/kaigai313.htm">Intelのもう1つの次世代CPU「LPP」</a> という記事が出ておりますね。</p>
+
+<p>以前、Intelさんは、「<a href="http://www.noritsuna.jp/archives/2006/06/xscale.html">XScaleを売却済み</a>」でしたが、その答えが、これのようです。</p>
+
+<blockquote>「今年(2006年)をベースラインとすると、5WのULVマイクロプロセッサがベースラインとなる。来年(2007年)には、我々は電力を半分に、実装面積を1/4にしたものを出す。2008年には、今日の製品より、1/10に電力を削減、1/7にサイズを削減するという、我々のゴールに達するだろう。さらに2008年から先では、シングルチップインテグレーションへと移行する計画だ」</blockquote>
+
+<p>この2008年以降の「シングルチップインテグレーション」ってのが、IA-32版のXScaleに相当すると言うことのようですね。</p>
+
+<p>これは、やはり、クロック戦争の象徴であるPentium4系から、省電力のBanias系へとアーキテクチャを切り替えたために、IA-32をXScale並に省電力にする道筋を立てることができたようです。<br />
+あとは、パフォーマンスを保つために、どのくらいコンパイラでの最適化をすることができるかが、鍵になるのではないでしょうか。(この話は、マルチコア系のCPUでも言われていますが、マルチコア系ではスレッドをどのように効率よく実装するかの話なので、ちょっと、毛色が違いますね。)<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/intel1cpulpp.html" title="Intelのもう1つの次世代CPU「LPP」">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 12:28</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000254"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/254"
+    dc:title="バッテリートラブル"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000254"
+    dc:subject="HardWare"
+    dc:description="先日、My母艦マシン・ThinkPadT42pをバッテリー環境で使用していたら、..."
+    dc:creator="noritsuna"
+    dc:date="2006-10-07T15:00:21+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;10&#26376;07&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000254" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/10/post_41.html" title="バッテリートラブル">バッテリートラブル</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>先日、My母艦マシン・ThinkPadT42pをバッテリー環境で使用していたら、いきなり、電源がOffとなり、その後は、電源を投入しても、電源ランプが光ってはすぐにOffになるという状態になりました。</p>
+
+<p>一瞬、<a href="http://japan.cnet.com/news/tech/story/0,2000056025,20240689,00.htm?ref=rss">こちらの事件</a>が、頭をよぎったわけで、慎重に検証を行いました。</p>
+
+<p>まず、私の環境としては、<br />
+<blockquote>・マシンは、ThinkPadT42p<br />
+・バッテリーは、「大容量バッテリー」＋「ウルトラスリムベイ用セカンドバッテリー」のダブルバッテリー環境<br />
+・「大容量バッテリー」は、状況により取り外して、ダミーバッテリーに変えることがある<br />
+　→4時間以内のMtgなどでは、「大容量バッテリー」を装着し、それ以上の場合は、「ダミーバッテリー」＋「ACアダプタ」を使用する<br />
+　→これは、極力軽量化するための作戦で、「大容量バッテリー」か「ACアダプタ」のどちらかだけを持ち運べばよいようにしている。</blockquote><br />
+という、環境であったりします。</p>
+
+<p>今回の状況を調査してみると、<br />
+<blockquote>・「ACアダプタ」を装着すると、正常に動作する<br />
+・「大容量バッテリー」だけだと、正常に動作する<br />
+・「大容量バッテリー」＋「ウルトラスリムベイ用セカンドバッテリー」だと、動作しない。<br />
+・「ウルトラスリムベイ用セカンドバッテリー」だけだと、動作しない。</blockquote><br />
+という状態で、どうやら、「ウルトラスリムベイ用セカンドバッテリー」が悪さをしているようです。</p>
+
+<p>ひとまず、「ACアダプタ」で起動後、「ウルトラスリムベイ用セカンドバッテリー」の状態を調べたら、<br />
+<blockquote>・バッテリー残量「ゼロ」・・・orz</blockquote><br />
+ということが判明しました。<br />
+これが原因であることは、間違いないようですが、この場合、<br />
+<blockquote>・「大容量バッテリー」＋「ウルトラスリムベイ用セカンドバッテリー」だと、動作しない。</blockquote><br />
+が、説明つかないのです。本来は、「ウルトラスリムベイ用セカンドバッテリー」が残量ゼロであれば、「大容量バッテリー」を使用して起動するはずなのですが、なぜか、今回はのトラブルではそのような動作になりませんでした。</p>
+
+<p>いろいろと実験してみたところ、<br />
+<blockquote>・「大容量バッテリー」＋「ウルトラスリムベイ用セカンドバッテリー」の状態で、レジュームして、「大容量バッテリー」を外すと、電源が落ちます。<br />
+・ただし、ACアダプタを使用している場合は、大丈夫ですが、その後、「ウルトラスリムベイ用セカンドバッテリー」の認識がおかしくなることがあります。<br />
+　→再起動するまで、充電されないなどの症状が出ます。<br />
+　→「ウルトラスリムベイ用セカンドバッテリー」の残量が残っている場合、「大容量バッテリー」が装着されていようが、「ウルトラスリムベイ用セカンドバッテリー」を使い切った時点<br />
+　　→パターン1：「何の警告もなく」電源が落ちます。←これが今回の現象<br />
+　　→パターン2：「サスペンドモードへ移行します」と出て、画面が遷移したあと、フリーズ状態で先に進みません<br />
+</blockquote><br />
+ということで、再現できました。パターン的には、何パターンかあるようです。何にせよ、レジューム中に、バッテリーを抜くとカオス状態になるということです</p>
+
+<p>オチとしては、ちゃんと、「バッテリーの交換」コマンド(サスペンドモードへ移行)を使えということですかね。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/10/post_41.html" title="バッテリートラブル">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 15:00</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000236"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/236"
+    dc:title="新VMWareServerサーバ構築・ハードウェア編"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000236"
+    dc:subject="HardWare"
+    dc:description="こちらのエントリーで、宣言したサーバを作成いたしました。 お約束のごとく、はまっ..."
+    dc:creator="noritsuna"
+    dc:date="2006-09-16T00:07:31+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;09&#26376;16&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000236" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/09/vmwareserver.html" title="新VMWareServerサーバ構築・ハードウェア編">新VMWareServerサーバ構築・ハードウェア編</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://www.noritsuna.jp/archives/2006/08/vm.html">こちらのエントリー</a>で、宣言したサーバを作成いたしました。<br />
+お約束のごとく、はまったので、そのメモを記載しておきます。</p>
+
+<p><BR><br />
+<strong>●24PIN電源の罠</strong><br />
+最近の電源って、20PINじゃなくて、24PINなんですね。。。うちの電源、20PINしかなくて、見事、買い換えとなりました。</p>
+
+<p>・追加購入<br />
+音無II</p>
+
+<p><BR><br />
+<strong>●電源サイズの罠</strong><br />
+ファンレス電源のためか、縦長の電源だったのですが、見事にケースに入りませんでした。。。約2mmほど、補強用バーに接触してしまいます。orz<br />
+もちろん、違うケースにするとか、そういうへたれなことはしません。<br />
+対策：<br />
+<blockquote>・電源の接触する側のカバーが1mmほどなので、それを外す。<br />
+・残りの1mmは、ビスのでっばりが接触しているだけなので、ビスを切り落とす。</blockquote><br />
+という、楽しい加工をしてクリアーしました。</p>
+
+<p><BR><br />
+<strong>●メモリの罠</strong><br />
+M/Bに、CPU、メモリ、電源だけを刺した状態で、電源を入れたら、、、<br />
+<blockquote>「プッ  プップッ プップップッ プップッ」</blockquote><br />
+と、beep音。。。<br />
+<a href="http://home.impress.co.jp/magazine/dosvpr/q-a/9911/qa9911_2.htm">beep codes</a>を調査したところ、どうやら、メモリ関連のエラーの模様らしいです。<br />
+そこで、<br />
+<blockquote>・メモリを１枚にしてみる<br />
+・刺すBANKを変えてみる(全BANK試してみました。)<br />
+・メモリのクロックレートを変えてみる<br />
+・CMOSをクリアーしてみる</blockquote><br />
+と試したのですが、だめだったので、サポートセンターに送ったところ、「メモリの初期不良認定」をいただきました。orz</p>
+
+<p>とか、いっていたら、さらに、「メモリとM/Bとの相性問題が確認されました」とのことで、メモリの種類自体が変更となりました。orz</p>
+
+<p><BR><br />
+<strong>●VTの罠</strong><br />
+なんと、M/B上のBIOSにて、デフォルトでは、VT(Virtualization Techonology)が「Disabled」の設定となっておりました。<br />
+全く気がつかずに、インストールしてしまうところでした。危ない危ない。</p>
+
+<p><BR><br />
+以上、ハードウェアがらみのトラブルでした。いろいろとご対応くださった<a href="http://www.users-side.co.jp/">users-side</a>様に、感謝を捧げつつ、ソフトウェア編にご期待ください。。。orz<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/09/vmwareserver.html" title="新VMWareServerサーバ構築・ハードウェア編">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:07</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000221"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/221"
+    dc:title="VM環境移行準備"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000221"
+    dc:subject="HardWare"
+    dc:description="とあるすばらしい知らせがあり(詳細は、近日公開されるらしいです)、それと同時にあ..."
+    dc:creator="noritsuna"
+    dc:date="2006-08-27T00:02:47+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;08&#26376;27&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000221" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/08/vm.html" title="VM環境移行準備">VM環境移行準備</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>とあるすばらしい知らせがあり(詳細は、近日公開されるらしいです)、それと同時にある環境を構築せねばならず、構築していたのですが、そのときにサーバが一台お亡くなりになりました。。。ついでに、玄箱も、お亡くなりになりました。<br />
+どうやら、電源を落としたのが、致命的だったようです。<br />
+（正確には、元々死ぬ寸前で、再電源投入時の突入電流に耐えられなかった模様です。これは、よくある話ですので、死にそうなマシンややばい状態になったマシンの電源は、極力落とさないようにしてバックアップ作業などをすることをおすすめします。ちなみに、うちには、もう一台この状態のPentiumPro(！)マシンがいたりします。Yamahaの<a href="http://netvolante.jp/products/rt58i/index.html">RT58i</a>がでたら、リプレース予定。）</p>
+
+<p>ということで、二台のマシンを復活させねばならないのですが、それをやるくらいなら、VMWareServerを利用して、何台かのマシンを統合した環境を構築してみようかと考えた次第であります。<br />
+そして、考えた結果、下記のような構成にする予定です。</p>
+
+<p>■コンセプト<br />
+・最静音<br />
+・できる範囲で安定<br />
+・HDDの冗長化<br />
+・VM最適化</p>
+
+<p><BR><br />
+■対象ハードウェア<br />
+●CPU<br />
+・Intel Core 2 Duo E6600<br />
+→VMWareServerを使用するため、VTほしかった<br />
+→これ下のモデルだとキャッシュの量が減るため</p>
+
+<p>●M/B<br />
+・SuperMicro PDSBA<br />
+→サーバ用途であるため、品質を重視し、品質に定評のあるSuperMicro製をチョイス<br />
+→サーバ用途であるため、VGAは相性がないオンボードが好ましいため</p>
+
+<p>●メモリ<br />
+・swissbit SEU667-1024C(PC2-5300 (DDR2-667MHz)) x 2<br />
+→サーバ用途であるため、品質を重視し、品質に定評のあるswissbit製をチョイス<br />
+→VMWareServerなので、容量がほしかったため</p>
+
+<p>●電源<br />
+・岡谷エレクトロニクス製 音無<br />
+→今までの使い回し<br />
+→ファンレス電源<br />
+→電源は、安定性に影響するため、極力よい品質のものをチョイスするべき</p>
+
+<p>●ケース<br />
+・WiNDyのなにか<br />
+→今までの使い回し<br />
+→精度は悪くはないはず。安定性や共振などに影響が出る。</p>
+
+<p>●光学ドライブ<br />
+・MSI XA52P(MS-8452T)<br />
+→SerialATA接続内蔵型CD-R/RW、DVD-ROMコンボドライブ<br />
+→M/Bの関係上、SATAであることが必須であったため</p>
+
+<p>●HDD<br />
+・ARAID99-2000<br />
+・Seagate ST3750640AS(750GB)<br />
+→RAID1-BOXである「ARAID99-2000」を利用し、冗長性を確保<br />
+→ファイルサーバを兼ねるため、最大容量をチョイス</p>
+
+<p>●CPUクーラー<br />
+・scythe HR-01 775<br />
+→ファンレスクーラー</p>
+
+<p><BR><br />
+■移行手順概要（メモ）<br />
+１，上記マシンに、OSとVMWareServerをインストールする<br />
+２，VMWareServerに、パーティション操作ツール入りのOSをインストールする<br />
+３，移行対象サーバのHDDを、上記マシンに接続する<br />
+→このときに、VMWareServer環境に合わせて、ドライバ類を用意しておく<br />
+４，VMWareServer用のまっさらな新規HDDイメージを作成する<br />
+５，「２」の環境に対して、「３」のHDDをマウントする<br />
+６，「２」の環境に対して、「４」のHDDイメージをマウントする<br />
+７，「２」の環境内にて、パーティション操作ツールを使用して、「５」と「６」間をコピーする<br />
+８，「７」でコピーしたVMWareServer用のHDDイメージを使用して、VM環境を作成する<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                <p><a href="http://www.noritsuna.jp/archives/2006/08/vm.html#more" title="VM環境移行準備">VM環境移行準備の続きを読む</a></p>
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/08/vm.html" title="VM環境移行準備">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:02</li>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/08/vm.html#comments" title="VM環境移行準備にコメント">Comments</a> (2) </li>
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000168"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/168"
+    dc:title="AMDのコプロセッサ戦略"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000168"
+    dc:subject="HardWare"
+    dc:description="こちらに、AMDのコプロセッサ戦略の解説記事が出ております。 やはり、この戦略は..."
+    dc:creator="noritsuna"
+    dc:date="2006-07-15T00:10:52+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;07&#26376;15&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000168" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/07/amd.html" title="AMDのコプロセッサ戦略">AMDのコプロセッサ戦略</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://pc.watch.impress.co.jp/docs/2006/0713/kaigai287.htm">こちら</a>に、AMDのコプロセッサ戦略の解説記事が出ております。<br />
+やはり、この戦略は素晴らしいですね。Intelも同様の方向性を検討しているというあたりからもその方向性の正しさが証明されているのではないかと思います。</p>
+
+<p><br />
+<blockquote>「アプリケーションに特化したコプロセッサの例としては、まずJavaやXML、ハイパフォーマンスの科学技術系コンピューティング市場でのベクタ浮動小数点演算などが挙げられる。潜在的には、メディアプロセッシングアプリケーションなども、将来は考えられるだろう。データセンターなどのワークロードを分析した結果、こうした(コプロセッサ)機能を念頭に置いて次世代プロセッサを開発する必要があることが明白となった」とHester氏は説明する。</blockquote></p>
+
+<p>「<a href="http://www.noritsuna.jp/archives/2006/07/cpuosvm.html">CPUとOSとVMの境界</a>」のエントリーでも、ちらっと書きましたが、JavaVMのハードウェア実装は近いうちに実現されそうですね。<br />
+もし、そのうえで、Java実装Browser（<a href="http://www.icesoft.com/products/icebrowser.html">ICEbrowser</a>)が動作して、WebOS(<a href="http://japan.cnet.com/column/somethingnew/story/0,2000067121,20165688,00.htm">YouOS</a>。<a href="http://www.noritsuna.jp/archives/2006/07/webosyouos.html">こちらのエントリー</a>も参照。)を、動作させたら、今までのOSやPCの概念が一気に変わってしまう可能性を秘めているのではないでしょうか？JavaVMに特化したようなCPUであれば、組み込みのような機器への搭載も比較的楽でしょうし、データが「あちら側」に存在しているのであれば、どこでも同じ環境が呼び出せるのです。(このようにどこでも同一の環境が扱えるというのは非常に便利です。私の方も、2001年頃からいろいろ試しています。そのあたりの話は、<a href="http://www.noritsuna.jp/archives/2005/02/post_9.html">こちらのエントリー</a>をどうぞ。)<br />
+そういう状況になるのを防ぐため、ゲイツ様の肝いりで「<a href="http://www.live.com/">Windows Live</a>」のようなサービスが生まれているのではないかと思います。そして、「<a href="http://www.noritsuna.jp/archives/2006/06/windows_live_me_1.html">Windows Live Messenger</a>」のエントリーにある「MSの技術TopがGroovy&NotesのRay Ozzie氏」になることへの期待が膨らむわけですね。<br />
+（この辺の話は、ジェフリー・ムーア著「<a href="http://www.amazon.co.jp/gp/product/479811121X/">ライフサイクルイノベーション</a>」をあわせてお読みいただくと、より理解が深まると思います。）<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/07/amd.html" title="AMDのコプロセッサ戦略">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:10</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000162"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/162"
+    dc:title="UPSバッテリー交換"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000162"
+    dc:subject="HardWare"
+    dc:description="我が家では、APC Smart-UPS1000を、2機導入していますが、そのうち..."
+    dc:creator="noritsuna"
+    dc:date="2006-07-11T21:17:58+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;07&#26376;11&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000162" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/07/ups.html" title="UPSバッテリー交換">UPSバッテリー交換</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>我が家では、<a href="http://www.apc.co.jp/products/ups/sua1000j.html">APC Smart-UPS1000</a>を、2機導入していますが、そのうちの1機のバッテリーが干上がってしまい、替えバッテリーを発注しました。</p>
+
+<p>ちなみに、2回目の交換となるのですが、APCは、本当にバッテリー持たないですね。だいたい、1.5年くらいでへたってしまいます。(2機いるので、すでに、3回ほど、バッテリー交換してます。)<br />
+まぁ、HDDと一緒で、熱により寿命が大幅に左右されるため、サーバルームに比べ高温である我が家では、少々寿命が短いのは仕方ないところなのですが。。。けど、1.5年は、ちょっと。。。</p>
+
+<p>やはり、Omronとかに買い換えた方がよいかなぁ。</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/07/ups.html" title="UPSバッテリー交換">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 21:17</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000158"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/158"
+    dc:title="32コアIntelCPU"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000158"
+    dc:subject="HardWare"
+    dc:description="2010年には、Intelさんの1CPU内に32個のコアが入るとのこと。こちら。..."
+    dc:creator="noritsuna"
+    dc:date="2006-07-10T21:47:53+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;07&#26376;10&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000158" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/07/32intelcpu.html" title="32コアIntelCPU">32コアIntelCPU</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>2010年には、Intelさんの1CPU内に32個のコアが入るとのこと。<a href="http://www.tgdaily.com/2006/07/10/intel_32_core_processor/">こちら</a>。</p>
+
+<p>その先には、100コアなんて話もありますが、どうなのでしょう？<br />
+ここまで来ると、内部バスがネックになりそうな気がするのですが？メモリのバスの並列度とかどうなるのでしょう？並列度が低ければ、結局同時に稼働できるコアの数にも制限が出てくるわけで。<br />
+ほとんど、スケーラブルな性能向上は期待できない気がします。(まぁ、SMPなシステムでもそうですし。)</p>
+
+<p><br />
+ちなみに、某新鋭Gridシステムもバスがネックになって、CPUの期待値ほど、性能が出ないと話ですし。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/07/32intelcpu.html" title="32コアIntelCPU">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 21:47</li>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/07/32intelcpu.html#comments" title="32コアIntelCPUにコメント">Comments</a> (2) </li>
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000154"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/154"
+    dc:title="HDD換装"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000154"
+    dc:subject="HardWare"
+    dc:description="メインマシンのThinkPad T42pのHDDの残り容量が1GBを切ったため、..."
+    dc:creator="noritsuna"
+    dc:date="2006-07-10T02:16:56+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            
+
+            <!-- エントリータイトル -->
+            <h3 id="a000154" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/07/hdd.html" title="HDD換装">HDD換装</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>メインマシンのThinkPad T42pのHDDの残り容量が1GBを切ったため、100GBから160GBへ換装。しかし、はまりまくって、36時間。。。その顛末記。</p>
+
+<p>HDDコピーをして、その後、パーティーション拡張をする戦法にて換装を試みることにする。<br />
+<blockquote>・HDDコピーソフトを使って、旧HDDを新HDDにコピー。<br />
+・パーティーション操作ソフトを使って、新HDDのパーティーション領域を拡大。</blockquote><br />
+以上で、新HDDへのコピーが完了したので、HDDをThinkPad に接続して、ブートしてみる。<br />
+しかし、ブートせず。。。状況的に、<br />
+<blockquote>・MBRが破損している<br />
+・MBRから、NTLDRが呼び出せない</blockquote><br />
+と、思われたため、いろいろ調査したところ、「MBR領域が破損している模様」ということが判明。<br />
+ということで、WindowsXPのインストールディスクから管理コーンソールを立ち上げて、MBRの修復を行うことにするが、<br />
+<blockquote><br />
+・「Administer」ユーザは作成していないためなのか、ログインが通らず、管理コンソールが使えない<br />
+・代わりに、Windows2000のインストールディスクを使用して、管理コンソールから「fixmbr」を行う</blockquote><br />
+無事に、「MBR領域が復活」したが、それでも、起動せず。</p>
+
+<p>ここで、もう一つ気になることが判明する。<br />
+<blockquote>・インストールディスク起動時に、HDD領域が「131GB」となっていた</blockquote><br />
+容量的に見て、<a href="http://www.tadachi-net.com/pc_info/ide.html">28bitLBAの壁</a>と思われるが、BIOS的にもOS的にも、今更、引っかかるとは考えにくい。<br />
+少し、考察する。。。導き出した仮説。<br />
+<blockquote>・元のWindowsXPが、28bitLBAで構成されているから。。。＿｜￣｜○<br />
+・ちなみに、WindowsXP SP1以前のインストールディスクは48bitLBA非対応なので137GBに見えるのはある意味正常であることは、追記しておく</blockquote><br />
+。。。。。。。。。。。。<br />
+。。。。。。。。。。。。<br />
+。。。。。。。。。。。。<br />
+このままでは、たとえ、起動できたとしても137GB以上書き込んだ瞬間に、すべてが崩壊する（LBAが0に戻るため、上書きが始まる）ことが、目に見えている。。。<br />
+手だてとしては、下記の３つが考えられる。ただし、３つ目は、WindowsがHDDへのアクセスに、NTFSの情報だけしか利用しないことが前提であるが、本当にそのようなどうさなかは不明。<br />
+<blockquote>・再インストール<br />
+・137GB以下で、使用する<br />
+・フォーマットしたあと純粋なファイルコピーで再構築</blockquote></p>
+
+<p>やはり、人柱を目指すものとしては、「3つ目」の方法を試してみる。<br />
+<blockquote>・旧HDDで起動して、48bitLBAレジストリを変更する。<br />
+ 「HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\atapi\Parameters」<br />
+ 「EnableBigLba」=「1」<br />
+・新HDDをThinkPadに接続して、48bitLBA対応WindowsをNTLDRを呼び出すところまでインストールする（初回のリブートまで）<br />
+・新旧HDDをほかのWindowsマシンに接続して、「NTLDR」以外を、すべて、旧HDD→新HDDへパーミッションなどの情報を含めてコピーする<br />
+　例：xcopy [旧HDD] [新HDD] /A /E /V /C /G /H /R /K /O /X /Y <br />
+</blockquote><br />
+としてみましたが、新HDD、ブート途中でブルースクリーン直行。。。。。。。。。やはり、48bitLBAが正常に認識できない模様。</p>
+
+<p>仕方なく、「2つ目」の方法に落ち着くことに。<br />
+<blockquote>・<a href="http://www.hitachigst.com/hdd/support/download.htm#DFT">こちらのツール</a>を使って、Low-Level(物理)フォーマット。<br />
+・<a href="http://www.hitachigst.com/hdd/support/download.htm#OGT">こちらのツール</a>を使って、28bitLBAに変更。<br />
+・Windows2000などの28bitLBAしか対応していないOSで、NTFS(論理)フォーマット。<br />
+・最初にやった方法で、HDDコピー。</blockquote></p>
+
+<p>以上でも、移植できず。。。う〜ん、何がダメなんだろう。。。<br />
+ということで、現時点では、再インストールしか移植法がなく、保留状態。。。</p>
+
+<p>※上記の手法は、あくまで、私の環境での事例です。他の環境にて同様になる保証はありません。自己責任において、お試しください。</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/07/hdd.html" title="HDD換装">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 02:16</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000155"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/155"
+    dc:title="指マウス"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000155"
+    dc:subject="HardWare"
+    dc:description="「指マウス」が、発売されたそうです。 おしい。ThinkPadのTrackPoi..."
+    dc:creator="noritsuna"
+    dc:date="2006-07-09T17:03:44+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;07&#26376;09&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000155" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/07/post_16.html" title="指マウス">指マウス</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://www.watch.impress.co.jp/akiba/hotline/20060708/etc_yubimouse.html">指マウス</a>」が、発売されたそうです。</p>
+
+<p>おしい。ThinkPadのTrackPointのような使い方が出来れば、無敵なんですけどねぇ。<br />
+是非とも、次期バージョンでは、そんな感じにしてもらいたいです。</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/07/post_16.html" title="指マウス">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 17:03</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000153"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/153"
+    dc:title="CPUとOSとVMの境界"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000153"
+    dc:subject="HardWare"
+    dc:description="「1台で同時50万接続のWebサーバーが登場 」だそうです。すごいですね。 普通..."
+    dc:creator="noritsuna"
+    dc:date="2006-07-07T21:58:35+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;07&#26376;07&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000153" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/07/cpuosvm.html" title="CPUとOSとVMの境界">CPUとOSとVMの境界</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>「<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20060707/242757/?ST=oss">1台で同時50万接続のWebサーバーが登場</a> 」だそうです。すごいですね。<br />
+普通のIAサーバと呼ばれるようなサーバでは、チューニングをがんばって5000くらいが限界だと思います。それが、100倍の50万です。すごい！！！</p>
+
+<blockquote>HTTP，TCP/IP，イーサネットなどWebサーバーの機能に必要な最低限のプロトコルをFPGA（Field Programmable Gate Array）で実現したWebサーバー専用装置である。</blockquote>
+
+<p>ということですので、構想的にヘテロジニアスマルチコアCPUに近い構想だと思います。ソニーさんのCellのSPEを通信専用として、インプリメントしたものというのが一番わかりやすいかもしれません。<br />
+ほかでも、AMDさんの「<a href="http://pc.watch.impress.co.jp/docs/2006/0601/kaigai275.htm">コプロセッサ構想</a>」は、まさに、そのものといえるのではないでしょうか？<br />
+実際に、OpteronとFPGAを結ぶというマザーボードも存在します。<a href="http://pc.watch.impress.co.jp/docs/2006/0508/drc.htm">こちら</a>。</p>
+
+<p>で、こうなってくると、OSとCPUの違いは、どうなるのでしょうか？<br />
+JRockitさんでは、「<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20060519/238478/">JavaVMは汎用OS上で動かさない</a>」といって、JavaVM専用OSを開発していますが、JavaVMを解釈するCPUというのが、あったらどうでしょうか？</p>
+
+<p>さらに、これを「<a href="http://www.noritsuna.jp/archives/2006/07/os_1.html">OSの進化</a>」ブラウザとOSの関係も考慮すると、さらに、面白い妄想が広がります。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/07/cpuosvm.html" title="CPUとOSとVMの境界">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 21:58</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000136"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/136"
+    dc:title="XScale、売却"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000136"
+    dc:subject="HardWare"
+    dc:description="以前に、噂は出ていましたが、確定したようですね。IntelのXScale事業売却..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-28T15:15:36+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;06&#26376;28&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000136" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/06/xscale.html" title="XScale、売却">XScale、売却</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>以前に、噂は出ていましたが、確定したようですね。<a href="http://www.itmedia.co.jp/news/articles/0606/28/news014.html">IntelのXScale事業売却</a>。</p>
+
+<p>XScale、素晴らしいチップだと思うのですけどねぇ。ただ、いかんせん、高すぎましたが。。。<br />
+でも、あと数年がんばって、昔のハイエンドをローエンドに落とすという良くある半導体戦略とか取れなかったのかなぁ。<br />
+それとも、純粋に不要だったのかしらん。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/06/xscale.html" title="XScale、売却">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 15:15</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000115"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/115"
+    dc:title="エプソンのB5ノート"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000115"
+    dc:subject="HardWare"
+    dc:description="こちらの記事にて、意欲作と思われる新型B5ノートが、6/27に発表されるとのこと..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-21T02:00:24+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2006&#24180;06&#26376;21&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000115" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/06/b5.html" title="エプソンのB5ノート">エプソンのB5ノート</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://pc.watch.impress.co.jp/docs/2006/0620/epson2.htm">こちらの記事</a>にて、意欲作と思われる新型B5ノートが、6/27に発表されるとのこと。</p>
+
+<p>エプソンは、なかなか、品質がよいという話なので、とても期待してしまいますね。PanaのLet'sNoteも捨てがたいところですが、あの液晶が。。。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/06/b5.html" title="エプソンのB5ノート">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 02:00</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000115"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/115"
+    dc:title="エプソンのB5ノート"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000115"
+    dc:subject="HardWare"
+    dc:description="こちらの記事にて、意欲作と思われる新型B5ノートが、6/27に発表されるとのこと..."
+    dc:creator="noritsuna"
+    dc:date="2006-06-21T02:00:24+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            
+
+            <!-- エントリータイトル -->
+            <h3 id="a000115" class="entry-header"><a href="http://www.noritsuna.jp/archives/2006/06/b5.html" title="エプソンのB5ノート">エプソンのB5ノート</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p><a href="http://pc.watch.impress.co.jp/docs/2006/0620/epson2.htm">こちらの記事</a>にて、意欲作と思われる新型B5ノートが、6/27に発表されるとのこと。</p>
+
+<p>エプソンは、なかなか、品質がよいという話なので、とても期待してしまいますね。PanaのLet'sNoteも捨てがたいところですが、あの液晶が。。。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2006/06/b5.html" title="エプソンのB5ノート">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 02:00</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000086"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/86"
+    dc:title="新メインマシン"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000086"
+    dc:subject="HardWare"
+    dc:description="以前に、こちらのエントリーで宣言したノートPC購入を実行いたしました。 購入した..."
+    dc:creator="noritsuna"
+    dc:date="2005-05-21T23:40:51+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2005&#24180;05&#26376;21&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000086" class="entry-header"><a href="http://www.noritsuna.jp/archives/2005/05/post_34.html" title="新メインマシン">新メインマシン</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>以前に、<a href="http://www.noritsuna.jp/archives/2005/02/post_9.html">こちらのエントリー</a>で宣言したノートPC購入を実行いたしました。</p>
+
+<p>購入したモデルはといいますと、、、</p>
+
+<p><S>Lenovo</S><a href="http://www-6.ibm.com/jp/pc/thinkpad/tpt42p/tpt42pa.shtml">IBM ThinkPad T42p Q3J</a>(ワイヤレスLAN無しモデル)</p>
+
+<p>IBMです、ええ、Lenovo じゃありません、断じて！！！<br />
+そいえば、請求書に、レノボ・ジャパンて文字列がありましたが、なにかの暗号なのかな？(^-^;A<br />
+<BR><br />
+■購入オプション<br />
+●<a href="http://www-6.ibm.com/jp/pc/option/obi/nob07/13m6350/13m6350a.html">T40シリーズ バッテリー・ベイ・インサート</a><br />
+ ダミーバッテリー。<br />
+●<a href="http://www-6.ibm.com/jp/pc/option/obi/nob03/08k8190/08k8190a.html">ウルトラベイ・スリム リチウム・ポリマー・バッテリー・パック</a><br />
+　ウルトラベイに取り付ける、バッテリーパック。</p>
+
+<p>まずは、この二つ。<br />
+T42pについてくるバッテリーは、デフォルトで大容量バッテリーなのですがこれが筐体からはみ出ているわ、重いわ、で、いまいちよろしくないという点と最近は、電源を確保できる環境で使うことが多い点を考慮して、一番軽くなるバッテリーの組み合わせにしてみました。<br />
+これの良い点は、本当に長時間のバッテリー駆動が必要になったときに大容量バッテリーと組み合わせて使用できる点です。</p>
+
+<p><br />
+●<a href="http://www-6.ibm.com/jp/pc/option/obi/nob05/31p9702/31p9702a.html">ワイヤレスLAN 802.11a/b/g Mini-PCI カード</a><br />
+いまさら、ワイヤレスLAN無しというのは、さすがにアレゲすぎるので、オプションの拡張カードを買いました。</p>
+
+<p>このワイヤレスLANの取り付け、苦労しました。（ﾉД｀）ｼｸｼｸ</p>
+
+<p><a href="http://www-6.ibm.com/jp/domino04/pc/support/Sylphd03.nsf/jtechinfo/SYJ0-02882E8">取り付け図</a>を見てみると、</p>
+
+<p>・キーボード<br />
+・パームレスト</p>
+
+<p>を、はずす必要があると書いてあります。<br />
+すなわち、キーボード部分を全部分解しないとならないんです。<br />
+機体が重いので、なかなかに苦労しました。1時間くらいかかった悪寒。</p>
+
+<p><br />
+●英語キーボード<br />
+常識。必須アイテム。(^-^;A</p>
+
+<p><br />
+●100Gの7200rpm HDD(予定)<br />
+換装を計画していますが、物自体がまだ市場に存在しないので、お預け状態です。(^-^;A</p>
+
+<p>やはり、速いHDDは、処理速度の要ですからね。ぜひとも、換装したいです。<br />
+それに、実は、現HDDの空き容量は、10%切ってたりします。(^-^;A</p>
+
+<p><BR><br />
+■使用感<br />
+●速度<br />
+う〜ん、速い！！！<br />
+いままで、Pen3 700MHz & Mem390MB だったの、劇的に速度アップしました。<br />
+VS.NET 2005 β2 が、さくさく、動きます〜。<br />
+特に、メモリが、1G になった点が効いているようです。</p>
+
+<p><br />
+●画面<br />
+15インチに、1600x1200 なので、最初は文字が潰れてみれないんじゃないかと思っていたのですが、そんなことは全然なく17インチ 1280x1024 の液晶ディスプレイとほとんど変わらない感じです。</p>
+
+<p>ノートPCなので、画面までの距離が非常に近い点が、幸いしているのかと思います。</p>
+
+<p>ちなみに、画面広々ですよ〜〜〜。今までは、ほとんどのアプリをフル画面で使っていましたが、これだけ広いとフル画面の方が、逆に違和感がある感じ。<br />
+非常に効率的に、マルチタスクの恩恵を受けています。(^-^;A</p>
+
+<p><br />
+●携帯性<br />
+重さの観点から。<br />
+バッテリーを軽量の物に変えたりと細工をしていますが、やはり、2kgオーバーはなかなかきつい物があります。私のバッグは、トートバックタイプであるため、片肩に全ての重量が乗ることになるのですが、1時間もすると肩が悲鳴を上げてしまいます。リュックタイプなど、負荷を分散できれば十分持ち運びできる重さだとは思いますので、その辺はご注意を。</p>
+
+<p><br />
+●旧機種との比較<br />
+・キーボード<br />
+IBM ThinkPad X21 と比べると、キータッチが倍くらい軽くなり、かなり、かちゃかちゃ感がします。<br />
+打鍵音も倍以上するようになっているので、かなり、いけてないキーボードです。<br />
+ここは、なんとしてでも、品質も元に戻して頂きたい部分です。</p>
+
+<p>・パームレスト<br />
+X21は、カーボン塗装(？)になっていますが、T42pは、カーボンプラスチック剥き出しのままです。<br />
+そのため、ものすごくちゃっちく感じてしまいます。<br />
+<BR><br />
+■感想<br />
+全体的には、非常に満足しています。<br />
+特に、画面が広くなったのは、非常に大きなメリットで、メインマシンとして十分に使えると確信しています。</p>
+
+<p>以上、新型機の使用感でした。<br />
+また、以上のことは、あくまで私個人の主観であり、機体自体も個体差により他の機体と違いがあるかもしれませんことを付け加えておきます。</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2005/05/post_34.html" title="新メインマシン">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 23:40</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000058"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/58"
+    dc:title="初めてのBluetooth"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000058"
+    dc:subject="HardWare"
+    dc:description="さきほど、初Bluetoothデバイスとして、対Skype用にヘッドセットを買っ..."
+    dc:creator="noritsuna"
+    dc:date="2005-03-13T03:09:46+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2005&#24180;03&#26376;13&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000058" class="entry-header"><a href="http://www.noritsuna.jp/archives/2005/03/bluetooth.html" title="初めてのBluetooth">初めてのBluetooth</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>さきほど、初Bluetoothデバイスとして、対Skype用にヘッドセットを買ってきました。</p>
+
+<p>モノは、corega製の</p>
+
+<p>「<a href="http://www.corega.co.jp/product/list/others/btusb01.htm">無線 USBアダプタ CG-BTUSB01</a>」(以下、レシーバ)<br />
+「<a href="http://www.corega.co.jp/product/list/others/bths01.htm">ワイヤレスヘッドセット CG-BTHS01</a>」(以下、ヘッドセット)</p>
+
+<p>です。</p>
+
+<p>早速、インストールしてみたのですが、はまりまくりました。（ﾉД｀）ｼｸｼｸ<br />
+なので、その顛末を書いてみようと思います。<br />
+誰かの役に立つかもしれませんので。(^-^;A</p>
+
+<p><BR><br />
+●電源と認識の罠<br />
+最初は、レシーバをWindows君に認識させてあげないとなりませんので、USBに<br />
+接続してみました。<br />
+なんと、WindowsXP SP2では、デフォルトドライバで、一発認識！すばらしい。</p>
+
+<p>つづいて、</p>
+
+<blockquote>「ペアリング設定」</blockquote>
+
+<p>というモノをしないとならないので、それを行います。<br />
+これは、このレシーバとデバイスの認証儀式で、デバイスの初回認識時にやらねば<br />
+ならないようです。</p>
+
+<p>早速、ヘッドセットの電源をONにします。<br />
+電源を入れるには、「MODEボタンを7秒の長押し」と書いてあったので、実行。<br />
+LEDが、青く点滅を始めたので、電源は入ったようです。</p>
+
+<p>そして、Bluetoothデバイスコントローラを立ち上げ、認識ボタンをクリック！<br />
+・・・認識されず。＿|￣|○　ガックシ・・・</p>
+
+<p>何度やっても、ダメです。（ﾉД｀）ｼｸｼｸ<br />
+<BR><br />
+・別モード発見<br />
+説明書を読むこと3回目、</p>
+
+<blockquote>
+「ペアリング設定時は、MODEボタン10秒の長押しで<BR>　特別モードにする」</blockquote>
+
+<p>という記述を発見。＿|￣|○　ガックシ・・・</p>
+
+<p>早速、10秒長押ししてみると、見事認識しました。ヽ（´▽｀）ノ<br />
+<p><a href="/images/sip/bluetooth-002.PNG" target="_blank"><img src="/images/sip/bluetooth-002.PNG" width="200" border="0"></a></p></p>
+
+<p><BR><br />
+●デフォルトドライバの罠<br />
+認識が正常に出来たので、早速、Skypeを立ち上げて、サウンドデバイスを<br />
+ヘッドセットに切り替える・・・ことができず。（ﾉД｀）ｼｸｼｸ</p>
+
+<p>どうやっても、ヘッドセットに切り替えることが出来ず。＿|￣|○　ガックシ・・・</p>
+
+<p>いろいろと調査を開始・・・・。</p>
+
+<p>どうやら、</p>
+
+<blockquote>「サービスとBluetoothデバイスを結びつけを行う<BR>　必要がある」</blockquote>
+
+<p>ということのようです。<br />
+サービスとは、OSに対して、Bluetoothデバイスをキーボードやスキャナとして<br />
+みせるためのドライバみたいなものらしいです。<br />
+キーボードやマウス、LANなど、いろいろと定義されているようです。</p>
+
+<p>そこで、サービスのインストールをしようとしてみるが、見つからず。。。<br />
+どうやるのか、全然わからない。<br />
+<BR><br />
+・corega謹製ドライバの登場<br />
+よって、</p>
+
+<blockquote>
+「XP には、サービスが付いていないに違いない」</blockquote>
+
+<p>と判断して、corega謹製ドライバをインストールしてみました。</p>
+
+<p>corega謹製ドライバ君、サービスもインストールしてくれました！<br />
+<p><a href="/images/sip/bluetooth-003.PNG" target="_blank"><img src="/images/sip/bluetooth-003.PNG" width="200" border="0"></a></p></p>
+
+<p><br />
+そして、再度、ヘッドセットを認識させたら、ｷﾀ━━━━━━(ﾟ∀ﾟ)━━━━━━ !!!!!<br />
+成功です。ちゃんと、サウンドデバイスとして使用可能となりました。<br />
+<p><a href="/images/sip/bluetooth-001.PNG" target="_blank"><img src="/images/sip/bluetooth-001.PNG" width="200" border="0"></a></p></p>
+
+<p><BR><br />
+●保留の罠<br />
+早速、音が聞こえるか実験開始・・・全然、聞こえない。＿|￣|○　ガックシ・・・<br />
+ピポーッって音が、定期的に聞こえてくるだけです。（ﾉД｀）ｼｸｼｸ</p>
+
+<p>う〜ん、なぜだ。。。</p>
+
+<p>ミュージックプレーヤなどでも実験してみるが、うまくいかないです。<br />
+何も、音が流れてきません。<br />
+<BR><br />
+・MODEボタン再び<br />
+そこで、ふと、「ピポーッ」音があまりに定期的なので、「保留音かも？」と<br />
+いう考えが頭をよぎりました。</p>
+
+<p>ということは、もう一回MODEボタンを押したら解除できるかもしれないと<br />
+思い、おそるおそるMODEボタンを押すと・・・音が聞こえたよ、ママン！！！</p>
+
+<p>どうやら、「ピポーッ」音は、保留音で、</p>
+
+<blockquote>「電源ON＝保留状態での起動」</blockquote>
+
+<p>ということのようです。これには、してやられました。<br />
+<BR><br />
+以上、3時間くらいの戦いでした。。。長かったですが、無事、動作させることが<br />
+出来ました。。。<br />
+Bluetooth使うときは、お気をつけください。＜って、こんなのはおまいだけだって。</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2005/03/bluetooth.html" title="初めてのBluetooth">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 03:09</li>
+                  <li><a href="http://www.noritsuna.jp/archives/2005/03/bluetooth.html#comments" title="初めてのBluetoothにコメント">Comments</a> (5) </li>
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+                    <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about="http://www.noritsuna.jp/archives/e/hardware/index.html#000022"
+    trackback:ping="http://www.noritsuna.jp/cgi-bin/mt/mt-traba.cgi/22"
+    dc:title="マシン構成変更"
+    dc:identifier="http://www.noritsuna.jp/archives/e/hardware/index.html#000022"
+    dc:subject="HardWare"
+    dc:description="いままで、Pen3-1GHz Dual のマシンにWindows2000 Ser..."
+    dc:creator="noritsuna"
+    dc:date="2005-02-19T00:03:35+09:00" />
+</rdf:RDF>
+-->
+
+          <div class="entry">
+
+            <!-- エントリー日付 -->
+            <p class="date-header">2005&#24180;02&#26376;19&#26085;</p>
+
+            <!-- エントリータイトル -->
+            <h3 id="a000022" class="entry-header"><a href="http://www.noritsuna.jp/archives/2005/02/post_9.html" title="マシン構成変更">マシン構成変更</a></h3>
+
+            <!-- エントリー -->
+            <div class="entry-content">
+              <!-- エントリー本文 -->
+              <div class="entry-body">
+                <p>いままで、Pen3-1GHz Dual のマシンにWindows2000 Serverを入れて、外部からネットワーク経由(VPNやSSHトンネル)にて、リモートデスクトップを叩いておりました。</p>
+
+<p>これにより、ネットワークにつながっていれば、どこからでも全く同じ環境が使えるという構成にしておりました。</p>
+
+<p>しかし、最近、個人的な理由によりネットワークから隔離された場所を往復する必要性が出てきたのとさすがにそろそろスペックが苦しくなってきたため、リプレースすることにしました。<br />
+<BR><br />
+<BR><br />
+<BR><br />
+基本的なコンセプトは、</p>
+
+<blockquote>
+・どこでも同一環境・同一データを扱える<br>
+・データ保全(確実なバックアップ環境)<br>
+・ネットワークを使用しない環境でも使用可能<br>
+</blockquote>
+
+<p>そこで、今回考えた構成は、、、</p>
+
+<blockquote>
+・超弩級スペックのノートPCをメインマシンにする<br>
+・ノートPCだけにデータを入れておくのは、故障が怖いためデータバックアップ用のマシンを用意する</blockquote>
+
+<p>チョイスしたマシンは、、、</p>
+
+<blockquote>
+・超弩級母艦　<a href="http://www-6.ibm.com/jp/pc/thinkpad/tpt42p/tpt42pa.shtml">IBM ThinkPadT42p</a>の後継機(ただいま、待ち状態。(^-^;A) <br>
+　堅牢性とスペックの高さからチョイス。やはり、個人的にThinkPad以外のノートPCは、信じられないので。<br>
+・データバックアップマシンとして、<a href="http://www.plathome.co.jp/detail.html?scd=11840687">ARAID99</a> にて、RAID1構成を作り、冗長なバックアップ領域とする
+</blockquote>　
+
+<p>いまは、母艦マシンとして、IBM ThinkPad X21 を使用中。<br />
+先週は、ずっと、この環境を整えてました。(^-^;A</p>
+
+<p>バックアップ先としては、バッファローの「<a href="http://buffalo.melcoinc.co.jp/products/catalog/item/h/hd-htgl_r5/">TeraStation</a>」も捨てがたかったのですが、音楽・ムービー再生環境と兼用にしたかったので、上記のチョイスと<br />
+なりました。<br />
+<BR><br />
+<BR><br />
+ちなみに、ネットワークに接続できるのなら、やはり、リモートデスクトップ環境がベストかと思います。<br />
+ネットワークの速度としては、128kのAirH"では、少々荷が重いというところ。使えなくはないですが、ストレスがたまります。<br />
+最近発表された、256kのAirH"が160k〜200kくらい出るということですので、このくらいあれば、あまりストレス無く使えるかもしれません。<br />
+ちなみに、RDP（リモートデスクトップが使用するプロトコル）自体に圧縮機能があるので、AirH"のトルネードWebなどは役に立ちません。(128kが、90k〜110kくらい。)</p>
+
+<p>接続先のOSとしては、XP Proがリモートデスクトップをデフォルト装備ですので、それを、メインとして使うのがよさそうです。<br />
+ただ、今までの経験からXP Proは一週間に一回くらいフリーズすることがあるので、この辺、対処策が必要かもしれません。</p>
+
+<p>2003 Serverを使うという手もありますが、ライセンスが高いという欠点があります。また、Serverを使うときは、Admin権限で利用することをお奨めします。<br />
+普通のUser権限ですと、運用するといろいろとトラブリますので、対処するための知識が必要となり、けっこうハードルが高いです。<br />
+</p>
+              </div><!-- entry-body_end -->
+
+              <!-- エントリー追記 -->
+              <div class="entry-more">
+                
+              </div><!-- entry-more_end -->
+
+              <!-- エントリー情報 -->
+              <div class="entry-info">
+                <ul>
+                  <li><a href="http://www.noritsuna.jp/archives/2005/02/post_9.html" title="マシン構成変更">Permalink</a></li>
+                  <li>by noritsuna</li>
+                  <li>at 00:03</li>
+                  
+                  
+                </ul>
+              </div><!-- entry-info_end -->
+
+            </div><!-- entry-content_end -->
+          </div><!-- entry_end -->
+          
+
+        </div><!-- content_end -->
+      </div><!-- main_end -->
+
+      <!--右メニュー-->
+      <div id="right-menu">
+        <div  class="right-content">
+
+          <!-- 最近のエントリー -->
+          <div class="recent-entry">
+            <h3>Recent Entries</h3>
+              <ol>                <li><a href="http://www.noritsuna.jp/archives/2009/03/open_embedded_s_1.html" title="「Open Embedded Software Foundation」（OESF）、リーク情報">「Open Embedded Software Foundation」（OESF）、リーク情報</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2009/02/post_132.html" title="マスからマニアへ">マスからマニアへ</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2009/02/post_131.html" title="シンプルプロセサと超並列と不揮発">シンプルプロセサと超並列と不揮発</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2007/04/low_power_ia.html" title="Low Power IAプラットフォーム">Low Power IAプラットフォーム</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/12/plc.html" title="PLCと無線">PLCと無線</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/12/pci_express_ove.html" title="PCI Express over Ethernet">PCI Express over Ethernet</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/10/intel1cpulpp.html" title="Intelのもう1つの次世代CPU「LPP」">Intelのもう1つの次世代CPU「LPP」</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/10/post_41.html" title="バッテリートラブル">バッテリートラブル</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/09/vmwareserver.html" title="新VMWareServerサーバ構築・ハードウェア編">新VMWareServerサーバ構築・ハードウェア編</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/08/vm.html" title="VM環境移行準備">VM環境移行準備</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/07/amd.html" title="AMDのコプロセッサ戦略">AMDのコプロセッサ戦略</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/07/ups.html" title="UPSバッテリー交換">UPSバッテリー交換</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/07/32intelcpu.html" title="32コアIntelCPU">32コアIntelCPU</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/07/hdd.html" title="HDD換装">HDD換装</a></li>
+                              <li><a href="http://www.noritsuna.jp/archives/2006/07/post_16.html" title="指マウス">指マウス</a></li>
+              </ol>
+          </div><!-- recent-entry_end -->
+
+          <!-- 最近のコメント -->
+          <!-- 最近のトラックバック -->
+
+
+          <!-- リンク -->
+          <div class="site-link">
+          <h3>Links</h3>
+            <ul><li><a href="http://www.siprop.org/">SIProp Project</a></li></ul>
+          </div><!-- site-link_end -->
+
+                    <!-- クリエイティブコモンズライセンス -->
+          <div class="cclicense">
+            <a href="http://creativecommons.org/licenses/by-nc/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights" /></a><br />This weblog is licensed under a <a href="http://creativecommons.org/licenses/by-nc/1.0/">Creative Commons License</a>.
+          </div><!-- cclicense_end -->
+          
+
+          <!-- Powered -->
+          <div class="powered">
+            <ul>
+              <li>Powered by <a href="http://www.movabletype.jp">Movable Type 3.33-ja</a></li>
+              <li>Template by <a href="http://drblog.jp/"><img src="http://drblog.jp/info/img/drblog.gif" alt="Dr.Blog" width="128" height="22" /></a></li>
+            </ul>
+          </div><!-- Powered_end -->
+
+        </div><!-- right-content_end -->
+      </div><!-- right-menu_end -->
+
+      <div id="footer">
+        <ul class="syndicate">
+          <li><a href="http://www.noritsuna.jp/index.xml" title="なんとなく実験 with SIProp開発記 RSS Feed (XML)">RSS Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/atom.xml" title="なんとなく実験 with SIProp開発記 Atom Feed (XML)">Atom Feed (XML)</a></li>
+          <li><a href="http://www.noritsuna.jp/archives.html" title="なんとなく実験 with SIProp開発記">Archives</a></li>
+          <li><a href="#banner">Page Top</a></li>
+        </ul>
+      </div><!-- footer_end -->
+
+    </div><!-- main-container_end -->
+
+  </body>
+</html>
