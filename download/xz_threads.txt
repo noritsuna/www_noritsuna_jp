@@ -1,0 +1,68 @@
+* My System
+- Ubuntu 14.04 64bits on VMWare Ver.11.1
+- CPU: Core i7 3core 6thread
+- Mem: 6GB
+
+* xz
+- OLD
+-- xz (XZ Utils) 5.1.0alpha
+-- liblzma 5.1.0alpha
+- NEW(Target)
+-- xz (XZ Utils) 5.2.1
+-- liblzma 5.2.1
+
+* Compressed Target Files
+- 3DRobotics's APM source code on github
+-- https://github.com/3drobotics
+- Repositories
+-- apm_planner
+-- ardupilot
+-- PX4Firmware
+-- PX4NuttX
+-- VRNuttX
+
+* Contens
+- git repository Files(under ".git" dir)
+- Source Code Files
+- built binaries
+
+* Size
+- 1,103,882,240bytes(Umcompress)
+-- in "dronecode" dir
+
+
+* Tests(All tests on xz-5.2.1)
+- Command
+tar cfv dronecode.tar dronecode
+time xz --threads=1 dronecode.tar
+
+- Result
+-- 1st
+real	6m33.626s
+user	6m25.506s
+
+-- 2nd
+real	6m31.165s
+user	6m23.933s
+
+-- 3rd
+real	6m35.975s
+user	6m28.190s
+
+
+- Command
+tar cfv dronecode.tar dronecode
+time xz --threads=0 dronecode.tar
+
+- Result
+-- 1st
+real	2m5.100s
+user	15m11.711s
+
+-- 2nd
+real	2m2.156s
+user	14m37.111s
+
+-- 3rd
+real	1m58.574s
+user	13m39.980s

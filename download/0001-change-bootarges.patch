@@ -1,0 +1,26 @@
+From 8632e2b9962b1d4d61944aa3da4f3873d4725d62 Mon Sep 17 00:00:00 2001
+From: Akihiro Maeda <@androidsola>
+Date: Sat, 19 May 2012 23:28:45 +0900
+Subject: [PATCH] change bootarges
+
+---
+ include/configs/omap4430panda.h |    3 +--
+ 1 files changed, 1 insertions(+), 2 deletions(-)
+
+diff --git a/include/configs/omap4430panda.h b/include/configs/omap4430panda.h
+index 5ff5efe..af6312d 100644
+--- a/include/configs/omap4430panda.h
++++ b/include/configs/omap4430panda.h
+@@ -147,8 +147,7 @@
+ 	" ip=dhcp"
+ #else
+ 
+-#define CONFIG_BOOTARGS "console=ttyO2,115200n8 mem=512M" \
+-	" init=/init vram=32M omapfb.vram=0:16M androidboot.console=ttyO2"
++#define CONFIG_BOOTARGS "kgdboc=ttyO2,115200 console=ttyO2,115200n8 mem=1G androidboot.console=ttyO2"
+ 
+ #define CONFIG_BOOTCOMMAND "booti mmc0"
+ #define CONFIG_OMAP4_ANDROID_CMD_LINE 1
+-- 
+1.7.4.1
+
